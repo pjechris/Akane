@@ -7,15 +7,15 @@
 //
 
 @protocol AKNViewModel;
+@protocol AKNViewModelAware;
 
 /**
  * A presenter is a class which contain components to present a scene on screen:
  * - a view model which represent logic data about the scene
  * - a view which is the scene using UIKit elements
  */
-@protocol AKNPresenter <NSObject>
+@protocol AKNPresenter <AKNViewModelAware>
 
-@property(nonatomic, strong, readonly)id<AKNViewModel>  viewModel;
 @property(nonatomic, strong, readonly)UIView            *view;
 
 /**
@@ -24,7 +24,7 @@
  *
  * @param id viewModel the view model that should be associated to presenter
  */
-- (void)awakeWithViewModel:(id)viewModel;
+- (void)awakeWithViewModel:(id<AKNViewModelAware>)viewModel;
 
 /**
  * This method should be called ONCE view is LOADED. didAwake can happen multiple times (if view is unloaded and reloaded

@@ -16,7 +16,7 @@
 
 @implementation AKNPresenterViewController
 
-- (void)awakeWithViewModel:(id)viewModel {
+- (void)awakeWithViewModel:(id<AKNViewModel>)viewModel {
     // Too late, view model can't be changed anymore
     if (self.awaken) {
         return;
