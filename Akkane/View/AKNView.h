@@ -8,13 +8,17 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewContext.h"
+#import "AKNViewContextAware.h"
 
-@interface AKNView : UIView<AKNViewContext>
+@protocol AKNViewContext;
+
+@interface AKNView : UIView<AKNViewContextAware>
+
+@property(nonatomic, weak)id<AKNViewContext>  context;
 
 /**
  * @brief configure the view with data
- * Default implementation of this method does nothing. Override the method to set bindings, commands and subpresenter
+ * Default implementation of this method do nothing. Override the method to set bindings, commands and subpresenter
  * views on the view
  *
  * You should not call this method directly

@@ -7,10 +7,20 @@
 //
 
 #import "AKNView.h"
+#import "AKNViewContext.h"
 
 @implementation AKNView
 
+- (void)setContext:(id<AKNViewContext>)context {
+    if (context == _context)
+        return;
+
+    _context = context;
+    [self configure];
+}
+
 - (void)configure {
+    // Default implementation do nothing
 }
 
 @end

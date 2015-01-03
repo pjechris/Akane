@@ -6,17 +6,12 @@
 // file that was distributed with this source code
 //
 
-@protocol AKNViewModel;
-@protocol AKNViewModelAware;
+#import "AKNViewContext.h"
 
 /**
- * A presenter is a class which contain components to present a scene on screen:
- * - a view model which represent logic data about the scene
- * - a view which is the scene using UIKit elements
+ * Presenter is a context with capabilities to handle "presentation" workflow
  */
-@protocol AKNPresenter <AKNViewModelAware>
-
-@property(nonatomic, strong, readonly)UIView            *view;
+@protocol AKNPresenter <AKNViewContext>
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized

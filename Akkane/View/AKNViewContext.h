@@ -6,25 +6,25 @@
 // file that was distributed with this source code
 //
 
-@protocol AKNPresenter;
+#import "AKNViewModelAware.h"
+
+@protocol AKNViewContextAware;
 
 /**
- * Provide a view with a context. Context can/should contain:
- * - presenter reference (AKNPresenter)
+ * Context can/should contain:
+ * - view model (AKNViewModelAware)
+ * - reference to its associated view
  * - command objects (not yet available)
- * - presenter subpresenters. Having them allow you to "bind" them to a subview if superview was created from storyboard
- * or Nib
+ * - subcontexts
  *
- *
+ * You'll usually use a AKNPresenter as a view context but having 2 differents protocols allow you to distinguish them
+ * if necessary
  */
-@protocol AKNViewContext <NSObject>
+@protocol AKNViewContext <AKNViewModelAware>
 
-/**
- * The view context providing access to the associated viewModel object and commands
- *
- * You should override this property in your custom views with a more specific protocol implementing the commands you
- * need
- */
-@property(nonatomic, weak, readonly)id<AKNPresenter>  presenter;
+/// the context associated view
+@property(nonatomic, strong, readonly)UIView<AKNViewContextAware>    *view;
 
 @end
+
+
