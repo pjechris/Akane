@@ -24,6 +24,6 @@
  * You should override this property in your custom views with a more specific protocol implementing the commands you
  * need
  */
-@property(nonatomic, weak, readonly)id<AKNViewContext>  context;
+@property(nonatomic, weak)id<AKNViewContext>  context;
 
 @end

@@ -8,36 +8,46 @@
 
 #import "AKNPresenterViewController.h"
 #import "AKNViewModel.h"
+#import "AKNViewContextAware.h"
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
-@property(nonatomic, assign)BOOL                awaken;
+@property(nonatomic, strong)NSMutableArray      *presenters;
 @end
 
 @implementation AKNPresenterViewController
 
 - (void)awakeWithViewModel:(id<AKNViewModel>)viewModel {
-    // Too late, view model can't be changed anymore
-    if (self.awaken) {
+    if (self.viewModel) {
         return;
     }
 
     self.viewModel = viewModel;
+
+    if ([self isViewLoaded]) {
+        [self awake];
+    }
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self awake];
+
+    if (self.viewModel) {
+        [self awake];
+    }
 }
 
 - (void)awake {
-    self.awaken = YES;
+    self.presenters = [NSMutableArray new];
+
     [self didAwake];
+
+    self.view.context = self;
+    [self addPresentersAsChildViewControllers];
 }
 
 - (void)didAwake {
     // Default implementation do nothing
-    
 }
 
 - (void)linkWithView:(UIView<AKNViewContextAware> *)view {
@@ -47,6 +57,23 @@
 
     self.view = view;
     [self viewDidLoad];
+}
+
+- (void)addPresenter:(id<AKNPresenter>)presenter {
+    [self.presenters addObject:presenter];
+}
+
+- (void)addPresentersAsChildViewControllers {
+    for (id<AKNPresenter> presenter in self.presenters) {
+        if ([presenter isKindOfClass:[UIViewController class]]) {
+            UIViewController *viewController = (UIViewController *)presenter;
+
+            if (!viewController.parentViewController) {
+                [self addChildViewController:viewController];
+                [viewController didMoveToParentViewController:self];
+            }
+        }
+    }
 }
 
 @end
