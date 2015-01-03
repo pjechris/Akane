@@ -37,6 +37,16 @@
 
 - (void)didAwake {
     // Default implementation do nothing
+    
+}
+
+- (void)linkWithView:(UIView<AKNViewContextAware> *)view {
+    if ([self isViewLoaded]) {
+        return;
+    }
+
+    self.view = view;
+    [self viewDidLoad];
 }
 
 @end

@@ -13,7 +13,6 @@
 /**
  * Context can/should contain:
  * - view model (AKNViewModelAware)
- * - reference to its associated view
  * - command objects (not yet available)
  * - subcontexts
  *
@@ -24,6 +23,8 @@
 
 /// the context associated view
 @property(nonatomic, strong, readonly)UIView<AKNViewContextAware>    *view;
+
+- (void)linkWithView:(UIView<AKNViewContextAware> *)view;
 
 @end
 
