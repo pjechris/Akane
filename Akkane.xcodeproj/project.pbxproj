@@ -10,6 +10,13 @@
 		496058D51A52F9AC00775D0E /* Akkane.h in Headers */ = {isa = PBXBuildFile; fileRef = 496058D41A52F9AC00775D0E /* Akkane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		496058DB1A52F9AC00775D0E /* Akkane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496058CF1A52F9AC00775D0E /* Akkane.framework */; };
 		496058E21A52F9AC00775D0E /* AkkaneTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 496058E11A52F9AC00775D0E /* AkkaneTests.m */; };
+		496058F61A53012400775D0E /* AKNPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 496058F31A53012400775D0E /* AKNPresenter.h */; };
+		496058F71A53012400775D0E /* AKNPresenterViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 496058F41A53012400775D0E /* AKNPresenterViewController.h */; };
+		496058F81A53012400775D0E /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 496058F51A53012400775D0E /* AKNPresenterViewController.m */; };
+		496058FA1A53012900775D0E /* AKNViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 496058F91A53012900775D0E /* AKNViewModel.h */; };
+		496058FF1A530B1500775D0E /* AKNView.h in Headers */ = {isa = PBXBuildFile; fileRef = 496058FD1A530B1500775D0E /* AKNView.h */; };
+		496059001A530B1500775D0E /* AKNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 496058FE1A530B1500775D0E /* AKNView.m */; };
+		499724A01A58342B00013ABF /* AKNViewContextAware.h in Headers */ = {isa = PBXBuildFile; fileRef = 4997249F1A58342B00013ABF /* AKNViewContextAware.h */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -23,12 +30,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		49053DC51A56F76B0060FC6C /* AKNViewModelAware.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
+		49053DC81A5765F80060FC6C /* AKNViewContext.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKNViewContext.h; sourceTree = "<group>"; };
 		496058CF1A52F9AC00775D0E /* Akkane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akkane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496058D31A52F9AC00775D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		496058D41A52F9AC00775D0E /* Akkane.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Akkane.h; sourceTree = "<group>"; };
 		496058DA1A52F9AC00775D0E /* AkkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		496058E01A52F9AC00775D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		496058E11A52F9AC00775D0E /* AkkaneTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AkkaneTests.m; sourceTree = "<group>"; };
+		496058F31A53012400775D0E /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
+		496058F41A53012400775D0E /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
+		496058F51A53012400775D0E /* AKNPresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNPresenterViewController.m; sourceTree = "<group>"; };
+		496058F91A53012900775D0E /* AKNViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModel.h; sourceTree = "<group>"; };
+		496058FD1A530B1500775D0E /* AKNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNView.h; sourceTree = "<group>"; };
+		496058FE1A530B1500775D0E /* AKNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNView.m; sourceTree = "<group>"; };
+		4997249F1A58342B00013ABF /* AKNViewContextAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewContextAware.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,7 +87,10 @@
 		496058D11A52F9AC00775D0E /* Akkane */ = {
 			isa = PBXGroup;
 			children = (
+				496058FB1A5304DB00775D0E /* View */,
 				496058D41A52F9AC00775D0E /* Akkane.h */,
+				496058F11A5300EC00775D0E /* Presenter */,
+				496058F21A5300EC00775D0E /* ViewModel */,
 				496058D21A52F9AC00775D0E /* Supporting Files */,
 			);
 			path = Akkane;
@@ -102,6 +121,36 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		496058F11A5300EC00775D0E /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				496058F31A53012400775D0E /* AKNPresenter.h */,
+				496058F41A53012400775D0E /* AKNPresenterViewController.h */,
+				496058F51A53012400775D0E /* AKNPresenterViewController.m */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		496058F21A5300EC00775D0E /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				496058F91A53012900775D0E /* AKNViewModel.h */,
+				49053DC51A56F76B0060FC6C /* AKNViewModelAware.h */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		496058FB1A5304DB00775D0E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				496058FD1A530B1500775D0E /* AKNView.h */,
+				496058FE1A530B1500775D0E /* AKNView.m */,
+				49053DC81A5765F80060FC6C /* AKNViewContext.h */,
+				4997249F1A58342B00013ABF /* AKNViewContextAware.h */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -109,6 +158,11 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496058F61A53012400775D0E /* AKNPresenter.h in Headers */,
+				496058F71A53012400775D0E /* AKNPresenterViewController.h in Headers */,
+				496058FA1A53012900775D0E /* AKNViewModel.h in Headers */,
+				499724A01A58342B00013ABF /* AKNViewContextAware.h in Headers */,
+				496058FF1A530B1500775D0E /* AKNView.h in Headers */,
 				496058D51A52F9AC00775D0E /* Akkane.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -209,6 +263,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496058F81A53012400775D0E /* AKNPresenterViewController.m in Sources */,
+				496059001A530B1500775D0E /* AKNView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -266,7 +322,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -305,7 +361,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -324,6 +380,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Akkane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -339,6 +396,7 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				INFOPLIST_FILE = Akkane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -394,6 +452,7 @@
 				496058E71A52F9AC00775D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		496058E81A52F9AC00775D0E /* Build configuration list for PBXNativeTarget "AkkaneTests" */ = {
 			isa = XCConfigurationList;
@@ -402,6 +461,7 @@
 				496058EA1A52F9AC00775D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
