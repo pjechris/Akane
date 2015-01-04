@@ -9,6 +9,7 @@
 #import <Kiwi/Kiwi.h>
 #import <UIKit/UIKit.h>
 #import "AKNView.h"
+#import "AKNViewContext.h"
 
 SPEC_BEGIN(AKNViewSpec)
 
@@ -31,6 +32,55 @@ describe(@"with no context", ^{
 
             view.context = [KWMock mockForProtocol:@protocol(AKNViewContext)];
             view.context = [KWMock mockForProtocol:@protocol(AKNViewContext)];
+        });
+    });
+});
+
+describe(@"with context", ^{
+    __block NSObject<AKNViewContext>    *viewContext;
+
+    beforeEach(^{
+        view = [AKNView new];
+        viewContext = [KWMock mockForProtocol:@protocol(AKNViewContext)];
+
+        view.context = viewContext;
+    });
+
+    specify(^{
+        [[viewContext shouldNot] beNil];
+    });
+
+    context(@"when binding context", ^{
+        __block NSObject<AKNViewContext>    *bindingContext;
+
+        beforeEach(^{
+            bindingContext = [KWMock mockForProtocol:@protocol(AKNViewContext)];
+        });
+
+        context(@"when subview is not a view subview", ^{
+            it(@"should do nothing if binding view is not a descendant", ^{
+                [[bindingContext shouldNot] receive:@selector(setupView:)];
+
+                [view bindContext:bindingContext to:[UIView nullMock]];
+            });
+        });
+
+        context(@"when subview is a view subview", ^{
+            __block UIView<AKNViewContextAware> *subview;
+
+            beforeEach(^{
+                subview = [AKNView new];
+                [view addSubview:subview];
+            });
+
+            it(@"should setup view and notify parent", ^{
+                NSObject *parentContext = (NSObject *)view.context;
+
+                [[bindingContext should] receive:@selector(setupView:)];
+                [[parentContext should] receive:@selector(didSetupContext:)];
+
+                [view bindContext:bindingContext to:subview];
+            });
         });
     });
 });
