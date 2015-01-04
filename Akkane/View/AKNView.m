@@ -23,4 +23,13 @@
     // Default implementation do nothing
 }
 
+- (void)bindContext:(id<AKNViewContext>)subcontext to:(UIView<AKNViewContextAware> *)subview {
+    if (![subview isDescendantOfView:self]) {
+        return;
+    }
+
+    [subcontext setupView:subview];
+    [self.context didSetupContext:subcontext];
+}
+
 @end

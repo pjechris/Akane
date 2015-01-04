@@ -25,4 +25,6 @@
  */
 - (void)configure;
 
+- (void)bindContext:(id<AKNViewContext>)subcontext to:(UIView<AKNViewContextAware> *)subview;
+
 @end

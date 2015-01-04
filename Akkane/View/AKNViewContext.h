@@ -24,7 +24,8 @@
 /// the context associated view
 @property(nonatomic, strong, readonly)UIView<AKNViewContextAware>    *view;
 
-- (void)linkWithView:(UIView<AKNViewContextAware> *)view;
+- (void)setupView:(UIView<AKNViewContextAware> *)view;
+- (void)didSetupContext:(id<AKNViewContext>)context;
 
 @end
 

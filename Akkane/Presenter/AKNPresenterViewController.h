@@ -18,6 +18,4 @@
  */
 - (void)didAwake;
 
-- (void)addPresenter:(id<AKNPresenter>)presenter;
-
 @end

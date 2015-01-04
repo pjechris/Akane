@@ -43,14 +43,13 @@
     [self didAwake];
 
     self.view.context = self;
-    [self addPresentersAsChildViewControllers];
 }
 
 - (void)didAwake {
     // Default implementation do nothing
 }
 
-- (void)linkWithView:(UIView<AKNViewContextAware> *)view {
+- (void)setupView:(UIView<AKNViewContextAware> *)view {
     if ([self isViewLoaded]) {
         return;
     }
@@ -59,19 +58,17 @@
     [self viewDidLoad];
 }
 
-- (void)addPresenter:(id<AKNPresenter>)presenter {
-    [self.presenters addObject:presenter];
-}
+- (void)didSetupContext:(id<AKNViewContext>)context {
+    if ([context isKindOfClass:[UIViewController class]]) {
+        UIViewController *viewController = (UIViewController *)context;
 
-- (void)addPresentersAsChildViewControllers {
-    for (id<AKNPresenter> presenter in self.presenters) {
-        if ([presenter isKindOfClass:[UIViewController class]]) {
-            UIViewController *viewController = (UIViewController *)presenter;
+        if (viewController.parentViewController && viewController.parentViewController != self) {
+            [viewController removeFromParentViewController];
+        }
 
-            if (!viewController.parentViewController) {
-                [self addChildViewController:viewController];
-                [viewController didMoveToParentViewController:self];
-            }
+        if (!viewController.parentViewController) {
+            [self addChildViewController:viewController];
+            [viewController didMoveToParentViewController:self];
         }
     }
 }
