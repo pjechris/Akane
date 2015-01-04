@@ -15,5 +15,14 @@ FOUNDATION_EXPORT double AkkaneVersionNumber;
 FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Akkane/PublicHeader.h>
+#import "AKNViewModel.h"
+#import "AKNViewModelAware.h"
+
+#import "AKNPresenter.h"
+#import "AKNPresenterViewController.h"
+
+#import "AKNViewContext.h"
+#import "AKNViewContextAware.h"
+#import "AKNView.h"
 
 
