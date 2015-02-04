@@ -8,7 +8,6 @@
 
 #import "AKNPresenterViewController.h"
 #import "AKNViewModel.h"
-#import "AKNViewContextAware.h"
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
@@ -17,7 +16,7 @@
 
 @implementation AKNPresenterViewController
 
-- (void)awakeWithViewModel:(id<AKNViewModel>)viewModel {
+- (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
     if (self.viewModel) {
         return;
     }
@@ -42,35 +41,20 @@
 
     [self didAwake];
 
-    self.view.context = self;
+    self.view.viewModel = self.viewModel;
 }
 
 - (void)didAwake {
     // Default implementation do nothing
 }
 
-- (void)setupView:(UIView<AKNViewContextAware> *)view {
+- (void)setupView:(UIView<AKNViewConfigurable> *)view {
     if ([self isViewLoaded]) {
         return;
     }
 
     self.view = view;
     [self viewDidLoad];
-}
-
-- (void)didSetupContext:(id<AKNViewContext>)context {
-    if ([context isKindOfClass:[UIViewController class]]) {
-        UIViewController *viewController = (UIViewController *)context;
-
-        if (viewController.parentViewController && viewController.parentViewController != self) {
-            [viewController removeFromParentViewController];
-        }
-
-        if (!viewController.parentViewController) {
-            [self addChildViewController:viewController];
-            [viewController didMoveToParentViewController:self];
-        }
-    }
 }
 
 @end

@@ -7,29 +7,20 @@
 //
 
 #import "AKNView.h"
-#import "AKNViewContext.h"
 
 @implementation AKNView
 
-- (void)setContext:(id<AKNViewContext>)context {
-    if (context == _context)
+- (void)setViewModel:(id<AKNViewModel>)viewModel {
+    if (viewModel == _viewModel) {
         return;
+    }
 
-    _context = context;
+    _viewModel = viewModel;
     [self configure];
 }
 
 - (void)configure {
     // Default implementation do nothing
-}
-
-- (void)bindContext:(id<AKNViewContext>)subcontext to:(UIView<AKNViewContextAware> *)subview {
-    if (![subview isDescendantOfView:self]) {
-        return;
-    }
-
-    [subcontext setupView:subview];
-    [self.context didSetupContext:subcontext];
 }
 
 @end

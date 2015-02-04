@@ -6,12 +6,18 @@
 // file that was distributed with this source code
 //
 
-#import "AKNViewContext.h"
+#import <UIKit/UIKit.h>
+
+@protocol AKNViewConfigurable;
+@protocol AKNViewModel;
 
 /**
  * Presenter is a context with capabilities to handle "presentation" workflow
  */
-@protocol AKNPresenter <AKNViewContext>
+@protocol AKNPresenter <NSObject>
+
+@property(nonatomic, strong, readonly)UIView<AKNViewConfigurable>    *view;
+
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized
@@ -19,7 +25,7 @@
  *
  * @param id viewModel the view model that should be associated to presenter
  */
-- (void)awakeWithViewModel:(id<AKNViewModelAware>)viewModel;
+- (void)setupWithViewModel:(id<AKNViewModel>)viewModel;
 
 /**
  * This method should be called ONCE view is LOADED. didAwake can happen multiple times (if view is unloaded and reloaded

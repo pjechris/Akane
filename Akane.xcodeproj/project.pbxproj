@@ -47,12 +47,11 @@
 		4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNPresenterViewController.m; sourceTree = "<group>"; };
 		4926EAEB1A5EBD17005A3D71 /* AKNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNView.h; sourceTree = "<group>"; };
 		4926EAEC1A5EBD17005A3D71 /* AKNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNView.m; sourceTree = "<group>"; };
-		4926EAED1A5EBD17005A3D71 /* AKNViewContext.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewContext.h; sourceTree = "<group>"; };
-		4926EAEE1A5EBD17005A3D71 /* AKNViewContextAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewContextAware.h; sourceTree = "<group>"; };
 		4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModel.h; sourceTree = "<group>"; };
 		4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
 		4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewSpec.m; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49BD046C1A82AABA00B2C9C8 /* AKNViewConfigurable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewConfigurable.h; sourceTree = "<group>"; };
 		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AkaneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -142,8 +141,7 @@
 			children = (
 				4926EAEB1A5EBD17005A3D71 /* AKNView.h */,
 				4926EAEC1A5EBD17005A3D71 /* AKNView.m */,
-				4926EAED1A5EBD17005A3D71 /* AKNViewContext.h */,
-				4926EAEE1A5EBD17005A3D71 /* AKNViewContextAware.h */,
+				49BD046C1A82AABA00B2C9C8 /* AKNViewConfigurable.h */,
 			);
 			path = View;
 			sourceTree = "<group>";

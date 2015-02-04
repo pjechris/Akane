@@ -9,78 +9,29 @@
 #import <Kiwi/Kiwi.h>
 #import <UIKit/UIKit.h>
 #import "AKNView.h"
-#import "AKNViewContext.h"
+#import "AKNViewModel.h"
 
 SPEC_BEGIN(AKNViewSpec)
 
 __block AKNView  *view;
 
-describe(@"with no context", ^{
+describe(@"with no view model", ^{
     beforeEach(^{
         view = [AKNView new];
     });
 
-    context(@"when setting context", ^{
+    context(@"when setting view model", ^{
         it(@"should call configure", ^{
             [[view should] receive:@selector(configure)];
 
-            view.context = [KWMock mockForProtocol:@protocol(AKNViewContext)];
+            view.viewModel = [KWMock mockForProtocol:@protocol(AKNViewModel)];
         });
 
         it(@"should call configure EACH time", ^{
             [[view should] receive:@selector(configure) andReturn:nil withCount:2];
 
-            view.context = [KWMock mockForProtocol:@protocol(AKNViewContext)];
-            view.context = [KWMock mockForProtocol:@protocol(AKNViewContext)];
-        });
-    });
-});
-
-describe(@"with context", ^{
-    __block NSObject<AKNViewContext>    *viewContext;
-
-    beforeEach(^{
-        view = [AKNView new];
-        viewContext = [KWMock mockForProtocol:@protocol(AKNViewContext)];
-
-        view.context = viewContext;
-    });
-
-    specify(^{
-        [[viewContext shouldNot] beNil];
-    });
-
-    context(@"when binding context", ^{
-        __block NSObject<AKNViewContext>    *bindingContext;
-
-        beforeEach(^{
-            bindingContext = [KWMock mockForProtocol:@protocol(AKNViewContext)];
-        });
-
-        context(@"when subview is not a view subview", ^{
-            it(@"should do nothing if binding view is not a descendant", ^{
-                [[bindingContext shouldNot] receive:@selector(setupView:)];
-
-                [view bindContext:bindingContext to:[UIView nullMock]];
-            });
-        });
-
-        context(@"when subview is a view subview", ^{
-            __block UIView<AKNViewContextAware> *subview;
-
-            beforeEach(^{
-                subview = [AKNView new];
-                [view addSubview:subview];
-            });
-
-            it(@"should setup view and notify parent", ^{
-                NSObject *parentContext = (NSObject *)view.context;
-
-                [[bindingContext should] receive:@selector(setupView:)];
-                [[parentContext should] receive:@selector(didSetupContext:)];
-
-                [view bindContext:bindingContext to:subview];
-            });
+            view.viewModel = [KWMock mockForProtocol:@protocol(AKNViewModel)];
+            view.viewModel = [KWMock mockForProtocol:@protocol(AKNViewModel)];
         });
     });
 });

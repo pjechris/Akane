@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AKNPresenter.h"
+#import "AKNViewConfigurable.h"
 
 @interface AKNPresenterViewController : UIViewController<AKNPresenter>
 
