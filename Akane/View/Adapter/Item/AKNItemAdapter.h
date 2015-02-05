@@ -18,6 +18,8 @@
  */
 @protocol AKNItemAdapter <NSObject>
 
+@property(nonatomic, strong)id  items;
+
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 

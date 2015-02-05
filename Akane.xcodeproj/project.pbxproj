@@ -11,6 +11,7 @@
 		4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */; };
 		4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAEC1A5EBD17005A3D71 /* AKNView.m */; };
 		4926EAFA1A5EBD27005A3D71 /* AKNViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */; };
+		493417551A84007A00B4CF90 /* AKNItemArrayAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 493417541A84007A00B4CF90 /* AKNItemArrayAdapter.m */; };
 		496EC0AF1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */; };
 		49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
 		49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
@@ -54,6 +55,8 @@
 		4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
 		4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewSpec.m; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		493417531A84007A00B4CF90 /* AKNItemArrayAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemArrayAdapter.h; sourceTree = "<group>"; };
+		493417541A84007A00B4CF90 /* AKNItemArrayAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNItemArrayAdapter.m; sourceTree = "<group>"; };
 		496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNPresenterViewControllerSpec.m; sourceTree = "<group>"; };
 		49BD046C1A82AABA00B2C9C8 /* AKNViewConfigurable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewConfigurable.h; sourceTree = "<group>"; };
 		49CCA75E1A839BEC00B0FC82 /* AKNTableViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNTableViewAdapter.h; sourceTree = "<group>"; };
@@ -222,6 +225,8 @@
 			isa = PBXGroup;
 			children = (
 				49CCA76B1A83AFFF00B0FC82 /* AKNItemAdapter.h */,
+				493417531A84007A00B4CF90 /* AKNItemArrayAdapter.h */,
+				493417541A84007A00B4CF90 /* AKNItemArrayAdapter.m */,
 				49CCA76C1A83AFFF00B0FC82 /* AKNItemViewProvider.h */,
 			);
 			path = Item;
@@ -370,6 +375,7 @@
 				4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */,
 				49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */,
 				4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */,
+				493417551A84007A00B4CF90 /* AKNItemArrayAdapter.m in Sources */,
 				49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
