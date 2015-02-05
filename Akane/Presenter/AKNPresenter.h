@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AKNViewModelAware.h"
 
 @protocol AKNViewConfigurable;
 @protocol AKNViewModel;
@@ -14,10 +15,9 @@
 /**
  * Presenter is a context with capabilities to handle "presentation" workflow
  */
-@protocol AKNPresenter <NSObject>
+@protocol AKNPresenter <AKNViewModelAware>
 
 @property(nonatomic, strong, readonly)UIView<AKNViewConfigurable>    *view;
-
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized

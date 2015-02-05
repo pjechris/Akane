@@ -16,6 +16,8 @@
 
 @implementation AKNPresenterViewController
 
+@synthesize viewModel = _viewModel;
+
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
     if (self.viewModel) {
         return;

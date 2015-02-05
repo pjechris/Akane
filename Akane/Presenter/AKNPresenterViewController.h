@@ -13,6 +13,9 @@
 
 @interface AKNPresenterViewController : UIViewController<AKNPresenter>
 
+@property(nonatomic, strong, readonly)id<AKNViewModel>      viewModel;
+@property(nonatomic, strong)UIView<AKNViewConfigurable>     *view;
+
 /**
  * @see AKNPresenter
  * Default implementation do nothing
