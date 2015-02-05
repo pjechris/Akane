@@ -23,7 +23,7 @@
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 
-- (id<AKNViewModel>)itemAtIndexPath:(NSIndexPath *)indexPath;
-- (id<AKNViewModel>)itemAtSection:(NSInteger)section;
+- (id)itemAtSection:(NSInteger)section;
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath;
 
 @end

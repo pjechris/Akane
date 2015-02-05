@@ -7,6 +7,7 @@
 //
 
 #import "AKNItemArrayAdapter.h"
+#import <UIKit/UIKit.h>
 
 @implementation AKNItemArrayAdapter
 
@@ -18,12 +19,12 @@
     return self.items.count;
 }
 
-- (id<AKNViewModel>)itemAtIndexPath:(NSIndexPath *)indexPath {
+- (id)itemAtSection:(NSInteger)section {
     return nil;
 }
 
-- (id<AKNViewModel>)itemAtSection:(NSInteger)section {
-    return nil;
+- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+    return self.items[indexPath.row];
 }
 
 @end
