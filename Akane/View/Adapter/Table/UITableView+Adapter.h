@@ -13,6 +13,6 @@
 
 @interface UITableView (Adapter)
 
-- (void)setAdapter:(AKNTableViewAdapter *)adapter;
+@property(nonatomic, strong)AKNTableViewAdapter *adapter;
 
 @end
