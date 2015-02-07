@@ -12,9 +12,13 @@
 #import "AKNItemViewProvider.h"
 #import "AKNItemViewCacher.h"
 
+CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
+
 @interface AKNTableViewAdapter () <AKNItemViewCacher>
 @property(nonatomic, strong)NSMutableDictionary *sectionModels;
 @property(nonatomic, strong)NSMutableDictionary *indexPathModels;
+@property(nonatomic, strong)NSMutableDictionary *reusableViews;
+@property(nonatomic, strong)NSMutableDictionary *prototypeViews;
 
 @property(nonatomic, strong)id<AKNItemAdapter>          itemAdapter;
 @property(nonatomic, strong)id<AKNItemContentProvider>  contentProvider;
@@ -29,6 +33,8 @@
 
     self.sectionModels = [NSMutableDictionary new];
     self.indexPathModels = [NSMutableDictionary new];
+    self.reusableViews = [NSMutableDictionary new];
+    self.prototypeViews = [NSMutableDictionary new];
 
     self.contentProvider = contentProvider;
     self.itemAdapter = itemAdapter;
@@ -64,6 +70,8 @@
     return model;
 }
 
+#pragma mark - Table delegates
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return [self.itemAdapter numberOfSections];
 }
@@ -87,7 +95,22 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 50;
+    id<AKNViewModel> viewModel = [self indexPathModel:indexPath];
+    NSString *identifier = [self.contentProvider viewModelViewIdentifier:viewModel];
+    UITableViewCell<AKNViewConfigurable> *cell = [self prototypeViewWithReuseIdentifier:identifier];
+
+    cell.viewModel = viewModel;
+
+    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+
+    if (height == 0) {
+        NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
+              We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
+
+        height = TableViewAdapterDefaultRowHeight;
+    }
+
+    return height;
 }
 
 - (void)prepareForUse {
@@ -96,13 +119,31 @@
     }
 }
 
-#pragma mark - ViewCacher
+- (UITableViewCell<AKNViewConfigurable> *)prototypeViewWithReuseIdentifier:(NSString *)identifier {
+    UITableViewCell *cell = self.prototypeViews[identifier];
+
+    if (!cell) {
+        id reusableView = self.reusableViews[identifier];
+
+        cell = ([reusableView isKindOfClass:[UINib class]])
+        ? [reusableView instantiateWithOwner:nil options:nil][0]
+        : [reusableView new];
+    }
+
+    return cell;
+}
+
+#pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
+    self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+
     [self.tableView registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
+    self.reusableViews[identifier] = viewClass;
+
     [self.tableView registerClass:viewClass forCellReuseIdentifier:identifier];
 }
 
