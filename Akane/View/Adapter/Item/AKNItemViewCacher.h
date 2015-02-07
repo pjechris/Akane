@@ -16,10 +16,10 @@
  */
 @protocol AKNItemViewCacher <NSObject>
 
-- (void)registerItemView:(Class)viewClass withReuseIdentifier:(NSString *)identifier;
-- (void)registerItemNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier;
+- (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier;
+- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier;
 
-- (void)registerSupplementaryView:(Class)viewClass elementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
-- (void)registerSupplementaryNibName:(NSString *)nibName elementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
+- (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
+- (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
 
 @end

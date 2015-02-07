@@ -10,12 +10,50 @@
 #import <UIKit/UIKit.h>
 
 @protocol AKNViewModel;
+@protocol AKNItemViewCacher;
 
-@protocol AKNItemViewProvider <NSObject>
+/**
+ * Provide reusable views and view models
+ *
+ */
+@protocol AKNItemContentProvider <NSObject>
 
-- (void)provideTableView:(UITableView *)tableView;
-- (void)provideCollectionView:(UICollectionView *)collectionView;
+/**
+ * Register reusable views on a view cacher (typically, a AKNTableViewAdapter or AKNCollectionViewAdapter)
+ * @see :AKNItemViewCacher protocol for more information on it
+ */
+- (void)registerViews:(id<AKNItemViewCacher>)viewCacher;
 
-- (NSString *)itemViewIdentifier:(id<AKNViewModel>)item;
+/**
+ * Return a reusable ViewModel associated to item. You don't have to deal with the reusable part: it will be handled
+ * automatically.
+ * @param item the item to provide a View Model to
+ * @return the item ViewModel. All items should have a ViewModel.
+ */
+- (id<AKNViewModel>)itemViewModel:(id)item;
+
+/**
+ * Return a reusable ViewModel associated to a supplementary item. You don't have to deal with the reusable part: it will be handled
+ * automatically.
+ * @param item the item to provide a View Model to
+ * @return the item ViewModel. All supplementary items should have a ViewModel.
+ */
+- (id<AKNViewModel>)supplementaryItemViewModel:(id)item;
+
+/**
+ * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
+ * depending on the viewModel current "state"
+ * @param viewModel the viewModel whose view identifier is requested
+ * @return an item identifier
+ */
+- (NSString *)viewModelViewIdentifier:(id<AKNViewModel>)viewModel;
+
+/**
+ * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
+ * depending on the viewModel current "state"
+ * @param item the viewModel whose view identifier is requested
+ * @return an item identifier
+ */
+- (NSString *)supplementaryViewModelViewIdentifier:(id<AKNViewModel>)viewModel;
 
 @end
