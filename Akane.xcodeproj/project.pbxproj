@@ -65,6 +65,7 @@
 		49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Adapter.m"; sourceTree = "<group>"; };
 		49CCA76B1A83AFFF00B0FC82 /* AKNItemAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemAdapter.h; sourceTree = "<group>"; };
 		49CCA76C1A83AFFF00B0FC82 /* AKNItemViewProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewProvider.h; sourceTree = "<group>"; };
+		49CD80671A86204700CF64F2 /* AKNItemViewCacher.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewCacher.h; sourceTree = "<group>"; };
 		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AkaneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -228,6 +229,7 @@
 				493417531A84007A00B4CF90 /* AKNItemArrayAdapter.h */,
 				493417541A84007A00B4CF90 /* AKNItemArrayAdapter.m */,
 				49CCA76C1A83AFFF00B0FC82 /* AKNItemViewProvider.h */,
+				49CD80671A86204700CF64F2 /* AKNItemViewCacher.h */,
 			);
 			path = Item;
 			sourceTree = "<group>";
