@@ -18,10 +18,7 @@ NSString *const UITableViewAdapter;
 - (void)setAdapter:(AKNTableViewAdapter *)adapter {
     objc_setAssociatedObject(self, &UITableViewAdapter, adapter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 
-    [adapter.itemViewProvider provideTableView:self];
-
-    self.dataSource = adapter;
-    self.delegate = adapter;
+    adapter.tableView = self;
 }
 
 - (AKNTableViewAdapter *)adapter {
