@@ -14,6 +14,8 @@
 
 @interface AKNView : UIView<AKNViewConfigurable>
 
+@property(nonatomic, weak)id<AKNViewModel>  viewModel;
+
 /**
  * @brief configure the view with data
  * Default implementation of this method do nothing. Override the method to set bindings, commands and subpresenter
