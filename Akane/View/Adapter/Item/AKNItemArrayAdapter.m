@@ -19,7 +19,7 @@
     return self.items.count;
 }
 
-- (id)itemAtSection:(NSInteger)section {
+- (id)supplementaryItemAtSection:(NSInteger)section {
     return nil;
 }
 

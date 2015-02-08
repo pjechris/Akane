@@ -141,7 +141,7 @@ NSString *const TableViewAdapterCellContentView;
     return view;
 }
 
-- (UITableViewCell<AKNViewConfigurable> *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
+- (UITableViewCell *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
     UITableViewCell *cell = self.prototypeViews[identifier];
 
     if (!cell) {
@@ -164,11 +164,11 @@ NSString *const TableViewAdapterCellContentView;
     [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:identifier];
 }
 
-- (void)registerNibName:(NSString *)nibName elementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
+- (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     // TODO
 }
 
-- (void)registerView:(Class)viewClass elementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
+- (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     // TODO
 }
 
