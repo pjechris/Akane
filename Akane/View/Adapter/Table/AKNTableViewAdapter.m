@@ -8,27 +8,28 @@
 
 #import "AKNTableViewAdapter.h"
 #import "AKNViewConfigurable.h"
-#import "AKNItemAdapter.h"
-#import "AKNItemViewProvider.h"
-#import "AKNItemViewCacher.h"
+#import "AKNDataSource.h"
+#import "AKNItemViewModelProvider.h"
+#import "AKNViewCache.h"
 #import <objc/runtime.h>
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 NSString *const TableViewAdapterCellContentView;
 
-@interface AKNTableViewAdapter () <AKNItemViewCacher>
+@interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMutableDictionary *sectionModels;
 @property(nonatomic, strong)NSMutableDictionary *indexPathModels;
 @property(nonatomic, strong)NSMutableDictionary *reusableViews;
 @property(nonatomic, strong)NSMutableDictionary *prototypeViews;
 
-@property(nonatomic, strong)id<AKNItemAdapter>          itemAdapter;
-@property(nonatomic, strong)id<AKNItemContentProvider>  contentProvider;
+@property(nonatomic, strong)id<AKNDataSource>          dataSource;
+@property(nonatomic, strong)id<AKNItemViewModelProvider>  itemViewModelProvider;
 @end
 
 @implementation AKNTableViewAdapter
 
-- (instancetype)initWithItemAdapter:(id<AKNItemAdapter>)itemAdapter content:(id<AKNItemContentProvider>)contentProvider {
+- (instancetype)initWithDataSource:(id<AKNDataSource>)dataSource
+                 viewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
     if (!(self = [super init])) {
         return nil;
     }
@@ -38,8 +39,8 @@ NSString *const TableViewAdapterCellContentView;
     self.reusableViews = [NSMutableDictionary new];
     self.prototypeViews = [NSMutableDictionary new];
 
-    self.contentProvider = contentProvider;
-    self.itemAdapter = itemAdapter;
+    self.itemViewModelProvider = itemViewModelProvider;
+    self.dataSource = dataSource;
 
     return self;
 }
@@ -48,9 +49,9 @@ NSString *const TableViewAdapterCellContentView;
     id<AKNViewModel> model = self.sectionModels[@(section)];
 
     if (!model) {
-        id item = [self.itemAdapter supplementaryItemAtSection:section];
+        id item = [self.dataSource supplementaryItemAtSection:section];
 
-        model = [self.contentProvider supplementaryItemViewModel:item];
+        model = [self.itemViewModelProvider supplementaryItemViewModel:item];
 
         self.sectionModels[@(section)] = model;
     }
@@ -62,9 +63,9 @@ NSString *const TableViewAdapterCellContentView;
     id<AKNViewModel> model = self.indexPathModels[indexPath];
 
     if (!model) {
-        id item = [self.itemAdapter itemAtIndexPath:indexPath];
+        id item = [self.dataSource itemAtIndexPath:indexPath];
 
-        model = [self.contentProvider itemViewModel:item];
+        model = [self.itemViewModelProvider itemViewModel:item];
 
         self.indexPathModels[indexPath] = model;
     }
@@ -75,16 +76,16 @@ NSString *const TableViewAdapterCellContentView;
 #pragma mark - Table delegates
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.itemAdapter numberOfSections];
+    return [self.dataSource numberOfSections];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.itemAdapter numberOfItemsInSection:section];
+    return [self.dataSource numberOfItemsInSection:section];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNViewModel> viewModel = [self indexPathModel:indexPath];
-    NSString *identifier = [self.contentProvider viewModelViewIdentifier:viewModel];
+    NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
@@ -98,7 +99,7 @@ NSString *const TableViewAdapterCellContentView;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNViewModel> viewModel = [self indexPathModel:indexPath];
-    NSString *identifier = [self.contentProvider viewModelViewIdentifier:viewModel];
+    NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
 
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
@@ -116,8 +117,8 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (void)prepareForUse {
-    if (self.contentProvider && self.tableView) {
-        [self.contentProvider registerViews:self];
+    if (self.itemViewModelProvider && self.tableView) {
+        [self.itemViewModelProvider registerViews:self];
     }
 }
 
@@ -186,22 +187,22 @@ NSString *const TableViewAdapterCellContentView;
     _tableView.delegate = self;
 }
 
-- (void)setContentProvider:(id<AKNItemContentProvider>)contentProvider {
-    if (_contentProvider == contentProvider) {
+- (void)setitemViewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
+    if (_itemViewModelProvider == itemViewModelProvider) {
         return;
     }
 
-    _contentProvider = contentProvider;
+    _itemViewModelProvider = itemViewModelProvider;
     [self prepareForUse];
     [_tableView reloadRowsAtIndexPaths:[_tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
 }
 
-- (void)setItemAdapter:(id<AKNItemAdapter>)itemAdapter {
-    if (_itemAdapter == itemAdapter) {
+- (void)setdataSource:(id<AKNDataSource>)dataSource {
+    if (_dataSource == dataSource) {
         return;
     }
 
-    _itemAdapter = itemAdapter;
+    _dataSource = dataSource;
     [_tableView reloadData];
 }
 

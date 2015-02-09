@@ -6,10 +6,10 @@
 // file that was distributed with this source code
 //
 
-#import "AKNItemArrayAdapter.h"
+#import "AKNArrayDataSource.h"
 #import <UIKit/UIKit.h>
 
-@implementation AKNItemArrayAdapter
+@implementation AKNArrayDataSource
 
 - (NSInteger)numberOfSections {
     return 1;

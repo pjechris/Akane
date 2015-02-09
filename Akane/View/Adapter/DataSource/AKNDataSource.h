@@ -16,7 +16,7 @@
  * 
  * This protocol is concerned only about data: nothing about views should be inserted into it
  */
-@protocol AKNItemAdapter <NSObject>
+@protocol AKNDataSource <NSObject>
 
 @property(nonatomic, strong)id  items;
 

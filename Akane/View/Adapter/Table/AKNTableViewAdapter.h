@@ -10,19 +10,19 @@
 #import <UIKit/UIKit.h>
 
 @protocol AKNViewModel;
-@protocol AKNItemAdapter;
-@protocol AKNItemContentProvider;
+@protocol AKNDataSource;
+@protocol AKNItemViewModelProvider;
 
 /**
  * Adapter to transpose UITableViewDataSource and UITableViewDelegate protocols to Adapter protocols
  */
 @interface AKNTableViewAdapter : NSObject<UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, strong, readonly)id<AKNItemAdapter>            itemAdapter;
-@property(nonatomic, strong, readonly)id<AKNItemContentProvider>    contentProvider;
+@property(nonatomic, strong, readonly)id<AKNDataSource>             dataSource;
+@property(nonatomic, strong, readonly)id<AKNItemViewModelProvider>  itemViewModelProvider;
 @property(nonatomic, weak)UITableView                               *tableView;
 
-- (instancetype)initWithItemAdapter:(id<AKNItemAdapter>)itemAdapter
-                            content:(id<AKNItemContentProvider>)contentProvider;
+- (instancetype)initWithDataSource:(id<AKNDataSource>)dataSource
+                 viewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider;
 
 @end

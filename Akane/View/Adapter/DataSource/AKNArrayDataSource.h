@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-#import "AKNItemAdapter.h"
+#import "AKNDataSource.h"
 
-@interface AKNItemArrayAdapter : NSObject<AKNItemAdapter>
+@interface AKNArrayDataSource : NSObject<AKNDataSource>
 
 @property(nonatomic, strong)NSArray *items;
 

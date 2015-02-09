@@ -8,7 +8,6 @@
 
 #import "UITableView+Adapter.h"
 #import "AKNTableViewAdapter.h"
-#import "AKNItemViewProvider.h"
 #import <objc/runtime.h>
 
 NSString *const UITableViewAdapter;

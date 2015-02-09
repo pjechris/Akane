@@ -10,19 +10,19 @@
 #import <UIKit/UIKit.h>
 
 @protocol AKNViewModel;
-@protocol AKNItemViewCacher;
+@protocol AKNViewCache;
 
 /**
  * Provide reusable views and view models
  *
  */
-@protocol AKNItemContentProvider <NSObject>
+@protocol AKNItemViewModelProvider <NSObject>
 
 /**
  * Register reusable views on a view cacher (typically, a AKNTableViewAdapter or AKNCollectionViewAdapter)
  * @see :AKNItemViewCacher protocol for more information on it
  */
-- (void)registerViews:(id<AKNItemViewCacher>)viewCacher;
+- (void)registerViews:(id<AKNViewCache>)viewCacher;
 
 /**
  * Return a reusable ViewModel associated to item. You don't have to deal with the reusable part: it will be handled
@@ -46,7 +46,7 @@
  * @param viewModel the viewModel whose view identifier is requested
  * @return an item identifier
  */
-- (NSString *)viewModelViewIdentifier:(id<AKNViewModel>)viewModel;
+- (NSString *)viewIdentifier:(id<AKNViewModel>)viewModel;
 
 /**
  * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
@@ -54,6 +54,6 @@
  * @param item the viewModel whose view identifier is requested
  * @return an item identifier
  */
-- (NSString *)supplementaryViewModelViewIdentifier:(id<AKNViewModel>)viewModel;
+- (NSString *)supplementaryViewIdentifier:(id<AKNViewModel>)viewModel;
 
 @end

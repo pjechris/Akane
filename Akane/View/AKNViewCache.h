@@ -14,7 +14,7 @@
  * Method names are similar to those used by Collection and Table views, with slightly differences that should
  * ease their use
  */
-@protocol AKNItemViewCacher <NSObject>
+@protocol AKNViewCache <NSObject>
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier;
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier;
