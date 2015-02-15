@@ -89,6 +89,7 @@ NSString *const TableViewAdapterCellContentView;
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
+    viewModel.eventDispatcher = cell;
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
 
     return cell;
