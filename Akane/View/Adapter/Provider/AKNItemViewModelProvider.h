@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 
-@protocol AKNViewModel;
+@protocol AKNItemViewModel;
 @protocol AKNViewCache;
 
 /**
@@ -30,7 +30,7 @@
  * @param item the item to provide a View Model to
  * @return the item ViewModel. All items should have a ViewModel.
  */
-- (id<AKNViewModel>)itemViewModel:(id)item;
+- (id<AKNItemViewModel>)itemViewModel:(id)item;
 
 /**
  * Return a reusable ViewModel associated to a supplementary item. You don't have to deal with the reusable part: it will be handled
@@ -38,7 +38,7 @@
  * @param item the item to provide a View Model to
  * @return the item ViewModel. All supplementary items should have a ViewModel.
  */
-- (id<AKNViewModel>)supplementaryItemViewModel:(id)item;
+- (id<AKNItemViewModel>)supplementaryItemViewModel:(id)item;
 
 /**
  * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
@@ -46,7 +46,7 @@
  * @param viewModel the viewModel whose view identifier is requested
  * @return an item identifier
  */
-- (NSString *)viewIdentifier:(id<AKNViewModel>)viewModel;
+- (NSString *)viewIdentifier:(id<AKNItemViewModel>)viewModel;
 
 /**
  * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
@@ -54,6 +54,6 @@
  * @param item the viewModel whose view identifier is requested
  * @return an item identifier
  */
-- (NSString *)supplementaryViewIdentifier:(id<AKNViewModel>)viewModel;
+- (NSString *)supplementaryViewIdentifier:(id<AKNItemViewModel>)viewModel;
 
 @end

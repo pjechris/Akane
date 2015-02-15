@@ -11,6 +11,7 @@
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"
+#import "AKNItemViewModel.h"
 #import <objc/runtime.h>
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
@@ -45,8 +46,8 @@ NSString *const TableViewAdapterCellContentView;
     return self;
 }
 
-- (id<AKNViewModel>)sectionModel:(NSInteger)section {
-    id<AKNViewModel> model = self.sectionModels[@(section)];
+- (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
+    id<AKNItemViewModel> model = self.sectionModels[@(section)];
 
     if (!model) {
         id item = [self.dataSource supplementaryItemAtSection:section];
@@ -59,8 +60,8 @@ NSString *const TableViewAdapterCellContentView;
     return model;
 }
 
-- (id<AKNViewModel>)indexPathModel:(NSIndexPath *)indexPath {
-    id<AKNViewModel> model = self.indexPathModels[indexPath];
+- (id<AKNItemViewModel>)indexPathModel:(NSIndexPath *)indexPath {
+    id<AKNItemViewModel> model = self.indexPathModels[indexPath];
 
     if (!model) {
         id item = [self.dataSource itemAtIndexPath:indexPath];
@@ -84,7 +85,7 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<AKNViewModel> viewModel = [self indexPathModel:indexPath];
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
@@ -98,7 +99,7 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<AKNViewModel> viewModel = [self indexPathModel:indexPath];
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
 
@@ -115,6 +116,20 @@ NSString *const TableViewAdapterCellContentView;
 
     return height;
 }
+
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
+
+    return [viewModel canSelect] ? indexPath : nil;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
+
+    [viewModel selectItem];
+}
+
+#pragma mark - Internal
 
 - (void)prepareForUse {
     if (self.itemViewModelProvider && self.tableView) {
