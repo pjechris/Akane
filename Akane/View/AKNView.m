@@ -10,15 +10,6 @@
 
 @implementation AKNView
 
-- (void)setViewModel:(id<AKNViewModel>)viewModel {
-    if (viewModel == _viewModel) {
-        return;
-    }
-
-    _viewModel = viewModel;
-    [self configure];
-}
-
 - (void)configure {
     // Default implementation do nothing
 }
