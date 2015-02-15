@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
   s.prefix_header_file    = "Akane/#{s.name}.h"
   s.requires_arc 	  = true
 
+  s.dependency		  'EventListener'
 end

@@ -13,9 +13,11 @@
 		4926EAFA1A5EBD27005A3D71 /* AKNViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */; };
 		496EC0AF1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */; };
 		49717DF31A88EE760021834B /* AKNArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49717DF11A88EE760021834B /* AKNArrayDataSource.m */; };
+		49A159F51A90F04B00C2891F /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
 		49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
 		49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
 		4F39AA18351B181505EB23A9 /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
+		6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +43,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		4926EACB1A5EBCBF005A3D71 /* libAkane.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAkane.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -62,12 +65,15 @@
 		49717DF51A88EFDA0021834B /* AKNItemViewModelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModelProvider.h; sourceTree = "<group>"; };
 		49717DF61A88F16E0021834B /* AKNViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewCache.h; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
+		49A159F41A90F04B00C2891F /* AKNViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewModel.m; sourceTree = "<group>"; };
 		49BD046C1A82AABA00B2C9C8 /* AKNViewConfigurable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewConfigurable.h; sourceTree = "<group>"; };
 		49CCA75E1A839BEC00B0FC82 /* AKNTableViewAdapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNTableViewAdapter.h; sourceTree = "<group>"; };
 		49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNTableViewAdapter.m; sourceTree = "<group>"; };
 		49CCA7601A839BEC00B0FC82 /* UITableView+Adapter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UITableView+Adapter.h"; sourceTree = "<group>"; };
 		49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableView+Adapter.m"; sourceTree = "<group>"; };
+		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
+		92916FE046C17A4982A5879D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AkaneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -76,6 +82,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -169,6 +176,7 @@
 			children = (
 				49A159F31A90E04200C2891F /* AKNItemViewModel.h */,
 				4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */,
+				49A159F41A90F04B00C2891F /* AKNViewModel.m */,
 				4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */,
 			);
 			path = ViewModel;
@@ -248,6 +256,7 @@
 			isa = PBXGroup;
 			children = (
 				E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */,
+				6578808C14FC427CF464ABA6 /* libPods.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -257,6 +266,8 @@
 			children = (
 				719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */,
 				272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */,
+				1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */,
+				92916FE046C17A4982A5879D /* Pods.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -268,9 +279,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4926EADF1A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "Akane" */;
 			buildPhases = (
+				3060EEF94A7C83D9286681B1 /* Check Pods Manifest.lock */,
 				4926EAC71A5EBCBF005A3D71 /* Sources */,
 				4926EAC81A5EBCBF005A3D71 /* Frameworks */,
 				4926EAC91A5EBCBF005A3D71 /* CopyFiles */,
+				84C3262690D47C33B9EB783F /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,6 +360,36 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		3060EEF94A7C83D9286681B1 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		84C3262690D47C33B9EB783F /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		9826759A75C8403B74A69446 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -387,6 +430,7 @@
 				4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */,
 				49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */,
 				4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */,
+				49A159F51A90F04B00C2891F /* AKNViewModel.m in Sources */,
 				49717DF31A88EE760021834B /* AKNArrayDataSource.m in Sources */,
 				49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */,
 			);
@@ -488,6 +532,7 @@
 		};
 		4926EAE01A5EBCC0005A3D71 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -497,6 +542,7 @@
 		};
 		4926EAE11A5EBCC0005A3D71 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 92916FE046C17A4982A5879D /* Pods.release.xcconfig */;
 			buildSettings = {
 				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";

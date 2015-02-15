@@ -7,6 +7,8 @@
 //
 
 #import "AKNView.h"
+#import "AKNViewModel.h"
+#import <EventListener.h>
 
 @implementation AKNView
 

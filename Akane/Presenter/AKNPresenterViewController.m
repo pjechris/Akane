@@ -24,6 +24,7 @@
     }
 
     self.viewModel = viewModel;
+    self.viewModel.nextDispatcher = self;
 
     if ([self isViewLoaded]) {
         [self awake];
