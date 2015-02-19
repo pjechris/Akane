@@ -45,7 +45,6 @@
     [self didAwake];
 
     self.view.viewModel = self.viewModel;
-    [self.view configure];
 }
 
 - (void)didAwake {
