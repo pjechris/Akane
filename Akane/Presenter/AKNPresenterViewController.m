@@ -12,11 +12,18 @@
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong)NSMutableArray      *presenters;
+@property(nonatomic, assign)BOOL                mounted;
 @end
 
 @implementation AKNPresenterViewController
 
 @synthesize viewModel = _viewModel;
+
+- (void)dealloc {
+    if ([self.viewModel respondsToSelector:@selector(willUnmount)]) {
+        [self.viewModel willUnmount];
+    }
+}
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
     if (self.viewModel) {
@@ -37,6 +44,16 @@
     if (self.viewModel) {
         [self awake];
     }
+}
+
+- (void)viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+
+    if (!self.mounted && [self.viewModel respondsToSelector:@selector(willMount)]) {
+        [self.viewModel willMount];
+    }
+
+    self.mounted = YES;
 }
 
 - (void)awake {

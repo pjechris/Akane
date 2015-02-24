@@ -12,6 +12,10 @@
 
 @property(nonatomic, weak)id<EVEEventDispatcher>  eventDispatcher;
 
+@optional
+- (void)willMount;
+- (void)willUnmount;
+
 @end
 
 @interface AKNViewModel : NSObject<AKNViewModel>
