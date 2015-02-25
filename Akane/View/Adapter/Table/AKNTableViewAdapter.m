@@ -129,6 +129,46 @@ NSString *const TableViewAdapterCellContentView;
     [viewModel selectItem];
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
+    NSString *identifier = [self.itemViewModelProvider supplementaryViewIdentifier:sectionViewModel];
+    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
+
+    if (!identifier) {
+        return nil;
+    }
+
+    UITableViewHeaderFooterView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+
+    [self cellContentView:(UITableViewCell *)sectionView withIdentifier:identifier].viewModel = sectionViewModel;
+
+    return sectionView;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
+    NSString *identifier = [self.itemViewModelProvider supplementaryViewIdentifier:sectionViewModel];
+    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
+
+    if (!identifier) {
+        return 0;
+    }
+
+    UITableViewHeaderFooterView *sectionView = [self prototypeSectionWithReuseIdentifier:identifier];
+
+    [self cellContentView:(UITableViewCell *)sectionView withIdentifier:identifier].viewModel = sectionViewModel;
+
+    CGFloat height = [sectionView.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+
+    if (height == 0) {
+        NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
+              We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
+
+        height = TableViewAdapterDefaultRowHeight;
+    }
+    
+    return height;}
+
 #pragma mark - Internal
 
 - (void)prepareForUse {
@@ -168,6 +208,17 @@ NSString *const TableViewAdapterCellContentView;
     return cell;
 }
 
+- (UITableViewHeaderFooterView *)prototypeSectionWithReuseIdentifier:(NSString *)identifier {
+    UITableViewHeaderFooterView *sectionView = self.prototypeViews[identifier];
+
+    if (!sectionView) {
+        sectionView = [UITableViewHeaderFooterView new];
+        self.prototypeViews[identifier] = sectionView;
+    }
+
+    return sectionView;
+}
+
 #pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
@@ -181,11 +232,17 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
-    // TODO
+    identifier = [identifier stringByAppendingString:kind];
+
+    self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
-    // TODO
+    identifier = [identifier stringByAppendingString:kind];
+
+    self.reusableViews[identifier] = viewClass;
+    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:identifier];
 }
 
 #pragma mark - Setters
