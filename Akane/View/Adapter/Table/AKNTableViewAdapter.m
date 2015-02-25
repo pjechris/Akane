@@ -138,11 +138,10 @@ NSString *const TableViewAdapterCellContentView;
         return nil;
     }
 
-    UITableViewHeaderFooterView *sectionView = [tableView dequeueReusableHeaderFooterViewWithIdentifier:identifier];
+    id reusableView = self.reusableViews[identifier];
+    UIView<AKNViewConfigurable> *view = ([reusableView isKindOfClass:[UINib class]]) ? [reusableView instantiateWithOwner:nil options:nil][0] : [reusableView new];
 
-    [self cellContentView:(UITableViewCell *)sectionView withIdentifier:identifier].viewModel = sectionViewModel;
-
-    return sectionView;
+    return view;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
