@@ -19,10 +19,26 @@
 
     _viewModel = viewModel;
     [self configure];
+
+    if (self.window) {
+        [self attachViewModel];
+    }
 }
 
 - (void)configure {
     // Default implementation do nothing
+}
+
+- (void)didMoveToWindow {
+    if (self.window) {
+        [self attachViewModel];
+    }
+}
+
+// This avoid some conflicts when view is inside a Cell
+// Might not be necessary if we define that every AKNView/AKNViewModel is associated to a presenter?
+- (void)attachViewModel {
+    _viewModel.eventDispatcher = self;
 }
 
 @end

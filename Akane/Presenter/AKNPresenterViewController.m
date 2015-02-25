@@ -31,7 +31,6 @@
     }
 
     self.viewModel = viewModel;
-    self.viewModel.eventDispatcher = self;
 
     if ([self isViewLoaded]) {
         [self awake];
