@@ -141,6 +141,8 @@ NSString *const TableViewAdapterCellContentView;
     id reusableView = self.reusableViews[identifier];
     UIView<AKNViewConfigurable> *view = ([reusableView isKindOfClass:[UINib class]]) ? [reusableView instantiateWithOwner:nil options:nil][0] : [reusableView new];
 
+    view.viewModel = sectionViewModel;
+
     return view;
 }
 
