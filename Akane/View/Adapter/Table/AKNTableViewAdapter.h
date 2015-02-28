@@ -18,11 +18,10 @@
  */
 @interface AKNTableViewAdapter : NSObject<UITableViewDataSource, UITableViewDelegate>
 
-@property(nonatomic, strong, readonly)id<AKNDataSource>             dataSource;
-@property(nonatomic, strong, readonly)id<AKNItemViewModelProvider>  itemViewModelProvider;
-@property(nonatomic, weak)UITableView                               *tableView;
+@property(nonatomic, strong)id<AKNDataSource>               dataSource;
+@property(nonatomic, strong)id<AKNItemViewModelProvider>    itemViewModelProvider;
+@property(nonatomic, weak, readonly)UITableView             *tableView;
 
-- (instancetype)initWithDataSource:(id<AKNDataSource>)dataSource
-                 viewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider;
+- (instancetype)initWithTableView:(UITableView *)tableView;
 
 @end

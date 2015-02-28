@@ -23,14 +23,13 @@ NSString *const TableViewAdapterCellContentView;
 @property(nonatomic, strong)NSMutableDictionary *reusableViews;
 @property(nonatomic, strong)NSMutableDictionary *prototypeViews;
 
-@property(nonatomic, strong)id<AKNDataSource>          dataSource;
-@property(nonatomic, strong)id<AKNItemViewModelProvider>  itemViewModelProvider;
+@property(nonatomic, weak)UITableView           *tableView;
+
 @end
 
 @implementation AKNTableViewAdapter
 
-- (instancetype)initWithDataSource:(id<AKNDataSource>)dataSource
-                 viewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
+- (instancetype)initWithTableView:(UITableView *)tableView {
     if (!(self = [super init])) {
         return nil;
     }
@@ -40,8 +39,7 @@ NSString *const TableViewAdapterCellContentView;
     self.reusableViews = [NSMutableDictionary new];
     self.prototypeViews = [NSMutableDictionary new];
 
-    self.itemViewModelProvider = itemViewModelProvider;
-    self.dataSource = dataSource;
+    self.tableView = tableView;
 
     return self;
 }
@@ -77,7 +75,7 @@ NSString *const TableViewAdapterCellContentView;
 #pragma mark - Table delegates
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
-    return [self.dataSource numberOfSections];
+    return (self.dataSource && self.itemViewModelProvider) ? [self.dataSource numberOfSections] : 0;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -172,12 +170,6 @@ NSString *const TableViewAdapterCellContentView;
 
 #pragma mark - Internal
 
-- (void)prepareForUse {
-    if (self.itemViewModelProvider && self.tableView) {
-        [self.itemViewModelProvider registerViews:self];
-    }
-}
-
 - (UIView<AKNViewConfigurable> *)cellContentView:(UITableViewCell *)cell withIdentifier:(NSString *)identifier {
     UIView<AKNViewConfigurable> *view = objc_getAssociatedObject(cell, &TableViewAdapterCellContentView);
 
@@ -255,22 +247,21 @@ NSString *const TableViewAdapterCellContentView;
 
     _tableView = tableView;
 
-    [self prepareForUse];
     _tableView.dataSource = self;
     _tableView.delegate = self;
 }
 
-- (void)setitemViewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
+- (void)setItemViewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
     if (_itemViewModelProvider == itemViewModelProvider) {
         return;
     }
 
     _itemViewModelProvider = itemViewModelProvider;
-    [self prepareForUse];
-    [_tableView reloadRowsAtIndexPaths:[_tableView indexPathsForVisibleRows] withRowAnimation:UITableViewRowAnimationNone];
+    [self.itemViewModelProvider registerViews:self];
+    [_tableView reloadData];
 }
 
-- (void)setdataSource:(id<AKNDataSource>)dataSource {
+- (void)setDataSource:(id<AKNDataSource>)dataSource {
     if (_dataSource == dataSource) {
         return;
     }

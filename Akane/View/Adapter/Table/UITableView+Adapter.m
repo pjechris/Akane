@@ -14,14 +14,31 @@ NSString *const UITableViewAdapter;
 
 @implementation UITableView (Adapter)
 
-- (void)setAdapter:(AKNTableViewAdapter *)adapter {
-    objc_setAssociatedObject(self, &UITableViewAdapter, adapter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+- (AKNTableViewAdapter *)adapter {
+    AKNTableViewAdapter *adapter = objc_getAssociatedObject(self, &UITableViewAdapter);
 
-    adapter.tableView = self;
+    if (!adapter) {
+        adapter = [[AKNTableViewAdapter alloc] initWithTableView:self];
+        objc_setAssociatedObject(self, &UITableViewAdapter, adapter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    }
+
+    return adapter;
 }
 
-- (AKNTableViewAdapter *)adapter {
-    return objc_getAssociatedObject(self, &UITableViewAdapter);
+- (void)setAdapterDataSource:(id<AKNDataSource>)adapterDataSource {
+    [self adapter].dataSource = adapterDataSource;
+}
+
+- (void)setAdapterItemProvider:(id<AKNItemViewModelProvider>)adapterItemProvider {
+    [self adapter].itemViewModelProvider = adapterItemProvider;
+}
+
+- (id<AKNDataSource>)adapterDataSource {
+    return [self adapter].dataSource;
+}
+
+- (id<AKNItemViewModelProvider>)adapterItemProvider {
+    return [self adapter].itemViewModelProvider;
 }
 
 @end

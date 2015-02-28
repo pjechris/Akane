@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
-@class AKNTableViewAdapter;
+#import "AKNDataSource.h"
+#import "AKNItemViewModelProvider.h"
 
 @interface UITableView (Adapter)
 
-@property(nonatomic, strong)AKNTableViewAdapter *adapter;
+@property(nonatomic, strong)id<AKNDataSource>             adapterDataSource;
+
+@property(nonatomic, strong)id<AKNItemViewModelProvider>  adapterItemProvider;
 
 @end
