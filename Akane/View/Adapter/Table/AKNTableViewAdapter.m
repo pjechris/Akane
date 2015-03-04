@@ -88,6 +88,7 @@ NSString *const TableViewAdapterCellContentView;
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
+    [self repositionFooter];
 
     return cell;
 }
@@ -166,9 +167,21 @@ NSString *const TableViewAdapterCellContentView;
         height = TableViewAdapterDefaultRowHeight;
     }
     
-    return height;}
+    return height;
+}
 
 #pragma mark - Internal
+
+/**
+ * iOS7 compatibility
+ * Footer is positioned based on estimatedRowHeight
+ * Thus if your content is longer than your estimated size, your footer will be misplaced...
+ */
+- (void)repositionFooter {
+    UIView *footer = self.tableView.tableFooterView;
+
+    self.tableView.tableFooterView = footer;
+}
 
 - (UIView<AKNViewConfigurable> *)cellContentView:(UITableViewCell *)cell withIdentifier:(NSString *)identifier {
     UIView<AKNViewConfigurable> *view = objc_getAssociatedObject(cell, &TableViewAdapterCellContentView);
@@ -181,6 +194,8 @@ NSString *const TableViewAdapterCellContentView;
         view.translatesAutoresizingMaskIntoConstraints = NO;
 
         [cell.contentView addSubview:view];
+        // iOS7 compatibility
+        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
         [cell.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:0 views:viewsDictionary]];
         [cell.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:0 views:viewsDictionary]];
 
