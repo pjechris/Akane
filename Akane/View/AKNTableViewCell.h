@@ -16,4 +16,6 @@
 /// this view is directly added to `contentView`
 @property(nonatomic, strong)UIView<AKNViewConfigurable> *aknContentView;
 
+- (void)attachViewModel:(id<AKNViewModel>)viewModel;
+
 @end

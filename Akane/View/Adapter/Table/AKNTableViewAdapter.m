@@ -14,6 +14,7 @@
 #import "AKNItemViewModel.h"
 #import <objc/runtime.h>
 #import "AKNTableViewCell.h"
+#import "AKNTableViewPrototypeCell.h"
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 NSString *const TableViewAdapterCellContentView;
@@ -92,7 +93,8 @@ NSString *const TableViewAdapterCellContentView;
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     AKNTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
-    [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
+    [self cellContentView:cell withIdentifier:identifier];
+    [cell attachViewModel:viewModel];
     [self repositionFooter];
 
     return cell;
@@ -107,7 +109,8 @@ NSString *const TableViewAdapterCellContentView;
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     AKNTableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
 
-    [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
+    [self cellContentView:cell withIdentifier:identifier];
+    [cell attachViewModel:viewModel];
 
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
@@ -161,18 +164,10 @@ NSString *const TableViewAdapterCellContentView;
 
     AKNTableViewCell *sectionView = [self prototypeCellWithReuseIdentifier:identifier];
 
-    [self cellContentView:sectionView withIdentifier:identifier].viewModel = sectionViewModel;
+    [self cellContentView:sectionView withIdentifier:identifier];
+    [sectionView attachViewModel:sectionViewModel];
 
-    CGFloat height = [sectionView.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-
-    if (height == 0) {
-        NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
-              We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
-
-        height = TableViewAdapterDefaultRowHeight;
-    }
-    
-    return height;
+    return [sectionView.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 }
 
 #pragma mark - Internal
@@ -188,7 +183,7 @@ NSString *const TableViewAdapterCellContentView;
     self.tableView.tableFooterView = footer;
 }
 
-- (UIView<AKNViewConfigurable> *)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
+- (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
     UIView<AKNViewConfigurable> *view = cell.aknContentView;
 
     if (!view) {
@@ -197,15 +192,13 @@ NSString *const TableViewAdapterCellContentView;
 
         cell.aknContentView = view;
     }
-
-    return view;
 }
 
 - (AKNTableViewCell *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
-    AKNTableViewCell *cell = self.prototypeViews[identifier];
+    AKNTableViewPrototypeCell *cell = self.prototypeViews[identifier];
 
     if (!cell) {
-        cell = [AKNTableViewCell new];
+        cell = [AKNTableViewPrototypeCell new];
         self.prototypeViews[identifier] = cell;
     }
 

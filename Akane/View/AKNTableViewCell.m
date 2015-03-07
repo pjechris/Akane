@@ -7,8 +7,19 @@
 //
 
 #import "AKNTableViewCell.h"
+#import "AKNViewModel.h"
 
 @implementation AKNTableViewCell
+
+/// Fix for event dispatcher
+/// TO REMOVE!
+- (void)attachViewModel:(id<AKNViewModel>)viewModel {
+    self.aknContentView.viewModel = viewModel;
+
+    if ([viewModel respondsToSelector:@selector(willMount)]) {
+        [viewModel willMount];
+    }
+}
 
 - (void)setAknContentView:(UIView<AKNViewConfigurable> *)aknContentView {
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(aknContentView);
