@@ -18,12 +18,16 @@
     }
 
     _viewModel = viewModel;
-    _viewModel.eventDispatcher = self;
+    _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
     [self configure];
 }
 
 - (void)configure {
     // Default implementation do nothing
+}
+
+- (id<EVEEventDispatcher>)nextDispatcher {
+    return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
 
 @end

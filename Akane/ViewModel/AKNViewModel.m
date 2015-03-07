@@ -8,7 +8,21 @@
 
 #import "AKNViewModel.h"
 
+@interface AKNViewModel ()
+@property(nonatomic, strong)EVEEventDispatcher  *eventDispatcher;
+@end
+
 @implementation AKNViewModel
+
+- (instancetype)init {
+    if (!(self = [super init])) {
+        return nil;
+    }
+
+    self.eventDispatcher = [EVEEventDispatcher eventDispatcher:self];
+
+    return self;
+}
 
 - (void)addEventListener:(NSString *)type listener:(SEL)selector {
     [self.eventDispatcher addEventListener:type listener:selector];
@@ -44,10 +58,6 @@
 
 - (void)dispatchEvent:(EVEEvent *)event {
     [self.eventDispatcher dispatchEvent:event];
-}
-
-- (id<EVEEventDispatcher>)nextDispatcher {
-    return nil;
 }
 
 @end

@@ -10,7 +10,7 @@
 
 @protocol AKNViewModel <EVEEventDispatcher>
 
-@property(nonatomic, weak)id<EVEEventDispatcher>  eventDispatcher;
+@property(nonatomic, weak)id<EVEEventDispatcher>  nextDispatcher;
 
 @optional
 - (void)willMount;
@@ -20,6 +20,6 @@
 
 @interface AKNViewModel : NSObject<AKNViewModel>
 
-@property(nonatomic, weak)id<EVEEventDispatcher>  eventDispatcher;
+@property(nonatomic, weak)id<EVEEventDispatcher>  nextDispatcher;
 
 @end

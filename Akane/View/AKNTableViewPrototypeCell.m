@@ -14,11 +14,11 @@
 /// Fix for event dispatcher
 /// TO REMOVE!
 - (void)attachViewModel:(id<AKNViewModel>)viewModel {
-    id<EVEEventDispatcher> dispatcher = viewModel.eventDispatcher;
+    id<EVEEventDispatcher> dispatcher = viewModel.nextDispatcher;
 
     self.aknContentView.viewModel = viewModel;
 
-    viewModel.eventDispatcher = dispatcher;
+    viewModel.nextDispatcher = dispatcher;
 }
 
 @end
