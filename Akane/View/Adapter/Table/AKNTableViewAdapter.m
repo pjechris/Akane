@@ -13,6 +13,7 @@
 #import "AKNViewCache.h"
 #import "AKNItemViewModel.h"
 #import <objc/runtime.h>
+#import "AKNTableViewCell.h"
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 NSString *const TableViewAdapterCellContentView;
@@ -52,7 +53,9 @@ NSString *const TableViewAdapterCellContentView;
 
         model = [self.itemViewModelProvider supplementaryItemViewModel:item];
 
-        self.sectionModels[@(section)] = model;
+        if (model) {
+            self.sectionModels[@(section)] = model;
+        }
     }
 
     return model;
@@ -66,7 +69,9 @@ NSString *const TableViewAdapterCellContentView;
 
         model = [self.itemViewModelProvider itemViewModel:item];
 
-        self.indexPathModels[indexPath] = model;
+        if (model) {
+            self.indexPathModels[indexPath] = model;
+        }
     }
 
     return model;
@@ -85,7 +90,7 @@ NSString *const TableViewAdapterCellContentView;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    AKNTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
 
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
     [self repositionFooter];
@@ -100,7 +105,7 @@ NSString *const TableViewAdapterCellContentView;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    UITableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
+    AKNTableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
 
     [self cellContentView:cell withIdentifier:identifier].viewModel = viewModel;
 
@@ -154,9 +159,9 @@ NSString *const TableViewAdapterCellContentView;
         return 0;
     }
 
-    UITableViewHeaderFooterView *sectionView = [self prototypeSectionWithReuseIdentifier:identifier];
+    AKNTableViewCell *sectionView = [self prototypeCellWithReuseIdentifier:identifier];
 
-    [self cellContentView:(UITableViewCell *)sectionView withIdentifier:identifier].viewModel = sectionViewModel;
+    [self cellContentView:sectionView withIdentifier:identifier].viewModel = sectionViewModel;
 
     CGFloat height = [sectionView.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
@@ -183,74 +188,52 @@ NSString *const TableViewAdapterCellContentView;
     self.tableView.tableFooterView = footer;
 }
 
-- (UIView<AKNViewConfigurable> *)cellContentView:(UITableViewCell *)cell withIdentifier:(NSString *)identifier {
-    UIView<AKNViewConfigurable> *view = objc_getAssociatedObject(cell, &TableViewAdapterCellContentView);
+- (UIView<AKNViewConfigurable> *)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
+    UIView<AKNViewConfigurable> *view = cell.aknContentView;
 
     if (!view) {
         id reusableView = self.reusableViews[identifier];
         view = ([reusableView isKindOfClass:[UINib class]]) ? [reusableView instantiateWithOwner:nil options:nil][0] : [reusableView new];
-        NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(view);
 
-        view.translatesAutoresizingMaskIntoConstraints = NO;
-
-        [cell.contentView addSubview:view];
-        // iOS7 compatibility
-        cell.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-        [cell.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[view]|" options:0 metrics:0 views:viewsDictionary]];
-        [cell.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[view]|" options:0 metrics:0 views:viewsDictionary]];
-
-        objc_setAssociatedObject(cell, &TableViewAdapterCellContentView, view, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        cell.aknContentView = view;
     }
 
     return view;
 }
 
-- (UITableViewCell *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
-    UITableViewCell *cell = self.prototypeViews[identifier];
+- (AKNTableViewCell *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
+    AKNTableViewCell *cell = self.prototypeViews[identifier];
 
     if (!cell) {
-        cell = [UITableViewCell new];
+        cell = [AKNTableViewCell new];
         self.prototypeViews[identifier] = cell;
     }
 
     return cell;
 }
 
-- (UITableViewHeaderFooterView *)prototypeSectionWithReuseIdentifier:(NSString *)identifier {
-    UITableViewHeaderFooterView *sectionView = self.prototypeViews[identifier];
-
-    if (!sectionView) {
-        sectionView = [UITableViewHeaderFooterView new];
-        self.prototypeViews[identifier] = sectionView;
-    }
-
-    return sectionView;
-}
-
 #pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
     self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:identifier];
+    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
     self.reusableViews[identifier] = viewClass;
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:identifier];
+    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
 
     self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
 
     self.reusableViews[identifier] = viewClass;
-    [self.tableView registerClass:[UITableViewHeaderFooterView class] forHeaderFooterViewReuseIdentifier:identifier];
 }
 
 #pragma mark - Setters
