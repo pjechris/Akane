@@ -20,8 +20,7 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 NSString *const TableViewAdapterCellContentView;
 
 @interface AKNTableViewAdapter () <AKNViewCache>
-@property(nonatomic, strong)NSMutableDictionary *sectionModels;
-@property(nonatomic, strong)NSMutableDictionary *indexPathModels;
+@property(nonatomic, strong)NSMapTable          *itemViewModels;
 @property(nonatomic, strong)NSMutableDictionary *reusableViews;
 @property(nonatomic, strong)NSMutableDictionary *prototypeViews;
 
@@ -36,8 +35,7 @@ NSString *const TableViewAdapterCellContentView;
         return nil;
     }
 
-    self.sectionModels = [NSMutableDictionary new];
-    self.indexPathModels = [NSMutableDictionary new];
+    self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViews = [NSMutableDictionary new];
     self.prototypeViews = [NSMutableDictionary new];
 
@@ -47,15 +45,14 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
-    id<AKNItemViewModel> model = self.sectionModels[@(section)];
+    id item = [self.dataSource supplementaryItemAtSection:section];
+    id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
 
     if (!model) {
-        id item = [self.dataSource supplementaryItemAtSection:section];
-
         model = [self.itemViewModelProvider supplementaryItemViewModel:item];
 
         if (model) {
-            self.sectionModels[@(section)] = model;
+            [self.itemViewModels setObject:model forKey:item];
         }
     }
 
@@ -63,15 +60,14 @@ NSString *const TableViewAdapterCellContentView;
 }
 
 - (id<AKNItemViewModel>)indexPathModel:(NSIndexPath *)indexPath {
-    id<AKNItemViewModel> model = self.indexPathModels[indexPath];
+    id item = [self.dataSource itemAtIndexPath:indexPath];
+    id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
 
     if (!model) {
-        id item = [self.dataSource itemAtIndexPath:indexPath];
-
         model = [self.itemViewModelProvider itemViewModel:item];
 
         if (model) {
-            self.indexPathModels[indexPath] = model;
+            [self.itemViewModels setObject:model forKey:item];
         }
     }
 
@@ -256,7 +252,7 @@ NSString *const TableViewAdapterCellContentView;
     if (_dataSource == dataSource) {
         return;
     }
-
+    
     _dataSource = dataSource;
     [_tableView reloadData];
 }
