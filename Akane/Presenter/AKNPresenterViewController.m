@@ -60,6 +60,8 @@
 
     [self didAwake];
 
+    NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
+    
     self.view.viewModel = self.viewModel;
 }
 
