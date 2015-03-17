@@ -122,14 +122,17 @@ NSString *const TableViewAdapterCellContentView;
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
-
+    if (![viewModel respondsToSelector:@selector(canSelect)]) {
+        return indexPath;
+    }    
     return [viewModel canSelect] ? indexPath : nil;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
-
-    [viewModel selectItem];
+    if ([viewModel respondsToSelector:@selector(selectItem)]) {
+        [viewModel selectItem];
+    }
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
