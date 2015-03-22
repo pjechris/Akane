@@ -22,6 +22,7 @@
 @property(nonatomic, strong)id<AKNItemViewModelProvider>    itemViewModelProvider;
 @property(nonatomic, weak, readonly)UITableView             *tableView;
 
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithTableView:(UITableView *)tableView;
 
 @end

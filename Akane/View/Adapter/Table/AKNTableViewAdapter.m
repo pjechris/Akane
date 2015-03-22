@@ -14,30 +14,38 @@
 #import "AKNItemViewModel.h"
 #import <objc/runtime.h>
 #import "AKNTableViewCell.h"
-#import "AKNTableViewPrototypeCell.h"
-
-CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
-NSString *const TableViewAdapterCellContentView;
+#import "AKNTableViewAdapteriOS7.h"
+#import "AKNTableViewAdapter+Private.h"
 
 @interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMapTable          *itemViewModels;
 @property(nonatomic, strong)NSMutableDictionary *reusableViews;
-@property(nonatomic, strong)NSMutableDictionary *prototypeViews;
-
 @property(nonatomic, weak)UITableView           *tableView;
 
 @end
 
 @implementation AKNTableViewAdapter
 
-- (instancetype)initWithTableView:(UITableView *)tableView {
+- (instancetype)initCluster {
     if (!(self = [super init])) {
         return nil;
     }
 
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViews = [NSMutableDictionary new];
-    self.prototypeViews = [NSMutableDictionary new];
+
+    return self;
+}
+
+- (instancetype)initWithTableView:(UITableView *)tableView {
+    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+
+    if ([systemVersion compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending) {
+        self = [[AKNTableViewAdapteriOS7 alloc] initCluster];
+    }
+    else {
+        self = [self initCluster];
+    }
 
     self.tableView = tableView;
 
@@ -87,37 +95,15 @@ NSString *const TableViewAdapterCellContentView;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    AKNTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    AKNTableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [self cellContentView:cell withIdentifier:identifier];
     [cell attachViewModel:viewModel];
-    [self repositionFooter];
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 55.f;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
-    NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    AKNTableViewCell *cell = [self prototypeCellWithReuseIdentifier:identifier];
-
-    [self cellContentView:cell withIdentifier:identifier];
-    [cell attachViewModel:viewModel];
-
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-
-    if (height == 0) {
-        NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
-              We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
-
-        height = TableViewAdapterDefaultRowHeight;
-    }
-
-    return height;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -144,64 +130,40 @@ NSString *const TableViewAdapterCellContentView;
         return nil;
     }
 
-    id reusableView = self.reusableViews[identifier];
-    UIView<AKNViewConfigurable> *view = ([reusableView isKindOfClass:[UINib class]]) ? [reusableView instantiateWithOwner:nil options:nil][0] : [reusableView new];
+    UIView<AKNViewConfigurable> *sectionView = [self dequeueReusableSectionWithIdentifier:identifier forSection:section];
+    sectionView.viewModel = sectionViewModel;
 
-    view.viewModel = sectionViewModel;
-
-    return view;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
-    NSString *identifier = [self.itemViewModelProvider supplementaryViewIdentifier:sectionViewModel];
-    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
-
-    if (!identifier) {
-        return 0;
-    }
-
-    AKNTableViewCell *sectionView = [self prototypeCellWithReuseIdentifier:identifier];
-
-    [self cellContentView:sectionView withIdentifier:identifier];
-    [sectionView attachViewModel:sectionViewModel];
-
-    return [sectionView.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+    return sectionView;
 }
 
 #pragma mark - Internal
 
-/**
- * iOS7 compatibility
- * Footer is positioned based on estimatedRowHeight
- * Thus if your content is longer than your estimated size, your footer will be misplaced...
- */
-- (void)repositionFooter {
-    UIView *footer = self.tableView.tableFooterView;
+- (AKNTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    AKNTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
 
-    self.tableView.tableFooterView = footer;
+    [self cellContentView:cell withIdentifier:identifier];
+
+    return cell;
+}
+
+- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section {
+    UIView<AKNViewConfigurable> *view = [self createReusableViewWithIdentifier:identifier];
+
+    return view;
 }
 
 - (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
-    UIView<AKNViewConfigurable> *view = cell.aknContentView;
-
-    if (!view) {
-        id reusableView = self.reusableViews[identifier];
-        view = ([reusableView isKindOfClass:[UINib class]]) ? [reusableView instantiateWithOwner:nil options:nil][0] : [reusableView new];
-
-        cell.aknContentView = view;
+    if (!cell.aknContentView) {
+        cell.aknContentView = [self createReusableViewWithIdentifier:identifier];
     }
 }
 
-- (AKNTableViewCell *)prototypeCellWithReuseIdentifier:(NSString *)identifier {
-    AKNTableViewPrototypeCell *cell = self.prototypeViews[identifier];
+- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
+    id reusableView = self.reusableViews[identifier];
 
-    if (!cell) {
-        cell = [AKNTableViewPrototypeCell new];
-        self.prototypeViews[identifier] = cell;
-    }
-
-    return cell;
+    return ([reusableView isKindOfClass:[UINib class]])
+    ? [reusableView instantiateWithOwner:nil options:nil][0]
+    : [reusableView new];
 }
 
 #pragma mark - ViewCacher delegate

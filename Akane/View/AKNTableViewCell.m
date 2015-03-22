@@ -11,8 +11,6 @@
 
 @implementation AKNTableViewCell
 
-/// Fix for event dispatcher
-/// TO REMOVE!
 - (void)attachViewModel:(id<AKNViewModel>)viewModel {
     self.aknContentView.viewModel = viewModel;
 
