@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewHolder.h"
+#import "AKNReusableView.h"
 
-@interface UITableViewCell (AKNViewHolder) <AKNViewHolder>
+@interface UITableViewCell (AKNReusableView) <AKNReusableView>
 
 @end

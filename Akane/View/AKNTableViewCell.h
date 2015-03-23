@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AKNViewConfigurable.h"
-#import "UITableViewCell+ViewHolder.h"
+#import "UITableViewCell+AKNReusableView.h"
 
 @interface AKNTableViewCell : UITableViewCell
 

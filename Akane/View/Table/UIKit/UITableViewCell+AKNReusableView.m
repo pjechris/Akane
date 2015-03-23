@@ -6,12 +6,12 @@
 // file that was distributed with this source code
 //
 
-#import "UITableViewCell+ViewHolder.h"
+#import "UITableViewCell+AKNReusableView.h"
 #import <objc/runtime.h>
 
 NSString *UITableViewCellItemView = @"UITableViewCellItemView";
 
-@implementation UITableViewCell (AKNViewHolder)
+@implementation UITableViewCell (AKNReusableView)
 
 - (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
     objc_setAssociatedObject(self, &UITableViewCellItemView, itemView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);

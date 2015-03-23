@@ -10,7 +10,7 @@
 
 @protocol AKNViewConfigurable;
 
-@protocol AKNViewHolder <NSObject>
+@protocol AKNReusableView <NSObject>
 
 @property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable>    *itemView;
 @property(nonatomic, strong)UIView                                  *backgroundView;
