@@ -13,6 +13,20 @@
 
 @synthesize itemView = _itemView;
 
++ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
+    return [[self alloc] initWithCellWithItemView:itemView];
+}
+
+- (instancetype)initWithCellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
+    if (!(self = [super init])) {
+        return nil;
+    }
+
+    self.itemView = itemView;
+
+    return self;
+}
+
 - (void)attachViewModel:(id<AKNViewModel>)viewModel {
     self.itemView.viewModel = viewModel;
 

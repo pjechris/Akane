@@ -14,6 +14,7 @@
 		496EC0AF1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */; };
 		49717DF31A88EE760021834B /* AKNArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49717DF11A88EE760021834B /* AKNArrayDataSource.m */; };
 		4984BB1F1AC0788E0095B126 /* UITableViewCell+ViewHolder.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB1E1AC0788E0095B126 /* UITableViewCell+ViewHolder.m */; };
+		4984BB221AC07A990095B126 /* AKNViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB211AC07A990095B126 /* AKNViewHelper.m */; };
 		4992F6261AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 4992F6251AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m */; };
 		49A159F51A90F04B00C2891F /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
 		49A7FCE51AA0AA15001B4F69 /* AKNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A7FCE41AA0AA15001B4F69 /* AKNTableView.m */; };
@@ -69,6 +70,8 @@
 		49717DF51A88EFDA0021834B /* AKNItemViewModelProvider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModelProvider.h; sourceTree = "<group>"; };
 		49717DF61A88F16E0021834B /* AKNViewCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewCache.h; sourceTree = "<group>"; };
 		4984BB1E1AC0788E0095B126 /* UITableViewCell+ViewHolder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UITableViewCell+ViewHolder.m"; sourceTree = "<group>"; };
+		4984BB201AC07A990095B126 /* AKNViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewHelper.h; sourceTree = "<group>"; };
+		4984BB211AC07A990095B126 /* AKNViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewHelper.m; sourceTree = "<group>"; };
 		4992F6241AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNTableViewAdapteriOS7.h; sourceTree = "<group>"; };
 		4992F6251AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNTableViewAdapteriOS7.m; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
@@ -185,6 +188,8 @@
 				4926EAEC1A5EBD17005A3D71 /* AKNView.m */,
 				49717DF61A88F16E0021834B /* AKNViewCache.h */,
 				49BD046C1A82AABA00B2C9C8 /* AKNViewConfigurable.h */,
+				4984BB201AC07A990095B126 /* AKNViewHelper.h */,
+				4984BB211AC07A990095B126 /* AKNViewHelper.m */,
 				49BE17DB1ABF27FC00DFA2A1 /* Recycler */,
 				49BE17D71ABF258D00DFA2A1 /* Table */,
 			);
@@ -484,6 +489,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */,
+				4984BB221AC07A990095B126 /* AKNViewHelper.m in Sources */,
 				49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */,
 				49C742911AAB6CC900169877 /* AKNTableViewCell.m in Sources */,
 				4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */,

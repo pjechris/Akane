@@ -17,4 +17,6 @@
 
 - (void)attachViewModel:(id<AKNViewModel>)viewModel;
 
++ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView;
+
 @end

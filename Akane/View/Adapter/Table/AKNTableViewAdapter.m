@@ -7,6 +7,7 @@
 //
 
 #import "AKNTableViewAdapter.h"
+#import "AKNTableViewAdapter+Private.h"
 #import "AKNViewConfigurable.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
@@ -15,7 +16,7 @@
 #import <objc/runtime.h>
 #import "AKNTableViewCell.h"
 #import "AKNTableViewAdapteriOS7.h"
-#import "AKNTableViewAdapter+Private.h"
+#import "AKNViewHelper.h"
 
 @interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMapTable          *itemViewModels;
@@ -141,7 +142,9 @@
 - (AKNTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
     AKNTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
 
-    [self cellContentView:cell withIdentifier:identifier];
+    if (!cell) {
+        cell = [AKNTableViewCell cellWithItemView:[self createReusableViewWithIdentifier:identifier]];
+    }
 
     return cell;
 }
@@ -152,30 +155,20 @@
     return view;
 }
 
-- (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
-    if (!cell.itemView) {
-        cell.itemView = [self createReusableViewWithIdentifier:identifier];
-    }
-}
-
 - (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
-    id reusableView = self.reusableViews[identifier];
+    id viewType = self.reusableViews[identifier];
 
-    return ([reusableView isKindOfClass:[UINib class]])
-    ? [reusableView instantiateWithOwner:nil options:nil][0]
-    : [reusableView new];
+    return (UIView<AKNViewConfigurable> *)view_instantiate(viewType);
 }
 
 #pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
     self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
-    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
     self.reusableViews[identifier] = viewClass;
-    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
