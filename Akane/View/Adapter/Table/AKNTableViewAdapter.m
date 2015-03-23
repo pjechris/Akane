@@ -153,8 +153,8 @@
 }
 
 - (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
-    if (!cell.aknContentView) {
-        cell.aknContentView = [self createReusableViewWithIdentifier:identifier];
+    if (!cell.itemView) {
+        cell.itemView = [self createReusableViewWithIdentifier:identifier];
     }
 }
 

@@ -11,33 +11,35 @@
 
 @implementation AKNTableViewCell
 
+@synthesize itemView = _itemView;
+
 - (void)attachViewModel:(id<AKNViewModel>)viewModel {
-    self.aknContentView.viewModel = viewModel;
+    self.itemView.viewModel = viewModel;
 
     if ([viewModel respondsToSelector:@selector(willMount)]) {
         [viewModel willMount];
     }
 }
 
-- (void)setAknContentView:(UIView<AKNViewConfigurable> *)aknContentView {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(aknContentView);
+- (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(itemView);
 
-    if (aknContentView == _aknContentView) {
+    if (itemView == _itemView) {
         return;
     }
 
-    [_aknContentView removeFromSuperview];
-    _aknContentView = aknContentView;
-    aknContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_itemView removeFromSuperview];
+    _itemView = itemView;
+    itemView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [self.contentView addSubview:aknContentView];
+    [self.contentView addSubview:itemView];
     // iOS7 compatibility
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[aknContentView]|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView]|"
                                                                              options:0
                                                                              metrics:0
                                                                                views:viewsDictionary]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[aknContentView]|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[itemView]|"
                                                                              options:0
                                                                              metrics:0
                                                                                views:viewsDictionary]];

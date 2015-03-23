@@ -10,6 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "AKNViewHolder.h"
 
-@interface UITableViewCell (AKNViewHolder)
+@interface UITableViewCell (AKNViewHolder) <AKNViewHolder>
 
 @end
