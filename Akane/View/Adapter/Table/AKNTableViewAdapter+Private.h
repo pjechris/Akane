@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @class AKNTableViewCell;
+@class AKNReusableViewHandler;
 @protocol AKNItemViewModel;
 @protocol AKNViewConfigurable;
 
@@ -19,10 +20,10 @@
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section;
 - (id<AKNItemViewModel>)indexPathModel:(NSIndexPath *)indexPath;
 
-- (AKNTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
+- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 - (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
 
-- (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier;
 - (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier;
+- (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier;
 
 @end

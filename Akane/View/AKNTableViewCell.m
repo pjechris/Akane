@@ -27,14 +27,6 @@
     return self;
 }
 
-- (void)attachViewModel:(id<AKNViewModel>)viewModel {
-    self.itemView.viewModel = viewModel;
-
-    if ([viewModel respondsToSelector:@selector(willMount)]) {
-        [viewModel willMount];
-    }
-}
-
 - (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(itemView);
 
