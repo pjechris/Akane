@@ -99,7 +99,7 @@
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    AKNReusableViewHandler *handler = self.reusableViewsHandler[identifier];
+    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     [handler reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
 
@@ -178,14 +178,12 @@
 }
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier onReuse:(AKNReusableViewOnReuse)onReuse {
+    AKNReusableViewHandler *handler = [AKNReusableViewHandler new];
+
+    handler.onReuse = onReuse;
+
     self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
-
-    if (onReuse) {
-        AKNReusableViewHandler *handler = [AKNReusableViewHandler new];
-
-        handler.onReuse = onReuse;
-        self.reusableViewsHandler[identifier] = handler;
-    }
+    self.reusableViewsHandler[identifier] = handler;
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
