@@ -7,7 +7,10 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "AKNReusableViewHandler.h"
+
+@class AKNReusableViewHandler;
+
+typedef void(^AKNReusableViewRegisterHandle)(AKNReusableViewHandler *handler);
 
 /**
  * Generic protocol that allow you to register both classes and nibs as reusable views
@@ -18,8 +21,9 @@
 @protocol AKNViewCache <NSObject>
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier;
+- (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle;
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier;
-- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier onReuse:(AKNReusableViewOnReuse)onReuse;
+- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle;
 
 - (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier;

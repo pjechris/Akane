@@ -174,23 +174,31 @@
 #pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
-    [self registerNibName:nibName withReuseIdentifier:identifier onReuse:nil];
+    [self registerNibName:nibName withReuseIdentifier:identifier handle:nil];
 }
 
-- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier onReuse:(AKNReusableViewOnReuse)onReuse {
-    AKNReusableViewHandler *handler = [AKNReusableViewHandler new];
-
-    handler.onReuse = onReuse;
-
+- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
     self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
-    self.reusableViewsHandler[identifier] = handler;
-
     [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
+    [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
+    [self registerView:viewClass withReuseIdentifier:identifier handle:nil];
+}
+
+- (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
     self.reusableViewsContent[identifier] = viewClass;
     [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
+    [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
+}
+
+- (void)registerHandlerForReuseIdentifier:(NSString *)identifier onRegistered:(AKNReusableViewRegisterHandle)handle {
+    AKNReusableViewHandler *handler = [AKNReusableViewHandler new];
+
+    self.reusableViewsHandler[identifier] = handler;
+
+    handle ? handle(handler) : nil;
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
