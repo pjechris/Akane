@@ -31,8 +31,8 @@ FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 #import "AKNItemViewModelProvider.h"
 #import "AKNTableViewAdapter.h"
 
-#import "UITableView.h"
-#import "UITableViewCell+ViewHolder.h"
+#import "AKNTableView.h"
+#import "UITableViewCell+AKNReusableView.h"
 #import "UITableView+Adapter.h"
 
 
