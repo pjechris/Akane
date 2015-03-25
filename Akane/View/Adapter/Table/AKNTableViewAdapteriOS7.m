@@ -69,7 +69,7 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
     id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
-    NSString *identifier = [self.itemViewModelProvider supplementaryViewIdentifier:sectionViewModel];
+    NSString *identifier = [self identifierForViewModel:sectionViewModel inSection:section];
     identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
 
     if (!identifier) {

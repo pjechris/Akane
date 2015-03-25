@@ -20,6 +20,8 @@
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section;
 - (id<AKNItemViewModel>)indexPathModel:(NSIndexPath *)indexPath;
 
+- (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section;
+
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 - (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
 

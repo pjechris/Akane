@@ -133,7 +133,7 @@
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
     id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
-    NSString *identifier = [self.itemViewModelProvider supplementaryViewIdentifier:sectionViewModel];
+    NSString *identifier = [self identifierForViewModel:sectionViewModel inSection:section];
     identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
 
     if (!identifier) {
@@ -147,6 +147,18 @@
 }
 
 #pragma mark - Internal
+
+- (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section {
+    if ([self.itemViewModelProvider respondsToSelector:@selector(supplementaryViewIdentifier:)]) {
+        return [self.itemViewModelProvider supplementaryViewIdentifier:viewModel];
+    }
+
+    if ([self.itemViewModelProvider respondsToSelector:@selector(supplementaryStaticViewIdentifierForSection:)]) {
+        return [self.itemViewModelProvider supplementaryStaticViewIdentifierForSection:section];
+    }
+
+    return nil;
+}
 
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
