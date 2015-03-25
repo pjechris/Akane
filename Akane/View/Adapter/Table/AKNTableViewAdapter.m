@@ -8,22 +8,24 @@
 
 #import "AKNTableViewAdapter.h"
 #import "AKNTableViewAdapter+Private.h"
+#import "AKNTableViewAdapteriOS7.h"
+
 #import "AKNViewConfigurable.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"
 #import "AKNItemViewModel.h"
 #import "AKNTableViewCell.h"
-#import "AKNTableViewAdapteriOS7.h"
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
+#import "AKNReusableViewDelegate.h"
 
 @interface AKNTableViewAdapter () <AKNViewCache>
-@property(nonatomic, strong)NSMapTable          *itemViewModels;
-@property(nonatomic, strong)NSMutableDictionary *reusableViewsContent;
-@property(nonatomic, strong)NSMutableDictionary *reusableViewsHandler;
-@property(nonatomic, weak)UITableView           *tableView;
-
+@property(nonatomic, strong)NSMapTable                  *itemViewModels;
+@property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
+@property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
+@property(nonatomic, weak)UITableView                   *tableView;
+@property(nonatomic, strong)id<AKNReusableViewDelegate> defaultViewDelegate;
 @end
 
 @implementation AKNTableViewAdapter
@@ -36,6 +38,9 @@
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViewsContent = [NSMutableDictionary new];
     self.reusableViewsHandler = [NSMutableDictionary new];
+    self.defaultViewDelegate = [AKNReusableViewDelegate new];
+
+    self.viewDelegate = self.defaultViewDelegate;
 
     return self;
 }
@@ -101,7 +106,8 @@
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
-    [handler reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    handler.onReuse ? handler.onReuse(cell, cell.itemView, indexPath) : nil;
 
     return cell;
 }

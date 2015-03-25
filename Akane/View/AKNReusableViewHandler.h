@@ -18,8 +18,4 @@ typedef void(^AKNReusableViewOnReuse)(id<AKNReusableView> reusableView, id<AKNVi
 
 @property(nonatomic, copy)AKNReusableViewOnReuse    onReuse;
 
-- (void)reuseView:(id<AKNReusableView>)reusableView
-    withViewModel:(id<AKNViewModel>)viewModel
-      atIndexPath:(NSIndexPath *)indexPath;
-
 @end

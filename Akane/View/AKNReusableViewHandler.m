@@ -8,25 +8,6 @@
 
 #import "AKNReusableViewHandler.h"
 
-#import "AKNReusableView.h"
-#import "AKNViewConfigurable.h"
-#import "AKNViewModel.h"
-
 @implementation AKNReusableViewHandler
-
-- (void)reuseView:(id<AKNReusableView>)reusableView
-    withViewModel:(id<AKNViewModel>)viewModel
-      atIndexPath:(NSIndexPath *)indexPath {
-
-    if (self.onReuse) {
-        self.onReuse(reusableView, reusableView.itemView, indexPath);
-    }
-
-    reusableView.itemView.viewModel = viewModel;
-
-    if ([viewModel respondsToSelector:@selector(willMount)]) {
-        [viewModel willMount];
-    }
-}
 
 @end

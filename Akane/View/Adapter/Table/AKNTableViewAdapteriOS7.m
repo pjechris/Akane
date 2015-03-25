@@ -15,6 +15,7 @@
 #import "AKNItemViewModel.h"
 #import "AKNTableViewCell.h"
 #import "AKNReusableViewHandler.h"
+#import "AKNReusableViewDelegate.h"
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 
@@ -49,11 +50,10 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     [self queueReusableCell:cell forIndexPath:indexPath];
 
-    [handler reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
 
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
