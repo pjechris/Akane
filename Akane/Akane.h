@@ -23,7 +23,6 @@ FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 #import "AKNPresenterViewController.h"
 
 #import "AKNView.h"
-#import "AKNTableView.h"
 #import "AKNViewConfigurable.h"
 #import "AKNViewCache.h"
 
@@ -31,6 +30,9 @@ FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 #import "AKNArrayDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNTableViewAdapter.h"
+
+#import "AKNTableView.h"
+#import "UITableViewCell+AKNReusableView.h"
 #import "UITableView+Adapter.h"
 
 

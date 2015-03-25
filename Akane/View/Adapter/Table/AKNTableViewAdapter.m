@@ -7,21 +7,25 @@
 //
 
 #import "AKNTableViewAdapter.h"
+#import "AKNTableViewAdapter+Private.h"
+#import "AKNTableViewAdapteriOS7.h"
+
 #import "AKNViewConfigurable.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"
 #import "AKNItemViewModel.h"
-#import <objc/runtime.h>
 #import "AKNTableViewCell.h"
-#import "AKNTableViewAdapteriOS7.h"
-#import "AKNTableViewAdapter+Private.h"
+#import "AKNViewHelper.h"
+#import "AKNReusableViewHandler.h"
+#import "AKNReusableViewDelegate.h"
 
 @interface AKNTableViewAdapter () <AKNViewCache>
-@property(nonatomic, strong)NSMapTable          *itemViewModels;
-@property(nonatomic, strong)NSMutableDictionary *reusableViews;
-@property(nonatomic, weak)UITableView           *tableView;
-
+@property(nonatomic, strong)NSMapTable                  *itemViewModels;
+@property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
+@property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
+@property(nonatomic, weak)UITableView                   *tableView;
+@property(nonatomic, strong)id<AKNReusableViewDelegate> defaultViewDelegate;
 @end
 
 @implementation AKNTableViewAdapter
@@ -32,7 +36,11 @@
     }
 
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
-    self.reusableViews = [NSMutableDictionary new];
+    self.reusableViewsContent = [NSMutableDictionary new];
+    self.reusableViewsHandler = [NSMutableDictionary new];
+    self.defaultViewDelegate = [AKNReusableViewDelegate new];
+
+    self.viewDelegate = self.defaultViewDelegate;
 
     return self;
 }
@@ -95,9 +103,11 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    AKNTableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
-    [cell attachViewModel:viewModel];
+    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    handler.onReuse ? handler.onReuse(cell, cell.itemView, indexPath) : nil;
 
     return cell;
 }
@@ -138,10 +148,15 @@
 
 #pragma mark - Internal
 
-- (AKNTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    AKNTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
 
-    [self cellContentView:cell withIdentifier:identifier];
+    if (!cell.itemView) {
+        cell.itemView = [self createReusableViewWithIdentifier:identifier];
+    }
+
+    NSAssert([cell.itemView conformsToProtocol:@protocol(AKNViewConfigurable)],
+             @"Cell.itemView for identifier %@ must conform to AKNViewConfigurable protocol", identifier);
 
     return cell;
 }
@@ -152,42 +167,56 @@
     return view;
 }
 
-- (void)cellContentView:(AKNTableViewCell *)cell withIdentifier:(NSString *)identifier {
-    if (!cell.aknContentView) {
-        cell.aknContentView = [self createReusableViewWithIdentifier:identifier];
-    }
+- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
+    id viewType = self.reusableViewsContent[identifier];
+
+    return (UIView<AKNViewConfigurable> *)view_instantiate(viewType);
 }
 
-- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
-    id reusableView = self.reusableViews[identifier];
-
-    return ([reusableView isKindOfClass:[UINib class]])
-    ? [reusableView instantiateWithOwner:nil options:nil][0]
-    : [reusableView new];
+- (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier {
+    return self.reusableViewsHandler[identifier];
 }
 
 #pragma mark - ViewCacher delegate
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier {
-    self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+    [self registerNibName:nibName withReuseIdentifier:identifier handle:nil];
+}
+
+- (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
+    self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
     [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
+    [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
-    self.reusableViews[identifier] = viewClass;
+    [self registerView:viewClass withReuseIdentifier:identifier handle:nil];
+}
+
+- (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
+    self.reusableViewsContent[identifier] = viewClass;
     [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
+    [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
+}
+
+- (void)registerHandlerForReuseIdentifier:(NSString *)identifier onRegistered:(AKNReusableViewRegisterHandle)handle {
+    AKNReusableViewHandler *handler = [AKNReusableViewHandler new];
+
+    self.reusableViewsHandler[identifier] = handler;
+
+    handle ? handle(handler) : nil;
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
 
-    self.reusableViews[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+    self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
 }
 
 - (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
 
-    self.reusableViews[identifier] = viewClass;
+    self.reusableViewsContent[identifier] = viewClass;
 }
 
 #pragma mark - Setters

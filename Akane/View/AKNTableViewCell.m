@@ -11,33 +11,41 @@
 
 @implementation AKNTableViewCell
 
-- (void)attachViewModel:(id<AKNViewModel>)viewModel {
-    self.aknContentView.viewModel = viewModel;
+@synthesize itemView = _itemView;
 
-    if ([viewModel respondsToSelector:@selector(willMount)]) {
-        [viewModel willMount];
-    }
++ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
+    return [[self alloc] initWithCellWithItemView:itemView];
 }
 
-- (void)setAknContentView:(UIView<AKNViewConfigurable> *)aknContentView {
-    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(aknContentView);
+- (instancetype)initWithCellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
+    if (!(self = [super init])) {
+        return nil;
+    }
 
-    if (aknContentView == _aknContentView) {
+    self.itemView = itemView;
+
+    return self;
+}
+
+- (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
+    NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(itemView);
+
+    if (itemView == _itemView) {
         return;
     }
 
-    [_aknContentView removeFromSuperview];
-    _aknContentView = aknContentView;
-    aknContentView.translatesAutoresizingMaskIntoConstraints = NO;
+    [_itemView removeFromSuperview];
+    _itemView = itemView;
+    itemView.translatesAutoresizingMaskIntoConstraints = NO;
 
-    [self.contentView addSubview:aknContentView];
+    [self.contentView addSubview:itemView];
     // iOS7 compatibility
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[aknContentView]|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView]|"
                                                                              options:0
                                                                              metrics:0
                                                                                views:viewsDictionary]];
-    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[aknContentView]|"
+    [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"V:|[itemView]|"
                                                                              options:0
                                                                              metrics:0
                                                                                views:viewsDictionary]];

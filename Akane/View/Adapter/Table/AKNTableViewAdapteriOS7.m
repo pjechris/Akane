@@ -7,14 +7,15 @@
 //
 
 #import "AKNTableViewAdapteriOS7.h"
+#import "AKNTableViewAdapter+Private.h"
 #import "AKNViewConfigurable.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"
 #import "AKNItemViewModel.h"
-#import <objc/runtime.h>
 #import "AKNTableViewCell.h"
-#import "AKNTableViewAdapter+Private.h"
+#import "AKNReusableViewHandler.h"
+#import "AKNReusableViewDelegate.h"
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 
@@ -48,11 +49,11 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    AKNTableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     [self queueReusableCell:cell forIndexPath:indexPath];
 
-    [cell attachViewModel:viewModel];
+    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
 
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
@@ -94,8 +95,8 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
     self.tableView.tableFooterView = footer;
 }
 
-- (AKNTableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    AKNTableViewCell *cell = self.cellsQueue[indexPath];
+- (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    UITableViewCell *cell = self.cellsQueue[indexPath];
 
     if (!cell) {
         cell = [super dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];

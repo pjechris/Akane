@@ -9,13 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AKNViewConfigurable.h"
+#import "UITableViewCell+AKNReusableView.h"
 
 @interface AKNTableViewCell : UITableViewCell
 
-/// the real cell content view
-/// this view is directly added to `contentView`
-@property(nonatomic, strong)UIView<AKNViewConfigurable> *aknContentView;
+@property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable>    *itemView;
 
-- (void)attachViewModel:(id<AKNViewModel>)viewModel;
++ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView;
 
 @end
