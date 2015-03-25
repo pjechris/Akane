@@ -145,8 +145,8 @@
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
 
-    if (!cell) {
-        cell = [AKNTableViewCell cellWithItemView:[self createReusableViewWithIdentifier:identifier]];
+    if (!cell.itemView) {
+        cell.itemView = [self createReusableViewWithIdentifier:identifier];
     }
 
     NSAssert([cell.itemView conformsToProtocol:@protocol(AKNViewConfigurable)],
@@ -184,10 +184,13 @@
 
     self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
     self.reusableViewsHandler[identifier] = handler;
+
+    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier {
     self.reusableViewsContent[identifier] = viewClass;
+    [self.tableView registerClass:[AKNTableViewCell class] forCellReuseIdentifier:identifier];
 }
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
