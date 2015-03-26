@@ -107,7 +107,7 @@
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
-    handler.onReuse ? handler.onReuse(cell, cell.itemView, indexPath) : nil;
+    handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 
     return cell;
 }

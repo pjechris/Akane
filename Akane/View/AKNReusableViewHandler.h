@@ -13,7 +13,7 @@
 @protocol AKNViewModel;
 @protocol AKNViewConfigurable;
 
-typedef void(^AKNReusableViewOnReuse)(UIView<AKNReusableView> *reusableView, UIView<AKNViewConfigurable> *itemView, NSIndexPath *indexPath);
+typedef void(^AKNReusableViewOnReuse)(UIView<AKNReusableView> *reusableView, NSIndexPath *indexPath);
 
 @interface AKNReusableViewHandler : NSObject
 
