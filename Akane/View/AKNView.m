@@ -30,4 +30,8 @@
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
 
+- (void)didMoveToSuperview {
+    _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
+}
+
 @end
