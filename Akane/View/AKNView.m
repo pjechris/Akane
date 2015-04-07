@@ -31,7 +31,9 @@
 }
 
 - (void)didMoveToSuperview {
-    _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
+	if (self.nextResponder) {
+   		_viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
+	}
 }
 
 @end
