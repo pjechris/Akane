@@ -15,7 +15,7 @@
 
 @interface AKNTableViewAdapter (Private)
 
-- (instancetype)initCluster;
+- (void)customInit;
 
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section;
 - (id<AKNItemViewModel>)indexPathModel:(NSIndexPath *)indexPath;

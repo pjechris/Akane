@@ -25,14 +25,8 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 
 @implementation AKNTableViewAdapteriOS7
 
-- (instancetype)initCluster {
-    if (!(self = [super initCluster])) {
-        return nil;
-    }
-
+- (void)customInit {
     self.cellsQueue = [NSMutableDictionary new];
-
-    return self;
 }
 
 #pragma mark - Table delegates

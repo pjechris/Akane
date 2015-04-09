@@ -42,7 +42,15 @@
 
     self.viewDelegate = self.defaultViewDelegate;
 
+    [self customInit];
+
     return self;
+}
+
+- (void)customInit {
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
+    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+    self.tableView.sectionFooterHeight = UITableViewAutomaticDimension;
 }
 
 - (instancetype)initWithTableView:(UITableView *)tableView {
