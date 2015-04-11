@@ -6,6 +6,7 @@
 // file that was distributed with this source code
 //
 
+#import <Foundation/Foundation.h>
 #import <EventListener/EventListener.h>
 
 @protocol AKNViewModel <EVEEventDispatcher>
