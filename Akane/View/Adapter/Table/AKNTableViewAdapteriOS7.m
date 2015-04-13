@@ -46,8 +46,10 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     [self queueReusableCell:cell forIndexPath:indexPath];
-
     [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+
+    [cell setNeedsLayout];
+    [cell layoutIfNeeded];
 
     CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
