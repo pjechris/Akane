@@ -112,16 +112,22 @@
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
-    handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 
     return cell;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 55.f;
+}
+
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
+    NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
+    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
+
+    handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
