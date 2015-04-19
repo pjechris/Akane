@@ -18,4 +18,6 @@
 @property(nonatomic, weak, readonly)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong, readonly)id                context;
 
+- (instancetype)initWithViewModel:(id<AKNViewModel>)viewModel context:(id)context;
+
 @end

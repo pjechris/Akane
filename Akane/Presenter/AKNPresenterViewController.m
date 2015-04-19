@@ -8,11 +8,15 @@
 
 #import "AKNPresenterViewController.h"
 #import "AKNViewModel.h"
+#import "AKNState.h"
+#import "AKNLifecycleManager.h"
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong)NSMutableArray      *presenters;
 @property(nonatomic, assign)BOOL                mounted;
+@property(nonatomic, assign)BOOL                awaken;
+@property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
 @end
 
 @implementation AKNPresenterViewController
@@ -36,23 +40,30 @@
 }
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
-    if (self.viewModel) {
+    if (_viewModel == viewModel) {
         return;
     }
 
-    self.viewModel = viewModel;
+    NSAssert(viewModel != nil, @"Can't setup with a nil ViewModel!");
+    _viewModel = viewModel;
 
-    if ([self isViewLoaded]) {
+    if ([self isViewLoaded] && !self.awaken) {
         [self awake];
     }
+
+    [self updateState];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
-    if (self.viewModel) {
+    NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
+
+    if (self.viewModel && !self.awaken) {
         [self awake];
     }
+
+    [self updateState];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -66,17 +77,21 @@
 }
 
 - (void)awake {
+    self.awaken = YES;
     self.presenters = [NSMutableArray new];
+    self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
 
     [self didAwake];
 
-    NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
-    
     self.view.viewModel = self.viewModel;
 }
 
 - (void)didAwake {
     // Default implementation do nothing
+}
+
+- (void)updateState {
+    [self.lifecycleManager updateWithState:[[AKNState alloc] initWithViewModel:self.viewModel context:nil]];
 }
 
 - (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {

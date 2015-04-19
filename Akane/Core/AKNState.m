@@ -8,6 +8,22 @@
 
 #import "AKNState.h"
 
+@interface AKNState ()
+@property(nonatomic, weak)id<AKNViewModel>    viewModel;
+@property(nonatomic, strong)id                context;
+@end
+
 @implementation AKNState
+
+- (instancetype)initWithViewModel:(id<AKNViewModel>)viewModel context:(id)context {
+    if (!(self = [super init])) {
+        return nil;
+    }
+
+    self.viewModel = viewModel;
+    self.context = context;
+
+    return self;
+}
 
 @end
