@@ -12,7 +12,7 @@
 @protocol AKNViewModel;
 @protocol AKNDataSource;
 @protocol AKNItemViewModelProvider;
-@protocol AKNReusableViewDelegate;
+@class AKNLifecycleManager;
 
 /**
  * Adapter to transpose UITableViewDataSource and UITableViewDelegate protocols to Adapter protocols
@@ -22,9 +22,10 @@
 @property(nonatomic, strong)id<AKNDataSource>               dataSource;
 @property(nonatomic, strong)id<AKNItemViewModelProvider>    itemViewModelProvider;
 @property(nonatomic, weak, readonly)UITableView             *tableView;
-@property(nonatomic, weak)id<AKNReusableViewDelegate>       viewDelegate;
+@property(nonatomic, weak, readonly)AKNLifecycleManager     *lifecycleManager;
+
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
-- (instancetype)initWithTableView:(UITableView *)tableView;
+- (instancetype)initWithTableView:(UITableView *)tableView lifecycleManager:(AKNLifecycleManager *)lifecycleManager;
 
 @end

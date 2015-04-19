@@ -18,14 +18,14 @@
 #import "AKNTableViewCell.h"
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
-#import "AKNReusableViewDelegate.h"
+#import "AKNLifecycleManager.h"
 
 @interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMapTable                  *itemViewModels;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
 @property(nonatomic, weak)UITableView                   *tableView;
-@property(nonatomic, strong)id<AKNReusableViewDelegate> defaultViewDelegate;
+@property(nonatomic, weak)AKNLifecycleManager           *lifecycleManager;
 @end
 
 @implementation AKNTableViewAdapter
@@ -38,9 +38,6 @@
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViewsContent = [NSMutableDictionary new];
     self.reusableViewsHandler = [NSMutableDictionary new];
-    self.defaultViewDelegate = [AKNReusableViewDelegate new];
-
-    self.viewDelegate = self.defaultViewDelegate;
 
     [self customInit];
 
@@ -53,7 +50,7 @@
     self.tableView.sectionFooterHeight = UITableViewAutomaticDimension;
 }
 
-- (instancetype)initWithTableView:(UITableView *)tableView {
+- (instancetype)initWithTableView:(UITableView *)tableView lifecycleManager:(AKNLifecycleManager *)lifecycleManager {
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
 
     if ([systemVersion compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending) {
@@ -64,6 +61,8 @@
     }
 
     self.tableView = tableView;
+    self.lifecycleManager = lifecycleManager;
+    NSAssert(self.lifecycleManager != nil, @"lifecycleManager can't be nil!");
 
     return self;
 }
@@ -113,7 +112,7 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    [self.lifecycleManager updateView:cell.itemView withViewModel:viewModel];
 
     return cell;
 }
