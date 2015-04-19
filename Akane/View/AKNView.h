@@ -15,6 +15,7 @@
 @interface AKNView : UIView<AKNViewConfigurable>
 
 @property(nonatomic, weak)id<AKNViewModel>  viewModel;
+@property(nonatomic, strong)AKNLifecycleManager   *lifecycleManager;
 
 /**
  * @brief configure the view with data

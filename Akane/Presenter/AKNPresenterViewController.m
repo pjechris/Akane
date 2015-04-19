@@ -15,7 +15,6 @@
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong)NSMutableArray      *presenters;
 @property(nonatomic, assign)BOOL                awaken;
-@property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
 @end
 
 @implementation AKNPresenterViewController
@@ -26,12 +25,13 @@
     }
 
     self.view = view;
+    [self viewDidLoad];
 
     return self;
 }
 
 - (void)dealloc {
-    [self.lifecycleManager unmount];
+    [self.view.lifecycleManager unmount];
 }
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
@@ -53,7 +53,7 @@
 
     NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
     self.presenters = [NSMutableArray new];
-    self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
+    self.view.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
 
     if (self.viewModel) {
         [self awake];
@@ -63,7 +63,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.lifecycleManager remount];
+    [self.view.lifecycleManager remount];
 }
 
 - (void)awake {
@@ -79,8 +79,7 @@
 }
 
 - (void)updateState {
-    [self.lifecycleManager updateWithState:[[AKNState alloc] initWithViewModel:self.viewModel context:nil]];
-    self.view.viewModel = self.viewModel;
+    [self.view.lifecycleManager updateWithState:[[AKNState alloc] initWithViewModel:self.viewModel context:nil]];
 }
 
 - (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {

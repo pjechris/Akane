@@ -15,7 +15,7 @@
 
 @property(nonatomic, weak)id<AKNViewModel>  viewModel;
 
-@property(nonatomic, weak)AKNLifecycleManager   *lifecycleManager;
+@property(nonatomic, strong)AKNLifecycleManager   *lifecycleManager;
 
 /**
  * @brief configure the view with data

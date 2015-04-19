@@ -33,6 +33,9 @@
 
 - (void)updateWithState:(AKNState *)state {
     self.state = state;
+    // FIXME: BC to remove
+    [[self view] setViewModel:state.viewModel];
+    
     [[self view] configure];
 }
 
