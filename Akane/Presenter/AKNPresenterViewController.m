@@ -19,6 +19,16 @@
 
 @synthesize viewModel = _viewModel;
 
+- (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view {
+    if (!(self = [super init])) {
+        return nil;
+    }
+
+    self.view = view;
+
+    return self;
+}
+
 - (void)dealloc {
     if ([self.viewModel respondsToSelector:@selector(willUnmount)]) {
         [self.viewModel willUnmount];
@@ -69,13 +79,17 @@
     // Default implementation do nothing
 }
 
-- (void)setupView:(UIView<AKNViewConfigurable> *)view {
-    if ([self isViewLoaded]) {
-        return;
-    }
+- (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {
+    if (![self.presenters containsObject:presenter]) {
+        [self.presenters addObject:presenter];
 
-    self.view = view;
-    [self viewDidLoad];
+        if ([presenter isKindOfClass:[UIViewController class]] && ![self.childViewControllers containsObject:presenter]) {
+            UIViewController *viewController = (UIViewController *)presenter;
+
+            [self addChildViewController:viewController];
+            [viewController didMoveToParentViewController:self];
+        }
+    }
 }
 
 @end

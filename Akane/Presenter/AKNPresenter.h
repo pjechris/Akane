@@ -41,4 +41,6 @@
  */
 - (void)didAwake;
 
+- (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel;
+
 @end

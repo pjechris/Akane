@@ -46,11 +46,12 @@
 - (void)updateView:(UIView<AKNViewConfigurable> *)view withViewModel:(id<AKNViewModel>)viewModel {
     NSAssert([view isDescendantOfView:[self view]], @"Attempting to call updateView: with a view which is not a subview of current one (%@)", [self view]);
 
-    if (!view.lifecycleManager) {
-        id<AKNPresenter> presenter = [self createPresenterForView:view];
-    }
+    id<AKNPresenter> presenter = (!view.lifecycleManager)
+    ? [self createPresenterForView:view]
+    : view.lifecycleManager.presenter;
 
-    [view.lifecycleManager.presenter setupWithViewModel:viewModel];
+    [presenter setupWithViewModel:viewModel];
+    [self.presenter presenter:presenter didAcquireViewModel:viewModel];
 }
 
 - (id<AKNPresenter>)createPresenterForView:(UIView<AKNViewConfigurable> *)view {
