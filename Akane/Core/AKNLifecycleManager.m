@@ -36,6 +36,7 @@
 }
 
 - (void)mountState {
+
 }
 
 - (UIView<AKNViewConfigurable> *)view {
@@ -46,12 +47,11 @@
     NSAssert([view isDescendantOfView:[self view]], @"Attempting to call updateView: with a view which is not a subview of current one (%@)", [self view]);
 
     if (!view.lifecycleManager) {
+        id<AKNPresenter> presenter = [self createPresenterForView:view];
     }
-    else {
-        [view.lifecycleManager.presenter setupWithViewModel:viewModel];
-    }
-}
 
+    [view.lifecycleManager.presenter setupWithViewModel:viewModel];
+}
 
 - (id<AKNPresenter>)createPresenterForView:(UIView<AKNViewConfigurable> *)view {
     Class presenterClass = NSClassFromString([NSStringFromClass([view class]) stringByAppendingString:@"Controller"]);

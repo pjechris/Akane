@@ -11,6 +11,8 @@
 
 @protocol AKNViewConfigurable;
 @protocol AKNViewModel;
+@class AKNLifecycleManager;
+@class AKNScope;
 
 /**
  * Presenter is a context with capabilities to handle "presentation" workflow
@@ -18,6 +20,8 @@
 @protocol AKNPresenter <AKNViewModelAware>
 
 @property(nonatomic, strong, readonly)UIView<AKNViewConfigurable>    *view;
+
+- (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view;
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized
