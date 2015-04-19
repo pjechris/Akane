@@ -9,9 +9,12 @@
 #import <Foundation/Foundation.h>
 #import "AKNTableView.h"
 #import "AKNViewModel.h"
+#import "AKNTableViewAdapter.h"
 #import <EventListener.h>
 
 @implementation AKNTableView
+
+@synthesize adapter = _adapter;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -29,6 +32,30 @@
 
 - (id<EVEEventDispatcher>)nextDispatcher {
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
+}
+
+- (AKNTableViewAdapter *)adapter {
+    if (!_adapter) {
+        _adapter = [[AKNTableViewAdapter alloc] initWithTableView:self lifecycleManager:self.lifecycleManager];
+    }
+
+    return _adapter;
+}
+
+- (void)setAdapterDataSource:(id<AKNDataSource>)adapterDataSource {
+    self.adapter.dataSource = adapterDataSource;
+}
+
+- (void)setAdapterItemProvider:(id<AKNItemViewModelProvider>)adapterItemProvider {
+    self.adapter.itemViewModelProvider = adapterItemProvider;
+}
+
+- (id<AKNDataSource>)adapterDataSource {
+    return self.adapter.dataSource;
+}
+
+- (id<AKNItemViewModelProvider>)adapterItemProvider {
+    return self.adapter.itemViewModelProvider;
 }
 
 @end
