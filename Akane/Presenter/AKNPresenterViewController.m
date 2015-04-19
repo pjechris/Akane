@@ -14,14 +14,11 @@
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong)NSMutableArray      *presenters;
-@property(nonatomic, assign)BOOL                mounted;
 @property(nonatomic, assign)BOOL                awaken;
 @property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
 @end
 
 @implementation AKNPresenterViewController
-
-@synthesize viewModel = _viewModel;
 
 - (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view {
     if (!(self = [super init])) {
@@ -34,9 +31,7 @@
 }
 
 - (void)dealloc {
-    if ([self.viewModel respondsToSelector:@selector(willUnmount)]) {
-        [self.viewModel willUnmount];
-    }
+    [self.lifecycleManager unmount];
 }
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
@@ -47,43 +42,36 @@
     NSAssert(viewModel != nil, @"Can't setup with a nil ViewModel!");
     _viewModel = viewModel;
 
-    if ([self isViewLoaded] && !self.awaken) {
+    if ([self isViewLoaded]) {
         [self awake];
+        [self updateState];
     }
-
-    [self updateState];
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
 
     NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
+    self.presenters = [NSMutableArray new];
+    self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
 
-    if (self.viewModel && !self.awaken) {
+    if (self.viewModel) {
         [self awake];
+        [self updateState];
     }
-
-    [self updateState];
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-
-    if (!self.mounted && [self.viewModel respondsToSelector:@selector(willMount)]) {
-        [self.viewModel willMount];
-    }
-
-    self.mounted = YES;
+    [self.lifecycleManager remount];
 }
 
 - (void)awake {
+    if (!self.awaken) {
+        [self didAwake];
+    }
+
     self.awaken = YES;
-    self.presenters = [NSMutableArray new];
-    self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
-
-    [self didAwake];
-
-    self.view.viewModel = self.viewModel;
 }
 
 - (void)didAwake {
@@ -92,6 +80,7 @@
 
 - (void)updateState {
     [self.lifecycleManager updateWithState:[[AKNState alloc] initWithViewModel:self.viewModel context:nil]];
+    self.view.viewModel = self.viewModel;
 }
 
 - (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {
