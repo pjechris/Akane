@@ -20,6 +20,9 @@
 
     _viewModel = viewModel;
     _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
+
+    // BC
+    // FIXME Remove this line of code
     [self configure];
 }
 
