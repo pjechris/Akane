@@ -37,6 +37,12 @@
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
 
+- (void)didMoveToSuperview {
+    if (self.window && self.nextResponder) {
+        _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
+    }
+}
+
 - (AKNTableViewAdapter *)adapter {
     if (!_adapter) {
         _adapter = [[AKNTableViewAdapter alloc] initWithTableView:self lifecycleManager:self.lifecycleManager];
