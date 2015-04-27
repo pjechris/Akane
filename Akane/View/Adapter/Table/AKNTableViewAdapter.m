@@ -108,6 +108,21 @@
     return [self.dataSource numberOfItemsInSection:section];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
+    NSString *identifier = [self identifierForViewModel:sectionViewModel inSection:section];
+    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
+
+    if (!identifier) {
+        return 0;
+    }
+
+    UIView<AKNViewConfigurable> *sectionView = [self dequeueReusableSectionWithIdentifier:identifier forSection:section];
+    sectionView.viewModel = sectionViewModel;
+
+    return [sectionView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
