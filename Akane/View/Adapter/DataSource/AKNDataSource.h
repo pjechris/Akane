@@ -23,7 +23,10 @@
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
 
-- (id)supplementaryItemAtSection:(NSInteger)section;
 - (id)itemAtIndexPath:(NSIndexPath *)indexPath;
+
+@optional
+
+- (id)supplementaryItemAtSection:(NSInteger)section;
 
 @end

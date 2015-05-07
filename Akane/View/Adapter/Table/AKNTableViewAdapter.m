@@ -69,6 +69,10 @@
 }
 
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
+    if (![self.dataSource respondsToSelector:@selector(supplementaryItemAtSection:)]) {
+        return nil;
+    }
+    
     id item = [self.dataSource supplementaryItemAtSection:section];
     id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
 
