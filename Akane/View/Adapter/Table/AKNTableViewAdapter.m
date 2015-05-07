@@ -195,7 +195,7 @@
 }
 
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     if (!cell.itemView) {
         cell.itemView = [self createReusableViewWithIdentifier:identifier];
@@ -284,7 +284,9 @@
     }
 
     _itemViewModelProvider = itemViewModelProvider;
-    [self.itemViewModelProvider registerViews:self];
+    if ([self.itemViewModelProvider respondsToSelector:@selector(registerViews:)]) {
+        [self.itemViewModelProvider registerViews:self];
+    }
     [_tableView reloadData];
 }
 
