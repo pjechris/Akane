@@ -14,6 +14,8 @@
 
 @implementation AKNViewModel
 
+@synthesize nextDispatcher;
+
 - (instancetype)init {
     if (!(self = [super init])) {
         return nil;
