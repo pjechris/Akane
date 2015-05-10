@@ -68,6 +68,10 @@
 }
 
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
+    if (![self.dataSource respondsToSelector:@selector(supplementaryItemAtSection:)]) {
+        return nil;
+    }
+    
     id item = [self.dataSource supplementaryItemAtSection:section];
     id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
 
@@ -105,6 +109,21 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [self.dataSource numberOfItemsInSection:section];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
+    NSString *identifier = [self identifierForViewModel:sectionViewModel inSection:section];
+    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
+
+    if (!identifier) {
+        return 0;
+    }
+
+    UIView<AKNViewConfigurable> *sectionView = [self dequeueReusableSectionWithIdentifier:identifier forSection:section];
+    sectionView.viewModel = sectionViewModel;
+
+    return [sectionView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -174,7 +193,7 @@
 }
 
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     if (!cell.itemView) {
         cell.itemView = [self createReusableViewWithIdentifier:identifier];
@@ -263,7 +282,9 @@
     }
 
     _itemViewModelProvider = itemViewModelProvider;
-    [self.itemViewModelProvider registerViews:self];
+    if ([self.itemViewModelProvider respondsToSelector:@selector(registerViews:)]) {
+        [self.itemViewModelProvider registerViews:self];
+    }
     [_tableView reloadData];
 }
 

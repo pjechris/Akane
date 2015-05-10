@@ -52,8 +52,12 @@
     return self;
 }
 
+// TODO: implement supplementary collection view views
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
-    // TODO: implement supplementary collection view views
+    if (![self.dataSource respondsToSelector:@selector(supplementaryItemAtSection:)]) {
+        return nil;
+    }
+    
     id item = [self.dataSource supplementaryItemAtSection:section];
     id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
     

@@ -63,21 +63,6 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
     return height + 1;
 }
 
-- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
-    id<AKNItemViewModel> sectionViewModel = [self sectionModel:section];
-    NSString *identifier = [self identifierForViewModel:sectionViewModel inSection:section];
-    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
-
-    if (!identifier) {
-        return 0;
-    }
-
-    UIView<AKNViewConfigurable> *sectionView = [self dequeueReusableSectionWithIdentifier:identifier forSection:section];
-    sectionView.viewModel = sectionViewModel;
-
-    return [sectionView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
-}
-
 #pragma mark - Internal
 
 /**

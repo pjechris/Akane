@@ -14,6 +14,8 @@
  */
 @protocol AKNItemViewModel <AKNViewModel>
 
+@optional
+
 // TODO: Transform this into a Command
 @property(nonatomic, assign, readonly)BOOL  canSelect;
 

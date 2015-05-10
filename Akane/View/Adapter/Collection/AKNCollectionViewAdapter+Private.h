@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "AKNCollectionViewAdapter.h"
 
 @class AKNCollectionViewCell;
 @class AKNReusableViewHandler;

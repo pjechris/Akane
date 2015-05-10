@@ -18,9 +18,11 @@
       atIndexPath:(NSIndexPath *)indexPath {
 
     reusableView.itemView.viewModel = viewModel;
+}
 
-    if ([viewModel respondsToSelector:@selector(willMount)]) {
-        [viewModel willMount];
+- (void)mountView:(id<AKNViewConfigurable>)view {
+    if ([view.viewModel respondsToSelector:@selector(willMount)]) {
+        [view.viewModel willMount];
     }
 }
 

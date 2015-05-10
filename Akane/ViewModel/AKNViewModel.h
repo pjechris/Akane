@@ -21,6 +21,4 @@
 
 @interface AKNViewModel : NSObject<AKNViewModel>
 
-@property(nonatomic, weak)id<EVEEventDispatcher>  nextDispatcher;
-
 @end

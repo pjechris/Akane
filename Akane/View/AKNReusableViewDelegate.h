@@ -10,12 +10,15 @@
 
 @protocol AKNReusableView;
 @protocol AKNViewModel;
+@protocol AKNViewConfigurable;
 
 @protocol AKNReusableViewDelegate <NSObject>
 
 - (void)reuseView:(id<AKNReusableView>)reusableView
     withViewModel:(id<AKNViewModel>)viewModel
       atIndexPath:(NSIndexPath *)indexPath;
+
+- (void)mountView:(id<AKNViewConfigurable>)view;
 
 @end
 
