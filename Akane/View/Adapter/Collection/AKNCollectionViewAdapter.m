@@ -105,6 +105,7 @@
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
     
     [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
     
     return cell;
