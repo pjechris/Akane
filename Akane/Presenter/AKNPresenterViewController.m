@@ -54,7 +54,10 @@
     [super viewDidLoad];
 
     self.presenters = [NSMutableArray new];
-    self.view.lifecycleManager = [AKNLifecycleManager new];
+
+    if (!self.view.lifecycleManager) {
+        self.view.lifecycleManager = [AKNLifecycleManager new];
+    }
 
     if (self.viewModel) {
         [self awake];
