@@ -12,6 +12,7 @@
 #import "AKNState.h"
 #import "AKNPresenter.h"
 #import "AKNPresenterViewController.h"
+#import "AKNViewHelper.h"
 #import <objc/objc-runtime.h>
 
 @interface AKNLifecycleManager ()
@@ -39,7 +40,7 @@
     [[self view] configure];
 }
 
-- (void)remount {
+- (void)mount {
     NSNumber *isMounted = objc_getAssociatedObject(self.state.viewModel, @selector(willMount));
 
     if (![isMounted boolValue] && [self.state.viewModel respondsToSelector:@selector(willMount)]) {
@@ -58,7 +59,13 @@
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"Attempting to call updateView: with a view which is not a subview of current one (%@)", [self view]);
 
-    id<AKNPresenter> presenter = (!view.lifecycleManager) ? [self createPresenterForView:view] : view.lifecycleManager.presenter;
+    id<AKNPresenter> presenter = objc_getAssociatedObject(view, @selector(presenter));
+
+    if (!presenter) {
+        presenter = view_presenter_new(view);
+
+        objc_setAssociatedObject(view, @selector(presenter), presenter, OBJC_ASSOCIATION_ASSIGN);
+    }
 
     [presenter setupWithViewModel:viewModel];
     [self.presenter presenter:presenter didAcquireViewModel:viewModel];
@@ -68,17 +75,6 @@
 
 - (UIView<AKNViewConfigurable> *)view {
     return self.presenter.view;
-}
-
-
-- (id<AKNPresenter>)createPresenterForView:(UIView<AKNViewConfigurable> *)view {
-    Class presenterClass = NSClassFromString([NSStringFromClass([view class]) stringByAppendingString:@"Controller"]);
-
-    if (presenterClass && [presenterClass conformsToProtocol:@protocol(AKNPresenter)]) {
-        return [[presenterClass alloc] initWithView:view];
-    }
-
-    return [[AKNPresenterViewController alloc] initWithView:view];
 }
 
 @end

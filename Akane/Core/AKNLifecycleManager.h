@@ -20,7 +20,7 @@
 
 - (void)updateWithState:(AKNState *)state;
 
-- (void)remount;
+- (void)mount;
 - (void)unmount;
 
 - (void)updateView:(UIView<AKNViewConfigurable> *)view withViewModel:(id<AKNViewModel>)viewModel;

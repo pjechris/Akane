@@ -63,7 +63,7 @@
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view.lifecycleManager remount];
+    [self.view.lifecycleManager mount];
 }
 
 - (void)awake {
