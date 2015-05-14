@@ -10,8 +10,6 @@
 #import <UIKit/UIKit.h>
 #import "AKNReusableView.h"
 
-@interface UICollectionViewCell (AKNReusableView)
-
-@property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable> *itemView;
+@interface UICollectionViewCell (AKNReusableView) <AKNReusableView>
 
 @end
