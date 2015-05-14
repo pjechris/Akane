@@ -49,8 +49,6 @@
 
 - (void)customInit {
     self.tableView.rowHeight = UITableViewAutomaticDimension;
-    self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
-    self.tableView.sectionFooterHeight = UITableViewAutomaticDimension;
 }
 
 - (instancetype)initWithTableView:(UITableView *)tableView {
@@ -136,10 +134,6 @@
     [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
 
     return cell;
-}
-
-- (CGFloat)tableView:(UITableView *)tableView estimatedHeightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 55.f;
 }
 
 - (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -277,6 +271,9 @@
 
     _tableView.dataSource = self;
     _tableView.delegate = self;
+    // BC
+    // This will disappear on 0.10.0 or 0.11.0
+    _tableView.estimatedRowHeight = _tableView.estimatedRowHeight ?: 55.f;
 }
 
 - (void)setItemViewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
