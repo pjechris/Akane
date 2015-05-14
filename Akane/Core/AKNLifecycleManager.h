@@ -16,9 +16,7 @@
 
 @interface AKNLifecycleManager : NSObject
 
-- (instancetype)initWithPresenter:(id<AKNPresenter>)presenter;
-
-- (void)updateWithState:(AKNState *)state;
+- (void)attachToPresenter:(id<AKNPresenter>)presenter;
 
 - (void)mount;
 - (void)unmount;

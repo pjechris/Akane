@@ -17,41 +17,34 @@
 
 @interface AKNLifecycleManager ()
 @property(nonatomic, weak)id<AKNPresenter>    presenter;
-@property(nonatomic, strong)AKNState            *state;
+
+- (UIView<AKNViewConfigurable> *)view;
+- (id<AKNViewModel>)viewModel;
 @end
 
 @implementation AKNLifecycleManager
 
-- (instancetype)initWithPresenter:(id<AKNPresenter>)presenter {
-    if (!(self = [super init])) {
-        return nil;
-    }
-
+- (void)attachToPresenter:(id<AKNPresenter>)presenter {
     self.presenter = presenter;
 
-    return self;
-}
-
-- (void)updateWithState:(AKNState *)state {
-    self.state = state;
     // FIXME: BC to remove
-    [[self view] setViewModel:state.viewModel];
+    [self.view setViewModel:presenter.viewModel];
     
-    [[self view] configure];
+    [self.view configure];
 }
 
 - (void)mount {
-    NSNumber *isMounted = objc_getAssociatedObject(self.state.viewModel, @selector(willMount));
+    NSNumber *isMounted = objc_getAssociatedObject(self.viewModel, @selector(willMount));
 
-    if (![isMounted boolValue] && [self.state.viewModel respondsToSelector:@selector(willMount)]) {
-        [self.state.viewModel willMount];
-        objc_setAssociatedObject(self.state.viewModel, @selector(willMount), @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+    if (![isMounted boolValue] && [self.viewModel respondsToSelector:@selector(willMount)]) {
+        [self.viewModel willMount];
+        objc_setAssociatedObject(self.viewModel, @selector(willMount), @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
 }
 
 - (void)unmount {
-    if ([self.state.viewModel respondsToSelector:@selector(willUnmount)]) {
-        [self.state.viewModel willUnmount];
+    if ([self.viewModel respondsToSelector:@selector(willUnmount)]) {
+        [self.viewModel willUnmount];
     }
 }
 
@@ -75,6 +68,10 @@
 
 - (UIView<AKNViewConfigurable> *)view {
     return self.presenter.view;
+}
+
+- (id<AKNViewModel>)viewModel {
+    return self.presenter.viewModel;
 }
 
 @end

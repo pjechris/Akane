@@ -44,20 +44,21 @@
 
     if ([self isViewLoaded]) {
         [self awake];
-        [self updateState];
+        [self.view.lifecycleManager attachToPresenter:self];
     }
 }
 
 - (void)viewDidLoad {
+    NSAssert([self.view conformsToProtocol:@protocol(AKNViewConfigurable)], @"The viewController's view should be of kind AKNView");
+
     [super viewDidLoad];
 
-    NSAssert([self.view respondsToSelector:@selector(setViewModel:)], @"The viewController's view should be of kind AKNView");
     self.presenters = [NSMutableArray new];
-    self.view.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
+    self.view.lifecycleManager = [AKNLifecycleManager new];
 
     if (self.viewModel) {
         [self awake];
-        [self updateState];
+        [self.view.lifecycleManager attachToPresenter:self];
     }
 }
 
@@ -76,10 +77,6 @@
 
 - (void)didAwake {
     // Default implementation do nothing
-}
-
-- (void)updateState {
-    [self.view.lifecycleManager updateWithState:[[AKNState alloc] initWithViewModel:self.viewModel context:nil]];
 }
 
 - (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {
