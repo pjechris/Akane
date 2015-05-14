@@ -18,8 +18,9 @@
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
 #import "AKNReusableViewDelegate.h"
+#import "UICollectionViewCell+AKNReusableView.h"
 
-@interface AKNCollectionViewAdapter () <AKNViewCache>
+@interface AKNCollectionViewAdapter () <AKNViewCache, UICollectionViewDelegate, UICollectionViewDataSource>
 @property(nonatomic, strong)NSMapTable                  *itemViewModels;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
@@ -105,6 +106,7 @@
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
     
     [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+    [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
     
     return cell;
