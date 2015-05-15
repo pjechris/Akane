@@ -21,11 +21,10 @@
 
 @property(nonatomic, strong)id<AKNDataSource>               dataSource;
 @property(nonatomic, strong)id<AKNItemViewModelProvider>    itemViewModelProvider;
+@property(nonatomic, weak)AKNLifecycleManager               *lifecycleManager;
 @property(nonatomic, weak, readonly)UITableView             *tableView;
-@property(nonatomic, weak, readonly)AKNLifecycleManager     *lifecycleManager;
-
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
-- (instancetype)initWithTableView:(UITableView *)tableView lifecycleManager:(AKNLifecycleManager *)lifecycleManager;
+- (instancetype)initWithTableView:(UITableView *)tableView;
 
 @end

@@ -14,7 +14,8 @@
 
 @implementation AKNTableView
 
-@synthesize adapter = _adapter;
+@synthesize adapter             = _adapter;
+@synthesize lifecycleManager    = _lifecycleManager;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -33,6 +34,11 @@
     // Default implementation do nothing
 }
 
+- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
+    _lifecycleManager = lifecycleManager;
+    _adapter.lifecycleManager = lifecycleManager;
+}
+
 - (id<EVEEventDispatcher>)nextDispatcher {
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
@@ -43,12 +49,18 @@
     }
 }
 
+#pragma mark - Table Adapter
+
 - (AKNTableViewAdapter *)adapter {
     if (!_adapter) {
-        _adapter = [[AKNTableViewAdapter alloc] initWithTableView:self lifecycleManager:self.lifecycleManager];
+        _adapter = [[AKNTableViewAdapter alloc] initWithTableView:self];
     }
-
+    
     return _adapter;
+}
+
+- (void)setAdapter:(AKNTableViewAdapter *)adapter {
+    _adapter = adapter;
 }
 
 - (void)setAdapterDataSource:(id<AKNDataSource>)adapterDataSource {

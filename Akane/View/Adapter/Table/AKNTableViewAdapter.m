@@ -25,7 +25,6 @@
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
 @property(nonatomic, weak)UITableView                   *tableView;
-@property(nonatomic, weak)AKNLifecycleManager           *lifecycleManager;
 @end
 
 @implementation AKNTableViewAdapter
@@ -48,7 +47,7 @@
     self.tableView.rowHeight = UITableViewAutomaticDimension;
 }
 
-- (instancetype)initWithTableView:(UITableView *)tableView lifecycleManager:(AKNLifecycleManager *)lifecycleManager {
+- (instancetype)initWithTableView:(UITableView *)tableView {
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
 
     if ([systemVersion compare:@"8.0" options:NSNumericSearch] == NSOrderedAscending) {
@@ -59,8 +58,6 @@
     }
 
     self.tableView = tableView;
-    self.lifecycleManager = lifecycleManager;
-    NSAssert(self.lifecycleManager != nil, @"lifecycleManager can't be nil!");
 
     return self;
 }
@@ -266,9 +263,6 @@
     }
 
     _tableView = tableView;
-
-    _tableView.dataSource = self;
-    _tableView.delegate = self;
     // BC
     // This will disappear on 0.10.0 or 0.11.0
     _tableView.estimatedRowHeight = _tableView.estimatedRowHeight ?: 55.f;
@@ -293,6 +287,18 @@
     
     _dataSource = dataSource;
     [_tableView reloadData];
+}
+
+- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
+    NSAssert(self.lifecycleManager != nil, @"lifecycleManager can't be nil!");
+    _lifecycleManager = lifecycleManager;
+
+    [self attachToTableView];
+}
+
+- (void)attachToTableView {
+    _tableView.dataSource = self;
+    _tableView.delegate = self;
 }
 
 @end

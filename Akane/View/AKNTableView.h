@@ -14,8 +14,7 @@
 
 @interface AKNTableView : UITableView<AKNViewConfigurable>
 
-@property(nonatomic, weak)id<AKNViewModel>  viewModel;
-@property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
+@property(nonatomic, weak)id<AKNViewModel>      viewModel;
 
 @property(nonatomic, strong)AKNTableViewAdapter *adapter;
 
