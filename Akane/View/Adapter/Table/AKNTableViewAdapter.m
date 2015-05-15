@@ -137,6 +137,7 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
+    [self.lifecycleManager mount];
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 }
 
