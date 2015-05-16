@@ -13,6 +13,7 @@
 @protocol AKNDataSource;
 @protocol AKNItemViewModelProvider;
 @protocol AKNReusableViewDelegate;
+@class AKNLifecycleManager;
 
 /**
  * Adapter to transpose UICollectionViewDataSource and UICollectionViewDelegate protocols to Adapter protocols
@@ -22,7 +23,7 @@
 @property(nonatomic, strong)id<AKNDataSource>               dataSource;
 @property(nonatomic, strong)id<AKNItemViewModelProvider>    itemViewModelProvider;
 @property(nonatomic, weak, readonly)UICollectionView        *collectionView;
-@property(nonatomic, weak)id<AKNReusableViewDelegate>       viewDelegate;
+@property(nonatomic, weak)AKNLifecycleManager               *lifecycleManager;
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithCollectionView:(UICollectionView *)collectionView;

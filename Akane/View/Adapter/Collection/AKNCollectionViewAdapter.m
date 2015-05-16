@@ -17,7 +17,7 @@
 #import "AKNCollectionViewCell.h"
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
-#import "AKNReusableViewDelegate.h"
+#import "AKNLifecycleManager.h"
 #import "UICollectionViewCell+AKNReusableView.h"
 
 @interface AKNCollectionViewAdapter () <AKNViewCache, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -25,7 +25,6 @@
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
 @property(nonatomic, weak)UICollectionView              *collectionView;
-@property(nonatomic, strong)id<AKNReusableViewDelegate> defaultViewDelegate;
 @end
 
 @implementation AKNCollectionViewAdapter
@@ -38,9 +37,6 @@
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViewsContent = [NSMutableDictionary new];
     self.reusableViewsHandler = [NSMutableDictionary new];
-    self.defaultViewDelegate = [AKNReusableViewDelegate new];
-    
-    self.viewDelegate = self.defaultViewDelegate;
     
     return self;
 }
@@ -103,13 +99,20 @@
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UICollectionViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
-    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
-    
-    [self.viewDelegate reuseView:cell withViewModel:viewModel atIndexPath:indexPath];
+
+    [self.lifecycleManager updateView:cell.itemView withViewModel:viewModel];
     [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
-    handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
-    
+
     return cell;
+}
+
+- (void)collectionView:(UICollectionView *)collectionView willDisplayCell:(UICollectionViewCell *)cell forItemAtIndexPath:(NSIndexPath *)indexPath {
+    id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
+    NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
+    AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
+
+    [self.lifecycleManager mount];
+    handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
@@ -216,17 +219,6 @@
 
 #pragma mark - Setters
 
-- (void)setCollectionView:(UICollectionView *)collectionView {
-    if (_collectionView == collectionView) {
-        return;
-    }
-    
-    _collectionView = collectionView;
-    
-    _collectionView.dataSource = self;
-    _collectionView.delegate = self;
-}
-
 - (void)setItemViewModelProvider:(id<AKNItemViewModelProvider>)itemViewModelProvider {
     if (_itemViewModelProvider == itemViewModelProvider) {
         return;
@@ -247,6 +239,18 @@
     
     _dataSource = dataSource;
     [_collectionView reloadData];
+}
+
+- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
+    NSAssert(self.lifecycleManager != nil, @"lifecycleManager can't be nil!");
+    _lifecycleManager = lifecycleManager;
+
+    [self attachToCollectionView];
+}
+
+- (void)attachToCollectionView {
+    _collectionView.dataSource = self;
+    _collectionView.delegate = self;
 }
 
 @end
