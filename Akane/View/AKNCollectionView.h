@@ -9,8 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "AKNViewConfigurable.h"
 
+@class AKNCollectionViewAdapter;
+
 @interface AKNCollectionView : UICollectionView<AKNViewConfigurable>
 
-@property(nonatomic, weak)id<AKNViewModel>  viewModel;
+@property(nonatomic, strong)AKNCollectionViewAdapter        *adapter;
+
+@property(nonatomic, weak)id<AKNViewModel>                  viewModel;
 
 @end
