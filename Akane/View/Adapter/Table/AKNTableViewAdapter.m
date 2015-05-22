@@ -190,7 +190,8 @@
 }
 
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    // don't use dequeueReusableCellWithIdentifier:forIndexPath:! This would cause infinite loop on iOS7 :(
+    UITableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:identifier];
 
     if (!cell.itemView) {
         cell.itemView = [self createReusableViewWithIdentifier:identifier];
