@@ -8,6 +8,7 @@
 
 #import <Kiwi/Kiwi.h>
 #import "AKNPresenterViewController.h"
+#import "AKNViewModel.h"
 
 SPEC_BEGIN(AKNPresenterViewControllerSpec)
 

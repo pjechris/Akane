@@ -19,6 +19,8 @@
 
 @implementation AKNPresenterViewController
 
+@dynamic view;
+
 - (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view {
     if (!(self = [super init])) {
         return nil;
