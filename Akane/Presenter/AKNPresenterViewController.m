@@ -13,7 +13,6 @@
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
-@property(nonatomic, strong)NSMutableArray      *presenters;
 @property(nonatomic, assign)BOOL                awaken;
 @end
 
@@ -55,8 +54,6 @@
 
     [super viewDidLoad];
 
-    self.presenters = [NSMutableArray new];
-
     if (!self.view.lifecycleManager) {
         self.view.lifecycleManager = [AKNLifecycleManager new];
     }
@@ -85,15 +82,11 @@
 }
 
 - (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {
-    if (![self.presenters containsObject:presenter]) {
-        [self.presenters addObject:presenter];
+    if ([presenter isKindOfClass:[UIViewController class]] && ![self.childViewControllers containsObject:presenter]) {
+        UIViewController *viewController = (UIViewController *)presenter;
 
-        if ([presenter isKindOfClass:[UIViewController class]] && ![self.childViewControllers containsObject:presenter]) {
-            UIViewController *viewController = (UIViewController *)presenter;
-
-            [self addChildViewController:viewController];
-            [viewController didMoveToParentViewController:self];
-        }
+        [self addChildViewController:viewController];
+        [viewController didMoveToParentViewController:self];
     }
 }
 
