@@ -1,7 +1,7 @@
-platform :ios, "8.0"
+platform :ios, "7.0"
 
 podspec
 
-target 'AkaneTests' do
+target 'AkaneTests', :exclusive => true do
        pod "Kiwi"
 end

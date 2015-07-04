@@ -31,6 +31,7 @@
 		49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
 		4F39AA18351B181505EB23A9 /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
 		6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
+		EE284E196C44DB4285994876 /* libPods-Akane.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C7FD8E3053F3055B2F0551 /* libPods-Akane.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		92916FE046C17A4982A5879D /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
+		A2C7FD8E3053F3055B2F0551 /* libPods-Akane.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Akane.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AkaneTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -125,6 +127,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */,
+				EE284E196C44DB4285994876 /* libPods-Akane.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -368,6 +371,7 @@
 			children = (
 				E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */,
 				6578808C14FC427CF464ABA6 /* libPods.a */,
+				A2C7FD8E3053F3055B2F0551 /* libPods-Akane.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -658,7 +662,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */;
 			buildSettings = {
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -668,7 +671,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 92916FE046C17A4982A5879D /* Pods.release.xcconfig */;
 			buildSettings = {
-				OTHER_LDFLAGS = "-ObjC";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
