@@ -9,15 +9,14 @@
 #import <Foundation/Foundation.h>
 #import "AKNCollectionView.h"
 #import "AKNViewModel.h"
-#import "AKNLifecycleManager.h"
 #import "UICollectionView+Adapter.h"
 #import "AKNCollectionViewAdapter.h"
 #import <EventListener.h>
 
 @implementation AKNCollectionView
 
-@synthesize lifecycleManager    = _lifecycleManager;
 @synthesize adapter             = _adapter;
+@synthesize componentDelegate;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -27,11 +26,6 @@
     _viewModel = viewModel;
     _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
     [self configure];
-}
-
-- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
-    _lifecycleManager = lifecycleManager;
-    _adapter.lifecycleManager = lifecycleManager;
 }
 
 - (void)configure {

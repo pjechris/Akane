@@ -126,7 +126,7 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [self.lifecycleManager updateView:cell.itemView withViewModel:viewModel];
+    [cell.itemView bind:viewModel];
     [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
 
     return cell;
@@ -137,7 +137,6 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
-    [self.lifecycleManager mount];
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 }
 

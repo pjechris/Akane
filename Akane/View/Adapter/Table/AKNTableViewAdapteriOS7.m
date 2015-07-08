@@ -46,7 +46,7 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     [self queueReusableCell:cell forIndexPath:indexPath];
-    [self.lifecycleManager updateView:cell.itemView withViewModel:viewModel];
+    [cell.itemView bind:viewModel];
 
     [cell setNeedsLayout];
     [cell layoutIfNeeded];

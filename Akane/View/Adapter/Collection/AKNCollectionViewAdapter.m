@@ -100,7 +100,7 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UICollectionViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [self.lifecycleManager updateView:cell.itemView withViewModel:viewModel];
+    [cell.itemView bind:viewModel];
     [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
 
     return cell;
@@ -111,7 +111,6 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
-    [self.lifecycleManager mount];
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
 }
 
@@ -239,13 +238,6 @@
     
     _dataSource = dataSource;
     [_collectionView reloadData];
-}
-
-- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
-    NSAssert(self.lifecycleManager != nil, @"lifecycleManager can't be nil!");
-    _lifecycleManager = lifecycleManager;
-
-    [self attachToCollectionView];
 }
 
 - (void)attachToCollectionView {

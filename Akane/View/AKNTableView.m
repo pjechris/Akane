@@ -15,7 +15,7 @@
 @implementation AKNTableView
 
 @synthesize adapter             = _adapter;
-@synthesize lifecycleManager    = _lifecycleManager;
+@synthesize componentDelegate;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -32,11 +32,6 @@
 
 - (void)configure {
     // Default implementation do nothing
-}
-
-- (void)setLifecycleManager:(AKNLifecycleManager *)lifecycleManager {
-    _lifecycleManager = lifecycleManager;
-    _adapter.lifecycleManager = lifecycleManager;
 }
 
 - (id<EVEEventDispatcher>)nextDispatcher {
