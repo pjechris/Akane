@@ -13,6 +13,7 @@
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
+@property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
 @property(nonatomic, assign)BOOL                awaken;
 @end
 
@@ -32,7 +33,7 @@
 }
 
 - (void)dealloc {
-    [self.view.lifecycleManager unmount];
+    [self.lifecycleManager unmount];
 }
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
@@ -45,7 +46,6 @@
 
     if ([self isViewLoaded]) {
         [self awake];
-        [self.view.lifecycleManager attachToPresenter:self];
     }
 }
 
@@ -54,23 +54,20 @@
 
     [super viewDidLoad];
 
-    if (!self.view.lifecycleManager) {
-        self.view.lifecycleManager = [AKNLifecycleManager new];
-    }
-
     if (self.viewModel) {
         [self awake];
-        [self.view.lifecycleManager attachToPresenter:self];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.view.lifecycleManager mount];
+    [self.lifecycleManager mount];
 }
 
 - (void)awake {
     if (!self.awaken) {
+        self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
+
         [self didAwake];
     }
 
@@ -81,7 +78,21 @@
     // Default implementation do nothing
 }
 
-- (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel {
+- (id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel {
+    for (UIViewController *viewController in self.childViewControllers) {
+        if ([viewController conformsToProtocol:@protocol(AKNPresenter)]) {
+            UIViewController<AKNPresenter> *presenter = (UIViewController<AKNPresenter> *)viewController;
+
+            if (presenter.viewModel == viewModel) {
+                return presenter;
+            }
+        }
+    }
+
+    return nil;
+}
+
+- (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel {
     if ([presenter isKindOfClass:[UIViewController class]] && ![self.childViewControllers containsObject:presenter]) {
         UIViewController *viewController = (UIViewController *)presenter;
 

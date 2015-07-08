@@ -7,9 +7,7 @@
 //
 
 #import "AKNLifecycleManager.h"
-#import "AKNViewConfigurable.h"
 #import "AKNViewModel.h"
-#import "AKNState.h"
 #import "AKNPresenter.h"
 #import "AKNPresenterViewController.h"
 #import "AKNViewHelper.h"
@@ -24,13 +22,14 @@
 
 @implementation AKNLifecycleManager
 
-- (void)attachToPresenter:(id<AKNPresenter>)presenter {
+- (instancetype)initWithPresenter:(id<AKNPresenter>)presenter {
+    if (!(self = [super init])) {
+        return nil;
+    }
+
     self.presenter = presenter;
 
-    // FIXME: BC to remove
-    [self.view setViewModel:presenter.viewModel];
-    
-    [self.view configure];
+    return self;
 }
 
 - (void)mount {
@@ -48,20 +47,22 @@
     }
 }
 
-- (void)updateView:(UIView<AKNViewConfigurable> *)view withViewModel:(id<AKNViewModel>)viewModel {
+- (void)viewComponent:(UIView<AKNViewConfigurable> *)view isBindedTo:(id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
-             @"Attempting to call updateView: with a view which is not a subview of current one (%@)", [self view]);
+             @"View component is %@ is not a descendant of view %@", view, [self view]);
 
-    id<AKNPresenter> presenter = objc_getAssociatedObject(view, @selector(presenter));
+    id<AKNPresenter> viewPresenter = objc_getAssociatedObject(view, @selector(presenter));
 
-    if (!presenter) {
-        presenter = view_presenter_new(view);
+    if (!viewPresenter) {
+        Class presenterClass = [self presenterClassForViewComponent:view] ?: AKNPresenterViewController.class;
 
-        objc_setAssociatedObject(view, @selector(presenter), presenter, OBJC_ASSOCIATION_ASSIGN);
+        viewPresenter = [[presenterClass alloc] initWithView:view];
+
+        objc_setAssociatedObject(view, @selector(presenter), viewPresenter, OBJC_ASSOCIATION_ASSIGN);
+        [self.presenter addPresenter:viewPresenter withViewModel:viewModel];
     }
 
-    [presenter setupWithViewModel:viewModel];
-    [self.presenter presenter:presenter didAcquireViewModel:viewModel];
+    [viewPresenter setupWithViewModel:viewModel];
 }
 
 #pragma mark - Internal
@@ -72,6 +73,16 @@
 
 - (id<AKNViewModel>)viewModel {
     return self.presenter.viewModel;
+}
+
+- (Class)presenterClassForViewComponent:(UIView<AKNViewConfigurable> *)view {
+    if ([self.presenter.class respondsToSelector:@selector(presenterClassForViewComponent:)]) {
+        return [self.presenter.class presenterClassForViewComponent:view];
+    }
+
+    Class class = NSClassFromString([NSStringFromClass(view.class) stringByAppendingString:@"Controller"]);
+
+    return [class conformsToProtocol:@protocol(AKNPresenter)] ? class : nil;
 }
 
 @end

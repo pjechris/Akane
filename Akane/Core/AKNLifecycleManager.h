@@ -8,19 +8,18 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import "AKNViewConfigurable.h"
 
 @protocol AKNViewModel;
-@protocol AKNViewConfigurable;
 @protocol AKNPresenter;
-@class AKNState;
 
-@interface AKNLifecycleManager : NSObject
+@interface AKNLifecycleManager : NSObject<AKNViewComponentDelegate>
 
-- (void)attachToPresenter:(id<AKNPresenter>)presenter;
+- (instancetype)init UNAVAILABLE_ATTRIBUTE;
++ (instancetype)new UNAVAILABLE_ATTRIBUTE;
+- (instancetype)initWithPresenter:(id<AKNPresenter>)presenter;
 
 - (void)mount;
 - (void)unmount;
-
-- (void)updateView:(UIView<AKNViewConfigurable> *)view withViewModel:(id<AKNViewModel>)viewModel;
 
 @end

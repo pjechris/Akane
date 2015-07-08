@@ -41,6 +41,13 @@
  */
 - (void)didAwake;
 
-- (void)presenter:(id<AKNPresenter>)presenter didAcquireViewModel:(id<AKNViewModel>)viewModel;
+/// @return the current presenter which is using viewModel
+- (id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel;
+
+- (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel;
+
+@optional
+/// @return AKNPresenter class
++ (Class)presenterClassForViewComponent:(UIView<AKNViewConfigurable> *)component;
 
 @end

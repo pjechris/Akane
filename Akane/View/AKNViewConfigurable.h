@@ -15,7 +15,7 @@
 
 @protocol AKNViewComponentDelegate <NSObject>
 
-- (void)component:(id<AKNViewConfigurable>)component isBindedTo:(id<AKNViewModel>)viewModel;
+- (void)viewComponent:(UIView<AKNViewConfigurable> *)component isBindedTo:(id<AKNViewModel>)viewModel;
 
 @end
 
