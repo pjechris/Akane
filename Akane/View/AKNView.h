@@ -15,7 +15,6 @@
 @interface AKNView : UIView<AKNViewConfigurable>
 
 @property(nonatomic, weak)id<AKNViewModel>  viewModel;
-@property(nonatomic, strong)AKNLifecycleManager   *lifecycleManager;
 
 /**
  * @brief configure the view with data
@@ -25,5 +24,7 @@
  * You should not call this method directly
  */
 - (void)configure;
+
+- (void)bind:(id<AKNViewModel>)viewModel NS_REQUIRES_SUPER;
 
 @end

@@ -45,7 +45,7 @@
     _viewModel = viewModel;
 
     if ([self isViewLoaded]) {
-        [self awake];
+        [self prepare];
     }
 }
 
@@ -55,7 +55,7 @@
     [super viewDidLoad];
 
     if (self.viewModel) {
-        [self awake];
+        [self prepare];
     }
 }
 
@@ -64,7 +64,7 @@
     [self.lifecycleManager mount];
 }
 
-- (void)awake {
+- (void)prepare {
     if (!self.awaken) {
         self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
 
@@ -72,6 +72,7 @@
     }
 
     self.awaken = YES;
+    [self.lifecycleManager bindView];
 }
 
 - (void)didAwake {

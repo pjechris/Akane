@@ -13,6 +13,8 @@
 
 @implementation AKNView
 
+@synthesize componentDelegate;
+
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
         return;
@@ -28,6 +30,13 @@
 
 - (void)configure {
     // Default implementation do nothing
+}
+
+- (void)bind:(id<AKNViewModel>)viewModel {
+    // BC => will be removed!
+    self.viewModel = viewModel;
+    
+    [self.componentDelegate viewComponent:self isBindedTo:viewModel];
 }
 
 - (id<EVEEventDispatcher>)nextDispatcher {

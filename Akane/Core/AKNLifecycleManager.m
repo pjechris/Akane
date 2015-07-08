@@ -47,6 +47,12 @@
     }
 }
 
+- (void)bindView {
+    [self.view bind:self.viewModel];
+}
+
+#pragma mark - View Component delegate
+
 - (void)viewComponent:(UIView<AKNViewConfigurable> *)view isBindedTo:(id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"View component is %@ is not a descendant of view %@", view, [self view]);

@@ -22,4 +22,6 @@
 - (void)mount;
 - (void)unmount;
 
+- (void)bindView;
+
 @end
