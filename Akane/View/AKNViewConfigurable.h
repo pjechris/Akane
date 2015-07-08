@@ -10,12 +10,19 @@
 #import "AKNViewModelAware.h"
 
 @class AKNLifecycleManager;
+@protocol AKNViewConfigurable;
+@protocol AKNViewModel;
+
+@protocol AKNViewComponentDelegate <NSObject>
+
+- (void)component:(id<AKNViewConfigurable>)component isBindedTo:(id<AKNViewModel>)viewModel;
+
+@end
 
 @protocol AKNViewConfigurable <AKNViewModelAware>
 
-@property(nonatomic, weak)id<AKNViewModel>  viewModel;
-
-@property(nonatomic, strong)AKNLifecycleManager   *lifecycleManager;
+@property(nonatomic, weak)id<AKNViewModel>                          viewModel;
+@property(nonatomic, weak, readonly)id<AKNViewComponentDelegate>    componentDelegate;
 
 /**
  * @brief configure the view with data
@@ -25,5 +32,9 @@
  * You should not call this method directly
  */
 - (void)configure;
+
+@optional
+/// It should call `component:isBindedTo:` delegate method
+- (void)bind:(id<AKNViewModel>)viewModel;
 
 @end
