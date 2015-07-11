@@ -13,11 +13,11 @@
 
 @synthesize itemView = _itemView;
 
-+ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
++ (instancetype)cellWithItemView:(UIView<AKNViewComponent> *)itemView {
     return [[self alloc] initWithCellWithItemView:itemView];
 }
 
-- (instancetype)initWithCellWithItemView:(UIView<AKNViewConfigurable> *)itemView {
+- (instancetype)initWithCellWithItemView:(UIView<AKNViewComponent> *)itemView {
     if (!(self = [super init])) {
         return nil;
     }
@@ -27,7 +27,7 @@
     return self;
 }
 
-- (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
+- (void)setItemView:(UIView<AKNViewComponent> *)itemView {
     NSDictionary *viewsDictionary = NSDictionaryOfVariableBindings(itemView);
     
     if (itemView == _itemView) {

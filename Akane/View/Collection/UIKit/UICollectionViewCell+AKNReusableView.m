@@ -13,11 +13,11 @@ NSString *UICollectionViewCellItemView = @"UICollectionViewCellItemView";
 
 @implementation UICollectionViewCell (AKNReusableView)
 
-- (void)setItemView:(UIView<AKNViewConfigurable> *)itemView {
+- (void)setItemView:(UIView<AKNViewComponent> *)itemView {
     objc_setAssociatedObject(self, &UICollectionViewCellItemView, itemView, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (UIView<AKNViewConfigurable> *)itemView {
+- (UIView<AKNViewComponent> *)itemView {
     return objc_getAssociatedObject(self, &UICollectionViewCellItemView);
 }
 

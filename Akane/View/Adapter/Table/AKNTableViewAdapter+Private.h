@@ -11,7 +11,7 @@
 @class AKNTableViewCell;
 @class AKNReusableViewHandler;
 @protocol AKNItemViewModel;
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 
 @interface AKNTableViewAdapter (Private)
 
@@ -23,9 +23,9 @@
 - (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section;
 
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
-- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
+- (UIView<AKNViewComponent> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
 
-- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier;
+- (UIView<AKNViewComponent> *)createReusableViewWithIdentifier:(NSString *)identifier;
 - (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier;
 
 @end

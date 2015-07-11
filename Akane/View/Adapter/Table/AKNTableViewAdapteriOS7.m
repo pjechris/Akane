@@ -8,7 +8,7 @@
 
 #import "AKNTableViewAdapteriOS7.h"
 #import "AKNTableViewAdapter+Private.h"
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"

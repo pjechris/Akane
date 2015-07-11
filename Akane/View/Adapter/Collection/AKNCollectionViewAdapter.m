@@ -9,7 +9,7 @@
 #import "AKNCollectionViewAdapter.h"
 #import "AKNCollectionViewAdapter+Private.h"
 
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
 #import "AKNViewCache.h"
@@ -152,22 +152,22 @@
         cell.itemView = [self createReusableViewWithIdentifier:identifier];
     }
     
-    NSAssert([cell.itemView conformsToProtocol:@protocol(AKNViewConfigurable)],
-             @"Cell.itemView for identifier %@ must conform to AKNViewConfigurable protocol", identifier);
+    NSAssert([cell.itemView conformsToProtocol:@protocol(AKNViewComponent)],
+             @"Cell.itemView for identifier %@ must conform to AKNViewComponent protocol", identifier);
     
     return cell;
 }
 
-- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section {
-    UIView<AKNViewConfigurable> *view = [self createReusableViewWithIdentifier:identifier];
+- (UIView<AKNViewComponent> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section {
+    UIView<AKNViewComponent> *view = [self createReusableViewWithIdentifier:identifier];
     
     return view;
 }
 
-- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
+- (UIView<AKNViewComponent> *)createReusableViewWithIdentifier:(NSString *)identifier {
     id viewType = self.reusableViewsContent[identifier];
     
-    return (UIView<AKNViewConfigurable> *)view_instantiate(viewType);
+    return (UIView<AKNViewComponent> *)view_instantiate(viewType);
 }
 
 - (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier {

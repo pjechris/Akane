@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 
 @protocol AKNViewModel;
 @protocol AKNPresenter;

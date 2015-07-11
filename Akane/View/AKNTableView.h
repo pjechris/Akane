@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 #import "AKNLifecycleManager.h"
 #import "UITableView+Adapter.h"
 
-@interface AKNTableView : UITableView<AKNViewConfigurable>
+@interface AKNTableView : UITableView<AKNViewComponent>
 
 @property(nonatomic, weak)id<AKNViewModel>      viewModel;
 

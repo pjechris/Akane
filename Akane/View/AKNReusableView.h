@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 
 @protocol AKNReusableView <NSObject>
 
-@property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable>    *itemView;
+@property(nonatomic, strong)IBOutlet UIView<AKNViewComponent>    *itemView;
 @property(nonatomic, strong)UIView                                  *backgroundView;
 @property(nonatomic, strong)UIView                                  *selectedBackgroundView;
 

@@ -12,7 +12,7 @@
 @class AKNCollectionViewCell;
 @class AKNReusableViewHandler;
 @protocol AKNItemViewModel;
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 
 @interface AKNCollectionViewAdapter (Private)
 
@@ -24,9 +24,9 @@
 - (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section;
 
 - (UICollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
-- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
+- (UIView<AKNViewComponent> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
 
-- (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier;
+- (UIView<AKNViewComponent> *)createReusableViewWithIdentifier:(NSString *)identifier;
 - (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier;
 
 @end

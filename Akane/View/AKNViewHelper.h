@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @protocol AKNPresenter;
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 
 __attribute__((overloadable)) UIView *view_instantiate(Class viewClass);
 __attribute__((overloadable)) UIView *view_instantiate(UINib *nib);

@@ -23,7 +23,7 @@ FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 #import "AKNPresenterViewController.h"
 
 #import "AKNView.h"
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 #import "AKNViewCache.h"
 
 #import "AKNDataSource.h"

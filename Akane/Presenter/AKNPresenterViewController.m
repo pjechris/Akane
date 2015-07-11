@@ -20,7 +20,7 @@
 
 @dynamic view;
 
-- (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view {
+- (instancetype)initWithView:(UIView<AKNViewComponent> *)view {
     if (!(self = [super init])) {
         return nil;
     }
@@ -49,7 +49,7 @@
 }
 
 - (void)viewDidLoad {
-    NSAssert([self.view conformsToProtocol:@protocol(AKNViewConfigurable)], @"The viewController's view should be of kind AKNView");
+    NSAssert([self.view conformsToProtocol:@protocol(AKNViewComponent)], @"The viewController's view should be of kind AKNView");
 
     [super viewDidLoad];
 

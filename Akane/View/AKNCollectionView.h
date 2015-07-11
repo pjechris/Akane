@@ -7,11 +7,11 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 
 @class AKNCollectionViewAdapter;
 
-@interface AKNCollectionView : UICollectionView<AKNViewConfigurable>
+@interface AKNCollectionView : UICollectionView<AKNViewComponent>
 
 @property(nonatomic, strong)AKNCollectionViewAdapter        *adapter;
 

@@ -16,7 +16,7 @@
 @interface AKNLifecycleManager ()
 @property(nonatomic, weak)id<AKNPresenter>    presenter;
 
-- (UIView<AKNViewConfigurable> *)view;
+- (UIView<AKNViewComponent> *)view;
 - (id<AKNViewModel>)viewModel;
 @end
 
@@ -53,7 +53,7 @@
 
 #pragma mark - View Component delegate
 
-- (void)viewComponent:(UIView<AKNViewConfigurable> *)view isBindedTo:(id<AKNViewModel>)viewModel {
+- (void)viewComponent:(UIView<AKNViewComponent> *)view isBindedTo:(id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"View component is %@ is not a descendant of view %@", view, [self view]);
 
@@ -73,7 +73,7 @@
 
 #pragma mark - Internal
 
-- (UIView<AKNViewConfigurable> *)view {
+- (UIView<AKNViewComponent> *)view {
     return self.presenter.view;
 }
 
@@ -81,7 +81,7 @@
     return self.presenter.viewModel;
 }
 
-- (Class)presenterClassForViewComponent:(UIView<AKNViewConfigurable> *)view {
+- (Class)presenterClassForViewComponent:(UIView<AKNViewComponent> *)view {
     if ([self.presenter.class respondsToSelector:@selector(presenterClassForViewComponent:)]) {
         return [self.presenter.class presenterClassForViewComponent:view];
     }

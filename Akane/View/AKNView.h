@@ -8,11 +8,11 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 
 @protocol AKNViewModel;
 
-@interface AKNView : UIView<AKNViewConfigurable>
+@interface AKNView : UIView<AKNViewComponent>
 
 @property(nonatomic, weak)id<AKNViewModel>  viewModel;
 

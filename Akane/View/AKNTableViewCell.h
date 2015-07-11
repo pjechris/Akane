@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 #import "UITableViewCell+AKNReusableView.h"
 
 @interface AKNTableViewCell : UITableViewCell
 
-@property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable>    *itemView;
+@property(nonatomic, strong)IBOutlet UIView<AKNViewComponent>    *itemView;
 
-+ (instancetype)cellWithItemView:(UIView<AKNViewConfigurable> *)itemView;
++ (instancetype)cellWithItemView:(UIView<AKNViewComponent> *)itemView;
 
 @end

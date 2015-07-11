@@ -10,16 +10,16 @@
 #import "AKNViewModelAware.h"
 
 @class AKNLifecycleManager;
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 @protocol AKNViewModel;
 
 @protocol AKNViewComponentDelegate <NSObject>
 
-- (void)viewComponent:(UIView<AKNViewConfigurable> *)component isBindedTo:(id<AKNViewModel>)viewModel;
+- (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(id<AKNViewModel>)viewModel;
 
 @end
 
-@protocol AKNViewConfigurable <AKNViewModelAware>
+@protocol AKNViewComponent <AKNViewModelAware>
 
 @property(nonatomic, weak)id<AKNViewModel>                          viewModel;
 @property(nonatomic, weak, readonly)id<AKNViewComponentDelegate>    componentDelegate;

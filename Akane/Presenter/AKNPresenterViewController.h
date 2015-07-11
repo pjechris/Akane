@@ -9,12 +9,12 @@
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
 #import "AKNPresenter.h"
-#import "AKNViewConfigurable.h"
+#import "AKNViewComponent.h"
 
 @interface AKNPresenterViewController : UIViewController<AKNPresenter>
 
 @property(nonatomic, strong, readonly)id<AKNViewModel>      viewModel;
-@property(nonatomic, strong)UIView<AKNViewConfigurable>     *view;
+@property(nonatomic, strong)UIView<AKNViewComponent>     *view;
 
 /**
  * @see AKNPresenter

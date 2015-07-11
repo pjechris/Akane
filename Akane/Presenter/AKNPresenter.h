@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "AKNViewModelAware.h"
 
-@protocol AKNViewConfigurable;
+@protocol AKNViewComponent;
 @protocol AKNViewModel;
 @class AKNLifecycleManager;
 @class AKNScope;
@@ -19,9 +19,9 @@
  */
 @protocol AKNPresenter <AKNViewModelAware>
 
-@property(nonatomic, strong, readonly)UIView<AKNViewConfigurable>    *view;
+@property(nonatomic, strong, readonly)UIView<AKNViewComponent>    *view;
 
-- (instancetype)initWithView:(UIView<AKNViewConfigurable> *)view;
+- (instancetype)initWithView:(UIView<AKNViewComponent> *)view;
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized
@@ -48,6 +48,6 @@
 
 @optional
 /// @return AKNPresenter class
-+ (Class)presenterClassForViewComponent:(UIView<AKNViewConfigurable> *)component;
++ (Class)presenterClassForViewComponent:(UIView<AKNViewComponent> *)component;
 
 @end
