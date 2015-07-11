@@ -13,13 +13,3 @@ __attribute__((overloadable)) UIView *view_instantiate(Class viewClass) { return
 __attribute__((overloadable)) UIView *view_instantiate(UINib *nib) {
     return [nib instantiateWithOwner:nil options:nil][0];
 }
-
-id<AKNPresenter> view_presenter_new(UIView<AKNViewConfigurable> *view) {
-    Class presenterClass = NSClassFromString([NSStringFromClass([view class]) stringByAppendingString:@"Controller"]);
-
-    if (presenterClass && [presenterClass conformsToProtocol:@protocol(AKNPresenter)]) {
-        return [[presenterClass alloc] initWithView:view];
-    }
-
-    return [[AKNPresenterViewController alloc] initWithView:view];
-}

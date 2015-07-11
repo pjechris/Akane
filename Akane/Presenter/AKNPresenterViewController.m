@@ -8,7 +8,6 @@
 
 #import "AKNPresenterViewController.h"
 #import "AKNViewModel.h"
-#import "AKNState.h"
 #import "AKNLifecycleManager.h"
 
 @interface AKNPresenterViewController ()

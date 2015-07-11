@@ -13,5 +13,3 @@
 
 __attribute__((overloadable)) UIView *view_instantiate(Class viewClass);
 __attribute__((overloadable)) UIView *view_instantiate(UINib *nib);
-
-id<AKNPresenter> view_presenter_new(UIView<AKNViewConfigurable> *view);
