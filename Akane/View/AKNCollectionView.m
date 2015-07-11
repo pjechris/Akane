@@ -16,7 +16,7 @@
 @implementation AKNCollectionView
 
 @synthesize adapter             = _adapter;
-@synthesize componentDelegate;
+@synthesize componentDelegate   = _componentDelegate;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -31,6 +31,28 @@
 - (void)configure {
     // Default implementation do nothing
 }
+
+- (void)bind:(id<AKNViewModel>)viewModel {
+    // BC => will be removed!
+    self.viewModel = viewModel;
+
+    [[self superComponentDelegate] viewComponent:self isBindedTo:viewModel];
+}
+
+- (id<AKNViewComponentDelegate>)superComponentDelegate {
+    UIView *superview = self.superview;
+
+    while (superview) {
+        if ([superview conformsToProtocol:@protocol(AKNViewComponent)]) {
+            return ((id<AKNViewComponent>)superview).componentDelegate;
+        }
+
+        superview = superview.superview;
+    }
+
+    return nil;
+}
+
 
 - (id<EVEEventDispatcher>)nextDispatcher {
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
