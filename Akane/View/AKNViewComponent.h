@@ -21,8 +21,8 @@
 
 @protocol AKNViewComponent <AKNViewModelAware>
 
-@property(nonatomic, weak)id<AKNViewModel>                          viewModel;
-@property(nonatomic, weak, readonly)id<AKNViewComponentDelegate>    componentDelegate;
+@property(nonatomic, weak)id<AKNViewModel>                      viewModel;
+@property(nonatomic, weak)id<AKNViewComponentDelegate>          componentDelegate;
 
 /**
  * @brief configure the view with data

@@ -13,7 +13,7 @@
 
 @implementation AKNView
 
-@synthesize componentDelegate;
+@synthesize componentDelegate   = _componentDelegate;
 
 - (void)setViewModel:(id<AKNViewModel>)viewModel {
     if (_viewModel == viewModel) {
@@ -36,7 +36,7 @@
     // BC => will be removed!
     self.viewModel = viewModel;
     
-    [self.componentDelegate viewComponent:self isBindedTo:viewModel];
+    [[self superComponentDelegate] viewComponent:self isBindedTo:viewModel];
 }
 
 - (id<EVEEventDispatcher>)nextDispatcher {
@@ -47,6 +47,20 @@
 	if (self.window && self.nextResponder) {
    		_viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
 	}
+}
+
+- (id<AKNViewComponentDelegate>)superComponentDelegate {
+    UIView *superview = self.superview;
+
+    while (superview) {
+        if ([superview conformsToProtocol:@protocol(AKNViewComponent)]) {
+            return ((id<AKNViewComponent>)superview).componentDelegate;
+        }
+
+        superview = superview.superview;
+    }
+
+    return nil;
 }
 
 @end

@@ -48,6 +48,8 @@
 }
 
 - (void)bindView {
+    self.view.componentDelegate = self;
+    
     [self.view bind:self.viewModel];
 }
 
