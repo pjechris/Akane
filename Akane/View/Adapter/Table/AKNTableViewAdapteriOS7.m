@@ -79,7 +79,7 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 - (UITableViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = self.cellsQueue[indexPath];
 
-    if (!cell) {
+    if (!cell || ![cell.reuseIdentifier isEqualToString:identifier]) {
         cell = [super dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
     }
 
