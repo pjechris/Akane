@@ -15,7 +15,7 @@
 #import "AKNItemViewModel.h"
 #import "AKNTableViewCell.h"
 #import "AKNReusableViewHandler.h"
-#import "AKNLifecycleManager.h"
+#import <objc/runtime.h>
 
 CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 
@@ -43,23 +43,29 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     id<AKNItemViewModel> viewModel = [self indexPathModel:indexPath];
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
-    UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
+    CGFloat height = [objc_getAssociatedObject(viewModel, (__bridge const void *)(identifier)) floatValue];
 
-    [self queueReusableCell:cell forIndexPath:indexPath];
-    [cell.itemView bind:viewModel];
+    if (!height) {
+        UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [cell setNeedsLayout];
-    [cell layoutIfNeeded];
+        [self queueReusableCell:cell forIndexPath:indexPath];
+        [cell.itemView bind:viewModel];
 
-    CGFloat height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
+        [cell setNeedsLayout];
+        [cell layoutIfNeeded];
 
-    if (height == 0) {
-        NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
-              We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
+        height = [cell.contentView systemLayoutSizeFittingSize:UILayoutFittingCompressedSize].height;
 
-        height = TableViewAdapterDefaultRowHeight;
+        if (height == 0) {
+            NSLog(@"Detected a case where constraints ambiguously suggest a height of zero for a tableview cell's content view.\
+                  We're considering the collapse unintentional and using %f height instead", TableViewAdapterDefaultRowHeight);
+
+            height = TableViewAdapterDefaultRowHeight;
+        }
+
+        objc_setAssociatedObject(viewModel, (__bridge const void *)(identifier), @(height), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-
+    
     return height + 1;
 }
 
