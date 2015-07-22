@@ -22,4 +22,6 @@
 // TODO: Transform this into a Command
 - (void)selectItem;
 
+- (BOOL)isDeselectable;
+
 @end
