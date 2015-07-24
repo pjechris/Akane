@@ -63,7 +63,9 @@ CGFloat const TableViewAdapterDefaultRowHeight = 44.f;
             height = TableViewAdapterDefaultRowHeight;
         }
 
-        objc_setAssociatedObject(viewModel, (__bridge const void *)(identifier), @(height), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        if (viewModel) {
+            objc_setAssociatedObject(viewModel, (__bridge const void *)(identifier), @(height), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+        }
     }
     
     return height + 1;

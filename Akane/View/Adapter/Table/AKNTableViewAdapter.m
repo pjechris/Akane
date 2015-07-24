@@ -127,7 +127,7 @@
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
     [cell.itemView bind:viewModel];
-    [cell setNeedsLayout]; // This fix Self-sizing cell labels not always sized correctly
+    [cell layoutIfNeeded]; // This fix Self-sizing cell labels not always sized correctly
 
     return cell;
 }
