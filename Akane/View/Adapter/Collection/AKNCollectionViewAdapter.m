@@ -240,7 +240,12 @@
     [_collectionView reloadData];
 }
 
-- (void)attachToCollectionView {
+- (void)setCollectionView:(UICollectionView *)collectionView {
+    if (collectionView == _collectionView) {
+        return;
+    }
+
+    _collectionView = collectionView;
     _collectionView.dataSource = self;
     _collectionView.delegate = self;
 }
