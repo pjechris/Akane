@@ -35,18 +35,14 @@
 - (void)bind:(id<AKNViewModel>)viewModel {
     // BC => will be removed!
     self.viewModel = viewModel;
-    
-    [[self superComponentDelegate] viewComponent:self isBindedTo:viewModel];
+}
+
+- (void)bind:(id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent {
+    [self.componentDelegate viewComponent:viewComponent isBindedTo:viewModel];
 }
 
 - (id<EVEEventDispatcher>)nextDispatcher {
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
-}
-
-- (void)didMoveToSuperview {
-	if (self.window && self.nextResponder) {
-   		_viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
-	}
 }
 
 - (id<AKNViewComponentDelegate>)superComponentDelegate {

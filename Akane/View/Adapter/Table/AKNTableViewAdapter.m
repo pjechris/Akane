@@ -126,7 +126,7 @@
     NSString *identifier = [self.itemViewModelProvider viewIdentifier:viewModel];
     UITableViewCell *cell = [self dequeueReusableCellWithIdentifier:identifier forIndexPath:indexPath];
 
-    [cell.itemView bind:viewModel];
+    [[self viewComponentDelegate] viewComponent:cell.itemView isBindedTo:viewModel];
     [cell layoutIfNeeded]; // This fix Self-sizing cell labels not always sized correctly
 
     return cell;
@@ -259,6 +259,26 @@
     identifier = [identifier stringByAppendingString:kind];
 
     self.reusableViewsContent[identifier] = viewClass;
+}
+
+#pragma mark - Getters
+
+- (id<AKNViewComponentDelegate>)viewComponentDelegate {
+    UIView *superview = self.tableView;
+
+    while (superview) {
+        if ([superview conformsToProtocol:@protocol(AKNViewComponent)]) {
+            UIView<AKNViewComponent> *component = (id<AKNViewComponent>)superview;
+
+            if (component.componentDelegate) { // BC check (< 0.10)
+                return component.componentDelegate;
+            }
+        }
+
+        superview = superview.superview;
+    }
+
+    return nil;
 }
 
 #pragma mark - Setters

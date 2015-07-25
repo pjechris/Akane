@@ -27,4 +27,6 @@
 
 - (void)bind:(id<AKNViewModel>)viewModel NS_REQUIRES_SUPER;
 
+- (void)bind:(id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
+
 @end

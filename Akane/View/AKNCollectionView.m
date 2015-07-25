@@ -35,8 +35,6 @@
 - (void)bind:(id<AKNViewModel>)viewModel {
     // BC => will be removed!
     self.viewModel = viewModel;
-
-    [[self superComponentDelegate] viewComponent:self isBindedTo:viewModel];
 }
 
 - (id<AKNViewComponentDelegate>)superComponentDelegate {
