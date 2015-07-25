@@ -40,7 +40,6 @@
         return;
     }
 
-    NSAssert(viewModel != nil, @"Can't setup with a nil ViewModel!");
     _viewModel = viewModel;
 
     if ([self isViewLoaded]) {
