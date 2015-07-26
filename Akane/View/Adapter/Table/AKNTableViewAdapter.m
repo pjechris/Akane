@@ -138,6 +138,10 @@
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
+
+    if ([cell.itemView.componentDelegate respondsToSelector:@selector(viewComponentWillAppear)]) {
+        [cell.itemView.componentDelegate viewComponentWillAppear];
+    }
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {

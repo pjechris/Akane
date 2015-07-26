@@ -39,6 +39,8 @@
         [self.viewModel willMount];
         objc_setAssociatedObject(self.viewModel, @selector(willMount), @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+
+    self.viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.view.nextResponder;
 }
 
 - (void)unmount {
@@ -49,7 +51,7 @@
 
 - (void)bindView {
     self.view.componentDelegate = self;
-    
+
     [self.view bind:self.viewModel];
 }
 
@@ -71,6 +73,10 @@
     }
 
     [viewPresenter setupWithViewModel:viewModel];
+}
+
+- (void)viewComponentWillAppear {
+    [self mount];
 }
 
 #pragma mark - Internal

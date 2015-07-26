@@ -17,6 +17,9 @@
 
 - (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(id<AKNViewModel>)viewModel;
 
+@optional
+- (void)viewComponentWillAppear;
+
 @end
 
 @protocol AKNViewComponent <AKNViewModelAware>

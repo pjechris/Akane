@@ -112,6 +112,10 @@
     AKNReusableViewHandler *handler = [self handlerForIdentifier:identifier];
 
     handler.onReuse ? handler.onReuse(cell, indexPath) : nil;
+    
+    if ([cell.itemView.componentDelegate respondsToSelector:@selector(viewComponentWillAppear)]) {
+        [cell.itemView.componentDelegate viewComponentWillAppear];
+    }
 }
 
 - (BOOL)collectionView:(UICollectionView *)collectionView shouldSelectItemAtIndexPath:(NSIndexPath *)indexPath
