@@ -19,6 +19,7 @@
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
 #import "AKNReusableViewDelegate.h"
+#import <objc/runtime.h>
 
 @interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMapTable                  *itemViewModels;
@@ -26,6 +27,7 @@
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
 @property(nonatomic, weak)UITableView                   *tableView;
 @property(nonatomic, strong)id<AKNReusableViewDelegate> defaultViewDelegate;
+@property(nonatomic, strong)NSMutableDictionary         *sectionsQueue;
 @end
 
 @implementation AKNTableViewAdapter
@@ -39,6 +41,7 @@
     self.reusableViewsContent = [NSMutableDictionary new];
     self.reusableViewsHandler = [NSMutableDictionary new];
     self.defaultViewDelegate = [AKNReusableViewDelegate new];
+    self.sectionsQueue = [NSMutableDictionary new];
 
     self.viewDelegate = self.defaultViewDelegate;
 
@@ -209,7 +212,17 @@
 }
 
 - (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section {
-    UIView<AKNViewConfigurable> *view = [self createReusableViewWithIdentifier:identifier];
+    UIView<AKNViewConfigurable> *view = self.sectionsQueue[@(section)];
+    NSString *reuseIdentifier = objc_getAssociatedObject(view, @selector(reuseIdentifier));
+
+    if (!view || ![reuseIdentifier isEqualToString:identifier]) {
+        [view removeFromSuperview];
+
+        view = [self createReusableViewWithIdentifier:identifier];
+        objc_setAssociatedObject(view, @selector(reuseIdentifier), identifier, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+
+        self.sectionsQueue[@(section)] = view;
+    }
 
     return view;
 }
