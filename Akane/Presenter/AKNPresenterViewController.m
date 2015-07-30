@@ -11,6 +11,7 @@
 #import "AKNLifecycleManager.h"
 
 @interface AKNPresenterViewController ()
+@property(nonatomic, strong)UIView              *componentView;
 @property(nonatomic, strong)id<AKNViewModel>    viewModel;
 @property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
 @property(nonatomic, assign)BOOL                awaken;
@@ -25,7 +26,7 @@
         return nil;
     }
 
-    self.view = view;
+    self.componentView = view;
     [self viewDidLoad];
 
     return self;
@@ -99,5 +100,17 @@
         [viewController didMoveToParentViewController:self];
     }
 }
+
+/**
+ * Using a 3rd party view otherwise we get some glitches on iOS7 when calling addChildViewController:
+ */
+- (UIView *)view {
+    return self.componentView ?: [super view];
+}
+
+- (BOOL)isViewLoaded {
+    return self.componentView ? YES : [super isViewLoaded];
+}
+
 
 @end
