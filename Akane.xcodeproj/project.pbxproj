@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		30FA0D7DB5315D199E252812 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
 		4250F3DD1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3DC1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m */; };
 		4250F3E11AD8FEC80085B218 /* UICollectionView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E01AD8FEC80085B218 /* UICollectionView+Adapter.m */; };
 		4250F3E41AD8FF7E0085B218 /* AKNCollectionViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E31AD8FF7E0085B218 /* AKNCollectionViewAdapter.m */; };
@@ -29,8 +30,6 @@
 		49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
 		49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
 		4F39AA18351B181505EB23A9 /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
-		6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
-		EE284E196C44DB4285994876 /* libPods-Akane.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C7FD8E3053F3055B2F0551 /* libPods-Akane.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,8 +122,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				6E58765AEF7C2EF8E0F1B992 /* libPods.a in Frameworks */,
-				EE284E196C44DB4285994876 /* libPods-Akane.a in Frameworks */,
+				30FA0D7DB5315D199E252812 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +387,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4926EADF1A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "Akane" */;
 			buildPhases = (
-				3060EEF94A7C83D9286681B1 /* Check Pods Manifest.lock */,
+				C34889B97E63C18BBF0CE438 /* Check Pods Manifest.lock */,
 				4926EAC71A5EBCBF005A3D71 /* Sources */,
 				4926EAC81A5EBCBF005A3D71 /* Frameworks */,
 				4926EAC91A5EBCBF005A3D71 /* CopyFiles */,
@@ -470,21 +468,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		3060EEF94A7C83D9286681B1 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 		84C3262690D47C33B9EB783F /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -513,6 +496,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C34889B97E63C18BBF0CE438 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
 		D24308BC38A0C500CBFE590E /* Check Pods Manifest.lock */ = {

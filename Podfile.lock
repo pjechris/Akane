@@ -1,5 +1,5 @@
 PODS:
-  - EventListener (1.1.0)
+  - EventListener (1.1.1)
   - Kiwi (2.3.1)
 
 DEPENDENCIES:
@@ -7,7 +7,7 @@ DEPENDENCIES:
   - Kiwi
 
 SPEC CHECKSUMS:
-  EventListener: 68871a294d4399a929008601fcdcfb6e009a3943
+  EventListener: 18cb187a4df5392e78e10ce5ca216d80a86aa87e
   Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
 
-COCOAPODS: 0.36.3
+COCOAPODS: 0.35.0
