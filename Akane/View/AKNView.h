@@ -12,9 +12,9 @@
 
 @protocol AKNViewModel;
 
-@interface AKNView : UIView<AKNViewComponent>
+@interface AKNView<ViewModelType: id<AKNViewModel>> : UIView<AKNViewComponent>
 
-@property(nonatomic, weak)id<AKNViewModel>  viewModel;
+@property(nonatomic, weak)ViewModelType  viewModel;
 
 /**
  * @brief configure the view with data
@@ -25,7 +25,7 @@
  */
 - (void)configure;
 
-- (void)bind:(id<AKNViewModel>)viewModel NS_REQUIRES_SUPER;
+- (void)bind:(ViewModelType)viewModel NS_REQUIRES_SUPER;
 
 - (void)bind:(id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
 

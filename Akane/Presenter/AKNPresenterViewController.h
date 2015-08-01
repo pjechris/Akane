@@ -11,15 +11,12 @@
 #import "AKNPresenter.h"
 #import "AKNViewComponent.h"
 
-@interface AKNPresenterViewController : UIViewController<AKNPresenter>
+@interface AKNPresenterViewController<ViewModelType: id<AKNViewModel>> : UIViewController<AKNPresenter>
 
-@property(nonatomic, strong, readonly)id<AKNViewModel>      viewModel;
+@property(nonatomic, strong, readonly)ViewModelType      viewModel;
 @property(nonatomic, strong)UIView<AKNViewComponent>     *view;
 
-/**
- * @see AKNPresenter
- * Default implementation do nothing
- */
-- (void)didAwake;
+- (void)setupWithViewModel:(ViewModelType)viewModel;
+
 
 @end
