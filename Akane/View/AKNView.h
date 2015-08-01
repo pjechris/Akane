@@ -12,6 +12,8 @@
 
 @protocol AKNViewModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface AKNView<ViewModelType: id<AKNViewModel>> : UIView<AKNViewComponent>
 
 @property(nonatomic, weak)ViewModelType  viewModel;
@@ -25,8 +27,10 @@
  */
 - (void)configure;
 
-- (void)bind:(ViewModelType)viewModel NS_REQUIRES_SUPER;
+- (void)bind:(nullable ViewModelType)viewModel NS_REQUIRES_SUPER;
 
-- (void)bind:(id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
+- (void)bind:(nullable id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
 
 @end
+
+NS_ASSUME_NONNULL_END

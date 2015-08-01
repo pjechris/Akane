@@ -13,9 +13,11 @@
 @protocol AKNViewComponent;
 @protocol AKNViewModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @protocol AKNViewComponentDelegate <NSObject>
 
-- (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(id<AKNViewModel>)viewModel;
+- (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(nullable id<AKNViewModel>)viewModel;
 
 @optional
 - (void)viewComponentWillAppear;
@@ -24,8 +26,8 @@
 
 @protocol AKNViewComponent <AKNViewModelAware>
 
-@property(nonatomic, weak)id<AKNViewModel>                      viewModel;
-@property(nonatomic, weak)id<AKNViewComponentDelegate>          componentDelegate;
+@property(nonatomic, weak, nullable)id<AKNViewModel>                      viewModel;
+@property(nonatomic, weak, nullable)id<AKNViewComponentDelegate>          componentDelegate;
 
 /**
  * @brief configure the view with data
@@ -37,7 +39,9 @@
 - (void)configure;
 
 @optional
-/// It should call `component:isBindedTo:` delegate method
-- (void)bind:(id<AKNViewModel>)viewModel;
+
+- (void)bind:(nullable id<AKNViewModel>)viewModel;
 
 @end
+
+NS_ASSUME_NONNULL_END

@@ -14,12 +14,14 @@
 @class AKNLifecycleManager;
 @class AKNScope;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Presenter is a context with capabilities to handle "presentation" workflow
  */
 @protocol AKNPresenter <AKNViewModelAware>
 
-@property(nonatomic, strong, readonly)UIView<AKNViewComponent>    *view;
+@property(nonatomic, strong, readonly, null_unspecified)UIView<AKNViewComponent>    *view;
 
 - (instancetype)initWithView:(UIView<AKNViewComponent> *)view;
 
@@ -29,7 +31,7 @@
  *
  * @param id viewModel the view model that should be associated to presenter
  */
-- (void)setupWithViewModel:(id<AKNViewModel>)viewModel;
+- (void)setupWithViewModel:(nullable id<AKNViewModel>)viewModel;
 
 /**
  * This method should be called ONCE view is LOADED. didAwake can happen multiple times (if view is unloaded and reloaded
@@ -42,7 +44,7 @@
 - (void)didAwake;
 
 /// @return the current presenter which is using viewModel
-- (id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel;
+- (nullable id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel;
 
 - (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel;
 
@@ -51,3 +53,5 @@
 + (Class)presenterClassForViewComponent:(UIView<AKNViewComponent> *)component;
 
 @end
+
+NS_ASSUME_NONNULL_END
