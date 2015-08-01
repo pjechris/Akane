@@ -45,18 +45,4 @@
     return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
 
-- (id<AKNViewComponentDelegate>)superComponentDelegate {
-    UIView *superview = self.superview;
-
-    while (superview) {
-        if ([superview conformsToProtocol:@protocol(AKNViewComponent)]) {
-            return ((id<AKNViewComponent>)superview).componentDelegate;
-        }
-
-        superview = superview.superview;
-    }
-
-    return nil;
-}
-
 @end
