@@ -37,10 +37,6 @@
 }
 
 - (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
-    if (_viewModel == viewModel) {
-        return;
-    }
-
     _viewModel = viewModel;
 
     if ([self isViewLoaded]) {
