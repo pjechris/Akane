@@ -21,9 +21,9 @@ NS_ASSUME_NONNULL_BEGIN
  */
 @protocol AKNPresenter <AKNViewModelAware>
 
-@property(nonatomic, strong, readonly, null_unspecified)UIView<AKNViewComponent>    *view;
+@property(nonatomic, strong, readonly)UIView<AKNViewComponent>    *view;
 
-- (instancetype)initWithView:(UIView<AKNViewComponent> *)view;
+- (nullable instancetype)initWithView:(UIView<AKNViewComponent> *)view;
 
 /**
  * This method should be called to set the view model to the presenter BEFORE its view is initialized

@@ -11,17 +11,17 @@
 #import "AKNLifecycleManager.h"
 
 @interface AKNPresenterViewController ()
-@property(nonatomic, strong)UIView              *componentView;
-@property(nonatomic, strong)id<AKNViewModel>    viewModel;
-@property(nonatomic, strong)AKNLifecycleManager *lifecycleManager;
-@property(nonatomic, assign)BOOL                awaken;
+@property(nonatomic, strong, nullable)UIView                        *componentView;
+@property(nonatomic, strong, nullable)id<AKNViewModel>              viewModel;
+@property(nonatomic, strong, null_unspecified)AKNLifecycleManager   *lifecycleManager;
+@property(nonatomic, assign)BOOL                                    awaken;
 @end
 
 @implementation AKNPresenterViewController
 
 @dynamic view;
 
-- (instancetype)initWithView:(UIView<AKNViewComponent> *)view {
+- (nullable instancetype)initWithView:(nonnull UIView<AKNViewComponent> *)view {
     if (!(self = [super init])) {
         return nil;
     }
@@ -36,7 +36,7 @@
     [self.lifecycleManager unmount];
 }
 
-- (void)setupWithViewModel:(id<AKNViewModel>)viewModel {
+- (void)setupWithViewModel:(nullable id<AKNViewModel>)viewModel {
     _viewModel = viewModel;
 
     if ([self isViewLoaded]) {
@@ -74,7 +74,7 @@
     // Default implementation do nothing
 }
 
-- (id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel {
+- (nullable id<AKNPresenter>)presenterForViewModel:(nonnull id<AKNViewModel>)viewModel {
     for (UIViewController *viewController in self.childViewControllers) {
         if ([viewController conformsToProtocol:@protocol(AKNPresenter)]) {
             UIViewController<AKNPresenter> *presenter = (UIViewController<AKNPresenter> *)viewController;
@@ -88,12 +88,14 @@
     return nil;
 }
 
-- (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel {
-    if ([presenter isKindOfClass:[UIViewController class]] && ![self.childViewControllers containsObject:presenter]) {
+- (void)addPresenter:(nonnull id<AKNPresenter>)presenter withViewModel:(nonnull id<AKNViewModel>)viewModel {
+    if ([presenter isKindOfClass:[UIViewController class]]) {
         UIViewController *viewController = (UIViewController *)presenter;
 
-        [self addChildViewController:viewController];
-        [viewController didMoveToParentViewController:self];
+        if ([self.childViewControllers containsObject:viewController]) {
+            [self addChildViewController:viewController];
+            [viewController didMoveToParentViewController:self];
+        }
     }
 }
 

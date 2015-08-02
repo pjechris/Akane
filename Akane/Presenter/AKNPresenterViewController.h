@@ -11,12 +11,16 @@
 #import "AKNPresenter.h"
 #import "AKNViewComponent.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface AKNPresenterViewController<ViewModelType: id<AKNViewModel>> : UIViewController<AKNPresenter>
 
-@property(nonatomic, strong, readonly)ViewModelType      viewModel;
-@property(nonatomic, strong)UIView<AKNViewComponent>     *view;
+@property(nonatomic, strong, readonly, nullable)ViewModelType       viewModel;
+@property(nonatomic, strong)UIView<AKNViewComponent>                *view;
 
-- (void)setupWithViewModel:(ViewModelType)viewModel;
+- (void)setupWithViewModel:(nullable ViewModelType)viewModel;
 
 
 @end
+
+NS_ASSUME_NONNULL_END
