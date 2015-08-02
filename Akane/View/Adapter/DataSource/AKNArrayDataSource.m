@@ -19,11 +19,11 @@
     return self.items.count;
 }
 
-- (id)supplementaryItemAtSection:(NSInteger)section {
+- (nullable id)supplementaryItemAtSection:(NSInteger)section {
     return nil;
 }
 
-- (id)itemAtIndexPath:(NSIndexPath *)indexPath {
+- (nonnull id)itemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     return self.items[indexPath.row];
 }
 

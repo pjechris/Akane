@@ -11,10 +11,14 @@
 #import "AKNViewComponent.h"
 #import "UITableViewCell+AKNReusableView.h"
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface AKNTableViewCell : UITableViewCell
 
-@property(nonatomic, strong)IBOutlet UIView<AKNViewComponent>    *itemView;
+@property(nonatomic, strong, nullable)IBOutlet UIView<AKNViewComponent>    *itemView;
 
-+ (instancetype)cellWithItemView:(UIView<AKNViewComponent> *)itemView;
++ (nullable instancetype)cellWithItemView:(UIView<AKNViewComponent> *)itemView;
 
 @end
+
+NS_ASSUME_NONNULL_END

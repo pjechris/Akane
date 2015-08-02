@@ -12,6 +12,8 @@
 @protocol AKNItemViewModel;
 @protocol AKNViewCache;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Provide reusable views and view models
  *
@@ -48,7 +50,7 @@
  * @param item the item to provide a View Model to
  * @return the item ViewModel. All supplementary items should have a ViewModel.
  */
-- (id<AKNItemViewModel>)supplementaryItemViewModel:(id)item;
+- (nullable id<AKNItemViewModel>)supplementaryItemViewModel:(nullable id)item;
 
 /**
  * Return the view model view identifier, so that we can load it. You can do checks to determine an identifier
@@ -56,13 +58,15 @@
  * @param item the viewModel whose view identifier is requested
  * @return an item identifier
  */
-- (NSString *)supplementaryViewIdentifier:(id<AKNItemViewModel>)viewModel;
+- (nullable NSString *)supplementaryViewIdentifier:(nullable id<AKNItemViewModel>)viewModel;
 
 /**
  * Return a identifier for a static section, that is a section whose not using any item and ViewModel. This method
  * should not be called if `supplementaryViewIdentifier` is implemented
  * @return a identifier registered with `registerView|NibNamed:supplementaryElementKind:`
  */
-- (NSString *)supplementaryStaticViewIdentifierForSection:(NSInteger)section;
+- (nullable NSString *)supplementaryStaticViewIdentifierForSection:(NSInteger)section;
 
 @end
+
+NS_ASSUME_NONNULL_END

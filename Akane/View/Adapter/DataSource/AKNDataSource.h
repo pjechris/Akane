@@ -10,6 +10,8 @@
 
 @protocol AKNViewModel;
 
+NS_ASSUME_NONNULL_BEGIN
+
 /**
  * Base protocol to provide data to views
  * Insipired by Android Adapters
@@ -18,7 +20,7 @@
  */
 @protocol AKNDataSource <NSObject>
 
-@property(nonatomic, strong)id  items;
+@property(nonatomic, strong, nullable)id  items;
 
 - (NSInteger)numberOfSections;
 - (NSInteger)numberOfItemsInSection:(NSInteger)section;
@@ -27,6 +29,8 @@
 
 @optional
 
-- (id)supplementaryItemAtSection:(NSInteger)section;
+- (nullable id)supplementaryItemAtSection:(NSInteger)section;
 
 @end
+
+NS_ASSUME_NONNULL_END
