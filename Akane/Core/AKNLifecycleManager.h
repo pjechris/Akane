@@ -13,6 +13,8 @@
 @protocol AKNViewModel;
 @protocol AKNPresenter;
 
+NS_ASSUME_NONNULL_BEGIN
+
 @interface AKNLifecycleManager : NSObject<AKNViewComponentDelegate>
 
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
@@ -25,3 +27,5 @@
 - (void)bindView;
 
 @end
+
+NS_ASSUME_NONNULL_END

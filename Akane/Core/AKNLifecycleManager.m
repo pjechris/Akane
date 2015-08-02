@@ -14,7 +14,7 @@
 #import <objc/runtime.h>
 
 @interface AKNLifecycleManager ()
-@property(nonatomic, weak)id<AKNPresenter>    presenter;
+@property(nonatomic, assign, nonnull)id<AKNPresenter>    presenter;
 
 - (UIView<AKNViewComponent> *)view;
 - (id<AKNViewModel>)viewModel;
@@ -22,7 +22,7 @@
 
 @implementation AKNLifecycleManager
 
-- (instancetype)initWithPresenter:(id<AKNPresenter>)presenter {
+- (nonnull instancetype)initWithPresenter:(nonnull id<AKNPresenter>)presenter {
     if (!(self = [super init])) {
         return nil;
     }
@@ -57,7 +57,7 @@
 
 #pragma mark - View Component delegate
 
-- (void)viewComponent:(UIView<AKNViewComponent> *)view isBindedTo:(id<AKNViewModel>)viewModel {
+- (void)viewComponent:(nonnull UIView<AKNViewComponent> *)view isBindedTo:(nullable id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"View component is %@ is not a descendant of view %@", view, [self view]);
 
@@ -81,15 +81,15 @@
 
 #pragma mark - Internal
 
-- (UIView<AKNViewComponent> *)view {
+- (nonnull UIView<AKNViewComponent> *)view {
     return self.presenter.view;
 }
 
-- (id<AKNViewModel>)viewModel {
+- (nullable id<AKNViewModel>)viewModel {
     return self.presenter.viewModel;
 }
 
-- (Class)presenterClassForViewComponent:(UIView<AKNViewComponent> *)view {
+- (Class)presenterClassForViewComponent:(nonnull UIView<AKNViewComponent> *)view {
     if ([self.presenter.class respondsToSelector:@selector(presenterClassForViewComponent:)]) {
         return [self.presenter.class presenterClassForViewComponent:view];
     }
