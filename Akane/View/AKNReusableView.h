@@ -13,6 +13,8 @@
 @protocol AKNReusableView <NSObject>
 
 @property(nonatomic, strong)IBOutlet UIView<AKNViewConfigurable>    *itemView;
+
+@optional
 @property(nonatomic, strong)UIView                                  *backgroundView;
 @property(nonatomic, strong)UIView                                  *selectedBackgroundView;
 
