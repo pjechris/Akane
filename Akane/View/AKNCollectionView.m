@@ -9,7 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AKNCollectionView.h"
 #import "AKNViewModel.h"
-#import <EventListener.h>
+#import <EventListener/EventListener.h>
+
 
 @implementation AKNCollectionView
 
