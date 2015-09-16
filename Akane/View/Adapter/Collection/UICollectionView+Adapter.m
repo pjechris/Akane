@@ -25,6 +25,10 @@ NSString *const UICollectionViewAdapter;
     return adapter;
 }
 
+- (void)setAdapter:(AKNCollectionViewAdapter *)adapter {
+    objc_setAssociatedObject(self, &UICollectionViewAdapter, adapter, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
 - (void)setAdapterDataSource:(id<AKNDataSource>)adapterDataSource {
     [self adapter].dataSource = adapterDataSource;
 }
