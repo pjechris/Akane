@@ -15,9 +15,11 @@
 #import "AKNViewCache.h"
 #import "AKNItemViewModel.h"
 #import "AKNCollectionViewCell.h"
+#import "AKNCollectionReusableView.h"
 #import "AKNViewHelper.h"
 #import "AKNReusableViewHandler.h"
 #import "AKNReusableViewDelegate.h"
+#import "UICollectionReusableView+AKNReusableView.h"
 #import "UICollectionViewCell+AKNReusableView.h"
 
 @interface AKNCollectionViewAdapter () <AKNViewCache, UICollectionViewDelegate, UICollectionViewDataSource>
@@ -53,7 +55,6 @@
     return self;
 }
 
-// TODO: implement supplementary collection view views
 - (id<AKNItemViewModel>)sectionModel:(NSInteger)section {
     if (![self.dataSource respondsToSelector:@selector(supplementaryItemAtSection:)]) {
         return nil;
@@ -129,6 +130,25 @@
     }
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    NSInteger section = indexPath.section;
+
+    id<AKNItemViewModel> viewModel = [self sectionModel:section];
+    NSString *identifier = [self identifierForViewModel:viewModel inSection:section];
+    identifier = [identifier stringByAppendingString:UICollectionElementKindSectionHeader];
+
+    if (!identifier) {
+        return nil;
+    }
+
+    UICollectionReusableView *reusableView = [self dequeueReusableViewOfKind:kind withIdentifier:identifier forIndexPath:indexPath];
+
+    [self.viewDelegate reuseView:reusableView withViewModel:viewModel atIndexPath:indexPath];
+    [reusableView setNeedsLayout]; // This fix Self-sizing view labels not always sized correctly
+
+    return reusableView;
+}
+
 #pragma mark - Internal
 
 - (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section {
@@ -156,10 +176,17 @@
     return cell;
 }
 
-- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section {
-    UIView<AKNViewConfigurable> *view = [self createReusableViewWithIdentifier:identifier];
-    
-    return view;
+- (UICollectionReusableView *)dequeueReusableViewOfKind:(NSString *)kind withIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath {
+    UICollectionReusableView *reusableView = [self.collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:identifier forIndexPath:indexPath];
+
+    if (!reusableView.itemView) {
+        reusableView.itemView = [self createReusableViewWithIdentifier:identifier];
+    }
+
+    NSAssert([reusableView.itemView conformsToProtocol:@protocol(AKNViewConfigurable)],
+            @"reusableView.itemView for identifier %@ must conform to AKNViewConfigurable protocol", identifier);
+
+    return reusableView;
 }
 
 - (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier {
@@ -180,6 +207,7 @@
 
 - (void)registerNibName:(NSString *)nibName withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
     self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+
     [self.collectionView registerClass:[AKNCollectionViewCell class] forCellWithReuseIdentifier:identifier];
     [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
 }
@@ -190,6 +218,7 @@
 
 - (void)registerView:(Class)viewClass withReuseIdentifier:(NSString *)identifier handle:(AKNReusableViewRegisterHandle)handle {
     self.reusableViewsContent[identifier] = viewClass;
+
     [self.collectionView registerClass:[AKNCollectionViewCell class] forCellWithReuseIdentifier:identifier];
     [self registerHandlerForReuseIdentifier:identifier onRegistered:handle];
 }
@@ -204,14 +233,16 @@
 
 - (void)registerNibName:(NSString *)nibName supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
-    
     self.reusableViewsContent[identifier] = [UINib nibWithNibName:nibName bundle:nil];
+
+    [self.collectionView registerClass:[AKNCollectionReusableView class] forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
 }
 
 - (void)registerView:(Class)viewClass supplementaryElementKind:(NSString *)kind withReuseIdentifier:(NSString *)identifier {
     identifier = [identifier stringByAppendingString:kind];
-    
     self.reusableViewsContent[identifier] = viewClass;
+
+    [self.collectionView registerClass:[AKNCollectionReusableView class] forSupplementaryViewOfKind:kind withReuseIdentifier:identifier];
 }
 
 #pragma mark - Setters

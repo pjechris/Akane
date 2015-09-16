@@ -24,7 +24,7 @@
 - (NSString *)identifierForViewModel:(id<AKNItemViewModel>)viewModel inSection:(NSInteger)section;
 
 - (UICollectionViewCell *)dequeueReusableCellWithIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
-- (UIView<AKNViewConfigurable> *)dequeueReusableSectionWithIdentifier:(NSString *)identifier forSection:(NSInteger)section;
+- (UICollectionReusableView *)dequeueReusableViewOfKind:(NSString *)kind withIdentifier:(NSString *)identifier forIndexPath:(NSIndexPath *)indexPath;
 
 - (UIView<AKNViewConfigurable> *)createReusableViewWithIdentifier:(NSString *)identifier;
 - (AKNReusableViewHandler *)handlerForIdentifier:(NSString *)identifier;
