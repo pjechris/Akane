@@ -48,10 +48,6 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel;
 
-@optional
-/// @return AKNPresenter class
-+ (Class)presenterClassForViewComponent:(UIView<AKNViewComponent> *)component;
-
 @end
 
 NS_ASSUME_NONNULL_END

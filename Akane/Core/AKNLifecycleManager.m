@@ -90,8 +90,8 @@
 }
 
 - (Class)presenterClassForViewComponent:(nonnull UIView<AKNViewComponent> *)view {
-    if ([self.presenter.class respondsToSelector:@selector(presenterClassForViewComponent:)]) {
-        return [self.presenter.class presenterClassForViewComponent:view];
+    if ([view.class respondsToSelector:@selector(componentPresenterClass)]) {
+        return [view.class componentPresenterClass];
     }
 
     Class class = NSClassFromString([NSStringFromClass(view.class) stringByAppendingString:@"Controller"]);

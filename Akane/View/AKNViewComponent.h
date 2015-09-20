@@ -12,6 +12,7 @@
 @class AKNLifecycleManager;
 @protocol AKNViewComponent;
 @protocol AKNViewModel;
+@protocol AKNPresenter;
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -41,6 +42,9 @@ NS_ASSUME_NONNULL_BEGIN
 @optional
 
 - (void)bind:(nullable id<AKNViewModel>)viewModel;
+
+/// @return AKNPresenter class
++ (Class)componentPresenterClass;
 
 @end
 
