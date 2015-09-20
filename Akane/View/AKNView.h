@@ -29,7 +29,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 - (void)bind:(nullable ViewModelType)viewModel NS_REQUIRES_SUPER;
 
-- (void)bind:(nullable id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
+- (void)bind:(nullable id<AKNViewModel>)viewModel to:(nullable UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
 
 @end
 

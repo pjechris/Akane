@@ -272,7 +272,7 @@
 
     while (superview) {
         if ([superview conformsToProtocol:@protocol(AKNViewComponent)]) {
-            UIView<AKNViewComponent> *component = (id<AKNViewComponent>)superview;
+            UIView<AKNViewComponent> *component = (UIView<AKNViewComponent> *)superview;
 
             if (component.componentDelegate) { // BC check (< 0.10)
                 return component.componentDelegate;

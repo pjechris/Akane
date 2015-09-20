@@ -45,7 +45,8 @@
 }
 
 - (void)viewDidLoad {
-    NSAssert([self.view conformsToProtocol:@protocol(AKNViewComponent)], @"The viewController's view should be of kind AKNView");
+    NSAssert([self.view conformsToProtocol:@protocol(AKNViewComponent)],
+             @"controller '%@' view should be of type AKNViewComponent", self.class);
 
     [super viewDidLoad];
 

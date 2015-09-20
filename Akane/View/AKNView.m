@@ -32,13 +32,15 @@
     // Default implementation do nothing
 }
 
-- (void)bind:(id<AKNViewModel>)viewModel {
+- (void)bind:(nullable id<AKNViewModel>)viewModel {
     // BC => will be removed!
     self.viewModel = viewModel;
 }
 
-- (void)bind:(id<AKNViewModel>)viewModel to:(UIView<AKNViewComponent> *)viewComponent {
-    [self.componentDelegate viewComponent:viewComponent isBindedTo:viewModel];
+- (void)bind:(nullable id<AKNViewModel>)viewModel to:(nullable UIView<AKNViewComponent> *)viewComponent {
+    if (viewComponent) {
+        [self.componentDelegate viewComponent:viewComponent isBindedTo:viewModel];
+    }
 }
 
 - (id<EVEEventDispatcher>)nextDispatcher {
