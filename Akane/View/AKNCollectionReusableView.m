@@ -39,8 +39,7 @@
     itemView.translatesAutoresizingMaskIntoConstraints = NO;
     
     [self addSubview:itemView];
-    // iOS7 compatibility
-    self.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+
     [self addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView]|"
                                                                  options:0
                                                                  metrics:0
