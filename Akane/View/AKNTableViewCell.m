@@ -39,8 +39,7 @@
     itemView.translatesAutoresizingMaskIntoConstraints = NO;
 
     [self.contentView addSubview:itemView];
-    // iOS7 compatibility
-    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
+
     [self.contentView addConstraints:[NSLayoutConstraint constraintsWithVisualFormat:@"H:|[itemView]|"
                                                                              options:0
                                                                              metrics:0
@@ -49,6 +48,10 @@
                                                                              options:0
                                                                              metrics:0
                                                                                views:viewsDictionary]];
+
+    // TODO should we wrap it in a 'if IOS 7' at minimum ? Also seems to serve no purpose when tested without it.
+    // iOS7 compatibility
+    self.contentView.autoresizingMask = UIViewAutoresizingFlexibleHeight|UIViewAutoresizingFlexibleWidth;
 }
 
 @end

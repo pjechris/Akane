@@ -10,11 +10,14 @@
 #import <UIKit/UIKit.h>
 #import "AKNDataSource.h"
 #import "AKNItemViewModelProvider.h"
+#import "AKNCollectionViewAdapter.h"
 
 @interface UICollectionView (Adapter)
 
 @property(nonatomic, strong)id<AKNDataSource>             adapterDataSource;
 
 @property(nonatomic, strong)id<AKNItemViewModelProvider>  adapterItemProvider;
+
+@property(nonatomic, strong)AKNCollectionViewAdapter      *adapter;
 
 @end

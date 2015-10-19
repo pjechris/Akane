@@ -22,6 +22,7 @@
 
 @interface AKNTableViewAdapter () <AKNViewCache>
 @property(nonatomic, strong)NSMapTable                  *itemViewModels;
+@property(nonatomic, strong)NSMapTable                  *sectionViewModels;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsContent;
 @property(nonatomic, strong)NSMutableDictionary         *reusableViewsHandler;
 @property(nonatomic, weak)UITableView                   *tableView;
@@ -35,6 +36,7 @@
     }
 
     self.itemViewModels = [NSMapTable weakToStrongObjectsMapTable];
+    self.sectionViewModels = [NSMapTable weakToStrongObjectsMapTable];
     self.reusableViewsContent = [NSMutableDictionary new];
     self.reusableViewsHandler = [NSMutableDictionary new];
 
@@ -68,13 +70,13 @@
     }
     
     id item = [self.dataSource supplementaryItemAtSection:section];
-    id<AKNItemViewModel> model = [self.itemViewModels objectForKey:item];
+    id<AKNItemViewModel> model = [self.sectionViewModels objectForKey:item];
 
     if (!model) {
         model = [self.itemViewModelProvider supplementaryItemViewModel:item];
 
         if (model) {
-            [self.itemViewModels setObject:model forKey:item];
+            [self.sectionViewModels setObject:model forKey:item];
         }
     }
 

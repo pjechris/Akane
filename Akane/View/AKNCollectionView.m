@@ -11,7 +11,7 @@
 #import "AKNViewModel.h"
 #import "UICollectionView+Adapter.h"
 #import "AKNCollectionViewAdapter.h"
-#import <EventListener.h>
+#import <EventListener/EventListener.h>
 
 @implementation AKNCollectionView
 
