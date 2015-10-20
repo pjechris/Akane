@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4926EACA1A5EBCBF005A3D71"
-               BuildableName = "libAkane.a"
+               BlueprintIdentifier = "496854771BD6741C00589F4C"
+               BuildableName = "Akane.framework"
                BlueprintName = "Akane"
                ReferencedContainer = "container:Akane.xcodeproj">
             </BuildableReference>
@@ -28,7 +28,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4926EAD51A5EBCBF005A3D71"
+               BlueprintIdentifier = "496854801BD6741C00589F4C"
                BuildableName = "AkaneTests.xctest"
                BlueprintName = "AkaneTests"
                ReferencedContainer = "container:Akane.xcodeproj">
@@ -46,7 +46,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4926EAD51A5EBCBF005A3D71"
+               BlueprintIdentifier = "496854801BD6741C00589F4C"
                BuildableName = "AkaneTests.xctest"
                BlueprintName = "AkaneTests"
                ReferencedContainer = "container:Akane.xcodeproj">
@@ -56,8 +56,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4926EACA1A5EBCBF005A3D71"
-            BuildableName = "libAkane.a"
+            BlueprintIdentifier = "496854771BD6741C00589F4C"
+            BuildableName = "Akane.framework"
             BlueprintName = "Akane"
             ReferencedContainer = "container:Akane.xcodeproj">
          </BuildableReference>
@@ -78,8 +78,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4926EACA1A5EBCBF005A3D71"
-            BuildableName = "libAkane.a"
+            BlueprintIdentifier = "496854771BD6741C00589F4C"
+            BuildableName = "Akane.framework"
             BlueprintName = "Akane"
             ReferencedContainer = "container:Akane.xcodeproj">
          </BuildableReference>
@@ -96,8 +96,8 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4926EACA1A5EBCBF005A3D71"
-            BuildableName = "libAkane.a"
+            BlueprintIdentifier = "496854771BD6741C00589F4C"
+            BuildableName = "Akane.framework"
             BlueprintName = "Akane"
             ReferencedContainer = "container:Akane.xcodeproj">
          </BuildableReference>

@@ -1,5 +1,5 @@
 //
-// This file is part of Akkane
+// This file is part of Akane
 //
 // Created by JC on 30/12/14.
 // For the full copyright and license information, please view the LICENSE
@@ -14,26 +14,14 @@ FOUNDATION_EXPORT double AkkaneVersionNumber;
 //! Project version string for Akkane.
 FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 
-// In this header, you should import all the public headers of your framework using statements like #import <Akkane/PublicHeader.h>
-#import "AKNViewModel.h"
-#import "AKNItemViewModel.h"
-#import "AKNViewModelAware.h"
+// In this header, you should import all the public headers of your framework using statements like #import <Akane/PublicHeader.h>
+#import <Akane/AKNViewModel.h>
+#import <Akane/AKNItemViewModel.h>
+#import <Akane/AKNViewModelAware.h>
 
-#import "AKNPresenter.h"
-#import "AKNPresenterViewController.h"
+#import <Akane/AKNPresenter.h>
+#import <Akane/AKNPresenterViewController.h>
 
-#import "AKNView.h"
-#import "AKNViewComponent.h"
-#import "AKNViewCache.h"
-
-#import "AKNDataSource.h"
-#import "AKNArrayDataSource.h"
-#import "AKNItemViewModelProvider.h"
-#import "AKNTableViewAdapter.h"
-
-#import "AKNReusableViewHandler.h"
-#import "UITableViewCell+AKNReusableView.h"
-#import "AKNTableView.h"
-#import "UITableView+Adapter.h"
-
+#import <Akane/AKNView.h>
+#import <Akane/AKNViewComponent.h>
 
