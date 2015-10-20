@@ -39,8 +39,6 @@
         [self.viewModel willMount];
         objc_setAssociatedObject(self.viewModel, @selector(willMount), @YES, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
-
-    self.viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.view.nextResponder;
 }
 
 - (void)unmount {

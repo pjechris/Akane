@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "AKNView.h"
 #import "AKNViewModel.h"
-#import <EventListener.h>
 
 @implementation AKNView
 
@@ -21,7 +20,6 @@
     }
 
     _viewModel = viewModel;
-    _viewModel.nextDispatcher = (id<EVEEventDispatcher>)self.nextResponder;
 
     // BC
     // FIXME Remove this line of code
@@ -41,10 +39,6 @@
     if (viewComponent) {
         [self.componentDelegate viewComponent:viewComponent isBindedTo:viewModel];
     }
-}
-
-- (id<EVEEventDispatcher>)nextDispatcher {
-    return self.viewModel ?: (id<EVEEventDispatcher>)self.nextResponder;
 }
 
 @end

@@ -7,11 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <EventListener/EventListener.h>
 
-@protocol AKNViewModel <EVEEventDispatcher>
-
-@property(nonatomic, weak)id<EVEEventDispatcher>  nextDispatcher;
+@protocol AKNViewModel <NSObject>
 
 @optional
 - (void)willMount;
