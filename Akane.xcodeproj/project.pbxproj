@@ -24,6 +24,11 @@
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; settings = {ASSET_TAGS = (); }; };
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; settings = {ASSET_TAGS = (); }; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; settings = {ASSET_TAGS = (); }; };
+		496854B51BD6960C00589F4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854B41BD6960C00589F4C /* Observable.swift */; settings = {ASSET_TAGS = (); }; };
+		496854B71BD696C100589F4C /* Binder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854B61BD696C100589F4C /* Binder.swift */; settings = {ASSET_TAGS = (); }; };
+		496854BB1BD69D9500589F4C /* BindingObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854BA1BD69D9500589F4C /* BindingObserver.swift */; settings = {ASSET_TAGS = (); }; };
+		496854BD1BD6A03800589F4C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854BC1BD6A03800589F4C /* Bindable.swift */; settings = {ASSET_TAGS = (); }; };
+		4969C9F11BE6585F0041C6C2 /* BinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969C9F01BE6585F0041C6C2 /* BinderView.swift */; settings = {ASSET_TAGS = (); }; };
 		5BBB1A8AFAD04ED9E9114A7B /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +62,11 @@
 		496854AB1BD68B7C00589F4C /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
+		496854B41BD6960C00589F4C /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
+		496854B61BD696C100589F4C /* Binder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Binder.swift; sourceTree = "<group>"; };
+		496854BA1BD69D9500589F4C /* BindingObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BindingObserver.swift; sourceTree = "<group>"; };
+		496854BC1BD6A03800589F4C /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		4969C9F01BE6585F0041C6C2 /* BinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinderView.swift; sourceTree = "<group>"; };
 		4984BB201AC07A990095B126 /* AKNViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewHelper.h; sourceTree = "<group>"; };
 		4984BB211AC07A990095B126 /* AKNViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewHelper.m; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
@@ -110,8 +120,9 @@
 		4926EACD1A5EBCBF005A3D71 /* Akane */ = {
 			isa = PBXGroup;
 			children = (
-				496854991BD67AFC00589F4C /* Converter */,
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
+				496854B31BD6950B00589F4C /* Binding */,
+				496854991BD67AFC00589F4C /* Converter */,
 				49AAE5531AE1C20E000EE651 /* Core */,
 				4926EAFB1A5EBD4A005A3D71 /* Info.plist */,
 				4926EAE61A5EBD17005A3D71 /* Presenter */,
@@ -195,6 +206,18 @@
 				496854AD1BD68B7C00589F4C /* ConverterReverse.swift */,
 			);
 			path = Converter;
+			sourceTree = "<group>";
+		};
+		496854B31BD6950B00589F4C /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				496854BC1BD6A03800589F4C /* Bindable.swift */,
+				496854B61BD696C100589F4C /* Binder.swift */,
+				4969C9F01BE6585F0041C6C2 /* BinderView.swift */,
+				496854BA1BD69D9500589F4C /* BindingObserver.swift */,
+				496854B41BD6960C00589F4C /* Observable.swift */,
+			);
+			path = Binding;
 			sourceTree = "<group>";
 		};
 		496EC0AD1A83BF6F008E623A /* Presenter */ = {
@@ -384,8 +407,13 @@
 			files = (
 				4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
+				496854BD1BD6A03800589F4C /* Bindable.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
+				4969C9F11BE6585F0041C6C2 /* BinderView.swift in Sources */,
+				496854BB1BD69D9500589F4C /* BindingObserver.swift in Sources */,
+				496854B71BD696C100589F4C /* Binder.swift in Sources */,
 				496854901BD6743600589F4C /* AKNPresenterViewController.m in Sources */,
+				496854B51BD6960C00589F4C /* Observable.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
 				496854911BD6743600589F4C /* AKNView.m in Sources */,
 				496854921BD6743600589F4C /* AKNViewHelper.m in Sources */,
