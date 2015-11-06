@@ -10,5 +10,5 @@ import Foundation
 
 public protocol Binder {
 
-    func observe<T: Observable, U: BindingObserver where U.Element == T.Element>(observable: T) -> U
+    func observe<T: Observable>(observable: T) -> BondBindingWrapper<T.Element>
 }

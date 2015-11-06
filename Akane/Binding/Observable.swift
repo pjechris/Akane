@@ -11,5 +11,7 @@ import Foundation
 public protocol Observable {
     typealias Element
 
-    func observe(observer: Element -> ())
+    var value: Element { get }
+
+    func observe(observer: Element -> ()) -> Disposable
 }
