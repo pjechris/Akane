@@ -24,7 +24,10 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)mount;
 - (void)unmount;
 
-- (void)bindView;
+//- (void)bindView;
+
+- (nonnull UIView<AKNViewComponent> *)view;
+- (nullable id<AKNViewModel>)viewModel;
 
 @end
 

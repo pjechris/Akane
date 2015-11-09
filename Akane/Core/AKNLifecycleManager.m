@@ -50,7 +50,9 @@
 - (void)bindView {
     self.view.componentDelegate = self;
 
-    [self.view bind:self.viewModel];
+    if ([self.view respondsToSelector:@selector(bind:)]) {
+        [self.view bind:self.viewModel];
+    }
 }
 
 #pragma mark - View Component delegate
