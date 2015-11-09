@@ -1,9 +1,9 @@
 //
-//  SimpleBinding.swift
-//  Akane
+// This file is part of Akane
 //
-//  Created by JC on 05/11/15.
-//  Copyright © 2015 fr.akane. All rights reserved.
+// Created by JC on 05/11/15.
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code
 //
 
 import Foundation
@@ -18,5 +18,11 @@ class BondDisposableAdapter : Disposable {
 
     func dispose() {
         self.disposable.dispose()
+    }
+}
+
+extension CompositeDisposable : DisposableBag {
+    func addDisposable(disposable: Disposable) {
+        self.addDisposable(BlockDisposable() { disposable.dispose() })
     }
 }

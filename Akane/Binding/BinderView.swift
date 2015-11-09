@@ -11,10 +11,12 @@ import Foundation
 /**
  BinderView is a specialized Binder for views
 **/
-public protocol BinderView : Binder {
-    typealias ViewElement: AKNViewComponent
+public protocol BinderView {
+    typealias ViewElement
 
-    var viewModel: AnyObject { get }
+    var viewModel: AnyObject? { get }
 
     init(view: ViewElement)
+
+    func observe<T: Observable>(observable: T) -> BondBindingWrapper<T.Element>
 }

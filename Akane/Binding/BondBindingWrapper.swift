@@ -1,9 +1,9 @@
 //
-//  BondBindingObserver.swift
-//  Akane
+// This file is part of Akane
 //
-//  Created by JC on 01/11/15.
-//  Copyright © 2015 fr.akane. All rights reserved.
+// Created by JC on 01/11/15.
+// For the full copyright and license information, please view the LICENSE
+// file that was distributed with this source code
 //
 
 import Foundation
@@ -15,7 +15,7 @@ public class BondBindingWrapper<E> {
     private let event: EventProducer<E>
     private let disposeBag: DisposableBag
 
-    private convenience init<T:Observable where T.Element == E>(observable:T, disposeBag: DisposableBag) {
+    internal convenience init<T:Observable where T.Element == E>(observable:T, disposeBag: DisposableBag) {
         let internalObservable = Bond.Observable<E>(observable.value)
         let disposable = observable.observe { [weak internalObservable] value in
             internalObservable?.next(value)
