@@ -10,9 +10,9 @@ Pod::Spec.new do |s|
   s.license		  = { :type => "MIT", :file => "LICENSE" }
   s.author                = 'pjechris', 'akane'
 
-  s.ios.deployment_target = "8.0"
-  s.source_files    	  = "Akane/**/*.{h,m}"
-  s.prefix_header_file    = "Akane/#{s.name}.h"
-  s.requires_arc 	  = true
+  s.ios.deployment_target     = "8.0"
+  s.source_files              = "Akane/**/*.{h,m,swift}"
+  s.prefix_header_file        = "Akane/#{s.name}.h"
+  s.requires_arc              = true
 
 end
