@@ -8,6 +8,6 @@
 
 import Foundation
 
-protocol ViewComponent : AKNViewComponent {
-    func bindings<T: BinderView>(binder: T)
+public protocol ViewComponent : AKNViewComponent {
+    func bindings<T: ViewBinder>(binder: T)
 }

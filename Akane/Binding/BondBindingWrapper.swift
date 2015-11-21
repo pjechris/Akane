@@ -9,16 +9,17 @@
 import Foundation
 import Bond
 
-public class BondBindingWrapper<E> {
-    typealias Element = E
+public class ViewObserver<E> {
+    public typealias Element = E
 
-    private let event: EventProducer<E>
-    private let disposeBag: DisposableBag
+    internal let event: EventProducer<E>
+    private let disposeBag: DisposeBag
 
-    internal convenience init<T:Observable where T.Element == E>(observable:T, disposeBag: DisposableBag) {
+    internal convenience init<T:Observation where T.Element == E>(observable:T, disposeBag: DisposeBag) {
         let internalObservable = Bond.Observable<E>(observable.value)
-        let disposable = observable.observe { [weak internalObservable] value in
-            internalObservable?.next(value)
+        let disposable = observable.observe { [unowned internalObservable] value in
+            print("wrapper observe \(value)")
+            internalObservable.next(value)
         }
 
         disposeBag.addDisposable(disposable)
@@ -26,53 +27,54 @@ public class BondBindingWrapper<E> {
         self.init(event: internalObservable, disposeBag: disposeBag)
     }
 
-    private init(event: EventProducer<E>, disposeBag: DisposableBag) {
+    internal init(event: EventProducer<E>, disposeBag: DisposeBag) {
         self.event = event
         self.disposeBag = disposeBag
     }
 
-    func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
+    public func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
         let next = bindable.advance()
         let disposable = self.event.observe { value in
+            print("binding \(value)")
             next(value)
         }
 
-        self.disposeBag.addDisposable(BondDisposableAdapter(disposable))
+        self.disposeBag.addDisposable(BondDisposeAdapter(disposable))
     }
 
-    func combine<T: Observable>(observables: T...) -> Self {
+    public func combine<T: Observation>(observables: T...) -> Self {
         return self
     }
 
-    func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> BondBindingWrapper<T.ConvertValueType> {
+    public func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> ViewObserver<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convert(value)
         }
 
-        return BondBindingWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ViewObserver<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> BondBindingWrapper<T.ConvertValueType> {
+    public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ViewObserver<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convert(value)
         }
 
-        return BondBindingWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ViewObserver<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(converter: T.Type) -> BondBindingWrapper<T.ValueType> {
+    public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(converter: T.Type) -> ViewObserver<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convertBack(value)
         }
 
-        return BondBindingWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ViewObserver<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> BondBindingWrapper<T.ValueType> {
+    public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ViewObserver<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convertBack(value)
         }
 
-        return BondBindingWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ViewObserver<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 }

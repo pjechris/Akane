@@ -9,17 +9,18 @@
 import Foundation
 import Bond
 
-class BondBinderView<View> : BinderView {
+class ViewBinderManager<View> : ViewBinder {
     typealias ViewElement = View
 
     let view: ViewElement
+    var bindings:[AnyObject] = []
     var viewModel: AnyObject? {
         didSet {
             self.disposeBag = CompositeDisposable()
         }
     }
 
-    var disposeBag: DisposableBag! {
+    var disposeBag: DisposeBag! {
         willSet {
             self.disposeBag?.dispose()
         }
@@ -29,7 +30,21 @@ class BondBinderView<View> : BinderView {
         self.view = view
     }
 
-    func observe<T : Observable>(observable: T) -> BondBindingWrapper<T.Element> {
-        return BondBindingWrapper<T.Element>(observable: observable, disposeBag: self.disposeBag)
+    func observe<T : Observation>(observable: T) -> ViewObserver<T.Element> {
+        let binding = ViewObserver<T.Element>(observable: observable, disposeBag: self.disposeBag)
+
+        self.bindings.append(binding.event)
+        return binding
+    }
+
+    func observe<T>(observable: EventProducer<T>) -> ViewObserver<T> {
+        let binding = ViewObserver<T>.init(event: observable, disposeBag: self.disposeBag)
+
+        self.bindings.append(binding.event)
+        return binding
+    }
+
+    func bind(viewModel: AnyObject?) {
+        self.viewModel = viewModel
     }
 }

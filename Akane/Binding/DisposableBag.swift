@@ -7,7 +7,14 @@
 //
 
 import Foundation
+import Bond
 
-protocol DisposableBag : Disposable {
-    func addDisposable(disposable: Disposable)
+protocol DisposeBag : Dispose {
+    func addDisposable(disposable: Dispose)
+}
+
+extension CompositeDisposable : DisposeBag {
+    func addDisposable(disposable: Dispose) {
+        self.addDisposable(BlockDisposable() { disposable.dispose() })
+    }
 }

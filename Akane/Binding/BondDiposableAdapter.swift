@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-class BondDisposableAdapter : Disposable {
+class BondDisposeAdapter : Dispose {
     let disposable: DisposableType
 
     init(_ disposable: DisposableType) {
@@ -21,8 +21,21 @@ class BondDisposableAdapter : Disposable {
     }
 }
 
-extension CompositeDisposable : DisposableBag {
-    func addDisposable(disposable: Disposable) {
-        self.addDisposable(BlockDisposable() { disposable.dispose() })
+extension Bond.Observable : Observation {
+    public typealias Element = EventType
+
+    public func observe(observer: Element -> ()) -> Dispose {
+        let dispose: DisposableType = self.observe { value in
+            observer(value)
+        }
+
+        return BondDisposeAdapter(dispose)
+    }
+}
+
+extension Bond.Observable : Akane.Bindable {
+
+    public func advance() -> (Element -> Void) {
+        return self.sink(nil)
     }
 }

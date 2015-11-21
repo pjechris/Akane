@@ -8,10 +8,10 @@
 
 import Foundation
 
-public protocol Observable {
+public protocol Observation {
     typealias Element
 
     var value: Element { get }
 
-    func observe(observer: Element -> ()) -> Disposable
+    func observe(observer: Element -> ()) -> Dispose
 }
