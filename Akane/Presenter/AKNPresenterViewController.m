@@ -9,6 +9,7 @@
 #import "AKNPresenterViewController.h"
 #import "AKNViewModel.h"
 #import "AKNLifecycleManager.h"
+#import <Akane/Akane-Swift.h>
 
 @interface AKNPresenterViewController ()
 @property(nonatomic, strong, nullable)UIView                        *componentView;

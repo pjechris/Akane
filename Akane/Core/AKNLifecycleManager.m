@@ -61,14 +61,6 @@
     }
 }
 
-- (void)bindView {
-    self.view.componentDelegate = self;
-
-    if ([self.view respondsToSelector:@selector(bind:)]) {
-        [self.view bind:self.viewModel];
-    }
-}
-
 #pragma mark - View Component delegate
 
 - (void)viewComponent:(nonnull UIView<AKNViewComponent> *)view isBindedTo:(nullable id<AKNViewModel>)viewModel {

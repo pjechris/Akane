@@ -8,7 +8,15 @@
 
 import Foundation
 
+var BinderAttribute = "ViewStyleNameAttribute"
+
 public extension AKNLifecycleManager {
+    private var binder: ViewBinderManager<ViewComponent>! {
+        get { return objc_getAssociatedObject(self, &BinderAttribute) as? ViewBinderManager<ViewComponent> }
+        set { objc_setAssociatedObject(self, &BinderAttribute, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+
+    @objc
     public func bindView() {
         let view = self.view() as! AKNViewComponent
 
@@ -16,8 +24,11 @@ public extension AKNLifecycleManager {
         view.bind?(self.viewModel());
 
         if let view = view as? ViewComponent {
-            let binder = BondBinderView(view: view)
+            if self.binder == nil {
+                self.binder = ViewBinderManager(view: view)
+            }
 
+            binder.bind(self.viewModel())
             view.bindings(binder)
         }
     }
