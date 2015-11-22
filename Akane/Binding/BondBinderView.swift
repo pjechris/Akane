@@ -12,19 +12,15 @@ import Bond
 class ViewBinderManager<View> : ViewBinder {
     typealias ViewElement = View
 
-    let view: ViewElement
-    var bindings:[AnyObject] = []
-    var viewModel: AnyObject? {
-        didSet {
-            self.disposeBag = CompositeDisposable()
-        }
-    }
-
-    var disposeBag: DisposeBag! {
+    internal var viewModel: AnyObject? {
         willSet {
-            self.disposeBag?.dispose()
+            self.disposeBag = CompositeDisposable()
+            self.bindings.removeAll()
         }
     }
+    private let view: ViewElement
+    private var disposeBag: DisposeBag!
+    private var bindings:[AnyObject] = []
 
     required init(view: ViewElement) {
         self.view = view
