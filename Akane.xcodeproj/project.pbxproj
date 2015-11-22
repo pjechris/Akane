@@ -9,12 +9,16 @@
 /* Begin PBXBuildFile section */
 		18528EF01C3E09E601C476C3 /* Pods_AkaneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		490ABE5B1BED09BC007B6915 /* BondDiposableAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490ABE591BED09BC007B6915 /* BondDiposableAdapter.swift */; };
-		490ABE5C1BED09BC007B6915 /* BondBindingWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490ABE5A1BED09BC007B6915 /* BondBindingWrapper.swift */; };
-		4912E98C1BEBA71600C0DA4A /* Disposable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912E98B1BEBA71600C0DA4A /* Disposable.swift */; };
-		4912E98E1BEBAF5700C0DA4A /* DisposableBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4912E98D1BEBAF5700C0DA4A /* DisposableBag.swift */; };
 		492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E703E1BF0D2870006E59E /* ViewComponent.swift */; };
+		495EC5FD1C01CE7400EB7665 /* ViewBinderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F51C01CE7400EB7665 /* ViewBinderManager.swift */; };
+		495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */; };
+		495EC5FF1C01CE7400EB7665 /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F71C01CE7400EB7665 /* ViewObserver.swift */; };
+		495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F81C01CE7400EB7665 /* Bindable.swift */; };
+		495EC6011C01CE7400EB7665 /* ViewBinder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F91C01CE7400EB7665 /* ViewBinder.swift */; };
+		495EC6021C01CE7400EB7665 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FA1C01CE7400EB7665 /* Observation.swift */; };
+		495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */; };
+		495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FC1C01CE7400EB7665 /* Dispose.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */; };
 		496854901BD6743600589F4C /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */; };
@@ -32,10 +36,6 @@
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; };
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
-		496854B51BD6960C00589F4C /* Observable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854B41BD6960C00589F4C /* Observable.swift */; };
-		496854BD1BD6A03800589F4C /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854BC1BD6A03800589F4C /* Bindable.swift */; };
-		4969C9F11BE6585F0041C6C2 /* BinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4969C9F01BE6585F0041C6C2 /* BinderView.swift */; };
-		49B6C24D1BEFA5C9005626A6 /* BondBinderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6C24C1BEFA5C9005626A6 /* BondBinderView.swift */; };
 		49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */; };
 /* End PBXBuildFile section */
 
@@ -52,12 +52,8 @@
 /* Begin PBXFileReference section */
 		272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
-		490ABE591BED09BC007B6915 /* BondDiposableAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDiposableAdapter.swift; sourceTree = "<group>"; };
-		490ABE5A1BED09BC007B6915 /* BondBindingWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondBindingWrapper.swift; sourceTree = "<group>"; };
 		490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNLifecycleManager.h; sourceTree = "<group>"; };
 		490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNLifecycleManager.m; sourceTree = "<group>"; };
-		4912E98B1BEBA71600C0DA4A /* Disposable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Disposable.swift; sourceTree = "<group>"; };
-		4912E98D1BEBAF5700C0DA4A /* DisposableBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposableBag.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
 		4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
@@ -69,19 +65,23 @@
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492E703E1BF0D2870006E59E /* ViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
 		493A99271B5167DB00261401 /* AKNViewComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKNViewComponent.h; sourceTree = "<group>"; };
+		495EC5F51C01CE7400EB7665 /* ViewBinderManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBinderManager.swift; sourceTree = "<group>"; };
+		495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDisposeAdapter.swift; sourceTree = "<group>"; };
+		495EC5F71C01CE7400EB7665 /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
+		495EC5F81C01CE7400EB7665 /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
+		495EC5F91C01CE7400EB7665 /* ViewBinder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewBinder.swift; sourceTree = "<group>"; };
+		495EC5FA1C01CE7400EB7665 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
+		495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposeBag.swift; sourceTree = "<group>"; };
+		495EC5FC1C01CE7400EB7665 /* Dispose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispose.swift; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854AB1BD68B7C00589F4C /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
-		496854B41BD6960C00589F4C /* Observable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observable.swift; sourceTree = "<group>"; };
-		496854BC1BD6A03800589F4C /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
-		4969C9F01BE6585F0041C6C2 /* BinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BinderView.swift; sourceTree = "<group>"; };
 		4984BB201AC07A990095B126 /* AKNViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewHelper.h; sourceTree = "<group>"; };
 		4984BB211AC07A990095B126 /* AKNViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewHelper.m; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
 		49A159F41A90F04B00C2891F /* AKNViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewModel.m; sourceTree = "<group>"; };
-		49B6C24C1BEFA5C9005626A6 /* BondBinderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondBinderView.swift; sourceTree = "<group>"; };
 		49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleManager.swift; sourceTree = "<group>"; };
 		64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.debug.xcconfig"; sourceTree = "<group>"; };
 		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -227,14 +227,14 @@
 		496854B31BD6950B00589F4C /* Binding */ = {
 			isa = PBXGroup;
 			children = (
-				496854BC1BD6A03800589F4C /* Bindable.swift */,
-				4969C9F01BE6585F0041C6C2 /* BinderView.swift */,
-				490ABE5A1BED09BC007B6915 /* BondBindingWrapper.swift */,
-				490ABE591BED09BC007B6915 /* BondDiposableAdapter.swift */,
-				4912E98B1BEBA71600C0DA4A /* Disposable.swift */,
-				4912E98D1BEBAF5700C0DA4A /* DisposableBag.swift */,
-				496854B41BD6960C00589F4C /* Observable.swift */,
-				49B6C24C1BEFA5C9005626A6 /* BondBinderView.swift */,
+				495EC5F81C01CE7400EB7665 /* Bindable.swift */,
+				495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */,
+				495EC5FC1C01CE7400EB7665 /* Dispose.swift */,
+				495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */,
+				495EC5FA1C01CE7400EB7665 /* Observation.swift */,
+				495EC5F91C01CE7400EB7665 /* ViewBinder.swift */,
+				495EC5F51C01CE7400EB7665 /* ViewBinderManager.swift */,
+				495EC5F71C01CE7400EB7665 /* ViewObserver.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -347,7 +347,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0610;
+				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = fr.akane;
 				TargetAttributes = {
 					496854771BD6741C00589F4C = {
@@ -477,23 +477,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */,
+				495EC5FF1C01CE7400EB7665 /* ViewObserver.swift in Sources */,
 				49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
-				490ABE5C1BED09BC007B6915 /* BondBindingWrapper.swift in Sources */,
-				496854BD1BD6A03800589F4C /* Bindable.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
-				4912E98C1BEBA71600C0DA4A /* Disposable.swift in Sources */,
-				4969C9F11BE6585F0041C6C2 /* BinderView.swift in Sources */,
-				490ABE5B1BED09BC007B6915 /* BondDiposableAdapter.swift in Sources */,
 				492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */,
+				495EC6011C01CE7400EB7665 /* ViewBinder.swift in Sources */,
+				495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */,
 				496854901BD6743600589F4C /* AKNPresenterViewController.m in Sources */,
-				4912E98E1BEBAF5700C0DA4A /* DisposableBag.swift in Sources */,
-				49B6C24D1BEFA5C9005626A6 /* BondBinderView.swift in Sources */,
-				496854B51BD6960C00589F4C /* Observable.swift in Sources */,
+				495EC6021C01CE7400EB7665 /* Observation.swift in Sources */,
+				495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */,
+				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
+				495EC5FD1C01CE7400EB7665 /* ViewBinderManager.swift in Sources */,
 				496854911BD6743600589F4C /* AKNView.m in Sources */,
 				496854921BD6743600589F4C /* AKNViewHelper.m in Sources */,
 				496854931BD6743600589F4C /* AKNViewModel.m in Sources */,
+				495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -534,6 +534,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -548,7 +549,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -582,7 +583,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
@@ -605,7 +606,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Akane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Akane.Akane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -633,7 +633,6 @@
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Akane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Akane.Akane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
