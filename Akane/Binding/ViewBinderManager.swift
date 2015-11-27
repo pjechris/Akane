@@ -33,7 +33,7 @@ class ViewBinderManager<View> : ViewBinder {
         return binding
     }
 
-    func observe<T>(observable: EventProducer<T>) -> ViewObserver<T> {
+    func observe<T>(observable: Observable<T>) -> ViewObserver<T> {
         let binding = ViewObserver<T>(event: observable, disposeBag: self.disposeBag)
 
         self.bindings.append(binding.event)

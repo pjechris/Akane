@@ -12,17 +12,19 @@ import Bond
 public class ViewObserver<E> {
     public typealias Element = E
 
+    public private(set) var value: E!
+
     internal let event: EventProducer<E>
     private let disposeBag: DisposeBag
 
     internal convenience init<T:Observation where T.Element == E>(observable:T, disposeBag: DisposeBag) {
         let internalObservable = Bond.Observable<E>(observable.value)
-        let disposable = observable.observe { [unowned internalObservable] value in
-            print("wrapper observe \(value)")
-            internalObservable.next(value)
-        }
 
-        disposeBag.addDisposable(disposable)
+        disposeBag.addDisposable(
+            observable.observe { [unowned internalObservable] value in
+                internalObservable.next(value)
+            }
+        )
 
         self.init(event: internalObservable, disposeBag: disposeBag)
     }
@@ -30,12 +32,16 @@ public class ViewObserver<E> {
     internal init(event: EventProducer<E>, disposeBag: DisposeBag) {
         self.event = event
         self.disposeBag = disposeBag
+        self.value = nil
+
+        self.event.observe { [weak self] value in
+            self?.value = value
+        }
     }
 
     public func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
         let next = bindable.advance()
         let disposable = self.event.observe { value in
-            print("binding \(value)")
             next(value)
         }
 
