@@ -9,6 +9,11 @@
 import Foundation
 import Bond
 
+/**
+ Manage a UIView bindings. Those bindings can be of 2 sorts:
+ - a ViewObserver, for bindings on ```Observation```
+ - a CommandObserver, for bindings on ```Command```
+*/
 class ViewBinderManager<View> : ViewBinder {
     typealias ViewElement = View
 
