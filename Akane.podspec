@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
 
   s.ios.deployment_target     = "8.0"
   s.source_files              = "Akane/**/*.{h,m,swift}"
-  s.prefix_header_file        = "Akane/#{s.name}.h"
   s.requires_arc              = true
 
+  s.dependency 'Bond', '~> 4.x'
 end

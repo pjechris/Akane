@@ -1,13 +1,16 @@
 PODS:
   - Bond (4.0.3)
-  - Kiwi (2.3.1)
+  - Nimble (3.0.0)
+  - Quick (0.8.0)
 
 DEPENDENCIES:
-  - Bond
-  - Kiwi
+  - Bond (~> 4.x)
+  - Nimble
+  - Quick
 
 SPEC CHECKSUMS:
   Bond: ff9ac940c47270d42b83a1cc5e14c0cec44b8357
-  Kiwi: f038a6c61f7a9e4d7766bff5717aa3b3fdb75f55
+  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
 
-COCOAPODS: 0.38.2
+COCOAPODS: 0.39.0

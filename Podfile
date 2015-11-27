@@ -4,10 +4,9 @@ use_frameworks!
 
 target 'Akane' do
   podspec
-
-  pod 'Bond'
 end
 
 target 'AkaneTests', :exclusive => true do
-       pod "Kiwi"
+  pod "Quick"
+  pod "Nimble"
 end
