@@ -34,10 +34,14 @@ class ViewBinderManager<View> : ViewBinder {
     }
 
     func observe<T>(observable: EventProducer<T>) -> ViewObserver<T> {
-        let binding = ViewObserver<T>.init(event: observable, disposeBag: self.disposeBag)
+        let binding = ViewObserver<T>(event: observable, disposeBag: self.disposeBag)
 
         self.bindings.append(binding.event)
         return binding
+    }
+
+    func observe<T : Command>(command: T) -> CommandObserver {
+        return CommandObserver(command: command, disposeBag: self.disposeBag)
     }
 
     func bind(viewModel: AnyObject?) {

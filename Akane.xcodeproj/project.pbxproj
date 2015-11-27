@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		18528EF01C3E09E601C476C3 /* Pods_AkaneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
+		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
+		491705341C02574800DD4284 /* CommandObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491705331C02574800DD4284 /* CommandObserver.swift */; };
 		492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E703E1BF0D2870006E59E /* ViewComponent.swift */; };
 		495EC5FD1C01CE7400EB7665 /* ViewBinderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F51C01CE7400EB7665 /* ViewBinderManager.swift */; };
@@ -54,6 +57,9 @@
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNLifecycleManager.h; sourceTree = "<group>"; };
 		490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNLifecycleManager.m; sourceTree = "<group>"; };
+		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
+		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		491705331C02574800DD4284 /* CommandObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandObserver.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
 		4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
@@ -112,6 +118,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		491705391C0279A100DD4284 /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				490EEA171C08ADCD00DE194B /* Command.swift */,
+				490EEA151C08ADA500DE194B /* RelayCommand.swift */,
+			);
+			path = Command;
+			sourceTree = "<group>";
+		};
 		4926EAC21A5EBCBF005A3D71 = {
 			isa = PBXGroup;
 			children = (
@@ -135,6 +150,7 @@
 		4926EACD1A5EBCBF005A3D71 /* Akane */ = {
 			isa = PBXGroup;
 			children = (
+				491705391C0279A100DD4284 /* Command */,
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
 				496854B31BD6950B00589F4C /* Binding */,
 				496854991BD67AFC00589F4C /* Converter */,
@@ -229,6 +245,7 @@
 			children = (
 				495EC5F81C01CE7400EB7665 /* Bindable.swift */,
 				495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */,
+				491705331C02574800DD4284 /* CommandObserver.swift */,
 				495EC5FC1C01CE7400EB7665 /* Dispose.swift */,
 				495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */,
 				495EC5FA1C01CE7400EB7665 /* Observation.swift */,
@@ -485,12 +502,15 @@
 				495EC6011C01CE7400EB7665 /* ViewBinder.swift in Sources */,
 				495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */,
 				496854901BD6743600589F4C /* AKNPresenterViewController.m in Sources */,
+				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				495EC6021C01CE7400EB7665 /* Observation.swift in Sources */,
+				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
 				495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
 				495EC5FD1C01CE7400EB7665 /* ViewBinderManager.swift in Sources */,
 				496854911BD6743600589F4C /* AKNView.m in Sources */,
+				491705341C02574800DD4284 /* CommandObserver.swift in Sources */,
 				496854921BD6743600589F4C /* AKNViewHelper.m in Sources */,
 				496854931BD6743600589F4C /* AKNViewModel.m in Sources */,
 				495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */,

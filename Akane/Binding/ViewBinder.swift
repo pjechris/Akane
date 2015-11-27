@@ -18,4 +18,5 @@ public protocol ViewBinder {
     init(view: ViewElement)
 
     func observe<T: Observation>(observable: T) -> ViewObserver<T.Element>
+    func observe<T: Command>(command: T) -> CommandObserver
 }
