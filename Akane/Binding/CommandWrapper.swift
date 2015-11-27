@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-public class CommandObserver {
+public class CommandWrapper {
     let command: Command
     let disposeBag: DisposeBag
 

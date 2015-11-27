@@ -20,7 +20,7 @@ import Bond
  - bindTo, to link the observation value with a view field/attribute
 
 */
-public class ViewObserver<E> {
+public class ObservationWrapper<E> {
     public typealias Element = E
 
     public private(set) var value: E!
@@ -67,36 +67,36 @@ public class ViewObserver<E> {
 
     /// Convert the observation value into a new value by applying the argument converter
     /// @param converter the converter type to use to transform the observation value
-    /// @returns a new ViewObserver whose observation is the current converted observation value
-    public func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> ViewObserver<T.ConvertValueType> {
+    /// @returns a new ObservationWrapper whose observation is the current converted observation value
+    public func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> ObservationWrapper<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convert(value)
         }
 
-        return ViewObserver<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ViewObserver<T.ConvertValueType> {
+    public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ObservationWrapper<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convert(value)
         }
 
-        return ViewObserver<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(converter: T.Type) -> ViewObserver<T.ValueType> {
+    public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(converter: T.Type) -> ObservationWrapper<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convertBack(value)
         }
 
-        return ViewObserver<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ObservationWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
-    public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ViewObserver<T.ValueType> {
+    public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ObservationWrapper<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convertBack(value)
         }
 
-        return ViewObserver<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
+        return ObservationWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 }

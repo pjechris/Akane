@@ -10,9 +10,12 @@ import Foundation
 import Bond
 
 /**
- Manage a UIView bindings. Those bindings can be of 2 sorts:
- - a ViewObserver, for bindings on ```Observation```
- - a CommandObserver, for bindings on ```Command```
+ Manage a ViewElement observations with its associated ViewModel. Those observations can be of 2 sorts:
+
+ - a Observation object
+ - a Command object
+
+ It then return a Wrapper for each one of them allowing you to plug them with the view.
 */
 class ViewBinderManager<View> : ViewBinder {
     typealias ViewElement = View
@@ -31,25 +34,25 @@ class ViewBinderManager<View> : ViewBinder {
         self.view = view
     }
 
-    func observe<T : Observation>(observable: T) -> ViewObserver<T.Element> {
-        let binding = ViewObserver<T.Element>(observable: observable, disposeBag: self.disposeBag)
-
-        self.bindings.append(binding.event)
-        return binding
-    }
-
-    func observe<T>(observable: Observable<T>) -> ViewObserver<T> {
-        let binding = ViewObserver<T>(event: observable, disposeBag: self.disposeBag)
-
-        self.bindings.append(binding.event)
-        return binding
-    }
-
-    func observe<T : Command>(command: T) -> CommandObserver {
-        return CommandObserver(command: command, disposeBag: self.disposeBag)
-    }
-
     func bind(viewModel: AnyObject?) {
         self.viewModel = viewModel
+    }
+
+    func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {
+        let binding = ObservationWrapper<T.Element>(observable: observable, disposeBag: self.disposeBag)
+
+        self.bindings.append(binding.event)
+        return binding
+    }
+
+    func observe<T>(observable: Observable<T>) -> ObservationWrapper<T> {
+        let binding = ObservationWrapper<T>(event: observable, disposeBag: self.disposeBag)
+
+        self.bindings.append(binding.event)
+        return binding
+    }
+
+    func observe<T : Command>(command: T) -> CommandWrapper {
+        return CommandWrapper(command: command, disposeBag: self.disposeBag)
     }
 }
