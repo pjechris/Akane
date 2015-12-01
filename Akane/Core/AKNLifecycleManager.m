@@ -15,9 +15,23 @@
 
 @interface AKNLifecycleManager ()
 @property(nonatomic, assign, nonnull)id<AKNPresenter>    presenter;
-
 - (UIView<AKNViewComponent> *)view;
 - (id<AKNViewModel>)viewModel;
+@end
+
+@interface AKNViewPresenterHolder : NSObject
+@property (weak, nonatomic) id<AKNPresenter> viewPresenter;
+@end
+
+@implementation AKNViewPresenterHolder
+
+- (id)initWithPresenter:(id<AKNPresenter>)viewPresenter {
+    if (self = [super init]) {
+        self.viewPresenter = viewPresenter;
+    }
+    return self;
+}
+
 @end
 
 @implementation AKNLifecycleManager
@@ -60,19 +74,22 @@
 - (void)viewComponent:(nonnull UIView<AKNViewComponent> *)view isBindedTo:(nullable id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"View component is %@ is not a descendant of view %@", view, [self view]);
-
-    id<AKNPresenter> viewPresenter = objc_getAssociatedObject(view, @selector(presenter));
-
+    
+    AKNViewPresenterHolder *holder = objc_getAssociatedObject(view, @selector(presenter));
+    id<AKNPresenter> viewPresenter = holder.viewPresenter;
+    
     if (!viewPresenter) {
         Class presenterClass = [self presenterClassForViewComponent:view] ?: AKNPresenterViewController.class;
-
+        
         viewPresenter = [[presenterClass alloc] initWithView:view];
-
-        objc_setAssociatedObject(view, @selector(presenter), viewPresenter, OBJC_ASSOCIATION_ASSIGN);
+        AKNViewPresenterHolder *holder = [[AKNViewPresenterHolder alloc] initWithPresenter:viewPresenter];
+        
+        objc_setAssociatedObject(view, @selector(presenter), holder, OBJC_ASSOCIATION_RETAIN);
         [self.presenter addPresenter:viewPresenter withViewModel:viewModel];
     }
-
+    
     [viewPresenter setupWithViewModel:viewModel];
+    
 }
 
 - (void)viewComponentWillAppear {
