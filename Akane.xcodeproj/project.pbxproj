@@ -11,6 +11,7 @@
 		3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */; };
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
+		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
 		492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E703E1BF0D2870006E59E /* ViewComponent.swift */; };
 		495EC5FD1C01CE7400EB7665 /* ViewBinderManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F51C01CE7400EB7665 /* ViewBinderManager.swift */; };
@@ -59,6 +60,7 @@
 		490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNLifecycleManager.m; sourceTree = "<group>"; };
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
+		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
 		4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
@@ -118,6 +120,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		490EEA191C08B79000DE194B /* Binding */ = {
+			isa = PBXGroup;
+			children = (
+				490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */,
+			);
+			path = Binding;
+			sourceTree = "<group>";
+		};
 		491705391C0279A100DD4284 /* Command */ = {
 			isa = PBXGroup;
 			children = (
@@ -166,6 +176,7 @@
 		4926EADA1A5EBCC0005A3D71 /* AkaneTests */ = {
 			isa = PBXGroup;
 			children = (
+				490EEA191C08B79000DE194B /* Binding */,
 				496EC0AD1A83BF6F008E623A /* Presenter */,
 				4926EAF61A5EBD27005A3D71 /* View */,
 				4926EAF81A5EBD27005A3D71 /* ViewModel */,
@@ -363,7 +374,7 @@
 		4926EAC31A5EBCBF005A3D71 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0700;
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0710;
 				ORGANIZATIONNAME = fr.akane;
 				TargetAttributes = {
@@ -521,6 +532,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -667,6 +679,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_TESTABILITY = YES;
@@ -684,6 +697,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
