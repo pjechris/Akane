@@ -9,5 +9,5 @@
 import Foundation
 
 public protocol ViewComponent : AKNViewComponent {
-    func bindings<T: ViewBinder>(binder: T)
+    func bindings(observer: ViewObserver, viewModel: AnyObject)
 }

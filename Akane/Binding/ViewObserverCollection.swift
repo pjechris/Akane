@@ -17,25 +17,18 @@ import Bond
 
  It then return a Wrapper for each one of them allowing you to plug them with the view.
 */
-class ViewBinderManager<View> : ViewBinder {
-    typealias ViewElement = View
-
-    internal var viewModel: AnyObject? {
-        willSet {
-            self.disposeBag = CompositeDisposable()
-            self.bindings.removeAll()
-        }
-    }
-    private let view: ViewElement
+class ViewObserverCollection : ViewObserver, Dispose {
+    var count: Int { return self.bindings.count }
     private var disposeBag: DisposeBag!
-    private var bindings:[AnyObject] = []
+    private(set) var bindings:[AnyObject] = []
 
-    required init(view: ViewElement) {
-        self.view = view
+    init() {
+        self.disposeBag = CompositeDisposable()
     }
 
-    func bind(viewModel: AnyObject?) {
-        self.viewModel = viewModel
+    func dispose() {
+        self.disposeBag.dispose()
+        self.bindings.removeAll()
     }
 
     func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {

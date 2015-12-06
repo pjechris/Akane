@@ -11,8 +11,8 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public extension AKNLifecycleManager {
-    private var binder: ViewBinderManager<ViewComponent>! {
-        get { return objc_getAssociatedObject(self, &BinderAttribute) as? ViewBinderManager<ViewComponent> }
+    private var binder: ViewObserverCollection! {
+        get { return objc_getAssociatedObject(self, &BinderAttribute) as? ViewObserverCollection }
         set { objc_setAssociatedObject(self, &BinderAttribute, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
@@ -21,15 +21,14 @@ public extension AKNLifecycleManager {
         let view = self.view() as! AKNViewComponent
 
         view.componentDelegate = self;
-        view.bind?(self.viewModel());
+        view.bind?(self.viewModel()) // BC <= 0.11
 
         if let view = view as? ViewComponent {
-            if self.binder == nil {
-                self.binder = ViewBinderManager(view: view)
-            }
+            self.binder = ViewObserverCollection()
 
-            binder.bind(self.viewModel())
-            view.bindings(binder)
+            if let viewModel = self.viewModel() {
+                view.bindings(binder, viewModel: viewModel)
+            }
         }
     }
 }
