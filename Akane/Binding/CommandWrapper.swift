@@ -19,10 +19,11 @@ public class CommandWrapper {
     }
 
     public func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
+        let command = self.command
         let enabled = command.canExecute.bindTo(control.bnd_enabled)
         let action = control.bnd_controlEvent
             .filter { $0 == events }
-            .observe { [unowned control] _ in self.command.execute(control) }
+            .observe { [unowned control] _ in command.execute(control) }
 
         self.disposeBag.addDisposable(BondDisposeAdapter(enabled))
         self.disposeBag.addDisposable(BondDisposeAdapter(action))

@@ -12,6 +12,7 @@
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
 		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
+		492A189D1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */; };
 		492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E703E1BF0D2870006E59E /* ViewComponent.swift */; };
 		495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */; };
@@ -71,6 +72,7 @@
 		4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModel.h; sourceTree = "<group>"; };
 		4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollectionSpec.swift; sourceTree = "<group>"; };
 		492E703E1BF0D2870006E59E /* ViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
 		493A99271B5167DB00261401 /* AKNViewComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKNViewComponent.h; sourceTree = "<group>"; };
 		495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDisposeAdapter.swift; sourceTree = "<group>"; };
@@ -126,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */,
+				492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -537,6 +540,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */,
+				492A189D1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
