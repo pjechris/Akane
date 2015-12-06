@@ -20,22 +20,3 @@ class BondDisposeAdapter : Dispose {
         self.disposable.dispose()
     }
 }
-
-extension Bond.Observable : Observation {
-    public typealias Element = EventType
-
-    public func observe(observer: Element -> ()) -> Dispose {
-        let dispose: DisposableType = self.observe { value in
-            observer(value)
-        }
-
-        return BondDisposeAdapter(dispose)
-    }
-}
-
-extension Bond.Observable : Akane.Bindable {
-
-    public func advance() -> (Element -> Void) {
-        return self.sink(nil)
-    }
-}
