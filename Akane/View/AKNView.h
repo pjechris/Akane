@@ -16,18 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AKNView<ViewModelType: id<AKNViewModel>> : UIView<AKNViewComponent>
 
-@property(nonatomic, weak)ViewModelType  viewModel;
-
-/**
- * @brief configure the view with data
- * Default implementation of this method do nothing. Override the method to set bindings, commands and subpresenter
- * views on the view
- *
- * You should not call this method directly
- */
-- (void)configure;
-
-- (void)bind:(nullable ViewModelType)viewModel NS_REQUIRES_SUPER;
+- (void)bind:(nullable ViewModelType)viewModel;
 
 - (void)bind:(nullable id<AKNViewModel>)viewModel to:(nullable UIView<AKNViewComponent> *)viewComponent NS_REQUIRES_SUPER;
 

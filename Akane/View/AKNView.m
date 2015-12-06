@@ -14,25 +14,7 @@
 
 @synthesize componentDelegate   = _componentDelegate;
 
-- (void)setViewModel:(id<AKNViewModel>)viewModel {
-    if (_viewModel == viewModel) {
-        return;
-    }
-
-    _viewModel = viewModel;
-
-    // BC
-    // FIXME Remove this line of code
-    [self configure];
-}
-
-- (void)configure {
-    // Default implementation do nothing
-}
-
 - (void)bind:(nullable id<AKNViewModel>)viewModel {
-    // BC => will be removed!
-    self.viewModel = viewModel;
 }
 
 - (void)bind:(nullable id<AKNViewModel>)viewModel to:(nullable UIView<AKNViewComponent> *)viewComponent {

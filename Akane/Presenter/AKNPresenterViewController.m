@@ -12,7 +12,6 @@
 #import <Akane/Akane-Swift.h>
 
 @interface AKNPresenterViewController ()
-@property(nonatomic, strong, nullable)UIView                        *componentView;
 @property(nonatomic, strong, nullable)id<AKNViewModel>              viewModel;
 @property(nonatomic, strong, null_unspecified)AKNLifecycleManager   *lifecycleManager;
 @property(nonatomic, assign)BOOL                                    awaken;
@@ -27,7 +26,6 @@
         return nil;
     }
 
-    self.componentView = view;
     [self viewDidLoad];
 
     return self;
@@ -99,17 +97,6 @@
             [viewController didMoveToParentViewController:self];
         }
     }
-}
-
-/**
- * Using a 3rd party view otherwise we get some glitches on iOS7 when calling addChildViewController:
- */
-- (UIView *)view {
-    return self.componentView ?: [super view];
-}
-
-- (BOOL)isViewLoaded {
-    return self.componentView ? YES : [super isViewLoaded];
 }
 
 

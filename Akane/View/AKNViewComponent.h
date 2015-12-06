@@ -9,7 +9,6 @@
 #import <UIKit/UIKit.h>
 #import "AKNViewModelAware.h"
 
-@class AKNLifecycleManager;
 @protocol AKNViewComponent;
 @protocol AKNViewModel;
 @protocol AKNPresenter;
@@ -25,19 +24,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@protocol AKNViewComponent <AKNViewModelAware>
+@protocol AKNViewComponent
 
-@property(nonatomic, weak, nullable)id<AKNViewModel>                      viewModel;
 @property(nonatomic, weak, nullable)id<AKNViewComponentDelegate>          componentDelegate;
-
-/**
- * @brief configure the view with data
- * Default implementation of this method do nothing. Override the method to set bindings, commands and subpresenter
- * views on the view
- *
- * You should not call this method directly
- */
-- (void)configure;
 
 @optional
 
