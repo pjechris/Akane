@@ -7,77 +7,42 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		30FA0D7DB5315D199E252812 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
-		4250F3DD1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3DC1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m */; };
-		4250F3E11AD8FEC80085B218 /* UICollectionView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E01AD8FEC80085B218 /* UICollectionView+Adapter.m */; };
-		4250F3E41AD8FF7E0085B218 /* AKNCollectionViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E31AD8FF7E0085B218 /* AKNCollectionViewAdapter.m */; };
-		4250F3ED1AD9109B0085B218 /* AKNCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EA1AD9109B0085B218 /* AKNCollectionView.m */; };
-		4250F3EE1AD9109B0085B218 /* AKNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EC1AD9109B0085B218 /* AKNCollectionViewCell.m */; };
-		4294E9FB1C172E0000F385BB /* AkaneDynamic.h in Headers */ = {isa = PBXBuildFile; fileRef = 4294E9FA1C172E0000F385BB /* AkaneDynamic.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4294EA001C172E2100F385BB /* AKNLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */; };
-		4294EA011C172E2100F385BB /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */; };
-		4294EA021C172E2100F385BB /* AKNCollectionViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E31AD8FF7E0085B218 /* AKNCollectionViewAdapter.m */; };
-		4294EA031C172E2100F385BB /* UICollectionView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E01AD8FEC80085B218 /* UICollectionView+Adapter.m */; };
-		4294EA041C172E2100F385BB /* AKNArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49717DF11A88EE760021834B /* AKNArrayDataSource.m */; };
-		4294EA051C172E2100F385BB /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
-		4294EA061C172E2100F385BB /* AKNTableViewAdapteriOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 4992F6251AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m */; };
-		4294EA071C172E2100F385BB /* AKNCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0401BD5530700C911C3 /* AKNCollectionReusableView.m */; };
-		4294EA081C172E2100F385BB /* AKNCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EA1AD9109B0085B218 /* AKNCollectionView.m */; };
-		4294EA091C172E2100F385BB /* AKNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EC1AD9109B0085B218 /* AKNCollectionViewCell.m */; };
-		4294EA0A1C172E2100F385BB /* AKNReusableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB281AC080D10095B126 /* AKNReusableViewHandler.m */; };
-		4294EA0B1C172E2100F385BB /* AKNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A7FCE41AA0AA15001B4F69 /* AKNTableView.m */; };
-		4294EA0C1C172E2100F385BB /* AKNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C742901AAB6CC900169877 /* AKNTableViewCell.m */; };
-		4294EA0D1C172E2100F385BB /* AKNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAEC1A5EBD17005A3D71 /* AKNView.m */; };
-		4294EA0E1C172E2100F385BB /* AKNViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB211AC07A990095B126 /* AKNViewHelper.m */; };
-		4294EA0F1C172E2100F385BB /* UICollectionReusableView+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0431BD553A600C911C3 /* UICollectionReusableView+AKNReusableView.m */; };
-		4294EA101C172E2100F385BB /* UICollectionViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3DC1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m */; };
-		4294EA111C172E2100F385BB /* UITableViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB251AC080310095B126 /* UITableViewCell+AKNReusableView.m */; };
-		4294EA121C172E2100F385BB /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
-		4294EA131C172E2800F385BB /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
-		490ED8871AE26B9D00C2E66C /* AKNLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */; };
-		4926EAD71A5EBCBF005A3D71 /* libAkane.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4926EACB1A5EBCBF005A3D71 /* libAkane.a */; };
-		4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */; };
-		4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAEC1A5EBD17005A3D71 /* AKNView.m */; };
-		4926EAFA1A5EBD27005A3D71 /* AKNViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */; };
-		496EC0AF1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */; };
-		49717DF31A88EE760021834B /* AKNArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49717DF11A88EE760021834B /* AKNArrayDataSource.m */; };
-		4984BB221AC07A990095B126 /* AKNViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB211AC07A990095B126 /* AKNViewHelper.m */; };
-		4984BB261AC080310095B126 /* UITableViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB251AC080310095B126 /* UITableViewCell+AKNReusableView.m */; };
-		4984BB291AC080D10095B126 /* AKNReusableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB281AC080D10095B126 /* AKNReusableViewHandler.m */; };
-		4984D0411BD5530700C911C3 /* AKNCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0401BD5530700C911C3 /* AKNCollectionReusableView.m */; };
-		4984D0441BD553A600C911C3 /* UICollectionReusableView+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0431BD553A600C911C3 /* UICollectionReusableView+AKNReusableView.m */; };
-		4992F6261AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 4992F6251AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m */; };
-		49A159F51A90F04B00C2891F /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
-		49A7FCE51AA0AA15001B4F69 /* AKNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A7FCE41AA0AA15001B4F69 /* AKNTableView.m */; };
-		49C742911AAB6CC900169877 /* AKNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C742901AAB6CC900169877 /* AKNTableViewCell.m */; };
-		49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
-		49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
-		4F39AA18351B181505EB23A9 /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
-		531BCDD54CCFFC03709374EC /* libPods-Akane.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C7FD8E3053F3055B2F0551 /* libPods-Akane.a */; };
-		A2409312B59B732DE9FAB0D4 /* libPods-AkaneDynamic.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E0B3A87A431D34104D32CBC6 /* libPods-AkaneDynamic.a */; };
+		4294EA321C1735B500F385BB /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4294EA281C1735B500F385BB /* Akane.framework */; };
+		4294EA3F1C1735DA00F385BB /* AKNLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */; };
+		4294EA401C1735DA00F385BB /* AKNPresenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */; };
+		4294EA411C1735DA00F385BB /* AKNCollectionViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E31AD8FF7E0085B218 /* AKNCollectionViewAdapter.m */; };
+		4294EA421C1735DA00F385BB /* UICollectionView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3E01AD8FEC80085B218 /* UICollectionView+Adapter.m */; };
+		4294EA431C1735DA00F385BB /* AKNArrayDataSource.m in Sources */ = {isa = PBXBuildFile; fileRef = 49717DF11A88EE760021834B /* AKNArrayDataSource.m */; };
+		4294EA441C1735DA00F385BB /* AKNTableViewAdapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA75F1A839BEC00B0FC82 /* AKNTableViewAdapter.m */; };
+		4294EA451C1735DA00F385BB /* AKNTableViewAdapteriOS7.m in Sources */ = {isa = PBXBuildFile; fileRef = 4992F6251AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m */; };
+		4294EA461C1735DA00F385BB /* UITableView+Adapter.m in Sources */ = {isa = PBXBuildFile; fileRef = 49CCA7611A839BEC00B0FC82 /* UITableView+Adapter.m */; };
+		4294EA471C1735DA00F385BB /* AKNCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0401BD5530700C911C3 /* AKNCollectionReusableView.m */; };
+		4294EA481C1735DA00F385BB /* AKNCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EA1AD9109B0085B218 /* AKNCollectionView.m */; };
+		4294EA491C1735DA00F385BB /* AKNCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3EC1AD9109B0085B218 /* AKNCollectionViewCell.m */; };
+		4294EA4A1C1735DA00F385BB /* AKNReusableViewHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB281AC080D10095B126 /* AKNReusableViewHandler.m */; };
+		4294EA4B1C1735DA00F385BB /* AKNTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A7FCE41AA0AA15001B4F69 /* AKNTableView.m */; };
+		4294EA4C1C1735DA00F385BB /* AKNTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 49C742901AAB6CC900169877 /* AKNTableViewCell.m */; };
+		4294EA4D1C1735DA00F385BB /* AKNView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAEC1A5EBD17005A3D71 /* AKNView.m */; };
+		4294EA4E1C1735DA00F385BB /* AKNViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB211AC07A990095B126 /* AKNViewHelper.m */; };
+		4294EA4F1C1735DA00F385BB /* UICollectionReusableView+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984D0431BD553A600C911C3 /* UICollectionReusableView+AKNReusableView.m */; };
+		4294EA501C1735DA00F385BB /* UICollectionViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4250F3DC1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m */; };
+		4294EA511C1735DA00F385BB /* UITableViewCell+AKNReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB251AC080310095B126 /* UITableViewCell+AKNReusableView.m */; };
+		4294EA521C1735DA00F385BB /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
+		4294EA531C17362300F385BB /* AKNPresenterViewControllerSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 496EC0AE1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m */; };
+		4294EA541C17362300F385BB /* AKNViewSpec.m in Sources */ = {isa = PBXBuildFile; fileRef = 4926EAF71A5EBD27005A3D71 /* AKNViewSpec.m */; };
+		79FFC5EA7B3309A439A039B7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6578808C14FC427CF464ABA6 /* libPods.a */; };
+		967B15B5FC04C89E29629F57 /* libPods-AkaneTests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E6651925DB1C9F5D65594E50 /* libPods-AkaneTests.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		4926EAD81A5EBCBF005A3D71 /* PBXContainerItemProxy */ = {
+		4294EA331C1735B500F385BB /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4926EAC31A5EBCBF005A3D71 /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 4926EACA1A5EBCBF005A3D71;
+			remoteGlobalIDString = 4294EA271C1735B500F385BB;
 			remoteInfo = Akane;
 		};
 /* End PBXContainerItemProxy section */
-
-/* Begin PBXCopyFilesBuildPhase section */
-		4926EAC91A5EBCBF005A3D71 /* CopyFiles */ = {
-			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 2147483647;
-			dstPath = "include/$(PRODUCT_NAME)";
-			dstSubfolderSpec = 16;
-			files = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
@@ -94,14 +59,11 @@
 		4250F3EA1AD9109B0085B218 /* AKNCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNCollectionView.m; sourceTree = "<group>"; };
 		4250F3EB1AD9109B0085B218 /* AKNCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNCollectionViewCell.h; sourceTree = "<group>"; };
 		4250F3EC1AD9109B0085B218 /* AKNCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNCollectionViewCell.m; sourceTree = "<group>"; };
-		4294E9F81C172E0000F385BB /* AkaneDynamic.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AkaneDynamic.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		4294E9FA1C172E0000F385BB /* AkaneDynamic.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AkaneDynamic.h; sourceTree = "<group>"; };
-		4294E9FC1C172E0000F385BB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4294EA281C1735B500F385BB /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4294EA311C1735B500F385BB /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNLifecycleManager.h; sourceTree = "<group>"; };
 		490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNLifecycleManager.m; sourceTree = "<group>"; };
-		4926EACB1A5EBCBF005A3D71 /* libAkane.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libAkane.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		4926EAD61A5EBCBF005A3D71 /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
 		4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
@@ -153,29 +115,20 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		4294E9F41C172E0000F385BB /* Frameworks */ = {
+		4294EA241C1735B500F385BB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A2409312B59B732DE9FAB0D4 /* libPods-AkaneDynamic.a in Frameworks */,
+				79FFC5EA7B3309A439A039B7 /* libPods.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4926EAC81A5EBCBF005A3D71 /* Frameworks */ = {
+		4294EA2E1C1735B500F385BB /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				30FA0D7DB5315D199E252812 /* libPods.a in Frameworks */,
-				531BCDD54CCFFC03709374EC /* libPods-Akane.a in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4926EAD31A5EBCBF005A3D71 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				4926EAD71A5EBCBF005A3D71 /* libAkane.a in Frameworks */,
-				4F39AA18351B181505EB23A9 /* libPods-AkaneTests.a in Frameworks */,
+				4294EA321C1735B500F385BB /* Akane.framework in Frameworks */,
+				967B15B5FC04C89E29629F57 /* libPods-AkaneTests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,21 +166,11 @@
 			path = Collection;
 			sourceTree = "<group>";
 		};
-		4294E9F91C172E0000F385BB /* AkaneDynamic */ = {
-			isa = PBXGroup;
-			children = (
-				4294E9FA1C172E0000F385BB /* AkaneDynamic.h */,
-				4294E9FC1C172E0000F385BB /* Info.plist */,
-			);
-			path = AkaneDynamic;
-			sourceTree = "<group>";
-		};
 		4926EAC21A5EBCBF005A3D71 = {
 			isa = PBXGroup;
 			children = (
 				4926EACD1A5EBCBF005A3D71 /* Akane */,
 				4926EADA1A5EBCC0005A3D71 /* AkaneTests */,
-				4294E9F91C172E0000F385BB /* AkaneDynamic */,
 				4926EACC1A5EBCBF005A3D71 /* Products */,
 				E506DFC8C5467B7BF04E2DE7 /* Pods */,
 				771E527F440EEBC1A3FAD0EC /* Frameworks */,
@@ -237,9 +180,8 @@
 		4926EACC1A5EBCBF005A3D71 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4926EACB1A5EBCBF005A3D71 /* libAkane.a */,
-				4926EAD61A5EBCBF005A3D71 /* AkaneTests.xctest */,
-				4294E9F81C172E0000F385BB /* AkaneDynamic.framework */,
+				4294EA281C1735B500F385BB /* Akane.framework */,
+				4294EA311C1735B500F385BB /* AkaneTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -445,46 +387,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		4294E9F51C172E0000F385BB /* Headers */ = {
+		4294EA251C1735B500F385BB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4294E9FB1C172E0000F385BB /* AkaneDynamic.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		4294E9F71C172E0000F385BB /* AkaneDynamic */ = {
+		4294EA271C1735B500F385BB /* Akane */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4294E9FF1C172E0000F385BB /* Build configuration list for PBXNativeTarget "AkaneDynamic" */;
+			buildConfigurationList = 4294EA391C1735B500F385BB /* Build configuration list for PBXNativeTarget "Akane" */;
 			buildPhases = (
-				CBC068F701140AAB9A55D122 /* Check Pods Manifest.lock */,
-				4294E9F31C172E0000F385BB /* Sources */,
-				4294E9F41C172E0000F385BB /* Frameworks */,
-				4294E9F51C172E0000F385BB /* Headers */,
-				4294E9F61C172E0000F385BB /* Resources */,
-				999C4C33DBB5215D369E94C1 /* Copy Pods Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-			);
-			name = AkaneDynamic;
-			productName = AkaneDynamic;
-			productReference = 4294E9F81C172E0000F385BB /* AkaneDynamic.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		4926EACA1A5EBCBF005A3D71 /* Akane */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 4926EADF1A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "Akane" */;
-			buildPhases = (
-				C34889B97E63C18BBF0CE438 /* Check Pods Manifest.lock */,
-				4926EAC71A5EBCBF005A3D71 /* Sources */,
-				4926EAC81A5EBCBF005A3D71 /* Frameworks */,
-				4926EAC91A5EBCBF005A3D71 /* CopyFiles */,
-				84C3262690D47C33B9EB783F /* Copy Pods Resources */,
+				0ECE5D516E74DAA8D5A37711 /* Check Pods Manifest.lock */,
+				4294EA231C1735B500F385BB /* Sources */,
+				4294EA241C1735B500F385BB /* Frameworks */,
+				4294EA251C1735B500F385BB /* Headers */,
+				4294EA261C1735B500F385BB /* Resources */,
+				17C431AF44CFCC2DF8EFEAD9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -492,27 +414,27 @@
 			);
 			name = Akane;
 			productName = Akane;
-			productReference = 4926EACB1A5EBCBF005A3D71 /* libAkane.a */;
-			productType = "com.apple.product-type.library.static";
+			productReference = 4294EA281C1735B500F385BB /* Akane.framework */;
+			productType = "com.apple.product-type.framework";
 		};
-		4926EAD51A5EBCBF005A3D71 /* AkaneTests */ = {
+		4294EA301C1735B500F385BB /* AkaneTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4926EAE21A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "AkaneTests" */;
+			buildConfigurationList = 4294EA3C1C1735B500F385BB /* Build configuration list for PBXNativeTarget "AkaneTests" */;
 			buildPhases = (
-				D24308BC38A0C500CBFE590E /* Check Pods Manifest.lock */,
-				4926EAD21A5EBCBF005A3D71 /* Sources */,
-				4926EAD31A5EBCBF005A3D71 /* Frameworks */,
-				4926EAD41A5EBCBF005A3D71 /* Resources */,
-				9826759A75C8403B74A69446 /* Copy Pods Resources */,
+				2C50CD560145A489EA584E0F /* Check Pods Manifest.lock */,
+				4294EA2D1C1735B500F385BB /* Sources */,
+				4294EA2E1C1735B500F385BB /* Frameworks */,
+				4294EA2F1C1735B500F385BB /* Resources */,
+				5CBE302352C880EEEA7EC687 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4926EAD91A5EBCBF005A3D71 /* PBXTargetDependency */,
+				4294EA341C1735B500F385BB /* PBXTargetDependency */,
 			);
 			name = AkaneTests;
 			productName = AkaneTests;
-			productReference = 4926EAD61A5EBCBF005A3D71 /* AkaneTests.xctest */;
+			productReference = 4294EA311C1735B500F385BB /* AkaneTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
@@ -524,14 +446,11 @@
 				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = fr.akane;
 				TargetAttributes = {
-					4294E9F71C172E0000F385BB = {
+					4294EA271C1735B500F385BB = {
 						CreatedOnToolsVersion = 7.1;
 					};
-					4926EACA1A5EBCBF005A3D71 = {
-						CreatedOnToolsVersion = 6.1;
-					};
-					4926EAD51A5EBCBF005A3D71 = {
-						CreatedOnToolsVersion = 6.1;
+					4294EA301C1735B500F385BB = {
+						CreatedOnToolsVersion = 7.1;
 					};
 				};
 			};
@@ -547,22 +466,21 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4926EACA1A5EBCBF005A3D71 /* Akane */,
-				4926EAD51A5EBCBF005A3D71 /* AkaneTests */,
-				4294E9F71C172E0000F385BB /* AkaneDynamic */,
+				4294EA271C1735B500F385BB /* Akane */,
+				4294EA301C1735B500F385BB /* AkaneTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
-		4294E9F61C172E0000F385BB /* Resources */ = {
+		4294EA261C1735B500F385BB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4926EAD41A5EBCBF005A3D71 /* Resources */ = {
+		4294EA2F1C1735B500F385BB /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -572,7 +490,22 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		84C3262690D47C33B9EB783F /* Copy Pods Resources */ = {
+		0ECE5D516E74DAA8D5A37711 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		17C431AF44CFCC2DF8EFEAD9 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -584,10 +517,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Akane/Pods-Akane-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9826759A75C8403B74A69446 /* Copy Pods Resources */ = {
+		2C50CD560145A489EA584E0F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		5CBE302352C880EEEA7EC687 /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -602,146 +550,59 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		999C4C33DBB5215D369E94C1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneDynamic/Pods-AkaneDynamic-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		C34889B97E63C18BBF0CE438 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		CBC068F701140AAB9A55D122 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		D24308BC38A0C500CBFE590E /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
-		4294E9F31C172E0000F385BB /* Sources */ = {
+		4294EA231C1735B500F385BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4294EA131C172E2800F385BB /* UITableView+Adapter.m in Sources */,
-				4294EA001C172E2100F385BB /* AKNLifecycleManager.m in Sources */,
-				4294EA011C172E2100F385BB /* AKNPresenterViewController.m in Sources */,
-				4294EA021C172E2100F385BB /* AKNCollectionViewAdapter.m in Sources */,
-				4294EA031C172E2100F385BB /* UICollectionView+Adapter.m in Sources */,
-				4294EA041C172E2100F385BB /* AKNArrayDataSource.m in Sources */,
-				4294EA051C172E2100F385BB /* AKNTableViewAdapter.m in Sources */,
-				4294EA061C172E2100F385BB /* AKNTableViewAdapteriOS7.m in Sources */,
-				4294EA071C172E2100F385BB /* AKNCollectionReusableView.m in Sources */,
-				4294EA081C172E2100F385BB /* AKNCollectionView.m in Sources */,
-				4294EA091C172E2100F385BB /* AKNCollectionViewCell.m in Sources */,
-				4294EA0A1C172E2100F385BB /* AKNReusableViewHandler.m in Sources */,
-				4294EA0B1C172E2100F385BB /* AKNTableView.m in Sources */,
-				4294EA0C1C172E2100F385BB /* AKNTableViewCell.m in Sources */,
-				4294EA0D1C172E2100F385BB /* AKNView.m in Sources */,
-				4294EA0E1C172E2100F385BB /* AKNViewHelper.m in Sources */,
-				4294EA0F1C172E2100F385BB /* UICollectionReusableView+AKNReusableView.m in Sources */,
-				4294EA101C172E2100F385BB /* UICollectionViewCell+AKNReusableView.m in Sources */,
-				4294EA111C172E2100F385BB /* UITableViewCell+AKNReusableView.m in Sources */,
-				4294EA121C172E2100F385BB /* AKNViewModel.m in Sources */,
+				4294EA3F1C1735DA00F385BB /* AKNLifecycleManager.m in Sources */,
+				4294EA401C1735DA00F385BB /* AKNPresenterViewController.m in Sources */,
+				4294EA411C1735DA00F385BB /* AKNCollectionViewAdapter.m in Sources */,
+				4294EA421C1735DA00F385BB /* UICollectionView+Adapter.m in Sources */,
+				4294EA431C1735DA00F385BB /* AKNArrayDataSource.m in Sources */,
+				4294EA441C1735DA00F385BB /* AKNTableViewAdapter.m in Sources */,
+				4294EA451C1735DA00F385BB /* AKNTableViewAdapteriOS7.m in Sources */,
+				4294EA461C1735DA00F385BB /* UITableView+Adapter.m in Sources */,
+				4294EA471C1735DA00F385BB /* AKNCollectionReusableView.m in Sources */,
+				4294EA481C1735DA00F385BB /* AKNCollectionView.m in Sources */,
+				4294EA491C1735DA00F385BB /* AKNCollectionViewCell.m in Sources */,
+				4294EA4A1C1735DA00F385BB /* AKNReusableViewHandler.m in Sources */,
+				4294EA4B1C1735DA00F385BB /* AKNTableView.m in Sources */,
+				4294EA4C1C1735DA00F385BB /* AKNTableViewCell.m in Sources */,
+				4294EA4D1C1735DA00F385BB /* AKNView.m in Sources */,
+				4294EA4E1C1735DA00F385BB /* AKNViewHelper.m in Sources */,
+				4294EA4F1C1735DA00F385BB /* UICollectionReusableView+AKNReusableView.m in Sources */,
+				4294EA501C1735DA00F385BB /* UICollectionViewCell+AKNReusableView.m in Sources */,
+				4294EA511C1735DA00F385BB /* UITableViewCell+AKNReusableView.m in Sources */,
+				4294EA521C1735DA00F385BB /* AKNViewModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		4926EAC71A5EBCBF005A3D71 /* Sources */ = {
+		4294EA2D1C1735B500F385BB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4926EAF21A5EBD17005A3D71 /* AKNPresenterViewController.m in Sources */,
-				4984BB291AC080D10095B126 /* AKNReusableViewHandler.m in Sources */,
-				4984BB221AC07A990095B126 /* AKNViewHelper.m in Sources */,
-				49CCA7631A839BEC00B0FC82 /* UITableView+Adapter.m in Sources */,
-				4984BB261AC080310095B126 /* UITableViewCell+AKNReusableView.m in Sources */,
-				49C742911AAB6CC900169877 /* AKNTableViewCell.m in Sources */,
-				4926EAF31A5EBD17005A3D71 /* AKNView.m in Sources */,
-				4250F3E41AD8FF7E0085B218 /* AKNCollectionViewAdapter.m in Sources */,
-				49A159F51A90F04B00C2891F /* AKNViewModel.m in Sources */,
-				4250F3EE1AD9109B0085B218 /* AKNCollectionViewCell.m in Sources */,
-				4250F3E11AD8FEC80085B218 /* UICollectionView+Adapter.m in Sources */,
-				490ED8871AE26B9D00C2E66C /* AKNLifecycleManager.m in Sources */,
-				4984D0441BD553A600C911C3 /* UICollectionReusableView+AKNReusableView.m in Sources */,
-				4250F3DD1AD8FA2F0085B218 /* UICollectionViewCell+AKNReusableView.m in Sources */,
-				49717DF31A88EE760021834B /* AKNArrayDataSource.m in Sources */,
-				49A7FCE51AA0AA15001B4F69 /* AKNTableView.m in Sources */,
-				4992F6261AB6193E00E53BE5 /* AKNTableViewAdapteriOS7.m in Sources */,
-				4984D0411BD5530700C911C3 /* AKNCollectionReusableView.m in Sources */,
-				49CCA7621A839BEC00B0FC82 /* AKNTableViewAdapter.m in Sources */,
-				4250F3ED1AD9109B0085B218 /* AKNCollectionView.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		4926EAD21A5EBCBF005A3D71 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				496EC0AF1A83BF6F008E623A /* AKNPresenterViewControllerSpec.m in Sources */,
-				4926EAFA1A5EBD27005A3D71 /* AKNViewSpec.m in Sources */,
+				4294EA531C17362300F385BB /* AKNPresenterViewControllerSpec.m in Sources */,
+				4294EA541C17362300F385BB /* AKNViewSpec.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		4926EAD91A5EBCBF005A3D71 /* PBXTargetDependency */ = {
+		4294EA341C1735B500F385BB /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4926EACA1A5EBCBF005A3D71 /* Akane */;
-			targetProxy = 4926EAD81A5EBCBF005A3D71 /* PBXContainerItemProxy */;
+			target = 4294EA271C1735B500F385BB /* Akane */;
+			targetProxy = 4294EA331C1735B500F385BB /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		4294E9FD1C172E0000F385BB /* Debug */ = {
+		4294EA3A1C1735B500F385BB /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7CE67E28F4E293EBB8F77744 /* Pods-AkaneDynamic.debug.xcconfig */;
+			baseConfigurationReference = 1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -752,11 +613,11 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = AkaneDynamic/Info.plist;
+				INFOPLIST_FILE = Akane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneDynamic;
+				PRODUCT_BUNDLE_IDENTIFIER = Akane.Akane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -765,9 +626,9 @@
 			};
 			name = Debug;
 		};
-		4294E9FE1C172E0000F385BB /* Release */ = {
+		4294EA3B1C1735B500F385BB /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2D58335FA94F8613003683C3 /* Pods-AkaneDynamic.release.xcconfig */;
+			baseConfigurationReference = 92916FE046C17A4982A5879D /* Pods.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
@@ -778,16 +639,48 @@
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				GCC_NO_COMMON_BLOCKS = YES;
-				INFOPLIST_FILE = AkaneDynamic/Info.plist;
+				INFOPLIST_FILE = Akane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneDynamic;
+				PRODUCT_BUNDLE_IDENTIFIER = Akane.Akane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		4294EA3D1C1735B500F385BB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = AkaneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4294EA3E1C1735B500F385BB /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_NO_COMMON_BLOCKS = YES;
+				INFOPLIST_FILE = AkaneTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
 		};
@@ -865,64 +758,23 @@
 			};
 			name = Release;
 		};
-		4926EAE01A5EBCC0005A3D71 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1EFA234996800D46DED10E7F /* Pods.debug.xcconfig */;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Debug;
-		};
-		4926EAE11A5EBCC0005A3D71 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 92916FE046C17A4982A5879D /* Pods.release.xcconfig */;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SKIP_INSTALL = YES;
-			};
-			name = Release;
-		};
-		4926EAE31A5EBCC0005A3D71 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AkaneTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		4926EAE41A5EBCC0005A3D71 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = AkaneTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		4294E9FF1C172E0000F385BB /* Build configuration list for PBXNativeTarget "AkaneDynamic" */ = {
+		4294EA391C1735B500F385BB /* Build configuration list for PBXNativeTarget "Akane" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				4294E9FD1C172E0000F385BB /* Debug */,
-				4294E9FE1C172E0000F385BB /* Release */,
+				4294EA3A1C1735B500F385BB /* Debug */,
+				4294EA3B1C1735B500F385BB /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4294EA3C1C1735B500F385BB /* Build configuration list for PBXNativeTarget "AkaneTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4294EA3D1C1735B500F385BB /* Debug */,
+				4294EA3E1C1735B500F385BB /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -932,24 +784,6 @@
 			buildConfigurations = (
 				4926EADD1A5EBCC0005A3D71 /* Debug */,
 				4926EADE1A5EBCC0005A3D71 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4926EADF1A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "Akane" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4926EAE01A5EBCC0005A3D71 /* Debug */,
-				4926EAE11A5EBCC0005A3D71 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		4926EAE21A5EBCC0005A3D71 /* Build configuration list for PBXNativeTarget "AkaneTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				4926EAE31A5EBCC0005A3D71 /* Debug */,
-				4926EAE41A5EBCC0005A3D71 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
