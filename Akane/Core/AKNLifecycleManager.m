@@ -14,7 +14,6 @@
 #import <objc/runtime.h>
 
 @interface AKNLifecycleManager ()
-@property(nonatomic, assign, nonnull)id<AKNPresenter>    presenter;
 - (UIView<AKNViewComponent> *)view;
 - (id<AKNViewModel>)viewModel;
 @end
@@ -46,7 +45,7 @@
     return self;
 }
 
-- (void)mount {
+- (void)mountOnce {
     NSNumber *isMounted = objc_getAssociatedObject(self.viewModel, @selector(willMount));
 
     if (![isMounted boolValue] && [self.viewModel respondsToSelector:@selector(willMount)]) {
@@ -55,14 +54,9 @@
     }
 }
 
-- (void)unmount {
-    if ([self.viewModel respondsToSelector:@selector(willUnmount)]) {
-        [self.viewModel willUnmount];
-    }
-}
-
 #pragma mark - View Component delegate
 
+// TODO remove this method
 - (void)viewComponent:(nonnull UIView<AKNViewComponent> *)view isBindedTo:(nullable id<AKNViewModel>)viewModel {
     NSAssert(!view.window || [view isDescendantOfView:[self view]],
              @"View component is %@ is not a descendant of view %@", view, [self view]);
@@ -85,7 +79,7 @@
 }
 
 - (void)viewComponentWillAppear {
-    [self mount];
+    [self mountOnce];
 }
 
 #pragma mark - Internal

@@ -17,6 +17,19 @@ public extension AKNLifecycleManager {
     }
 
     @objc
+    func attach() {
+        if let view = self.view() as? AKNViewComponent {
+            view.presenter = self.presenter
+        }
+    }
+
+    @objc func detach() {
+        if let view = self.view() as? AKNViewComponent {
+            view.presenter = nil
+        }
+    }
+
+    @objc
     public func bindView() {
         let view = self.view() as! AKNViewComponent
 
@@ -24,7 +37,7 @@ public extension AKNLifecycleManager {
         view.bind?(self.viewModel()) // BC <= 0.11
 
         if let view = view as? ViewComponent {
-            self.binder = ViewObserverCollection()
+            self.binder = ViewObserverCollection(view: self.view())
 
             if let viewModel = self.viewModel() {
                 view.bindings(binder, viewModel: viewModel)

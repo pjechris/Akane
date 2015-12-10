@@ -17,12 +17,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AKNLifecycleManager : NSObject<AKNViewComponentDelegate>
 
+@property(nonatomic, weak)id<AKNPresenter>    presenter;
+
 - (instancetype)init UNAVAILABLE_ATTRIBUTE;
 + (instancetype)new UNAVAILABLE_ATTRIBUTE;
 - (instancetype)initWithPresenter:(id<AKNPresenter>)presenter;
 
-- (void)mount;
-- (void)unmount;
+- (void)mountOnce;
 
 - (nonnull UIView<AKNViewComponent> *)view;
 - (nullable id<AKNViewModel>)viewModel;

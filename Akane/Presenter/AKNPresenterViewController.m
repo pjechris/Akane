@@ -32,14 +32,15 @@
 }
 
 - (void)dealloc {
-    [self.lifecycleManager unmount];
+    [self.lifecycleManager detach];
 }
 
 - (void)setupWithViewModel:(nullable id<AKNViewModel>)viewModel {
     _viewModel = viewModel;
 
     if ([self isViewLoaded]) {
-        [self prepare];
+        [self setupIfNeeded];
+        [self.lifecycleManager bindView];
     }
 }
 
@@ -50,16 +51,17 @@
     [super viewDidLoad];
 
     if (self.viewModel) {
-        [self prepare];
+        [self setupIfNeeded];
+        [self.lifecycleManager bindView];
     }
 }
 
 - (void)viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self.lifecycleManager mount];
+    [self.lifecycleManager mountOnce];
 }
 
-- (void)prepare {
+- (void)setupIfNeeded {
     if (!self.awaken) {
         self.lifecycleManager = [[AKNLifecycleManager alloc] initWithPresenter:self];
 
@@ -67,7 +69,7 @@
     }
 
     self.awaken = YES;
-    [self.lifecycleManager bindView];
+    [self.lifecycleManager attach];
 }
 
 - (void)didAwake {
