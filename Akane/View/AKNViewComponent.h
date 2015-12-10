@@ -33,7 +33,7 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)bind:(nullable id<AKNViewModel>)viewModel;
 
 /// @return AKNPresenter class
-+ (Class)componentPresenterClass;
++ (nonnull Class)componentPresenterClass;
 
 @end
 

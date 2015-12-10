@@ -65,7 +65,7 @@
     id<AKNPresenter> viewPresenter = holder.viewPresenter;
     
     if (!viewPresenter) {
-        Class presenterClass = [self presenterClassForViewComponent:view] ?: AKNPresenterViewController.class;
+        Class presenterClass = [view.class componentPresenterClass];
         
         viewPresenter = [[presenterClass alloc] initWithView:view];
         AKNViewPresenterHolder *holder = [[AKNViewPresenterHolder alloc] initWithPresenter:viewPresenter];
@@ -90,16 +90,6 @@
 
 - (nullable id<AKNViewModel>)viewModel {
     return self.presenter.viewModel;
-}
-
-- (Class)presenterClassForViewComponent:(nonnull UIView<AKNViewComponent> *)view {
-    if ([view.class respondsToSelector:@selector(componentPresenterClass)]) {
-        return [view.class componentPresenterClass];
-    }
-
-    Class class = NSClassFromString([NSStringFromClass(view.class) stringByAppendingString:@"Controller"]);
-
-    return [class conformsToProtocol:@protocol(AKNPresenter)] ? class : nil;
 }
 
 @end

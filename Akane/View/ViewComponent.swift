@@ -15,6 +15,12 @@ public protocol ViewComponent : AKNViewComponent {
 }
 
 extension AKNViewComponent {
+    func componentPresenterClass() -> AnyClass {
+        return AKNPresenterViewController.self
+    }
+}
+
+extension UIView {
     weak var presenter: AKNPresenter? {
         get { return objc_getAssociatedObject(self, &ViewComponentPresenterAttr) as? AKNPresenter }
         set { return objc_setAssociatedObject(self, &ViewComponentPresenterAttr, newValue, .OBJC_ASSOCIATION_ASSIGN) }
