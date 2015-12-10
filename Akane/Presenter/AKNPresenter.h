@@ -46,7 +46,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// @return the current presenter which is using viewModel
 - (nullable id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel;
 
-- (void)addPresenter:(id<AKNPresenter>)presenter withViewModel:(id<AKNViewModel>)viewModel;
+- (void)addPresenter:(id<AKNPresenter>)presenter;
 
 @end
 

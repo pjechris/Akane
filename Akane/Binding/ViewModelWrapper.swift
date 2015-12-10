@@ -9,11 +9,11 @@
 import Foundation
 import Bond
 
-public class ViewModelWrapper<ViewModel: AKNViewModelProtocol, View: UIView where View: AKNViewComponent> {
-    internal let viewModel: Observable<ViewModel>
-    internal unowned let superview: View
+public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtocol> {
+    internal let viewModel: T
+    internal unowned let superview: UIView
 
-    init(superview: View, viewModel: Observable<ViewModel>) {
+    init(superview: UIView, viewModel: T) {
         self.superview = superview
         self.viewModel = viewModel
     }
@@ -25,5 +25,25 @@ public class ViewModelWrapper<ViewModel: AKNViewModelProtocol, View: UIView wher
     }
 
     public func bindTo<T:UIView where T:ViewComponent>(view: T) {
+        var presenter:AKNPresenter? = view.presenter
+
+        assert(view.window != nil)
+        assert(view.isDescendantOfView(self.superview))
+
+        guard (view.window != nil && view.isDescendantOfView(self.superview)) else {
+            return
+        }
+
+        self.viewModel.observe { [weak self, unowned view] viewModel in
+
+            if (presenter == nil) {
+                let presenterClass:AKNPresenter.Type = view.dynamicType.componentPresenterClass!() as! AKNPresenter.Type
+
+                presenter = presenterClass.init(view: view)
+                self?.superview.presenter?.addPresenter(presenter!)
+            }
+
+            presenter?.setupWithViewModel(viewModel)
+        }
     }
 }

@@ -17,16 +17,13 @@ public extension AKNLifecycleManager {
     }
 
     @objc
-    func attach() {
-        if let view = self.view() as? AKNViewComponent {
-            view.presenter = self.presenter
-        }
+    public func attach() {
+        self.view().presenter = self.presenter
     }
 
-    @objc func detach() {
-        if let view = self.view() as? AKNViewComponent {
-            view.presenter = nil
-        }
+    @objc
+    public func detach() {
+        self.view().presenter = nil
     }
 
     @objc

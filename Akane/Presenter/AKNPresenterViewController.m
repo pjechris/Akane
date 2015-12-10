@@ -90,7 +90,7 @@
     return nil;
 }
 
-- (void)addPresenter:(nonnull id<AKNPresenter>)presenter withViewModel:(nonnull id<AKNViewModel>)viewModel {
+- (void)addPresenter:(nonnull id<AKNPresenter>)presenter {
     if ([presenter isKindOfClass:[UIViewController class]]) {
         UIViewController *viewController = (UIViewController *)presenter;
 
