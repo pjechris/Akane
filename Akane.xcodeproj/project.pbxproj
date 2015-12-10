@@ -40,6 +40,7 @@
 		49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
+		49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */; };
 		49E69F311C091954001A1804 /* CommandWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E69F2F1C091954001A1804 /* CommandWrapper.swift */; };
 		49E69F321C091954001A1804 /* ObservationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E69F301C091954001A1804 /* ObservationWrapper.swift */; };
 		49E9AB151C13ACA300BC1730 /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E9AB141C13ACA300BC1730 /* ViewObserver.swift */; };
@@ -92,6 +93,7 @@
 		49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleManager.swift; sourceTree = "<group>"; };
 		49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		49DD45D41C14E18C00CF17AC /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
+		49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
 		49E69F2F1C091954001A1804 /* CommandWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandWrapper.swift; sourceTree = "<group>"; };
 		49E69F301C091954001A1804 /* ObservationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapper.swift; sourceTree = "<group>"; };
 		49E9AB141C13ACA300BC1730 /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
@@ -269,6 +271,7 @@
 				49E69F301C091954001A1804 /* ObservationWrapper.swift */,
 				49E9AB141C13ACA300BC1730 /* ViewObserver.swift */,
 				49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */,
+				49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */,
 				49E9AB151C13ACA300BC1730 /* ViewObserver.swift in Sources */,
 				4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */,
 				49E69F321C091954001A1804 /* ObservationWrapper.swift in Sources */,

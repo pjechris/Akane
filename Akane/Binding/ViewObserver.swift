@@ -8,7 +8,24 @@
 
 import Foundation
 
+/**
+ Propose an View oriented Observation API. You can observe 3 types of elements:
+ - Command
+ - ViewModel
+ - Observation
+
+ Those are the elements you can observe **from** a ```UIView```. For each one of them you get an associated wrapper:
+ - CommandWrapper
+ - ObservationWrapper
+ - ViewModelWrapper
+ Those wrappers contain restricted APIs to manipulate your observation object, again from a UIView perspective.
+ 
+ For instance you ```ObservationWrapper``` has ```convert``` method to convert your ```Observation``` while ```CommandWrapper``` does not.
+
+*/
 public protocol ViewObserver {
     func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
     func observe<T: Command>(command: T) -> CommandWrapper
+    func observe<T: AKNViewModelProtocol>(viewModel: T) -> ViewModelWrapper
+    func observe<T: Observation where T.Element:AKNViewModelProtocol>(observableViewModel: T) -> ViewModelWrapper
 }

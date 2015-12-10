@@ -10,20 +10,18 @@ import Foundation
 import Bond
 
 /**
- Manage a ViewElement observations with its associated ViewModel. Those observations can be of 2 sorts:
-
- - a Observation object
- - a Command object
-
- It then return a Wrapper for each one of them allowing you to plug them with the view.
+ Contain multiple ```ViewObserver``` instances which can be disposed at any time
 */
 class ViewObserverCollection : ViewObserver, Dispose {
     var count: Int { return self.bindings.count }
+
     private var disposeBag: DisposeBag!
     private(set) var bindings:[AnyObject] = []
+    private unowned let view: UIView
 
-    init() {
+    init(view: UIView) {
         self.disposeBag = CompositeDisposable()
+        self.view = view
     }
 
     func dispose() {
@@ -47,5 +45,13 @@ class ViewObserverCollection : ViewObserver, Dispose {
 
     func observe<T : Command>(command: T) -> CommandWrapper {
         return CommandWrapper(command: command, disposeBag: self.disposeBag)
+    }
+
+    func observe<T: AKNViewModelProtocol>(viewModel: T) -> ViewModelWrapper<T> {
+        return self.observe(Bond.Observable(viewModel))
+    }
+
+    func observe<T: Observation where T.Element:AKNViewModelProtocol>(observableViewModel: T) -> ViewModelWrapper<T.Element> {
+        
     }
 }
