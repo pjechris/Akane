@@ -17,7 +17,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @protocol AKNViewComponentDelegate <NSObject>
 
-- (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(nullable id<AKNViewModel>)viewModel;
+- (void)viewComponent:(UIView<AKNViewComponent> *)component isBindedTo:(nullable id<AKNViewModel>)viewModel DEPRECATED_ATTRIBUTE;
 
 @optional
 - (void)viewComponentWillAppear;
@@ -30,7 +30,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @optional
 
-- (void)bind:(nullable id<AKNViewModel>)viewModel;
+- (void)bind:(nullable id<AKNViewModel>)viewModel DEPRECATED_ATTRIBUTE;
 
 /// @return AKNPresenter class
 + (nonnull Class)componentPresenterClass;

@@ -13,16 +13,3 @@ var ViewComponentPresenterAttr = "ViewComponentPresenterAttr"
 public protocol ViewComponent : AKNViewComponent {
     func bindings(observer: ViewObserver, viewModel: AnyObject)
 }
-
-extension AKNViewComponent {
-    func componentPresenterClass() -> AnyClass {
-        return AKNPresenterViewController.self
-    }
-}
-
-extension UIView {
-    weak var presenter: AKNPresenter? {
-        get { return objc_getAssociatedObject(self, &ViewComponentPresenterAttr) as? AKNPresenter }
-        set { return objc_setAssociatedObject(self, &ViewComponentPresenterAttr, newValue, .OBJC_ASSOCIATION_ASSIGN) }
-    }
-}

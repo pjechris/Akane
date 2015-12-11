@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "AKNView.h"
 #import "AKNViewModel.h"
+#import "AKNPresenterViewController.h"
 
 @implementation AKNView
 
@@ -21,6 +22,10 @@
     if (viewComponent) {
         [self.componentDelegate viewComponent:viewComponent isBindedTo:viewModel];
     }
+}
+
++ (Class)componentPresenterClass {
+    return AKNPresenterViewController.class;
 }
 
 @end

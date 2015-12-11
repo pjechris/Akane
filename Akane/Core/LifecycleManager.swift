@@ -21,16 +21,6 @@ extension AKNLifecycleManager : Lifecycle {
     }
 
     @objc
-    public func attach() {
-        self.view().presenter = self.presenter
-    }
-
-    @objc
-    public func detach() {
-        self.view().presenter = nil
-    }
-
-    @objc
     public func bindView() {
         let view = self.view() as! AKNViewComponent
 

@@ -32,10 +32,6 @@
     return self;
 }
 
-- (void)dealloc {
-    [self.lifecycleManager detach];
-}
-
 - (void)setupWithViewModel:(nullable id<AKNViewModel>)viewModel {
     _viewModel = viewModel;
 
@@ -70,7 +66,6 @@
     }
 
     self.awaken = YES;
-    [self.lifecycleManager attach];
 }
 
 - (void)didAwake {
