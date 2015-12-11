@@ -26,7 +26,7 @@ class ViewObserverCollectionSpec : QuickSpec {
 
         describe("observe") {
             context("when observing Observable") {
-                it("should save binding") {
+                it("should save observation") {
                     let observable = Observable("hello")
                     collection.observe(observable)
 
@@ -35,25 +35,32 @@ class ViewObserverCollectionSpec : QuickSpec {
             }
 
             context("when observing Command") {
-                it("should NOT save binding") {
+                it("should NOT save observation") {
                     collection.observe(RelayCommand() { _ in })
 
                     expect(collection.count) == 0
                 }
             }
 
-            context("when observing view model") {
+            context("when observing observable view model") {
                 var viewModel: Observable<ViewModelMock>!
 
                 beforeEach {
                     viewModel = Observable(ViewModelMock())
+
+                    lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
                 }
 
                 it("should bind view with viewmodel") {
-                    lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
                     collection.observe(viewModel).bindTo(view.viewToBind)
 
                     expect(lifecycle.presenterToReturn!.viewModel) === viewModel.value
+                }
+
+                it("should NOT save observation") {
+                    collection.observe(viewModel)
+
+                    expect(collection.count) == 0
                 }
             }
         }
@@ -66,6 +73,20 @@ class ViewObserverCollectionSpec : QuickSpec {
             it("should dispose bindings") {
                 collection.dispose()
                 expect(collection.count) == 0
+            }
+
+            it("should dispose view model") {
+                let firstViewModel = ViewModelMock()
+                let secondViewModel = ViewModelMock()
+                let observable = Observable(firstViewModel)
+
+                lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
+                collection.observe(observable).bindTo(view.viewToBind)
+
+                collection.dispose()
+                observable.next(secondViewModel)
+
+                expect(lifecycle.presenterToReturn!.viewModel) !== secondViewModel
             }
         }
     }

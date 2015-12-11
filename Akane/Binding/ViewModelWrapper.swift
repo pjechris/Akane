@@ -11,11 +11,13 @@ import Bond
 
 public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtocol> {
     let viewModel: T
+    let disposeBag: DisposeBag
     unowned let lifecycle: Lifecycle
 
-    init(viewModel: T, lifecycle: Lifecycle) {
+    init(viewModel: T, lifecycle: Lifecycle, disposeBag: DisposeBag) {
         self.viewModel = viewModel
         self.lifecycle = lifecycle
+        self.disposeBag = disposeBag
     }
 
     public func bindTo<T:UIView where T:AKNViewComponent>(view: T?) {
@@ -31,8 +33,10 @@ public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtoc
             return
         }
 
-        self.viewModel.observe { viewModel in
-            presenter!.setupWithViewModel(viewModel)
-        }
+        self.disposeBag.addDisposable(
+            self.viewModel.observe { viewModel in
+                presenter!.setupWithViewModel(viewModel)
+            }
+        )
     }
 }

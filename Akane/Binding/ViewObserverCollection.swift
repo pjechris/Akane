@@ -50,7 +50,7 @@ class ViewObserverCollection : ViewObserver, Dispose {
     }
 
     func observe<T: Observation where T.Element:AKNViewModelProtocol>(observableViewModel: T) -> ViewModelWrapper<T> {
-        return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle)
+        return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle, disposeBag: self.disposeBag)
     }
 
 }
