@@ -14,14 +14,16 @@ import Bond
 */
 class ViewObserverCollection : ViewObserver, Dispose {
     var count: Int { return self.bindings.count }
+    unowned let lifecycle: Lifecycle
 
     private var disposeBag: DisposeBag!
     private(set) var bindings:[AnyObject] = []
     private unowned let view: UIView
 
-    init(view: UIView) {
+    init(view: UIView, lifecycle: Lifecycle) {
         self.disposeBag = CompositeDisposable()
         self.view = view
+        self.lifecycle = lifecycle
     }
 
     func dispose() {
@@ -48,7 +50,7 @@ class ViewObserverCollection : ViewObserver, Dispose {
     }
 
     func observe<T: Observation where T.Element:AKNViewModelProtocol>(observableViewModel: T) -> ViewModelWrapper<T> {
-        return ViewModelWrapper.init(superview: self.view, viewModel: observableViewModel)
+        return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle)
     }
 
 }

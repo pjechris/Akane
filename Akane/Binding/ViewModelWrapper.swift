@@ -10,40 +10,29 @@ import Foundation
 import Bond
 
 public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtocol> {
-    internal let viewModel: T
-    internal unowned let superview: UIView
+    let viewModel: T
+    unowned let lifecycle: Lifecycle
 
-    init(superview: UIView, viewModel: T) {
-        self.superview = superview
+    init(viewModel: T, lifecycle: Lifecycle) {
         self.viewModel = viewModel
+        self.lifecycle = lifecycle
     }
 
-    public func bindTo<T:UIView where T:ViewComponent>(view: T?) {
+    public func bindTo<T:UIView where T:AKNViewComponent>(view: T?) {
         if let view = view {
             self.bindTo(view)
         }
     }
 
-    public func bindTo<T:UIView where T:ViewComponent>(view: T) {
-        var presenter:AKNPresenter? = view.presenter
+    public func bindTo<T:UIView where T:AKNViewComponent>(view: T) {
+        let presenter:AKNPresenter? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
 
-        assert(view.window != nil)
-        assert(view.isDescendantOfView(self.superview))
-
-        guard (view.window != nil && view.isDescendantOfView(self.superview)) else {
+        guard (presenter != nil) else {
             return
         }
 
-        self.viewModel.observe { [weak self, unowned view] viewModel in
-
-            if (presenter == nil) {
-                let presenterClass:AKNPresenter.Type = view.dynamicType.componentPresenterClass!() as! AKNPresenter.Type
-
-                presenter = presenterClass.init(view: view)
-                self?.superview.presenter?.addPresenter(presenter!)
-            }
-
-            presenter?.setupWithViewModel(viewModel)
+        self.viewModel.observe { viewModel in
+            presenter!.setupWithViewModel(viewModel)
         }
     }
 }

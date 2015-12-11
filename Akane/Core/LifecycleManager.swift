@@ -38,7 +38,7 @@ extension AKNLifecycleManager : Lifecycle {
         view.bind?(self.viewModel()) // BC <= 0.11
 
         if let view = view as? ViewComponent {
-            self.binder = ViewObserverCollection(view: self.view())
+            self.binder = ViewObserverCollection(view: self.view(), lifecycle: self)
 
             if let viewModel = self.viewModel() {
                 view.bindings(binder, viewModel: viewModel)
