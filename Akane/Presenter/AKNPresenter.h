@@ -43,10 +43,10 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)didAwake;
 
-/// @return the current presenter which is using viewModel
-- (nullable id<AKNPresenter>)presenterForViewModel:(id<AKNViewModel>)viewModel;
+/// @return the view presenter, if any
+- (nullable id<AKNPresenter>)childPresenterForSubview:(UIView<AKNViewComponent> *)view;
 
-- (void)addPresenter:(id<AKNPresenter>)presenter;
+- (void)addChildPresenter:(id<AKNPresenter>)presenter;
 
 @end
 

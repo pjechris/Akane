@@ -10,7 +10,11 @@ import Foundation
 
 var BinderAttribute = "ViewStyleNameAttribute"
 
-public extension AKNLifecycleManager {
+protocol Lifecycle : class {
+    func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool) -> AKNPresenter?
+}
+
+extension AKNLifecycleManager : Lifecycle {
     private var binder: ViewObserverCollection! {
         get { return objc_getAssociatedObject(self, &BinderAttribute) as? ViewObserverCollection }
         set { objc_setAssociatedObject(self, &BinderAttribute, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
@@ -40,5 +44,26 @@ public extension AKNLifecycleManager {
                 view.bindings(binder, viewModel: viewModel)
             }
         }
+    }
+
+    func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool = true) -> AKNPresenter? {
+        guard (subview.isDescendantOfView(self.view())) else {
+            return nil
+        }
+
+        if let presenter = self.presenter?.childPresenterForSubview(subview) {
+            return presenter
+        }
+
+        if (createIfNeeded) {
+            let presenterClass:AKNPresenter.Type = subview.dynamicType.componentPresenterClass!() as! AKNPresenter.Type
+            let presenter = presenterClass.init(view: subview)!
+
+            self.presenter?.addChildPresenter(presenter)
+
+            return presenter
+        }
+
+        return nil
     }
 }

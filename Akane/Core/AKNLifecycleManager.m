@@ -71,7 +71,7 @@
         AKNViewPresenterHolder *holder = [[AKNViewPresenterHolder alloc] initWithPresenter:viewPresenter];
         
         objc_setAssociatedObject(view, @selector(presenter), holder, OBJC_ASSOCIATION_RETAIN);
-        [self.presenter addPresenter:viewPresenter];
+        [self.presenter addChildPresenter:viewPresenter];
     }
     
     [viewPresenter setupWithViewModel:viewModel];

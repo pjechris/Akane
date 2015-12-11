@@ -26,6 +26,7 @@
         return nil;
     }
 
+    self.view = view;
     [self viewDidLoad];
 
     return self;
@@ -76,12 +77,12 @@
     // Default implementation do nothing
 }
 
-- (nullable id<AKNPresenter>)presenterForViewModel:(nonnull id<AKNViewModel>)viewModel {
+- (id<AKNPresenter>)childPresenterForSubview:(UIView<AKNViewComponent> *)view {
     for (UIViewController *viewController in self.childViewControllers) {
         if ([viewController conformsToProtocol:@protocol(AKNPresenter)]) {
             UIViewController<AKNPresenter> *presenter = (UIViewController<AKNPresenter> *)viewController;
 
-            if (presenter.viewModel == viewModel) {
+            if (presenter.view == view) {
                 return presenter;
             }
         }
@@ -90,7 +91,7 @@
     return nil;
 }
 
-- (void)addPresenter:(nonnull id<AKNPresenter>)presenter {
+- (void)addChildPresenter:(nonnull id<AKNPresenter>)presenter {
     if ([presenter isKindOfClass:[UIViewController class]]) {
         UIViewController *viewController = (UIViewController *)presenter;
 
