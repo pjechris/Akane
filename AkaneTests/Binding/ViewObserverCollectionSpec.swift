@@ -15,9 +15,13 @@ import Bond
 class ViewObserverCollectionSpec : QuickSpec {
     override func spec() {
         var collection: ViewObserverCollection!
+        var view: ViewMock!
+        var lifecycle: LifecycleMock!
 
         beforeEach {
-            collection = ViewObserverCollection()
+            view = ViewMock()
+            lifecycle = LifecycleMock()
+            collection = ViewObserverCollection(view: view, lifecycle: lifecycle)
         }
 
         describe("observe") {
@@ -37,6 +41,21 @@ class ViewObserverCollectionSpec : QuickSpec {
                     expect(collection.count) == 0
                 }
             }
+
+            context("when observing view model") {
+                var viewModel: Observable<ViewModelMock>!
+
+                beforeEach {
+                    viewModel = Observable(ViewModelMock())
+                }
+
+                it("should bind view with viewmodel") {
+                    lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
+                    collection.observe(viewModel).bindTo(view.viewToBind)
+
+                    expect(lifecycle.presenterToReturn!.viewModel) === viewModel.value
+                }
+            }
         }
 
         describe("dispose") {
@@ -49,5 +68,34 @@ class ViewObserverCollectionSpec : QuickSpec {
                 expect(collection.count) == 0
             }
         }
+    }
+
+    class ViewMock : AKNView {
+        var viewToBind: AKNView
+
+        override init(frame: CGRect) {
+            self.viewToBind = AKNView()
+
+
+            super.init(frame: frame)
+
+            self.addSubview(self.viewToBind)
+        }
+
+        required init?(coder aDecoder: NSCoder) {
+            fatalError("init(coder:) has not been implemented")
+        }
+    }
+
+    class LifecycleMock : Lifecycle {
+        var presenterToReturn: AKNPresenter? = nil
+
+        func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool) -> AKNPresenter? {
+            return self.presenterToReturn
+        }
+    }
+
+    class ViewModelMock : NSObject, AKNViewModelProtocol {
+
     }
 }
