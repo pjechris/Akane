@@ -51,14 +51,18 @@ public class ObservationWrapper<E> {
     }
 
     /// Bind the observation value to a bindable class
-    /// @param bindable the bindable item. Should be a view attribute, like a label text attribute.
+    /// - parameter bindable: the bindable item. Should be a view attribute, like a label text attribute.
     public func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
         let next = bindable.advance()
-        let disposable = self.event.observe { value in
-            next(value)
-        }
 
-        self.disposeBag.addDisposable(BondDisposeAdapter(disposable))
+        self.onBind({ value in
+            // we can safely unwrap bc 1st closure return us Element?, while we indeed have Element
+            next(value!)
+        })
+    }
+
+    public func bindTo<T: Bindable where T.Element == Element?>(bindable: T) {
+         self.onBind(bindable.advance())
     }
 
     public func combine<T: Observation>(observables: T...) -> Self {
@@ -66,8 +70,8 @@ public class ObservationWrapper<E> {
     }
 
     /// Convert the observation value into a new value by applying the argument converter
-    /// @param converter the converter type to use to transform the observation value
-    /// @returns a new ObservationWrapper whose observation is the current converted observation value
+    /// - parameter converter: the converter type to use to transform the observation value
+    /// - returns: a new ObservationWrapper whose observation is the current converted observation value
     public func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> ObservationWrapper<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convert(value)
@@ -98,5 +102,13 @@ public class ObservationWrapper<E> {
         }
 
         return ObservationWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
+    }
+
+    private func onBind(bind: Element? -> Void) {
+        let disposable = self.event.observe { value in
+            bind(value)
+        }
+
+        self.disposeBag.addDisposable(BondDisposeAdapter(disposable))
     }
 }
