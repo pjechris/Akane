@@ -1,5 +1,5 @@
 # Akane
-[![Build Status](https://travis-ci.org/akane/Gaikan.svg?branch=travis)](https://travis-ci.org/akane/Akane)
+[![Build Status](https://travis-ci.org/akane/Akane.svg)](https://travis-ci.org/akane/Akane)
 
 ```ruby
 pod install Akane

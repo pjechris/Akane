@@ -1,0 +1,22 @@
+language: objective-c
+
+env:
+  - >
+    xcode_workspace=Akane.xcworkspace
+    xcode_scheme=Akane
+    xcode_sdk=iphonesimulator
+    xcode_platform="platform=iOS Simulator,name=iPhone 6"
+
+install: pod install
+
+script:
+  - >
+    set -o pipefail && xcodebuild
+    -workspace ${xcode_workspace}
+    -scheme ${xcode_scheme}
+    -sdk ${xcode_sdk}
+    -destination "${xcode_platform}" test | xcpretty -c
+
+branches:
+  except:
+    - /^tags.+/
