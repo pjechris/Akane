@@ -11,49 +11,45 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 protocol Lifecycle : class {
-    func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool) -> AKNPresenter?
+    func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?
 }
 
-extension AKNLifecycleManager : Lifecycle {
-    private var binder: ViewObserverCollection! {
-        get { return objc_getAssociatedObject(self, &BinderAttribute) as? ViewObserverCollection }
-        set { objc_setAssociatedObject(self, &BinderAttribute, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+class LifecycleManager<C: ComponentController> : Lifecycle {
+    private var binder: ViewObserverCollection!
+    unowned private let controller: C
+
+    init(controller: C) {
+        self.controller = controller
     }
 
     @objc
-    public func bindView() {
-        let view = self.view() as! AKNViewComponent
+    func bindView() {
+        let view = self.controller.componentView
+        self.binder = ViewObserverCollection(view: view, lifecycle: self)
 
-        view.componentDelegate = self;
-        view.bind?(self.viewModel()) // BC <= 0.11
-
-        if let view = view as? ViewComponent {
-            self.binder = ViewObserverCollection(view: self.view(), lifecycle: self)
-
-            if let viewModel = self.viewModel() {
-                view.bindings(binder, viewModel: viewModel)
-            }
-        }
+        view.bindings(binder, viewModel: self.controller.viewModel)
     }
 
-    func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool = true) -> AKNPresenter? {
-        guard (subview.isDescendantOfView(self.view())) else {
+    func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController<T>? {
+        let view = self.controller.componentView
+
+        guard (subview.isDescendantOfView(view)) else {
             return nil
         }
 
-        if let presenter = self.presenter?.childPresenterForSubview(subview) {
-            return presenter
+        if let controller = self.controller.controllerForComponent(subview) {
+            return controller
         }
 
         if (createIfNeeded) {
-            let presenterClass:AKNPresenter.Type = subview.dynamicType.componentPresenterClass!() as! AKNPresenter.Type
-            let presenter = presenterClass.init(view: subview)!
+            let componentClass:ComponentViewController<T>.Type = subview.dynamicType.componentControllerClass()
+            let controller = componentClass.init(view: subview)
 
-            self.presenter?.addChildPresenter(presenter)
+            self.controller.addController(controller)
 
-            return presenter
+            return controller
         }
-
+        
         return nil
     }
 }

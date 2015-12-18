@@ -10,6 +10,12 @@ import Foundation
 
 var ViewComponentPresenterAttr = "ViewComponentPresenterAttr"
 
-public protocol ViewComponent : AKNViewComponent {
+public protocol ViewComponent : class {
     func bindings(observer: ViewObserver, viewModel: AnyObject)
+}
+
+extension ViewComponent where Self: UIView {
+    static func componentControllerClass() -> ComponentViewController<Self>.Type {
+        return ComponentViewController.self
+    }
 }
