@@ -11,10 +11,10 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 protocol Lifecycle : class {
-    func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?
+    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?
 }
 
-class LifecycleManager<C: ComponentController> : Lifecycle {
+class ControllerLifecycle<C: ComponentController> : Lifecycle {
     private var binder: ViewObserverCollection!
     unowned private let controller: C
 
@@ -38,7 +38,7 @@ class LifecycleManager<C: ComponentController> : Lifecycle {
         view.bindings(binder, viewModel: self.controller.viewModel)
     }
 
-    func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController<T>? {
+    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController<T>? {
         let view = self.controller.componentView
 
         guard (subview.isDescendantOfView(view)) else {

@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol ComponentController : class {
-    typealias ViewType: UIView, ViewComponent
+    typealias ViewType: UIView, ComponentView
 
     var componentView: ViewType! { get }
     var viewModel: AKNViewModelProtocol! { get set }
@@ -18,7 +18,7 @@ public protocol ComponentController : class {
 
     func addController<C:UIViewController where C:ComponentController>(childController: C)
 
-    func controllerForComponent<V:UIView where V:ViewComponent>(component: V) -> ComponentViewController<V>?
+    func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController<V>?
 
     func didLoad()
 }

@@ -18,12 +18,3 @@ FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
 #import <Akane/AKNViewModel.h>
 #import <Akane/AKNItemViewModel.h>
 #import <Akane/AKNViewModelAware.h>
-
-#import <Akane/AKNPresenter.h>
-#import <Akane/AKNPresenterViewController.h>
-
-#import <Akane/AKNView.h>
-#import <Akane/AKNViewComponent.h>
-
-// For Swift exposure
-#import <Akane/AKNLifecycleManager.h>

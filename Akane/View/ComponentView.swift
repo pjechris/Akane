@@ -8,13 +8,13 @@
 
 import Foundation
 
-var ViewComponentPresenterAttr = "ViewComponentPresenterAttr"
+var ComponentViewPresenterAttr = "ComponentViewPresenterAttr"
 
-public protocol ViewComponent : class {
+public protocol ComponentView : class {
     func bindings(observer: ViewObserver, viewModel: AnyObject)
 }
 
-extension ViewComponent where Self: UIView {
+extension ComponentView where Self: UIView {
     static func componentControllerClass() -> ComponentViewController<Self>.Type {
         return ComponentViewController.self
     }

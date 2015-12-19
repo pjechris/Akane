@@ -9,11 +9,11 @@
 import Foundation
 import UIKit
 
-public class ComponentViewController<ViewType: UIView where ViewType: ViewComponent> : UIViewController, ComponentController {
+public class ComponentViewController<ViewType: UIView where ViewType: ComponentView> : UIViewController, ComponentController {
     public var viewModel: AKNViewModelProtocol! {
         didSet {
             if (self.isViewLoaded()) {
-                self.lifecycleManager.bindView()
+                self.lifecycle.bindView()
             }
         }
     }
@@ -21,25 +21,25 @@ public class ComponentViewController<ViewType: UIView where ViewType: ViewCompon
         get { return self.view as! ViewType }
     }
 
-    var lifecycleManager: LifecycleManager<ComponentViewController<ViewType>>!
+    var lifecycle: ControllerLifecycle<ComponentViewController<ViewType>>!
 
     public required init(view: ViewType) {
         super.init(nibName: nil, bundle: nil)
 
-        self.lifecycleManager = LifecycleManager(controller: self)
+        self.lifecycle = ControllerLifecycle(controller: self)
         self.view = view
         self.viewDidLoad()
     }
 
     public override func viewDidLoad() {
         if (self.viewModel != nil) {
-            self.lifecycleManager.bindView()
+            self.lifecycle.bindView()
         }
     }
 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.lifecycleManager.mountOnce()
+        self.lifecycle.mountOnce()
     }
 }
 
@@ -55,7 +55,7 @@ extension ComponentController where Self:UIViewController {
         }
     }
 
-    public func controllerForComponent<V:UIView where V:ViewComponent>(component: V) -> ComponentViewController<V>? {
+    public func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController<V>? {
         for childViewController in self.childViewControllers {
             if let controller = childViewController as? ComponentViewController<V> {
                 if (controller.componentView == component) {

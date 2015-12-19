@@ -15,20 +15,14 @@
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
 		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
 		492A189D1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */; };
-		492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 492E703E1BF0D2870006E59E /* ViewComponent.swift */; };
 		495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */; };
 		495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5F81C01CE7400EB7665 /* Bindable.swift */; };
 		495EC6021C01CE7400EB7665 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FA1C01CE7400EB7665 /* Observation.swift */; };
 		495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */; };
 		495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FC1C01CE7400EB7665 /* Dispose.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
-		4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */; };
-		496854921BD6743600589F4C /* AKNViewHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 4984BB211AC07A990095B126 /* AKNViewHelper.m */; };
 		496854931BD6743600589F4C /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4968549A1BD67C0C00589F4C /* AKNPresenter.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4968549D1BD67C0C00589F4C /* AKNViewComponent.h in Headers */ = {isa = PBXBuildFile; fileRef = 493A99271B5167DB00261401 /* AKNViewComponent.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4968549E1BD67C0C00589F4C /* AKNItemViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A159F31A90E04200C2891F /* AKNItemViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4968549F1BD67C0C00589F4C /* AKNViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		496854A01BD67C2100589F4C /* AKNViewModelAware.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -36,7 +30,8 @@
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
 		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; settings = {ASSET_TAGS = (); }; };
-		49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */; };
+		496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB591C259ACF00F39EF2 /* ComponentView.swift */; settings = {ASSET_TAGS = (); }; };
+		496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */; settings = {ASSET_TAGS = (); }; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
 		49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */; };
@@ -59,24 +54,15 @@
 		272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490B20231C23027700054167 /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
-		490B20241C23027700054167 /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewController.swift; sourceTree = "<group>"; };
-		490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNLifecycleManager.h; sourceTree = "<group>"; };
-		490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNLifecycleManager.m; sourceTree = "<group>"; };
+		490B20241C23027700054167 /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ComponentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenter.h; sourceTree = "<group>"; };
-		4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNPresenterViewController.h; sourceTree = "<group>"; };
-		4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNPresenterViewController.m; sourceTree = "<group>"; };
-		4926EAEB1A5EBD17005A3D71 /* AKNView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNView.h; sourceTree = "<group>"; };
-		4926EAEC1A5EBD17005A3D71 /* AKNView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNView.m; sourceTree = "<group>"; };
 		4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModel.h; sourceTree = "<group>"; };
 		4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollectionSpec.swift; sourceTree = "<group>"; };
-		492E703E1BF0D2870006E59E /* ViewComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewComponent.swift; sourceTree = "<group>"; };
-		493A99271B5167DB00261401 /* AKNViewComponent.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AKNViewComponent.h; sourceTree = "<group>"; };
 		495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDisposeAdapter.swift; sourceTree = "<group>"; };
 		495EC5F81C01CE7400EB7665 /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		495EC5FA1C01CE7400EB7665 /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
@@ -88,11 +74,10 @@
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
 		496ECB571C25672300F39EF2 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
-		4984BB201AC07A990095B126 /* AKNViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewHelper.h; sourceTree = "<group>"; };
-		4984BB211AC07A990095B126 /* AKNViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewHelper.m; sourceTree = "<group>"; };
+		496ECB591C259ACF00F39EF2 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
+		496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
 		49A159F41A90F04B00C2891F /* AKNViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewModel.m; sourceTree = "<group>"; };
-		49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifecycleManager.swift; sourceTree = "<group>"; };
 		49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		49DD45D41C14E18C00CF17AC /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
 		49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
@@ -133,6 +118,7 @@
 			children = (
 				490B20231C23027700054167 /* ComponentController.swift */,
 				490B20241C23027700054167 /* ComponentViewController.swift */,
+				496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -178,14 +164,12 @@
 		4926EACD1A5EBCBF005A3D71 /* Akane */ = {
 			isa = PBXGroup;
 			children = (
-				490B20221C23027700054167 /* Controller */,
-				491705391C0279A100DD4284 /* Command */,
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
 				496854B31BD6950B00589F4C /* Binding */,
+				491705391C0279A100DD4284 /* Command */,
+				490B20221C23027700054167 /* Controller */,
 				496854991BD67AFC00589F4C /* Converter */,
-				49AAE5531AE1C20E000EE651 /* Core */,
 				4926EAFB1A5EBD4A005A3D71 /* Info.plist */,
-				4926EAE61A5EBD17005A3D71 /* Presenter */,
 				4926EAEA1A5EBD17005A3D71 /* View */,
 				4926EAEF1A5EBD17005A3D71 /* ViewModel */,
 			);
@@ -212,25 +196,10 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		4926EAE61A5EBD17005A3D71 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				4926EAE71A5EBD17005A3D71 /* AKNPresenter.h */,
-				4926EAE81A5EBD17005A3D71 /* AKNPresenterViewController.h */,
-				4926EAE91A5EBD17005A3D71 /* AKNPresenterViewController.m */,
-			);
-			path = Presenter;
-			sourceTree = "<group>";
-		};
 		4926EAEA1A5EBD17005A3D71 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				4926EAEB1A5EBD17005A3D71 /* AKNView.h */,
-				4926EAEC1A5EBD17005A3D71 /* AKNView.m */,
-				493A99271B5167DB00261401 /* AKNViewComponent.h */,
-				4984BB201AC07A990095B126 /* AKNViewHelper.h */,
-				4984BB211AC07A990095B126 /* AKNViewHelper.m */,
-				492E703E1BF0D2870006E59E /* ViewComponent.swift */,
+				496ECB591C259ACF00F39EF2 /* ComponentView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -296,16 +265,6 @@
 			path = Presenter;
 			sourceTree = "<group>";
 		};
-		49AAE5531AE1C20E000EE651 /* Core */ = {
-			isa = PBXGroup;
-			children = (
-				490ED8851AE26B9D00C2E66C /* AKNLifecycleManager.h */,
-				490ED8861AE26B9D00C2E66C /* AKNLifecycleManager.m */,
-				49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */,
-			);
-			path = Core;
-			sourceTree = "<group>";
-		};
 		771E527F440EEBC1A3FAD0EC /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -335,12 +294,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				496854941BD6760100589F4C /* Akane.h in Headers */,
-				4968549A1BD67C0C00589F4C /* AKNPresenter.h in Headers */,
-				4968549D1BD67C0C00589F4C /* AKNViewComponent.h in Headers */,
 				4968549E1BD67C0C00589F4C /* AKNItemViewModel.h in Headers */,
 				496854A01BD67C2100589F4C /* AKNViewModelAware.h in Headers */,
 				4968549F1BD67C0C00589F4C /* AKNViewModel.h in Headers */,
-				492E703D1BF0CD9F0006E59E /* AKNLifecycleManager.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -526,13 +482,11 @@
 			files = (
 				490B20261C23027700054167 /* ComponentViewController.swift in Sources */,
 				49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */,
+				496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */,
 				49E9AB151C13ACA300BC1730 /* ViewObserver.swift in Sources */,
-				4968548F1BD6743600589F4C /* AKNLifecycleManager.m in Sources */,
 				49E69F321C091954001A1804 /* ObservationWrapper.swift in Sources */,
-				49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
-				492E703F1BF0D2870006E59E /* ViewComponent.swift in Sources */,
 				495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */,
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				495EC6021C01CE7400EB7665 /* Observation.swift in Sources */,
@@ -543,8 +497,8 @@
 				49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
-				496854921BD6743600589F4C /* AKNViewHelper.m in Sources */,
 				496854931BD6743600589F4C /* AKNViewModel.m in Sources */,
+				496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */,
 				49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */,
 				496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */,
 				495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */,

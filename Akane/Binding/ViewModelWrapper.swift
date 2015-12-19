@@ -20,13 +20,13 @@ public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtoc
         self.disposeBag = disposeBag
     }
 
-    public func bindTo<T:UIView where T:ViewComponent>(view: T?) {
+    public func bindTo<T:UIView where T:ComponentView>(view: T?) {
         if let view = view {
             self.bindTo(view)
         }
     }
 
-    public func bindTo<T:UIView where T:ViewComponent>(view: T) {
+    public func bindTo<T:UIView where T:ComponentView>(view: T) {
         let controller:ComponentViewController<T>? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
 
         guard (controller != nil) else {

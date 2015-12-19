@@ -91,7 +91,7 @@ class ViewObserverCollectionSpec : QuickSpec {
         }
     }
 
-    class ViewStub : UIView, ViewComponent {
+    class ViewStub : UIView, ComponentView {
         var viewToBind: ViewMock
 
         override init(frame: CGRect) {
@@ -112,7 +112,7 @@ class ViewObserverCollectionSpec : QuickSpec {
         }
     }
 
-    class ViewMock : UIView, ViewComponent {
+    class ViewMock : UIView, ComponentView {
         func bindings(observer: ViewObserver, viewModel: AnyObject) {
 
         }
@@ -121,7 +121,7 @@ class ViewObserverCollectionSpec : QuickSpec {
     class LifecycleMock : Lifecycle {
         var presenterToReturn: ComponentViewController<ViewMock>? = nil
 
-        func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?  {
+        func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?  {
             // FIXME remove warning
             return self.presenterToReturn as? ComponentViewController<T>
         }
