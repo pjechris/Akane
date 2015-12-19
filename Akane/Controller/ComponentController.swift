@@ -18,7 +18,7 @@ public protocol ComponentController : class {
 
     func addController<C:UIViewController where C:ComponentController>(childController: C)
 
-    func controllerForComponent<Foo:UIView where Foo:ViewComponent>(component: Foo) -> ComponentViewController<Foo>?
+    func controllerForComponent<V:UIView where V:ViewComponent>(component: V) -> ComponentViewController<V>?
 
     func didLoad()
 }

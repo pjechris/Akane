@@ -22,7 +22,15 @@ class LifecycleManager<C: ComponentController> : Lifecycle {
         self.controller = controller
     }
 
-    @objc
+    func mountOnce() {
+        let viewModel = self.controller.viewModel
+
+        if (!(viewModel.isMounted?.boolValue ?? false)) {
+            viewModel.willMount?()
+            viewModel.isMounted = NSNumber(bool: true)
+        }
+    }
+
     func bindView() {
         let view = self.controller.componentView
         self.binder = ViewObserverCollection(view: view, lifecycle: self)

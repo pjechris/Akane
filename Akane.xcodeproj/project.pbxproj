@@ -35,6 +35,7 @@
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; };
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
+		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; settings = {ASSET_TAGS = (); }; };
 		49B6C2541BEFACFF005626A6 /* LifecycleManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49B6C2531BEFACFF005626A6 /* LifecycleManager.swift */; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
@@ -86,6 +87,7 @@
 		496854AB1BD68B7C00589F4C /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
+		496ECB571C25672300F39EF2 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		4984BB201AC07A990095B126 /* AKNViewHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewHelper.h; sourceTree = "<group>"; };
 		4984BB211AC07A990095B126 /* AKNViewHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewHelper.m; sourceTree = "<group>"; };
 		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
@@ -240,6 +242,7 @@
 				4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */,
 				49A159F41A90F04B00C2891F /* AKNViewModel.m */,
 				4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */,
+				496ECB571C25672300F39EF2 /* ViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -543,6 +546,7 @@
 				496854921BD6743600589F4C /* AKNViewHelper.m in Sources */,
 				496854931BD6743600589F4C /* AKNViewModel.m in Sources */,
 				49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */,
+				496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */,
 				495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
