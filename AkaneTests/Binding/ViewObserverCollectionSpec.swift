@@ -15,11 +15,11 @@ import Bond
 class ViewObserverCollectionSpec : QuickSpec {
     override func spec() {
         var collection: ViewObserverCollection!
-        var view: ViewMock!
+        var view: ViewStub!
         var lifecycle: LifecycleMock!
 
         beforeEach {
-            view = ViewMock()
+            view = ViewStub()
             lifecycle = LifecycleMock()
             collection = ViewObserverCollection(view: view, lifecycle: lifecycle)
         }
@@ -48,7 +48,7 @@ class ViewObserverCollectionSpec : QuickSpec {
                 beforeEach {
                     viewModel = Observable(ViewModelMock())
 
-                    lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
+                    lifecycle.presenterToReturn = ComponentViewController.init(view: view.viewToBind)
                 }
 
                 it("should bind view with viewmodel") {
@@ -80,7 +80,7 @@ class ViewObserverCollectionSpec : QuickSpec {
                 let secondViewModel = ViewModelMock()
                 let observable = Observable(firstViewModel)
 
-                lifecycle.presenterToReturn = AKNPresenterViewController.init(view: view)!
+                lifecycle.presenterToReturn = ComponentViewController.init(view: view.viewToBind)
                 collection.observe(observable).bindTo(view.viewToBind)
 
                 collection.dispose()
@@ -91,11 +91,11 @@ class ViewObserverCollectionSpec : QuickSpec {
         }
     }
 
-    class ViewMock : AKNView {
-        var viewToBind: AKNView
+    class ViewStub : UIView, ViewComponent {
+        var viewToBind: ViewMock
 
         override init(frame: CGRect) {
-            self.viewToBind = AKNView()
+            self.viewToBind = ViewMock()
 
 
             super.init(frame: frame)
@@ -106,13 +106,24 @@ class ViewObserverCollectionSpec : QuickSpec {
         required init?(coder aDecoder: NSCoder) {
             fatalError("init(coder:) has not been implemented")
         }
+
+        func bindings(observer: ViewObserver, viewModel: AnyObject) {
+
+        }
+    }
+
+    class ViewMock : UIView, ViewComponent {
+        func bindings(observer: ViewObserver, viewModel: AnyObject) {
+
+        }
     }
 
     class LifecycleMock : Lifecycle {
-        var presenterToReturn: AKNPresenter? = nil
+        var presenterToReturn: ComponentViewController<ViewMock>? = nil
 
-        func presenterForSubview<T:UIView where T:AKNViewComponent>(subview: T, createIfNeeded: Bool) -> AKNPresenter? {
-            return self.presenterToReturn
+        func presenterForSubview<T:UIView where T:ViewComponent>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?  {
+            // FIXME remove warning
+            return self.presenterToReturn as? ComponentViewController<T>
         }
     }
 
