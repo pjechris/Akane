@@ -11,10 +11,10 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 protocol Lifecycle : class {
-    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?
+    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController?
 }
 
-class ControllerLifecycle<C: ComponentController> : Lifecycle {
+class ControllerLifecycle<C:UIViewController where C:ComponentController> : Lifecycle {
     private var binder: ViewObserverCollection!
     unowned private let controller: C
 
@@ -32,16 +32,14 @@ class ControllerLifecycle<C: ComponentController> : Lifecycle {
     }
 
     func bindView() {
-        let view = self.controller.componentView
-        self.binder = ViewObserverCollection(view: view, lifecycle: self)
+        let componentView = self.controller.componentView
+        self.binder = ViewObserverCollection(view: self.controller.view, lifecycle: self)
 
-        view.bindings(binder, viewModel: self.controller.viewModel)
+        componentView.bindings(binder, viewModel: self.controller.viewModel)
     }
 
-    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController<T>? {
-        let view = self.controller.componentView
-
-        guard (subview.isDescendantOfView(view)) else {
+    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {
+        guard (subview.isDescendantOfView(self.controller.view)) else {
             return nil
         }
 
@@ -50,7 +48,7 @@ class ControllerLifecycle<C: ComponentController> : Lifecycle {
         }
 
         if (createIfNeeded) {
-            let componentClass:ComponentViewController<T>.Type = subview.dynamicType.componentControllerClass()
+            let componentClass:ComponentViewController.Type = subview.dynamicType.componentControllerClass()
             let controller = componentClass.init(view: subview)
 
             self.controller.addController(controller)

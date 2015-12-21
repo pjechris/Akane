@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class ComponentViewController<ViewType: UIView where ViewType: ComponentView> : UIViewController, ComponentController {
+public class ComponentViewController : UIViewController, ComponentController {
     public var viewModel: AKNViewModelProtocol! {
         didSet {
             if (self.isViewLoaded()) {
@@ -17,18 +17,22 @@ public class ComponentViewController<ViewType: UIView where ViewType: ComponentV
             }
         }
     }
-    public var componentView: ViewType! {
-        get { return self.view as! ViewType }
+    public var componentView: ComponentView! {
+        get { return self.view as! ComponentView }
     }
 
-    var lifecycle: ControllerLifecycle<ComponentViewController<ViewType>>!
+    var lifecycle: ControllerLifecycle<ComponentViewController>!
 
-    public required init(view: ViewType) {
+    required public init(view: UIView) {
         super.init(nibName: nil, bundle: nil)
 
         self.lifecycle = ControllerLifecycle(controller: self)
         self.view = view
         self.viewDidLoad()
+    }
+    
+    required public init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 
     public override func viewDidLoad() {
@@ -55,10 +59,10 @@ extension ComponentController where Self:UIViewController {
         }
     }
 
-    public func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController<V>? {
+    public func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController? {
         for childViewController in self.childViewControllers {
-            if let controller = childViewController as? ComponentViewController<V> {
-                if (controller.componentView == component) {
+            if let controller = childViewController as? ComponentViewController {
+                if (controller.view == component) {
                     return controller
                 }
             }

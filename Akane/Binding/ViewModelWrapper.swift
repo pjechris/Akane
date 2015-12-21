@@ -27,7 +27,7 @@ public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtoc
     }
 
     public func bindTo<T:UIView where T:ComponentView>(view: T) {
-        let controller:ComponentViewController<T>? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
+        let controller:ComponentViewController? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
 
         guard (controller != nil) else {
             return

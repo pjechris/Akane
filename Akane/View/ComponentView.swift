@@ -15,7 +15,7 @@ public protocol ComponentView : class {
 }
 
 extension ComponentView where Self: UIView {
-    static func componentControllerClass() -> ComponentViewController<Self>.Type {
+    static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
     }
 }
