@@ -119,11 +119,10 @@ class ViewObserverCollectionSpec : QuickSpec {
     }
 
     class LifecycleMock : Lifecycle {
-        var presenterToReturn: ComponentViewController<ViewMock>? = nil
+        var presenterToReturn: ComponentViewController? = nil
 
-        func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController<T>?  {
-            // FIXME remove warning
-            return self.presenterToReturn as? ComponentViewController<T>
+        func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController?  {
+            return self.presenterToReturn
         }
     }
 

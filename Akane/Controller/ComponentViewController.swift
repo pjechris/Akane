@@ -13,12 +13,23 @@ public class ComponentViewController : UIViewController, ComponentController {
     public var viewModel: AKNViewModelProtocol! {
         didSet {
             if (self.isViewLoaded()) {
+                self.prepareIfNeeded()
                 self.lifecycle.bindView()
             }
         }
     }
+
     public var componentView: ComponentView! {
         get { return self.view as! ComponentView }
+    }
+
+    public override var view: UIView! {
+        didSet {
+            if (self.viewModel != nil) {
+                self.prepareIfNeeded()
+                self.lifecycle.bindView()
+            }
+        }
     }
 
     var lifecycle: ControllerLifecycle<ComponentViewController>!
@@ -26,7 +37,6 @@ public class ComponentViewController : UIViewController, ComponentController {
     required public init(view: UIView) {
         super.init(nibName: nil, bundle: nil)
 
-        self.lifecycle = ControllerLifecycle(controller: self)
         self.view = view
         self.viewDidLoad()
     }
@@ -35,15 +45,16 @@ public class ComponentViewController : UIViewController, ComponentController {
         super.init(coder: aDecoder)
     }
 
-    public override func viewDidLoad() {
-        if (self.viewModel != nil) {
-            self.lifecycle.bindView()
-        }
-    }
-
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         self.lifecycle.mountOnce()
+    }
+
+    func prepareIfNeeded() {
+        if (self.lifecycle == nil) {
+            self.lifecycle = ControllerLifecycle(controller: self)
+            self.didLoad()
+        }
     }
 }
 
