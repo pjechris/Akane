@@ -23,15 +23,6 @@ public class ComponentViewController : UIViewController, ComponentController {
         get { return self.view as! ComponentView }
     }
 
-    public override var view: UIView! {
-        didSet {
-            if (self.viewModel != nil) {
-                self.prepareIfNeeded()
-                self.lifecycle.bindView()
-            }
-        }
-    }
-
     var lifecycle: ControllerLifecycle<ComponentViewController>!
 
     required public init(view: UIView) {
@@ -43,6 +34,13 @@ public class ComponentViewController : UIViewController, ComponentController {
     
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
+    }
+
+    public override func viewDidLoad() {
+        if (self.viewModel != nil) {
+            self.prepareIfNeeded()
+            self.lifecycle.bindView()
+        }
     }
 
     public override func viewWillAppear(animated: Bool) {
