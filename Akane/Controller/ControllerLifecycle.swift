@@ -14,6 +14,9 @@ protocol Lifecycle : class {
     func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController?
 }
 
+/**
+ Handle controller view and view model lifecycles.
+*/
 class ControllerLifecycle<C:UIViewController where C:ComponentController> : Lifecycle {
     private var binder: ViewObserverCollection!
     unowned private let controller: C
