@@ -26,5 +26,5 @@ import Foundation
 public protocol ViewObserver {
     func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
     func observe<T: Command>(command: T) -> CommandWrapper
-    func observe<T: Observation where T.Element:AKNViewModelProtocol>(observableViewModel: T) -> ViewModelWrapper<T>
+    func observe<T: Observation where T.Element:ViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
 }

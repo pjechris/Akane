@@ -25,9 +25,9 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
     func mountOnce() {
         let viewModel = self.controller.viewModel
 
-        if (!(viewModel.isMounted?.boolValue ?? false)) {
-            viewModel.willMount?()
-            viewModel.isMounted = NSNumber(bool: true)
+        if (!viewModel.isMounted) {
+            viewModel.willMount()
+            viewModel.isMounted = true
         }
     }
 

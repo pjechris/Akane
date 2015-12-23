@@ -10,9 +10,19 @@ import Foundation
 
 var ViewModelIsMountedAttr = "ViewModelIsMountedAttr"
 
-extension AKNViewModelProtocol {
-    var isMounted: NSNumber? {
-        get { return objc_getAssociatedObject(self, &ViewModelIsMountedAttr) as? NSNumber }
-        set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+public protocol ViewModel : class {
+    var isMounted: Bool { get }
+
+    func willMount()
+}
+
+public extension ViewModel {
+    internal(set) var isMounted: Bool {
+        get { return (objc_getAssociatedObject(self, &ViewModelIsMountedAttr) as? NSNumber).map { return $0.boolValue } ?? false }
+        set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(bool: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+
+    func willMount() {
+
     }
 }

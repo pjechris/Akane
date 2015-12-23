@@ -10,8 +10,8 @@ import Foundation
 
 public protocol ComponentController : class {
     var componentView: ComponentView! { get }
-    var viewModel: AKNViewModelProtocol! { get set }
 
+    var viewModel: ViewModel! { get set }
     init(view: UIView)
 
     func addController<C:UIViewController where C:ComponentController>(childController: C)

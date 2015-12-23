@@ -9,12 +9,9 @@
 #import <UIKit/UIKit.h>
 
 //! Project version number for Akkane.
-FOUNDATION_EXPORT double AkkaneVersionNumber;
+FOUNDATION_EXPORT double AkaneVersionNumber;
 
 //! Project version string for Akkane.
-FOUNDATION_EXPORT const unsigned char AkkaneVersionString[];
+FOUNDATION_EXPORT const unsigned char AkaneVersionString[];
 
 // In this header, you should import all the public headers of your framework using statements like #import <Akane/PublicHeader.h>
-#import <Akane/AKNViewModel.h>
-#import <Akane/AKNItemViewModel.h>
-#import <Akane/AKNViewModelAware.h>

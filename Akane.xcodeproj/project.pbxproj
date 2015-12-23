@@ -21,17 +21,13 @@
 		495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */; };
 		495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495EC5FC1C01CE7400EB7665 /* Dispose.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
-		496854931BD6743600589F4C /* AKNViewModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 49A159F41A90F04B00C2891F /* AKNViewModel.m */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4968549E1BD67C0C00589F4C /* AKNItemViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 49A159F31A90E04200C2891F /* AKNItemViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		4968549F1BD67C0C00589F4C /* AKNViewModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		496854A01BD67C2100589F4C /* AKNViewModelAware.h in Headers */ = {isa = PBXBuildFile; fileRef = 4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; };
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
-		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; settings = {ASSET_TAGS = (); }; };
-		496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB591C259ACF00F39EF2 /* ComponentView.swift */; settings = {ASSET_TAGS = (); }; };
-		496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */; settings = {ASSET_TAGS = (); }; };
+		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; };
+		496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB591C259ACF00F39EF2 /* ComponentView.swift */; };
+		496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
 		49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */; };
@@ -59,8 +55,6 @@
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModel.h; sourceTree = "<group>"; };
-		4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNViewModelAware.h; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		492A189C1C0EFD1C006F7B11 /* ViewObserverCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollectionSpec.swift; sourceTree = "<group>"; };
 		495EC5F61C01CE7400EB7665 /* BondDisposeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDisposeAdapter.swift; sourceTree = "<group>"; };
@@ -76,8 +70,6 @@
 		496ECB571C25672300F39EF2 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		496ECB591C259ACF00F39EF2 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
-		49A159F31A90E04200C2891F /* AKNItemViewModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AKNItemViewModel.h; sourceTree = "<group>"; };
-		49A159F41A90F04B00C2891F /* AKNViewModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AKNViewModel.m; sourceTree = "<group>"; };
 		49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		49DD45D41C14E18C00CF17AC /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
 		49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
@@ -207,10 +199,6 @@
 		4926EAEF1A5EBD17005A3D71 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				49A159F31A90E04200C2891F /* AKNItemViewModel.h */,
-				4926EAF01A5EBD17005A3D71 /* AKNViewModel.h */,
-				49A159F41A90F04B00C2891F /* AKNViewModel.m */,
-				4926EAF11A5EBD17005A3D71 /* AKNViewModelAware.h */,
 				496ECB571C25672300F39EF2 /* ViewModel.swift */,
 			);
 			path = ViewModel;
@@ -294,9 +282,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				496854941BD6760100589F4C /* Akane.h in Headers */,
-				4968549E1BD67C0C00589F4C /* AKNItemViewModel.h in Headers */,
-				496854A01BD67C2100589F4C /* AKNViewModelAware.h in Headers */,
-				4968549F1BD67C0C00589F4C /* AKNViewModel.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -497,7 +482,6 @@
 				49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
-				496854931BD6743600589F4C /* AKNViewModel.m in Sources */,
 				496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */,
 				49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */,
 				496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */,

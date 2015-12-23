@@ -54,7 +54,7 @@ class ViewObserverCollectionSpec : QuickSpec {
                 it("should bind view with viewmodel") {
                     collection.observe(viewModel).bindTo(view.viewToBind)
 
-                    expect(lifecycle.presenterToReturn!.viewModel) === viewModel.value
+                    expect(lifecycle.presenterToReturn!.viewModel as? ViewModelMock) === viewModel.value
                 }
 
                 it("should NOT save observation") {
@@ -86,7 +86,7 @@ class ViewObserverCollectionSpec : QuickSpec {
                 collection.dispose()
                 observable.next(secondViewModel)
 
-                expect(lifecycle.presenterToReturn!.viewModel) !== secondViewModel
+                expect(lifecycle.presenterToReturn!.viewModel as? ViewModelMock) !== secondViewModel
             }
         }
     }
@@ -126,7 +126,7 @@ class ViewObserverCollectionSpec : QuickSpec {
         }
     }
 
-    class ViewModelMock : NSObject, AKNViewModelProtocol {
+    class ViewModelMock : ViewModel {
 
     }
 }

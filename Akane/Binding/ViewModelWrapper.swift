@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-public class ViewModelWrapper<T: Observation where T.Element: AKNViewModelProtocol> {
+public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
     let viewModel: T
     let disposeBag: DisposeBag
     unowned let lifecycle: Lifecycle
