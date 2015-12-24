@@ -1,5 +1,17 @@
 # CHANGELOG
 
+# 0.12.0 alpha 2
+
+Akane is now compatible with Xcode 7.1+.
+
+## Added
+
+## Enhancements
+
+- All protocols were re-written in Swift
+- ViewComponent was renamed ComponentView
+- Presenter was renamed ComponentController
+
 # 0.12.0 alpha
 
 0.12.0 requires iOS8+ and Swift 2.0+.
