@@ -53,4 +53,10 @@ class ViewObserverCollection : ViewObserver, Dispose {
         return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle, disposeBag: self.disposeBag)
     }
 
+    func observe<T:ViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>> {
+        let binding = Observable(viewModel)
+
+        self.bindings.append(binding)
+        return ViewModelWrapper.init(viewModel: binding, lifecycle: lifecycle, disposeBag: self.disposeBag)
+    }
 }

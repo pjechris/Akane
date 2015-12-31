@@ -39,4 +39,8 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
             }
         )
     }
+
+    func bindTo(cell: UITableViewCell, template: Template) {
+        template.bind(cell, wrapper: self)
+    }
 }

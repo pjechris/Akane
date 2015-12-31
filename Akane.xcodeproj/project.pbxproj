@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		18528EF01C3E09E601C476C3 /* Pods_AkaneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */; };
 		3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */; };
+		4903340B1C33E32F009F73CF /* ViewModelDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4903340A1C33E32F009F73CF /* ViewModelDataSource.swift */; };
 		490B20251C23027700054167 /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B20231C23027700054167 /* ComponentController.swift */; };
 		490B20261C23027700054167 /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490B20241C23027700054167 /* ComponentViewController.swift */; };
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
@@ -28,6 +29,11 @@
 		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; };
 		496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB591C259ACF00F39EF2 /* ComponentView.swift */; };
 		496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */; };
+		498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFD1C35866400E2A6B0 /* Template.swift */; };
+		498C6E001C35866400E2A6B0 /* TemplateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */; };
+		498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */; };
+		49D9352E1C2B6F45000CCB1D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9352C1C2B6F45000CCB1D /* DataSource.swift */; };
+		49D9352F1C2B6F45000CCB1D /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9352D1C2B6F45000CCB1D /* TableDataSource.swift */; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
 		49DD45D71C14EC9A00CF17AC /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */; };
@@ -48,6 +54,7 @@
 
 /* Begin PBXFileReference section */
 		272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
+		4903340A1C33E32F009F73CF /* ViewModelDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelDataSource.swift; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490B20231C23027700054167 /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
 		490B20241C23027700054167 /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = ComponentViewController.swift; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
@@ -70,6 +77,11 @@
 		496ECB571C25672300F39EF2 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		496ECB591C259ACF00F39EF2 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
+		498C6DFD1C35866400E2A6B0 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
+		498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateHolder.swift; sourceTree = "<group>"; };
+		498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewTemplate.swift; sourceTree = "<group>"; };
+		49D9352C1C2B6F45000CCB1D /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
+		49D9352D1C2B6F45000CCB1D /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		49DD45D41C14E18C00CF17AC /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
 		49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
@@ -161,7 +173,9 @@
 				491705391C0279A100DD4284 /* Command */,
 				490B20221C23027700054167 /* Controller */,
 				496854991BD67AFC00589F4C /* Converter */,
+				49D9352B1C2B6F45000CCB1D /* DataSource */,
 				4926EAFB1A5EBD4A005A3D71 /* Info.plist */,
+				498C6DFC1C35864B00E2A6B0 /* Template */,
 				4926EAEA1A5EBD17005A3D71 /* View */,
 				4926EAEF1A5EBD17005A3D71 /* ViewModel */,
 			);
@@ -239,9 +253,9 @@
 				495EC5FB1C01CE7400EB7665 /* DisposeBag.swift */,
 				495EC5FA1C01CE7400EB7665 /* Observation.swift */,
 				49E69F301C091954001A1804 /* ObservationWrapper.swift */,
+				49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */,
 				49E9AB141C13ACA300BC1730 /* ViewObserver.swift */,
 				49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */,
-				49DD45D61C14EC9A00CF17AC /* ViewModelWrapper.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -251,6 +265,26 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		498C6DFC1C35864B00E2A6B0 /* Template */ = {
+			isa = PBXGroup;
+			children = (
+				498C6DFD1C35866400E2A6B0 /* Template.swift */,
+				498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */,
+				498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */,
+			);
+			path = Template;
+			sourceTree = "<group>";
+		};
+		49D9352B1C2B6F45000CCB1D /* DataSource */ = {
+			isa = PBXGroup;
+			children = (
+				49D9352C1C2B6F45000CCB1D /* DataSource.swift */,
+				49D9352D1C2B6F45000CCB1D /* TableDataSource.swift */,
+				4903340A1C33E32F009F73CF /* ViewModelDataSource.swift */,
+			);
+			path = DataSource;
 			sourceTree = "<group>";
 		};
 		771E527F440EEBC1A3FAD0EC /* Frameworks */ = {
@@ -470,6 +504,7 @@
 				496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */,
 				49E9AB151C13ACA300BC1730 /* ViewObserver.swift in Sources */,
 				49E69F321C091954001A1804 /* ObservationWrapper.swift in Sources */,
+				498C6E001C35866400E2A6B0 /* TemplateHolder.swift in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
 				495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */,
@@ -478,13 +513,18 @@
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
 				49E69F311C091954001A1804 /* CommandWrapper.swift in Sources */,
 				495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */,
+				4903340B1C33E32F009F73CF /* ViewModelDataSource.swift in Sources */,
+				49D9352F1C2B6F45000CCB1D /* TableDataSource.swift in Sources */,
+				498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */,
 				490B20251C23027700054167 /* ComponentController.swift in Sources */,
 				49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
+				498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
 				496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */,
 				49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */,
 				496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */,
+				49D9352E1C2B6F45000CCB1D /* DataSource.swift in Sources */,
 				495EC6031C01CE7400EB7665 /* DisposeBag.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
