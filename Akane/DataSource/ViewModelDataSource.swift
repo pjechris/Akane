@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol ViewModelDataSourceSourceType: class {
+public protocol ViewModelDataSource : class {
     typealias DataSourceType: DataSource
     typealias ItemViewModelType: ViewModel
 

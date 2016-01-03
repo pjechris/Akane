@@ -10,24 +10,29 @@ import Foundation
 import UIKit
 import Bond
 
+var TableViewDataSourceAttr = "TableViewDataSourceAttr"
+
 public class TableDataSource<V: ViewModelDataSource where V.DataSourceType.RowIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
-    public typealias ViewModelDataSourceSourceType = V
-    public typealias DataSourceType = ViewModelSourceType.DataSourceType
+    public typealias ViewModelDataSourceType = V
+    public typealias DataSourceType = ViewModelDataSourceType.DataSourceType
 
     let dataSource: DataSourceType
     let templateHolder: TemplateHolder<DataSourceType.RowIdentifier>
     weak var observer: ViewObserverCollection?
-    weak var viewModelDataSource: ViewModelDataSourceSourceType?
+    weak var viewModelDataSource: ViewModelDataSourceType?
 
-    public init(dataSource: DataSourceType, viewModelDataSource: ViewModelSourceType, @noescape templates: (holder: TemplateHolder<DataSourceType.RowIdentifier>) -> Void) {
-        self.dataSource = dataSource
-        self.viewModelSource = viewModelSource
+    init(dataSource viewModelDataSource: ViewModelDataSourceType, templates: (holder: TemplateHolder<V.DataSourceType.RowIdentifier>) -> Void) {
+        self.viewModelDataSource = viewModelDataSource
+        self.dataSource = viewModelDataSource.dataSource
         self.templateHolder = TemplateHolder()
 
         templates(holder: self.templateHolder)
     }
 
-    internal func becomeDataSource(tableView: UITableView, observer: ViewObserverCollection) {
+    func becomeDataSource(tableView: UITableView, observer: ViewObserverCollection) {
+        self.observer = observer
+        objc_setAssociatedObject(tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
         tableView.delegate = self
         tableView.dataSource = self
 
