@@ -18,7 +18,7 @@ protocol Lifecycle : class {
  Handle controller view and view model lifecycles.
 */
 class ControllerLifecycle<C:UIViewController where C:ComponentController> : Lifecycle {
-    private var binder: ViewObserverCollection!
+    var binder: ViewObserverCollection!
     unowned private let controller: C
 
     init(controller: C) {

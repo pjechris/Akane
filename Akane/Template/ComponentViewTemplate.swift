@@ -9,12 +9,14 @@
 import Foundation
 
 public class ComponentViewTemplate<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
-    let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
-    let componentViewType: ComponentType.Type
+    private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
+    private let componentViewType: ComponentType.Type
+    private var nib: UINib?
 
-    public init(_ componentType: ComponentType.Type, prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)? = nil) {
+    public init(_ componentType: ComponentType.Type, fromNib nibName: String?, prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)? = nil) {
         self.componentViewType = componentType
         self.prepareForReuse = prepareForReuse
+        self.nib = nibName.map { return UINib(nibName: $0, bundle: nil) }
     }
 
     public func bind<O: Observation, V: ViewModel where O.Element == V>(cell: UITableViewCell, wrapper: ViewModelWrapper<O>) {
@@ -22,6 +24,11 @@ public class ComponentViewTemplate<ComponentType: UITableViewCell where Componen
     }
 
     public func register(table: UITableView, identifier: String) {
-        table.registerClass(self.componentViewType, forCellReuseIdentifier: identifier)
+        if let nib = nib {
+            table.registerNib(nib, forCellReuseIdentifier: identifier)
+        }
+        else {
+            table.registerClass(self.componentViewType, forCellReuseIdentifier: identifier)
+        }
     }
 }

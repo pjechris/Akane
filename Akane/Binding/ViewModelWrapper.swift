@@ -10,11 +10,14 @@ import Foundation
 import Bond
 
 public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
-    let viewModel: T
+    public typealias ObservationType = T
+    public typealias ViewModelType = T.Element
+
+    let viewModel: ObservationType
     let disposeBag: DisposeBag
     unowned let lifecycle: Lifecycle
 
-    init(viewModel: T, lifecycle: Lifecycle, disposeBag: DisposeBag) {
+    init(viewModel: ObservationType, lifecycle: Lifecycle, disposeBag: DisposeBag) {
         self.viewModel = viewModel
         self.lifecycle = lifecycle
         self.disposeBag = disposeBag
@@ -42,5 +45,26 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
 
     func bindTo(cell: UITableViewCell, template: Template) {
         template.bind(cell, wrapper: self)
+    }
+}
+
+extension ViewModelWrapper where T.Element: ViewModelDataSource, T.Element.DataSourceType.RowIdentifier.RawValue == String {
+
+    public func bindTo<T:UITableView where T:ComponentView>(tableView: T, templates: ((holder: TemplateHolder<ViewModelType.DataSourceType.RowIdentifier>) -> Void)) {
+
+        // FIXME that makes 2 signals to disposebag
+        self.bindTo(tableView)
+
+        let controller:ComponentViewController? = self.lifecycle.presenterForSubview(tableView, createIfNeeded: false)
+
+        self.disposeBag.addDisposable(
+            self.viewModel.observe { [weak tableView] viewModel in
+                let dataSource = TableDataSource<ViewModelType>(dataSource: viewModel, templates: templates)
+
+                if let tableView = tableView {
+                    dataSource.becomeDataSource(tableView, observer: controller!.lifecycle.binder)
+                }
+            }
+        )
     }
 }
