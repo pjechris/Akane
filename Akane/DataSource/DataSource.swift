@@ -9,9 +9,13 @@
 import Foundation
 
 public protocol DataSource {
-    typealias RowItemType
-    typealias RowIdentifier: RawRepresentable
-
+    func numberOfSections() -> Int
     func numberOfItemsInSection(section: Int) -> Int
-    func dataAtIndexPath(indexPath: NSIndexPath) -> (item: RowItemType?, identifier: RowIdentifier)
 }
+
+public extension DataSource {
+    func numberOfSections() -> Int {
+        return 1
+    }
+}
+
