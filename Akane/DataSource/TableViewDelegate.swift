@@ -12,7 +12,7 @@ import Bond
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
-public class TableDataSource<V: ViewModelDataSource where V.DataSourceType.RowIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
+public class TableViewDelegate<V: ViewModelDataSource where V.DataSourceType.RowIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
     public typealias ViewModelDataSourceType = V
     public typealias DataSourceType = ViewModelDataSourceType.DataSourceType
 

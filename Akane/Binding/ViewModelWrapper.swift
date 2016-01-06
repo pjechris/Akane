@@ -59,7 +59,7 @@ extension ViewModelWrapper where T.Element: ViewModelDataSource, T.Element.DataS
 
         self.disposeBag.addDisposable(
             self.viewModel.observe { [weak tableView] viewModel in
-                let dataSource = TableDataSource<ViewModelType>(dataSource: viewModel, templates: templates)
+                let dataSource = TableViewDelegate<ViewModelType>(dataSource: viewModel, templates: templates)
 
                 if let tableView = tableView {
                     dataSource.becomeDataSource(tableView, observer: controller!.lifecycle.binder)

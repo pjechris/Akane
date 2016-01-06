@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Bond
 
 /**
  Propose an View oriented Observation API. You can observe 3 types of elements:
@@ -25,6 +26,9 @@ import Foundation
 */
 public protocol ViewObserver {
     func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
+
     func observe<T: Command>(command: T) -> CommandWrapper
+
     func observe<T: Observation where T.Element:ViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
+    func observe<T:ViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
 }
