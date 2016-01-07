@@ -14,14 +14,14 @@ public protocol TableItemDataSource : DataSource {
 
     func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
-    func tableViewItemTemplate(identifier: Itemdentifier) -> Template
+    func tableViewItemTemplate(identifier: ItemIdentifier) -> Template
 }
 
 public protocol TableSectionDataSource : TableItemDataSource {
     typealias SectionType
     typealias SectionIdentifier: RawRepresentable
 
-    func sectionAtIndex(index: Int) -> (section: SectionType?, identifier: SectionIdentifier)
+    func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 
     func tableViewSectionTemplate(identifier: SectionIdentifier) -> Template
 }

@@ -12,31 +12,45 @@ import Bond
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
-public class TableViewDelegate<V: ViewModelDataSource where V.DataSourceType.RowIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
-    public typealias ViewModelDataSourceType = V
-    public typealias DataSourceType = ViewModelDataSourceType.DataSourceType
+public class TableViewDelegate<TableViewType : UITableView where
+    TableViewType : ComponentTableView,
+    TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.DataType,
+    TableViewType.DataSourceType.ItemType == TableViewType.ViewModelType.ItemType,
+    TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
 
-    let dataSource: DataSourceType
-    let templateHolder: TemplateHolder<DataSourceType.RowIdentifier>
-    weak var observer: ViewObserverCollection?
-    weak var viewModelDataSource: ViewModelDataSourceType?
+    public typealias CollectionViewModelType = TableViewType.ViewModelType
+    public typealias DataSourceType = TableViewType.DataSourceType
 
-    init(dataSource viewModelDataSource: ViewModelDataSourceType, templates: (holder: TemplateHolder<V.DataSourceType.RowIdentifier>) -> Void) {
-        self.viewModelDataSource = viewModelDataSource
-        self.dataSource = viewModelDataSource.dataSource
-        self.templateHolder = TemplateHolder()
-
-        templates(holder: self.templateHolder)
+    let templateHolder: TemplateHolder
+    var dataSource: DataSourceType! {
+        didSet { self.tableView.reloadData() }
     }
+    weak var observer: ViewObserverCollection?
+    weak var collectionViewModel: CollectionViewModelType!
+    unowned var tableView: TableViewType
 
-    func becomeDataSource(tableView: UITableView, observer: ViewObserverCollection) {
-        self.observer = observer
-        objc_setAssociatedObject(tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
+        self.tableView = tableView
+        self.templateHolder = TemplateHolder()
+        self.collectionViewModel = collectionViewModel
 
-        tableView.delegate = self
+        super.init()
+
+        // Without casting swift complains about ambiguous delegate
+        (self.tableView as UITableView).delegate = self
         tableView.dataSource = self
 
-        tableView.reloadData()
+        objc_setAssociatedObject(self.tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    }
+
+    func becomeDataSource(observer: ViewObserverCollection, data: DataSourceType.DataType) {
+        self.observer = observer
+        self.dataSource = DataSourceType.init(data: data)
+    }
+
+    @objc
+    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return self.dataSource.numberOfSections()
     }
 
     @objc
@@ -44,27 +58,20 @@ public class TableViewDelegate<V: ViewModelDataSource where V.DataSourceType.Row
         return self.dataSource.numberOfItemsInSection(section)
     }
 
-//    public func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let item = self.dataSource.itemAtIndexPath(indexPath)
-//        let viewModel: ViewModel
-//        let template = self.templateObserver.viewModelTemplate(viewModel) // except deque is not the same
-//
-//    }
-
-//    public func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-//
-//    }
-
-    @objc
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let data = self.dataSource.dataAtIndexPath(indexPath)
+        let data = self.dataSource.itemAtIndexPath(indexPath)
+        let template = self.templateHolder.itemTemplate(data.identifier.rawValue) {
+            let template = self.dataSource.tableViewItemTemplate(data.identifier)
+            template.register(self.tableView, identifier: data.identifier.rawValue)
 
-        self.templateHolder.registerRowIfNeeded(tableView, identifier: data.identifier)
+            return template
+        }
 
         let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
-        let template = self.templateHolder.rowTemplate(data.identifier)!
 
-        if let item = data.item, let viewModel = self.viewModelDataSource?.viewModel(forItem: item) {
+        if let item = data.item {
+            let viewModel = self.collectionViewModel.viewModel(forItem: item)
+
             self.observer?.observe(viewModel).bindTo(cell, template: template)
         }
 

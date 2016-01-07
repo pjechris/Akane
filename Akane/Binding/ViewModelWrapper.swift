@@ -48,9 +48,15 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
     }
 }
 
-extension ViewModelWrapper where T.Element: ViewModelDataSource, T.Element.DataSourceType.RowIdentifier.RawValue == String {
+extension ViewModelWrapper where T.Element: CollectionItemViewModel {
 
-    public func bindTo<T:UITableView where T:ComponentView>(tableView: T, templates: ((holder: TemplateHolder<ViewModelType.DataSourceType.RowIdentifier>) -> Void)) {
+    public func bindTo<T:UITableView where
+        T.ViewModelType == ViewModelType,
+        T:ComponentTableView,
+        T.DataSourceType.DataType == T.ViewModelType.DataType,
+        T.DataSourceType.ItemType == T.ViewModelType.ItemType,
+        T.DataSourceType.ItemIdentifier.RawValue == String>
+        (tableView: T) {
 
         // FIXME that makes 2 signals to disposebag
         self.bindTo(tableView)
@@ -59,10 +65,10 @@ extension ViewModelWrapper where T.Element: ViewModelDataSource, T.Element.DataS
 
         self.disposeBag.addDisposable(
             self.viewModel.observe { [weak tableView] viewModel in
-                let dataSource = TableViewDelegate<ViewModelType>(dataSource: viewModel, templates: templates)
-
                 if let tableView = tableView {
-                    dataSource.becomeDataSource(tableView, observer: controller!.lifecycle.binder)
+                    let delegate = TableViewDelegate.init(tableView: tableView, collectionViewModel: viewModel)
+
+                    delegate.becomeDataSource(controller!.lifecycle.binder, data: viewModel.collection)
                 }
             }
         )

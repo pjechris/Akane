@@ -9,6 +9,10 @@
 import Foundation
 
 public protocol DataSource {
+    typealias DataType
+
+    init(data: DataType)
+
     func numberOfSections() -> Int
     func numberOfItemsInSection(section: Int) -> Int
 }

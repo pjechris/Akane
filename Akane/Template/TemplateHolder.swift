@@ -8,24 +8,17 @@
 
 import Foundation
 
-public class TemplateHolder<RowIdentifier: RawRepresentable where RowIdentifier.RawValue == String> {
-    var rowTemplateGenerator: ((RowIdentifier -> Template))!
-    var rowTemplates: [RowIdentifier.RawValue:Template] = [:]
+class TemplateHolder {
+    var itemTemplates: [String:Template] = [:]
 
-    public func registerRow(template: (RowIdentifier -> Template)) {
-        self.rowTemplateGenerator = template
-    }
-
-    func registerRowIfNeeded(table: UITableView, identifier rowIdentifier: RowIdentifier) {
-        if self.rowTemplates[rowIdentifier.rawValue] == nil {
-            let template = self.rowTemplateGenerator(rowIdentifier)
-
-            template.register(table, identifier: rowIdentifier.rawValue)
-            self.rowTemplates[rowIdentifier.rawValue] = template
+    func itemTemplate(itemIdentifier: String, @noescape missing getTemplate: () -> Template) -> Template {
+        if let template = self.itemTemplates[itemIdentifier] {
+            return template
         }
-    }
 
-    func rowTemplate(rowIdentifier: RowIdentifier) -> Template? {
-        return self.rowTemplates[rowIdentifier.rawValue]
+        let template = getTemplate()
+        self.itemTemplates[itemIdentifier] = template
+
+        return template
     }
 }
