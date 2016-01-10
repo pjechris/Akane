@@ -30,6 +30,14 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
     }
 
     public func bindTo<T:UIView where T:ComponentView>(view: T) {
+        self.bind(view)
+    }
+
+    func bindTo(cell: UITableViewCell, template: Template) {
+        template.bind(cell, wrapper: self)
+    }
+
+    func bind<T:UIView where T:ComponentView>(view: T) {
         let controller:ComponentViewController? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
 
         guard (controller != nil) else {
@@ -42,10 +50,6 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
             }
         )
     }
-
-    func bindTo(cell: UITableViewCell, template: Template) {
-        template.bind(cell, wrapper: self)
-    }
 }
 
 extension ViewModelWrapper where T.Element: CollectionItemViewModel {
@@ -53,13 +57,23 @@ extension ViewModelWrapper where T.Element: CollectionItemViewModel {
     public func bindTo<T:UITableView where
         T.ViewModelType == ViewModelType,
         T:ComponentTableView,
-        T.DataSourceType.DataType == T.ViewModelType.DataType,
-        T.DataSourceType.ItemType == T.ViewModelType.ItemType,
+        T.DataSourceType.DataType == T.ViewModelType.CollectionDataType,
+        T.DataSourceType.ItemIdentifier.RawValue == String>
+        (tableView: T?) {
+            if let tableView = tableView {
+                self.bindTo(tableView)
+            }
+    }
+
+    public func bindTo<T:UITableView where
+        T.ViewModelType == ViewModelType,
+        T:ComponentTableView,
+        T.DataSourceType.DataType == T.ViewModelType.CollectionDataType,
         T.DataSourceType.ItemIdentifier.RawValue == String>
         (tableView: T) {
 
         // FIXME that makes 2 signals to disposebag
-        self.bindTo(tableView)
+        self.bind(tableView)
 
         let controller:ComponentViewController? = self.lifecycle.presenterForSubview(tableView, createIfNeeded: false)
 

@@ -9,16 +9,16 @@
 import Foundation
 
 public protocol CollectionViewModel : ViewModel {
-    typealias DataType
+    typealias CollectionDataType
 
-    var collection: DataType { get }
+    var collection: CollectionDataType { get }
 }
 
 public protocol CollectionItemViewModel : CollectionViewModel {
     typealias ItemType
     typealias ItemViewModelType : ViewModel
 
-    func viewModel(forItem item: ItemType) -> ItemViewModelType
+    func viewModelforItem(item: ItemType) -> ItemViewModelType
 }
 
 public protocol CollectionSectionViewModel : CollectionItemViewModel {

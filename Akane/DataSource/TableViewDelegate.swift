@@ -14,8 +14,7 @@ var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
 public class TableViewDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
-    TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.DataType,
-    TableViewType.DataSourceType.ItemType == TableViewType.ViewModelType.ItemType,
+    TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
 
     public typealias CollectionViewModelType = TableViewType.ViewModelType
@@ -70,7 +69,7 @@ public class TableViewDelegate<TableViewType : UITableView where
         let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 
         if let item = data.item {
-            let viewModel = self.collectionViewModel.viewModel(forItem: item)
+            let viewModel = self.collectionViewModel.viewModelforItem(item as! CollectionViewModelType.ItemType)
 
             self.observer?.observe(viewModel).bindTo(cell, template: template)
         }
