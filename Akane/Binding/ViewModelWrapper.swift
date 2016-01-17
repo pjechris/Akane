@@ -33,7 +33,7 @@ public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
         self.bind(view)
     }
 
-    func bindTo(cell: UITableViewCell, template: Template) {
+    func bindTo(cell: UIView, template: Template) {
         template.bind(cell, wrapper: self)
     }
 

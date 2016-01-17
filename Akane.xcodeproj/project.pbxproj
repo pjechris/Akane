@@ -36,6 +36,8 @@
 		498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFD1C35866400E2A6B0 /* Template.swift */; };
 		498C6E001C35866400E2A6B0 /* TemplateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */; };
 		498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */; };
+		49BAC1741C4317DD00513CD9 /* CollectionRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BAC1731C4317DD00513CD9 /* CollectionRowType.swift */; };
+		49C48AA71C4C488100700D4D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48AA61C4C488100700D4D /* UITableView.swift */; };
 		49D9352E1C2B6F45000CCB1D /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D9352C1C2B6F45000CCB1D /* DataSource.swift */; };
 		49DD45D31C14E0DD00CF17AC /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */; };
 		49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49DD45D41C14E18C00CF17AC /* Bond.swift */; };
@@ -87,6 +89,8 @@
 		498C6DFD1C35866400E2A6B0 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateHolder.swift; sourceTree = "<group>"; };
 		498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewTemplate.swift; sourceTree = "<group>"; };
+		49BAC1731C4317DD00513CD9 /* CollectionRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionRowType.swift; sourceTree = "<group>"; };
+		49C48AA61C4C488100700D4D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		49D9352C1C2B6F45000CCB1D /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		49DD45D21C14E0DD00CF17AC /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		49DD45D41C14E18C00CF17AC /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
@@ -174,6 +178,7 @@
 		4926EACD1A5EBCBF005A3D71 /* Akane */ = {
 			isa = PBXGroup;
 			children = (
+				49C48AA51C4C487600700D4D /* UIKit */,
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
 				496854B31BD6950B00589F4C /* Binding */,
 				491705391C0279A100DD4284 /* Command */,
@@ -211,6 +216,7 @@
 		4926EAEA1A5EBD17005A3D71 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				49BAC1721C43178C00513CD9 /* Collection */,
 				496ECB591C259ACF00F39EF2 /* ComponentView.swift */,
 				496CF9E01C39755F00C479F3 /* ComponentTableView.swift */,
 			);
@@ -283,6 +289,22 @@
 				498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */,
 			);
 			path = Template;
+			sourceTree = "<group>";
+		};
+		49BAC1721C43178C00513CD9 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				49BAC1731C4317DD00513CD9 /* CollectionRowType.swift */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		49C48AA51C4C487600700D4D /* UIKit */ = {
+			isa = PBXGroup;
+			children = (
+				49C48AA61C4C488100700D4D /* UITableView.swift */,
+			);
+			path = UIKit;
 			sourceTree = "<group>";
 		};
 		49D9352B1C2B6F45000CCB1D /* DataSource */ = {
@@ -518,6 +540,7 @@
 				492CC2311C3D719D00ACEBDE /* TableDataSource.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
 				495EC6041C01CE7400EB7665 /* Dispose.swift in Sources */,
+				49C48AA71C4C488100700D4D /* UITableView.swift in Sources */,
 				492CC2351C3D71E200ACEBDE /* TableViewDelegate.swift in Sources */,
 				492CC2331C3D71AB00ACEBDE /* CollectionDataSource.swift in Sources */,
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
@@ -528,6 +551,7 @@
 				496CF9E11C39755F00C479F3 /* ComponentTableView.swift in Sources */,
 				498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */,
 				490B20251C23027700054167 /* ComponentController.swift in Sources */,
+				49BAC1741C4317DD00513CD9 /* CollectionRowType.swift in Sources */,
 				49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
 				498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */,

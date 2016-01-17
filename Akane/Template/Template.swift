@@ -9,6 +9,9 @@
 import Foundation
 
 public protocol Template {
-    func bind<O:Observation, V:ViewModel where O.Element == V>(cell: UITableViewCell, wrapper: ViewModelWrapper<O>)
+    var nib: UINib? { get }
+    var templateClass: AnyClass { get }
+
+    func bind<O:Observation, V:ViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>)
     func register(table: UITableView, identifier: String)
 }

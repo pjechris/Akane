@@ -12,15 +12,17 @@ import Bond
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
+
 public class TableViewDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
     TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
-    TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate {
+    TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate
+{
 
     public typealias CollectionViewModelType = TableViewType.ViewModelType
     public typealias DataSourceType = TableViewType.DataSourceType
 
-    let templateHolder: TemplateHolder
+    var templateHolder: [CollectionRowType:Template]
     var dataSource: DataSourceType! {
         didSet { self.tableView.reloadData() }
     }
@@ -30,7 +32,7 @@ public class TableViewDelegate<TableViewType : UITableView where
 
     init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
         self.tableView = tableView
-        self.templateHolder = TemplateHolder()
+        self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
 
         super.init()
@@ -59,9 +61,10 @@ public class TableViewDelegate<TableViewType : UITableView where
 
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.templateHolder.itemTemplate(data.identifier.rawValue) {
+        let template = self.templateHolder.findOrCreate(.Item(identifier: data.identifier.rawValue)) {
             let template = self.dataSource.tableViewItemTemplate(data.identifier)
-            template.register(self.tableView, identifier: data.identifier.rawValue)
+
+            self.tableView.register(template, type: .Item(identifier: data.identifier.rawValue))
 
             return template
         }

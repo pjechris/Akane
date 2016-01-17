@@ -11,7 +11,8 @@ import Foundation
 public class ComponentViewTemplate<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
     private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
     private let componentViewType: ComponentType.Type
-    private var nib: UINib?
+    public private(set) var nib: UINib?
+    public var templateClass: AnyClass { return self.componentViewType }
 
     public init(_ componentType: ComponentType.Type, fromNib nibName: String?, prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)? = nil) {
         self.componentViewType = componentType
@@ -19,7 +20,7 @@ public class ComponentViewTemplate<ComponentType: UITableViewCell where Componen
         self.nib = nibName.map { return UINib(nibName: $0, bundle: nil) }
     }
 
-    public func bind<O: Observation, V: ViewModel where O.Element == V>(cell: UITableViewCell, wrapper: ViewModelWrapper<O>) {
+    public func bind<O: Observation, V: ViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
         wrapper.bindTo(cell as? ComponentType)
     }
 
