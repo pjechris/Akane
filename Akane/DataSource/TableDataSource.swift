@@ -23,5 +23,5 @@ public protocol TableSectionDataSource : TableItemDataSource {
 
     func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 
-    func tableViewSectionTemplate(identifier: SectionIdentifier) -> Template
+    func tableViewSectionTemplate(identifier: SectionIdentifier) -> Template?
 }
