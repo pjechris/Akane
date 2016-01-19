@@ -21,7 +21,7 @@ public class ComponentViewTemplate<ComponentType: UITableViewCell where Componen
     }
 
     public func bind<O: Observation, V: ViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
-        wrapper.bindTo(cell as? ComponentType)
+        wrapper.bindTo(cell as! ComponentType)
     }
 
     public func register(table: UITableView, identifier: String) {

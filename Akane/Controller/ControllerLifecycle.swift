@@ -46,7 +46,7 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
     }
 
     func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {
-        guard (subview.isDescendantOfView(self.controller.view)) else {
+        guard (subview.isDescendantOfView(self.controller.view) || subview.window == nil) else {
             return nil
         }
 

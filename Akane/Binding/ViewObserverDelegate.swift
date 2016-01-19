@@ -12,7 +12,7 @@ public protocol ViewObserverDelegate {
     func bind(observer: ViewObserver, viewModel: ViewModel)
 }
 
-extension ViewObserverDelegate where
+public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
     Self.DataSourceType : TableItemDataSource,
@@ -27,7 +27,7 @@ extension ViewObserverDelegate where
     }
 }
 
-extension ViewObserverDelegate where
+public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
     Self.DataSourceType : TableSectionDataSource,

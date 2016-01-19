@@ -19,7 +19,7 @@ extension CollectionRowType : Hashable {
         case .Item(let itemIdentifier):
             return itemIdentifier.hashValue
         case .Section(let sectionIdentifier, let sectionKind):
-            return sectionIdentifier.hashValue + sectionKind.hashValue
+            return sectionIdentifier.hashValue ^ sectionKind.hashValue
         }
     }
 }
