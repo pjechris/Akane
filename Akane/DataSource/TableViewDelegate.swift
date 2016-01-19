@@ -26,7 +26,7 @@ public class TableViewDelegate<TableViewType : UITableView where
     var dataSource: DataSourceType! {
         didSet { self.tableView.reloadData() }
     }
-    weak var observer: ViewObserverCollection?
+    weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
     unowned var tableView: TableViewType
 
@@ -44,7 +44,7 @@ public class TableViewDelegate<TableViewType : UITableView where
         objc_setAssociatedObject(self.tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
-    func becomeDataSource(observer: ViewObserverCollection, data: DataSourceType.DataType) {
+    func becomeDataSource(observer: ViewObserver, data: DataSourceType.DataType) {
         self.observer = observer
         self.dataSource = DataSourceType.init(data: data)
     }
@@ -84,3 +84,4 @@ public class TableViewDelegate<TableViewType : UITableView where
     //
     //    }
 }
+

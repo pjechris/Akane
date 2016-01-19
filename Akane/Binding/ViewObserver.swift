@@ -24,7 +24,7 @@ import Bond
  For instance you ```ObservationWrapper``` has ```convert``` method to convert your ```Observation``` while ```CommandWrapper``` does not.
 
 */
-public protocol ViewObserver {
+public protocol ViewObserver : class {
     func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
 
     func observe<T: Command>(command: T) -> CommandWrapper
