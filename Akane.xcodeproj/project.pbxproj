@@ -33,6 +33,8 @@
 		496ECB581C25672300F39EF2 /* ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB571C25672300F39EF2 /* ViewModel.swift */; };
 		496ECB5A1C259ACF00F39EF2 /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB591C259ACF00F39EF2 /* ComponentView.swift */; };
 		496ECB5C1C259B9600F39EF2 /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */; };
+		4980ADA41C4E714A0006A5B5 /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4980ADA31C4E714A0006A5B5 /* CollectionLayout.swift */; };
+		4980ADA91C4E747E0006A5B5 /* CollectionAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4980ADA81C4E747E0006A5B5 /* CollectionAutoLayout.swift */; };
 		498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFD1C35866400E2A6B0 /* Template.swift */; };
 		498C6E001C35866400E2A6B0 /* TemplateHolder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */; };
 		498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */; };
@@ -88,6 +90,8 @@
 		496ECB571C25672300F39EF2 /* ViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModel.swift; sourceTree = "<group>"; };
 		496ECB591C259ACF00F39EF2 /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		496ECB5B1C259B9600F39EF2 /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
+		4980ADA31C4E714A0006A5B5 /* CollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
+		4980ADA81C4E747E0006A5B5 /* CollectionAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAutoLayout.swift; sourceTree = "<group>"; };
 		498C6DFD1C35866400E2A6B0 /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		498C6DFE1C35866400E2A6B0 /* TemplateHolder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateHolder.swift; sourceTree = "<group>"; };
 		498C6E011C35866E00E2A6B0 /* ComponentViewTemplate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewTemplate.swift; sourceTree = "<group>"; };
@@ -182,6 +186,7 @@
 		4926EACD1A5EBCBF005A3D71 /* Akane */ = {
 			isa = PBXGroup;
 			children = (
+				4980ADA11C4E70090006A5B5 /* Collection */,
 				49C48AA51C4C487600700D4D /* UIKit */,
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
 				496854B31BD6950B00589F4C /* Binding */,
@@ -284,6 +289,23 @@
 			children = (
 			);
 			path = Presenter;
+			sourceTree = "<group>";
+		};
+		4980ADA11C4E70090006A5B5 /* Collection */ = {
+			isa = PBXGroup;
+			children = (
+				4980ADA21C4E70090006A5B5 /* Layout */,
+			);
+			path = Collection;
+			sourceTree = "<group>";
+		};
+		4980ADA21C4E70090006A5B5 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				4980ADA31C4E714A0006A5B5 /* CollectionLayout.swift */,
+				4980ADA81C4E747E0006A5B5 /* CollectionAutoLayout.swift */,
+			);
+			path = Layout;
 			sourceTree = "<group>";
 		};
 		498C6DFC1C35864B00E2A6B0 /* Template */ = {
@@ -554,6 +576,7 @@
 				495EC6021C01CE7400EB7665 /* Observation.swift in Sources */,
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
 				49E69F311C091954001A1804 /* CommandWrapper.swift in Sources */,
+				4980ADA41C4E714A0006A5B5 /* CollectionLayout.swift in Sources */,
 				495EC5FE1C01CE7400EB7665 /* BondDisposeAdapter.swift in Sources */,
 				496CF9E11C39755F00C479F3 /* ComponentTableView.swift in Sources */,
 				498C6DFF1C35866400E2A6B0 /* Template.swift in Sources */,
@@ -561,6 +584,7 @@
 				49BAC1741C4317DD00513CD9 /* CollectionRowType.swift in Sources */,
 				49DD45D51C14E18C00CF17AC /* Bond.swift in Sources */,
 				495EC6001C01CE7400EB7665 /* Bindable.swift in Sources */,
+				4980ADA91C4E747E0006A5B5 /* CollectionAutoLayout.swift in Sources */,
 				498C6E021C35866E00E2A6B0 /* ComponentViewTemplate.swift in Sources */,
 				49C48AA21C4C1E4700700D4D /* ViewObserverDelegate.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,

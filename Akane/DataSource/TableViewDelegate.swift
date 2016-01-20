@@ -18,17 +18,17 @@ public class TableViewDelegate<TableViewType : UITableView where
     TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
-
     public typealias CollectionViewModelType = TableViewType.ViewModelType
     public typealias DataSourceType = TableViewType.DataSourceType
 
+    var layout: CollectionLayout = CollectionAutoLayout()
     var templateHolder: [CollectionRowType:Template]
-    var dataSource: DataSourceType! {
-        didSet { self.tableView.reloadData() }
-    }
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
     unowned var tableView: TableViewType
+    var dataSource: DataSourceType! {
+        didSet { self.tableView.reloadData() }
+    }
 
     init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
         self.tableView = tableView
@@ -59,6 +59,7 @@ public class TableViewDelegate<TableViewType : UITableView where
         return self.dataSource.numberOfItemsInSection(section)
     }
 
+    @objc
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
         let template = self.templateHolder.findOrCreate(.Item(identifier: data.identifier.rawValue)) {
@@ -78,6 +79,14 @@ public class TableViewDelegate<TableViewType : UITableView where
         }
 
         return cell
+    }
+
+    public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return self.layout.estimatedHeightForItem(indexPath)
+    }
+
+    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return self.layout.heightForItem(indexPath)
     }
 
     //    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {

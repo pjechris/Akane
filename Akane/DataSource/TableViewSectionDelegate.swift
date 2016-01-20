@@ -32,6 +32,25 @@ class TableViewSectionDelegate<TableViewType : UITableView where
     }
 
     @objc
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return self.layout.heightForSection(section, sectionKind: "footer")
+    }
+
+    @objc
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return self.layout.heightForSection(section, sectionKind: "header")
+    }
+
+    @objc
+    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return self.layout.estimatedHeightForSection(section, sectionKind: "footer")
+    }
+
+    @objc
+    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return self.layout.estimatedHeightForSection(section, sectionKind: "header")
+    }
+
     func viewForSection(section: Int, sectionKind: String) -> UIView? {
         let data = self.dataSource.sectionItemAtIndex(section)
         let sectionType = CollectionRowType.Section(identifier: data.identifier.rawValue, kind: sectionKind)
@@ -51,7 +70,7 @@ class TableViewSectionDelegate<TableViewType : UITableView where
 
             self.observer?.observe(viewModel).bindTo(view, template: template)
         }
-        
+
         return view
     }
 }
