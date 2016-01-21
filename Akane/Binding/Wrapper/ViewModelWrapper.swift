@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-public class ViewModelWrapper<T: Observation where T.Element: ViewModel> {
+public class ViewModelWrapper<T: Observation where T.Element: ComponentViewModel> {
     public typealias ObservationType = T
     public typealias ViewModelType = T.Element
 

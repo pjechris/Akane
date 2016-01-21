@@ -13,7 +13,7 @@ class TableViewSectionDelegate<TableViewType : UITableView where
     TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String,
     TableViewType.DataSourceType : TableSectionDataSource,
-    TableViewType.ViewModelType : CollectionSectionViewModel,
+    TableViewType.ViewModelType : ComponentCollectionSectionsViewModel,
     TableViewType.DataSourceType.SectionIdentifier.RawValue == String> : TableViewDelegate<TableViewType>
 {
 

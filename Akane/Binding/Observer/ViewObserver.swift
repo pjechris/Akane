@@ -29,6 +29,6 @@ public protocol ViewObserver : class {
 
     func observe<T: Command>(command: T) -> CommandWrapper
 
-    func observe<T: Observation where T.Element:ViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
-    func observe<T:ViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
+    func observe<T: Observation where T.Element:ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
+    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
 }

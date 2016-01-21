@@ -126,7 +126,7 @@ class ViewObserverCollectionSpec : QuickSpec {
         }
     }
 
-    class ViewModelMock : ViewModel {
+    class ViewModelMock : ComponentViewModel {
 
     }
 }

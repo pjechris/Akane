@@ -20,7 +20,7 @@ public class ComponentViewTemplate<ComponentType: UITableViewCell where Componen
         self.nib = nibName.map { return UINib(nibName: $0, bundle: nil) }
     }
 
-    public func bind<O: Observation, V: ViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
+    public func bind<O: Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
         wrapper.bindTo(cell as! ComponentType)
     }
 

@@ -49,11 +49,11 @@ class ViewObserverCollection : ViewObserver, Dispose {
         return CommandWrapper(command: command, disposeBag: self.disposeBag)
     }
 
-    func observe<T: Observation where T.Element:ViewModel>(observableViewModel: T) -> ViewModelWrapper<T> {
+    func observe<T: Observation where T.Element: ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T> {
         return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle, disposeBag: self.disposeBag)
     }
 
-    func observe<T:ViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>> {
+    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>> {
         let binding = Observable(viewModel)
 
         self.bindings.append(binding)

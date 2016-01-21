@@ -8,22 +8,22 @@
 
 import Foundation
 
-public protocol CollectionViewModel : ViewModel {
+public protocol ComponentCollectionViewModel : ComponentViewModel {
     typealias CollectionDataType
 
     var collection: CollectionDataType { get }
 }
 
-public protocol CollectionItemViewModel : CollectionViewModel {
+public protocol ComponentCollectionItemsViewModel : ComponentCollectionViewModel {
     typealias ItemType
-    typealias ItemViewModelType : ViewModel
+    typealias ItemViewModelType : ComponentViewModel
 
     func viewModelforItem(item: ItemType) -> ItemViewModelType
 }
 
-public protocol CollectionSectionViewModel : CollectionItemViewModel {
+public protocol ComponentCollectionSectionsViewModel : ComponentCollectionItemsViewModel {
     typealias SectionType
-    typealias SectionViewModelType : ViewModel
+    typealias SectionViewModelType : ComponentViewModel
 
     func viewModelForSection(item: SectionType) -> SectionViewModelType
 }

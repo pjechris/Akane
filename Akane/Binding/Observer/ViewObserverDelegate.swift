@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol ViewObserverDelegate {
-    func bind(observer: ViewObserver, viewModel: ViewModel)
+    func bind(observer: ViewObserver, viewModel: ComponentViewModel)
 }
 
 public extension ViewObserverDelegate where
@@ -19,7 +19,7 @@ public extension ViewObserverDelegate where
     Self.DataSourceType.DataType == Self.ViewModelType.CollectionDataType,
     Self.DataSourceType.ItemIdentifier.RawValue == String
 {
-    func bind(observer: ViewObserver, viewModel: ViewModel) {
+    func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = TableViewDelegate(tableView: self, collectionViewModel: viewModel)
 
@@ -33,10 +33,10 @@ public extension ViewObserverDelegate where
     Self.DataSourceType : TableSectionDataSource,
     Self.DataSourceType.DataType == Self.ViewModelType.CollectionDataType,
     Self.DataSourceType.ItemIdentifier.RawValue == String,
-    Self.ViewModelType : CollectionSectionViewModel,
+    Self.ViewModelType : ComponentCollectionSectionsViewModel,
     Self.DataSourceType.SectionIdentifier.RawValue == String
 {
-    func bind(observer: ViewObserver, viewModel: ViewModel) {
+    func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = TableViewSectionDelegate(tableView: self, collectionViewModel: viewModel)
 

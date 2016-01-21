@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 public class ComponentViewController : UIViewController, ComponentController {
-    public var viewModel: ViewModel! {
+    public var viewModel: ComponentViewModel! {
         didSet {
             if (self.isViewLoaded()) {
                 self.prepareIfNeeded()

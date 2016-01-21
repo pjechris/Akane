@@ -18,7 +18,7 @@ public protocol ComponentController : class {
 
     /// the Controller view model
     /// While using generics to constraint it would be great, it causes issues with Storyboards and Xibs.
-    var viewModel: ViewModel! { get set }
+    var viewModel: ComponentViewModel! { get set }
 
     /// Init with a view which sould implement ```ComponentView``` protocol.
     /// Once again, using generics to would have been great but it causes issues with Storyboards and Xibs :(
