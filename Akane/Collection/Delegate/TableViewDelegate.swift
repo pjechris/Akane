@@ -73,7 +73,7 @@ public class TableViewDelegate<TableViewType : UITableView where
         let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 
         if let item = data.item {
-            let viewModel = self.collectionViewModel.viewModelforItem(item as! CollectionViewModelType.ItemType)
+            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType)
 
             self.observer?.observe(viewModel).bindTo(cell, template: template)
         }
@@ -81,16 +81,46 @@ public class TableViewDelegate<TableViewType : UITableView where
         return cell
     }
 
+    @objc
     public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return self.layout.estimatedHeightForItem(indexPath)
     }
 
+    @objc
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return self.layout.heightForItem(indexPath)
     }
 
-    //    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-    //
-    //    }
+    @objc
+    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        if let item = self.dataSource.itemAtIndexPath(indexPath).item,
+            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as? ComponentItemViewModel {
+            return (viewModel.select != nil) ? indexPath : nil
+        }
+
+        return nil
+    }
+
+    @objc
+    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let item = self.dataSource.itemAtIndexPath(indexPath).item
+        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+
+        viewModel.select!.execute(nil)
+    }
+
+    public func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        let item = self.dataSource.itemAtIndexPath(indexPath).item
+        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+
+        return (viewModel.unselect != nil) ? indexPath : nil
+    }
+
+    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+        let item = self.dataSource.itemAtIndexPath(indexPath).item
+        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+
+        viewModel.unselect!.execute(nil)
+    }
 }
 

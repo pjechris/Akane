@@ -18,12 +18,12 @@ public protocol ComponentCollectionItemsViewModel : ComponentCollectionViewModel
     typealias ItemType
     typealias ItemViewModelType : ComponentViewModel
 
-    func viewModelforItem(item: ItemType) -> ItemViewModelType
+    func createItemViewModel(item: ItemType) -> ItemViewModelType
 }
 
 public protocol ComponentCollectionSectionsViewModel : ComponentCollectionItemsViewModel {
     typealias SectionType
     typealias SectionViewModelType : ComponentViewModel
 
-    func viewModelForSection(item: SectionType) -> SectionViewModelType
+    func createSectionViewModel(item: SectionType) -> SectionViewModelType
 }
