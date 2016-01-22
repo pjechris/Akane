@@ -12,7 +12,7 @@ class TableViewSectionDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
     TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String,
-    TableViewType.DataSourceType : TableSectionDataSource,
+    TableViewType.DataSourceType : DataSourceTableViewSections,
     TableViewType.ViewModelType : ComponentCollectionSectionsViewModel,
     TableViewType.DataSourceType.SectionIdentifier.RawValue == String> : TableViewDelegate<TableViewType>
 {
@@ -66,7 +66,7 @@ class TableViewSectionDelegate<TableViewType : UITableView where
         let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(data.identifier.rawValue)!
 
         if let item = data.item {
-            let viewModel = self.collectionViewModel.viewModelForSection(item as! CollectionViewModelType.SectionType)
+            let viewModel = self.collectionViewModel.createViewModelForSection(item as! CollectionViewModelType.SectionType)
 
             self.observer?.observe(viewModel).bindTo(view, template: template)
         }

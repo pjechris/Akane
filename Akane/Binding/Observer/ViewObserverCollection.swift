@@ -26,10 +26,15 @@ class ViewObserverCollection : ViewObserver, Dispose {
         self.lifecycle = lifecycle
     }
 
+    deinit {
+        dispose()
+    }
+
     func dispose() {
         self.disposeBag.dispose()
         self.bindings.removeAll()
     }
+
 
     func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {
         let binding = ObservationWrapper<T.Element>(observable: observable, disposeBag: self.disposeBag)

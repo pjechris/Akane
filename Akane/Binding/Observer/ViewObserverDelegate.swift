@@ -15,7 +15,7 @@ public protocol ViewObserverDelegate {
 public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
-    Self.DataSourceType : TableItemDataSource,
+    Self.DataSourceType : DataSourceTableViewItems,
     Self.DataSourceType.DataType == Self.ViewModelType.CollectionDataType,
     Self.DataSourceType.ItemIdentifier.RawValue == String
 {
@@ -30,7 +30,7 @@ public extension ViewObserverDelegate where
 public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
-    Self.DataSourceType : TableSectionDataSource,
+    Self.DataSourceType : DataSourceTableViewSections,
     Self.DataSourceType.DataType == Self.ViewModelType.CollectionDataType,
     Self.DataSourceType.ItemIdentifier.RawValue == String,
     Self.ViewModelType : ComponentCollectionSectionsViewModel,

@@ -8,7 +8,7 @@
 
 import Foundation
 
-public protocol TableItemDataSource : DataSource {
+public protocol DataSourceTableViewItems : DataSource {
     typealias ItemType
     typealias ItemIdentifier: RawRepresentable
 
@@ -17,7 +17,7 @@ public protocol TableItemDataSource : DataSource {
     func tableViewItemTemplate(identifier: ItemIdentifier) -> Template
 }
 
-public protocol TableSectionDataSource : TableItemDataSource {
+public protocol DataSourceTableViewSections : DataSourceTableViewItems {
     typealias SectionType
     typealias SectionIdentifier: RawRepresentable
 

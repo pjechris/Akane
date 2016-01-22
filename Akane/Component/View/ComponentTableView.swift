@@ -9,6 +9,6 @@
 import Foundation
 
 public protocol ComponentTableView : ComponentView, ViewObserverDelegate {
-    typealias DataSourceType: TableItemDataSource
+    typealias DataSourceType: DataSourceTableViewItems
     typealias ViewModelType: ComponentCollectionItemsViewModel
 }
