@@ -10,7 +10,6 @@ import Foundation
 
 class TableViewSectionDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
-    TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String,
     TableViewType.DataSourceType : DataSourceTableViewSections,
     TableViewType.ViewModelType : ComponentCollectionSectionsViewModel,
@@ -20,6 +19,8 @@ class TableViewSectionDelegate<TableViewType : UITableView where
     override init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
         super.init(tableView: tableView, collectionViewModel: collectionViewModel)
     }
+
+    // MARK: DataSource
 
     @objc
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {

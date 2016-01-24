@@ -15,7 +15,6 @@ var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
 public class TableViewDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
-    TableViewType.DataSourceType.DataType == TableViewType.ViewModelType.CollectionDataType,
     TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
     public typealias CollectionViewModelType = TableViewType.ViewModelType
@@ -49,6 +48,8 @@ public class TableViewDelegate<TableViewType : UITableView where
         self.dataSource = DataSourceType.init(data: data)
     }
 
+    // MARK: DataSource
+
     @objc
     public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return self.dataSource.numberOfSections()
@@ -81,6 +82,8 @@ public class TableViewDelegate<TableViewType : UITableView where
         return cell
     }
 
+    // MARK: Layout
+
     @objc
     public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return self.layout.estimatedHeightForItem(indexPath)
@@ -100,6 +103,8 @@ public class TableViewDelegate<TableViewType : UITableView where
 
         return nil
     }
+
+    // MARK: Selection
 
     @objc
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
