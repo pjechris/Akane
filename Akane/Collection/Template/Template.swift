@@ -13,5 +13,4 @@ public protocol Template {
     var templateClass: AnyClass { get }
 
     func bind<O:Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>)
-    func register(table: UITableView, identifier: String)
 }

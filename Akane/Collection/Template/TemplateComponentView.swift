@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class ComponentViewTemplate<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
+public class TemplateComponentView<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
     private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
     private let componentViewType: ComponentType.Type
     public private(set) var nib: UINib?
@@ -22,14 +22,5 @@ public class ComponentViewTemplate<ComponentType: UITableViewCell where Componen
 
     public func bind<O: Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
         wrapper.bindTo(cell as! ComponentType)
-    }
-
-    public func register(table: UITableView, identifier: String) {
-        if let nib = nib {
-            table.registerNib(nib, forCellReuseIdentifier: identifier)
-        }
-        else {
-            table.registerClass(self.componentViewType, forCellReuseIdentifier: identifier)
-        }
     }
 }

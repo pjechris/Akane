@@ -48,6 +48,7 @@
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
 		49C48AA71C4C488100700D4D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48AA61C4C488100700D4D /* UITableView.swift */; };
+		49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C592B51C5591D5005AFE25 /* TemplateView.swift */; };
 		49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1EA311C513D5A00AB2D9B /* ComponentItemViewModel.swift */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
 		49C48AA61C4C488100700D4D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
+		49C592B51C5591D5005AFE25 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		49D1EA311C513D5A00AB2D9B /* ComponentItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentItemViewModel.swift; sourceTree = "<group>"; };
 		64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.debug.xcconfig"; sourceTree = "<group>"; };
 		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -290,6 +292,7 @@
 			children = (
 				493CA37D1C50ED2D005ED20F /* Template.swift */,
 				493CA37E1C50ED2D005ED20F /* TemplateComponentView.swift */,
+				49C592B51C5591D5005AFE25 /* TemplateView.swift */,
 			);
 			path = Template;
 			sourceTree = "<group>";
@@ -582,6 +585,7 @@
 				493CA3801C50ED2D005ED20F /* ComponentController.swift in Sources */,
 				493CA38A1C50ED2D005ED20F /* TableDataSource.swift in Sources */,
 				493CA3901C50ED2D005ED20F /* TemplateComponentView.swift in Sources */,
+				49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */,
 				493CA3821C50ED2D005ED20F /* ControllerLifecycle.swift in Sources */,
 				49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */,
 				493CA38C1C50ED2D005ED20F /* TableViewSectionDelegate.swift in Sources */,
