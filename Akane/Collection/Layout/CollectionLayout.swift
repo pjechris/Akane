@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Generic protocol to handle collection views (`UICollectionView` and `UITableView`) layouts
+*/
 public protocol CollectionLayout : NSObjectProtocol {
     func heightForItem(indexPath: NSIndexPath) -> CGFloat
     func estimatedHeightForItem(indexPath: NSIndexPath) -> CGFloat

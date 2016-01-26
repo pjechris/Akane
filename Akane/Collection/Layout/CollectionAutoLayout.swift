@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ AutoLayout support for `UICollectionView` and `UITableView`
+*/
 public class CollectionAutoLayout : NSObject, CollectionLayout {
     static let defaultEstimatedHeight: CGFloat = 42
 

@@ -10,9 +10,14 @@ import Foundation
 
 var ViewModelIsMountedAttr = "ViewModelIsMountedAttr"
 
+/// Store a Component related business logic (network, models, algorithm, ...).
+///
+/// Intended to be binded on a `UIView` conforming to `ComponentView`.
 public protocol ComponentViewModel : class {
+    /// whether the `ComponentViewModel` is mounted or not. Marked as mounted when displayed the first time
     var isMounted: Bool { get }
 
+    /// notify the `ComponentViewModel` is going to be mounted. Use this method to make additional operations
     func willMount()
 }
 
@@ -22,6 +27,7 @@ public extension ComponentViewModel {
         set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(bool: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
+    /// does nothing
     func willMount() {
 
     }

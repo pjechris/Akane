@@ -8,11 +8,15 @@
 
 import Foundation
 
+/**
+ Create templates for `ComponentView`(s)
+*/
 public class TemplateComponentView<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
-    private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
-    private let componentViewType: ComponentType.Type
     public private(set) var nib: UINib?
     public var templateClass: AnyClass { return self.componentViewType }
+
+    private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
+    private let componentViewType: ComponentType.Type
 
     public init(_ componentType: ComponentType.Type, fromNib nibName: String?, prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)? = nil) {
         self.componentViewType = componentType

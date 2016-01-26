@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Object conforming to this protocol can dispose or cancel a connection or a task.
 public protocol Dispose {
     func dispose()
 }

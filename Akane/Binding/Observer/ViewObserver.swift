@@ -10,18 +10,10 @@ import Foundation
 import Bond
 
 /**
- Propose an View oriented Observation API. You can observe 3 types of elements:
- - Command
- - ViewModel
- - Observation
-
- Those are the elements you can observe **from** a ```UIView```. For each one of them you get an associated wrapper:
- - CommandWrapper
- - ObservationWrapper
- - ViewModelWrapper
- Those wrappers contain restricted APIs to manipulate your observation object, again from a UIView perspective.
- 
- For instance you ```ObservationWrapper``` has ```convert``` method to convert your ```Observation``` while ```CommandWrapper``` does not.
+ View observation API allowing you to observe:
+ - `Command`
+ - `ComponentViewModel`
+ - any conforming `Observation`
 
 */
 public protocol ViewObserver : class {

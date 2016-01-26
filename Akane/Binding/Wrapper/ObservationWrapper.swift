@@ -10,14 +10,10 @@ import Foundation
 import Bond
 
 /**
- Provide a minimalistic API tailored for observing a ```Observation``` from a view.
+ Minimalistic API tailored to interact wiht a ```Observation``` from a view.
 
- The restricted access is the intended goal of this class: if you're not able to do what you want then it means your
- to either refactor your code or write it somewhere else.
-
- It wraps a ```Observation``` object on which you have (limited) access through different methods:
- - convert/convertBack, to transform the observation value into a new one
- - bindTo, to link the observation value with a view field/attribute
+ Restricted accesses/methods are intended: if you face yourself as being stuck because of the small API, then it probably
+ means you need to put your code inside a ```ComponentViewModel``` or a ```Converter``` instead.
 
 */
 public class ObservationWrapper<E> {
@@ -61,6 +57,8 @@ public class ObservationWrapper<E> {
         })
     }
 
+    /// Bind the observation value to a optional bindable class
+    /// - parameter bindable: the optional bindable item. If nil nothing happens
     public func bindTo<T: Bindable where T.Element == Element?>(bindable: T) {
          self.onBind(bindable.advance())
     }

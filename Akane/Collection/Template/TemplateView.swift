@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+ Create templates for simple `UIView`s
+*/
 public class TemplateView : Template {
     public let nib: UINib?
     public let templateClass: AnyClass

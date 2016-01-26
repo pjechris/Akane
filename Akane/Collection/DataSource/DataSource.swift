@@ -8,16 +8,23 @@
 
 import Foundation
 
+/// Provide the data required by a collection view.
 public protocol DataSource {
+    /// collection data type expected by the data source
     typealias DataType
 
+    /// init the data source with data to consume
     init(data: DataType)
 
+    /// Ask the number of sections available into the data
     func numberOfSections() -> Int
+
+    /// Ask the number of items contained into a section
     func numberOfItemsInSection(section: Int) -> Int
 }
 
 public extension DataSource {
+    /// return one section
     func numberOfSections() -> Int {
         return 1
     }

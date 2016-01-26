@@ -9,7 +9,8 @@
 import Foundation
 
 /**
- ComponentController is a Controller which knows how to deal with a ```ComponentView``` and a ```ViewModel```.
+ ComponentController is a Controller making the link between a ```ComponentView``` and its ```ComponentViewModel```.
+ Do not use this protocol directly but rather `ComponentViewController`
 */
 public protocol ComponentController : class {
     /// the Controller component view
@@ -25,7 +26,7 @@ public protocol ComponentController : class {
     init(view: UIView)
 
     /// Add a child Component controller
-    /// - param childController: the child controller to add
+    /// - parameter childController: the child controller to add
     func addController<C:UIViewController where C:ComponentController>(childController: C)
 
     /// Search through child controllers and return the matching ```ComponentController```

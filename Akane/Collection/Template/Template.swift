@@ -8,9 +8,17 @@
 
 import Foundation
 
+/**
+ Define properties of a reusable view element
+*/
 public protocol Template {
+    /// nib to load the template view from
     var nib: UINib? { get }
+    /// the template view class type
     var templateClass: AnyClass { get }
 
-    func bind<O:Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>)
+    /// make the binding between the reused view and a correspoding `ComponentViewModel`.
+    /// - parameter reusedTemplateView: a view created from this `Template`
+    /// - parameter wrapper: third-party object to make the binding between the viewModel and the reused view
+    func bind<O:Observation, V: ComponentViewModel where O.Element == V>(reusedTemplateView: UIView, wrapper: ViewModelWrapper<O>)
 }

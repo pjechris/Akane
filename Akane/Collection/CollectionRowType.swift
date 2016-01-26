@@ -37,8 +37,8 @@ func ==(lhs: CollectionRowType, rhs: CollectionRowType) -> Bool {
 
 extension Dictionary {
     /// Find value associated to ```CollectionRowType``` key or create it
-    /// - param key: a ```CollectionRowType``` key
-    /// - param create: called when no value was found for ```key```. Return a new value to associate with
+    /// - parameter key: a ```CollectionRowType``` key
+    /// - parameter create: called when no value was found for ```key```. Return a new value to associate with
     /// - returns: found ```Value``` or a created one
     mutating func findOrCreate(key: Key, @noescape create: () -> Value) -> Value {
         guard let element = self[key] else {

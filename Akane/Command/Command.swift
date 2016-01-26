@@ -18,6 +18,6 @@ public protocol Command {
     var canExecute: Observable<Bool> { get }
 
     /// run the command action
-    /// - param trigger: the UIControl which triggered the command. Might be nil if triggered by code
+    /// - parameter trigger: the UIControl which triggered the command. Might be nil if triggered by code
     func execute(trigger: UIControl?)
 }

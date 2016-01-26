@@ -18,14 +18,14 @@ var ComponentViewPresenterAttr = "ComponentViewPresenterAttr"
 */
 public protocol ComponentView : class {
     /// define the bindings between the field fields (IBOutlet) and the viewModel
-    /// - param observer: observer to use to define/register bindings
-    /// - param viewModel: component viewModel from which data come
+    /// - parameter observer: observer to use to define/register bindings
+    /// - parameter viewModel: component viewModel from which data come
     func bindings(observer: ViewObserver, viewModel: AnyObject)
 }
 
-public extension ComponentView where Self: UIView {
+public extension ComponentView where Self : UIView {
     /// ```Controller``` class associated with ```ComponentView```
-    /// - returns a ```ComponentViewController``` type. Default implementation returns ```ComponentViewController.self```
+    /// - returns: a ```ComponentViewController``` type. Default implementation returns ```ComponentViewController.self```
     public static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
     }

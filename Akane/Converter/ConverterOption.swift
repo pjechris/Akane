@@ -9,13 +9,13 @@
 import Foundation
 
 /**
- Converter requiring some options to work correctly
+ `Converter` requiring some options to work correctly
 */
 public protocol ConverterOption {
     /// Options type. Should be a dedicated struct
     typealias ConvertOptionType
 
     /// init the converter with some options. For a given instance, options never change after initialization
-    /// - param options: the converter options
+    /// - parameter options: the converter options
     init(options: ConvertOptionType)
 }

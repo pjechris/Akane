@@ -8,10 +8,16 @@
 
 import Foundation
 
+/// Enable observe a property changes through an "event"
 public protocol Observation {
+    /// Type of generated event property
     typealias Element
 
+    /// Current value of the property
     var value: Element { get }
 
+    /// Registers observer and returns a disposable that can cancel observing
+    /// - parameter observer: the observer to register
+    /// - returns: a `Dispose` signal that can be used to stop observing
     func observe(observer: Element -> ()) -> Dispose
 }

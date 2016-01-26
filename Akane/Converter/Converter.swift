@@ -18,7 +18,7 @@ public protocol Converter {
     init()
 
     /// do the conversion
-    /// - param value: the value to convert
+    /// - parameter value: the value to convert
     /// - returns the value converted
     func convert(value: ValueType) -> ConvertValueType
 }

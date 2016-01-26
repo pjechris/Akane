@@ -9,6 +9,7 @@
 import Foundation
 import Bond
 
+/// A disposable container that can dispose multiple `Dispose` objects at once
 protocol DisposeBag : Dispose {
     func addDisposable(disposable: Dispose)
 }
