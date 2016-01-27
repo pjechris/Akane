@@ -18,6 +18,12 @@ public class CommandWrapper {
         self.disposeBag = disposeBag
     }
 
+    public func bindTo(control: UIControl?, events: UIControlEvents = .TouchUpInside) {
+        if let control = control {
+            self.bindTo(control, events: events)
+        }
+    }
+
     public func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
         let command = self.command
         let enabled = command.canExecute.bindTo(control.bnd_enabled)
