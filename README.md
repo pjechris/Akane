@@ -13,7 +13,7 @@ It provides you :
 - A feature-oriented architecture. Adding/maintining features is simple.
 - SoC (Separation of Concern). You always know where to write code because there's only one place it belongs to.
 
-# Akane versus iOS MVC
+# MVVM versus iOS MVC
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today native apps become bigger than ever. Maintaining a single file is not possible anymore.
 
@@ -32,11 +32,13 @@ Model is just the layer containing all your classes modeling your application bu
 
 ```swift
 struct User {
-  let username: String
-  let gender: enum {
+  enum Gender: String {
     case Male
     case Female
   }
+
+  let username: String
+  let gender: Gender
 }
 ```
 
@@ -111,6 +113,52 @@ struct UserHelloConverter {
   }
 }
 
+```
+
+# Collections
+
+Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s. You will need 3 things:
+
+- A `DataSource` providing the data to the view for consumption. You will need to use specific types depending on your needs: `DataSourceTableViewItems` or `DataSourceTableViewSections` for `UITableView`
+- A `ComponentCollectionViewModel` providing the collection raw data and view models for each collection data. You will need to use specific types depending on your needs: `ComponentCollectionItemsViewModel` or `ComponentCollectionSectionsViewModel` for both `UITableView` and `UICollectionView`
+- To make your view conform with `ComponentTableView`
+
+**Note that collection support is not yet implemented for `UICollectionView`.**
+
+```swift
+struct AuthorListDataSource: DataSourceTableViewItems {
+  typealias DataType = Array<Author>
+
+  typealias ItemType = Author
+  enum ItemIdentifier: String {
+    case Author
+  }
+
+  let data: DataType
+
+  init(data: DataType) {
+    self.data = data
+  }
+
+  func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier) {
+    return (item: self.data[indexPath.row], identifier: .Author)
+  }
+}
+
+class AuthorListTableView: UITableView, ComponentTableView {
+  typealias DataSourceType = AuthorListDataSource
+  typealias ViewModelType = AuthorListViewModel
+}
+
+class AuthorListViewModel: ComponentCollectionItemsViewModel {
+  typealias CollectionDataType = Observable<Array<Author>>
+  typealias ItemType = Author
+  typealias ItemViewModelType = AuthorItemViewModel
+
+  func createItemViewModel(item: ItemType) -> ItemViewModelType {
+    return AuthorItemViewModel(author: item)
+  }
+}
 ```
 
 # United we stand
