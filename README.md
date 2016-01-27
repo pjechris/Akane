@@ -13,25 +13,60 @@ It provides you :
 - A feature-oriented architecture. Adding/maintining features is simple.
 - SoC (Separation of Concern). You always know where to write code because there's only one place it belongs to.
 
-# Getting started
-
-## What is different from classic iOS MVC?
+# Akane versus iOS MVC
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today native apps become bigger than ever. Maintaining a single file is not possible anymore.
 
 Akane makes you split your code into multiple classes, some of which should familiar:
+
 - **M**odel
 - **V**iew
 - **V**iew **M**odel
 - ViewController
 
-Basically, this idea is to move code from your ViewController to those classes.
+Basically, the idea is to move code you used to write into your ViewController to those dedicated classes.
 
 ### Model
 
 Model is just the layer containing all your classes modeling your application business : Basket, Movie, Book, ... all those classes belong to this layer. They **must** contain no references to any UIKit or Akane components (UIView, UIControl, ViewModel, ...).
 
-### View
+```swift
+struct User {
+  let username: String
+  let gender: enum {
+    case Male
+    case Female
+  }
+}
+```
+
+## ViewModel
+
+Put all your business logic into a ViewModel class. **Keep it agnostic**: no reference to any View or ViewController should be present into your ViewModel(s).
+
+Prefer ViewModel composition over inheritance: split your code into multiple ViewModel, each one dealing with one business case and then create another ViewModel to aggregate all those logics.
+
+```swift
+import Akane
+
+class UserViewModel : ComponentViewModel {
+  let user: Observable<User>?
+  let disconnect: Command = RelayCommand() { [unowned self]
+    self.user.next(nil)
+  }
+
+  init(user: User) {
+    self.user = Observable(user)
+  }
+
+  func isConnected() -> Bool {
+    return self.user != nil
+  }
+}
+
+```
+
+## View
 
 View **must** reflect one (and only one) ViewModel. It should be a dedicated (business named) class, just like your ViewModel. So name it BasketView, UserInfoView, ...
 
@@ -41,22 +76,53 @@ ViewModel - View flow is always unidirectional :
 - View <- ViewModel for data, through bindings
 - View -> ViewModel for actions, through commands (like send a message, order a product, ...)
 
-### ViewModel
+```swift
+import Akane
 
-Put all your business logic into the ViewModel. **Keep it agnostic**: No reference to any View or ViewController should be present into your ViewModel(s).
+class UserView : UIView, ComponentView {
+  @IBOutlet var labelUserHello: UILabel!
+  @IBOutlet var buttonDisconnect: UIButton!
 
-Prefer ViewModel composition over inheritance: split your code into multiple ViewModel, each one dealing with one business case and then create another ViewModel to aggregate all those logics.
+  func bindings(observer: ViewObserver, viewModel: ViewModel) {
+    let viewModel = viewModel as! UserViewModel
+
+    // Bind 'user' with 'labelUserHello' 'text' using a converter
+    observer.observe(viewModel.user)
+            .convert(UserHelloConverter.self)
+            .bindTo(self.labelUserHello.bnd_text)
+
+    // bind 'disconnect' command with 'buttonDisconnect'
+    observer.observe(viewModel.disconnect)
+            .bindTo(self.buttonDisconnect)
+
+    // bind 'disconnect' with 'buttonDisconnect' 'hidden'
+    observer.observe(viewModel.disconnect)
+            .bindTo(self.buttonDisconnect.bnd_hidden)
+  }
+}
+
+struct UserHelloConverter {
+  typealias ValueType = User
+  typealias ConvertValueType = String
+
+  func convert(user: ValueType) -> ConvertValueType {
+    let gender = (user.gender == .Male) ? "mr" : "miss"
+    return "Hello \(gender) \(user.username)"
+  }
+}
+
+```
 
 # United we stand
 
 Akane works great by itself but is even better when combined with our other tools:
 
 - [Gaikan](https://github.com/akane/Gaikan), declarative view styling in Swift. Inspired by CSS modules.
-- [Nabigeta](https://github.com/akane/Nabigeta), a routing solution to decouple navigation UI and logic.
+- [Nabigeta](https://github.com/akane/Nabigeta), routing solution to decouple UI from navigation logic.
 
 # Contributing
 
-This project was first developed by [Xebia](http://xebia.fr) and has been open-sourced since. We will continue working and investing on it.
+This project was first developed by [Xebia IT Architects](http://xebia.fr) and has been open-sourced since. We will continue working and investing on it.
 
 We encourage the community to contribute to the project by opening tickets and/or pull requests.
 
