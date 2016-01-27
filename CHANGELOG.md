@@ -1,5 +1,21 @@
 # CHANGELOG
 
+# 0.12.0 beta 1 [WIP]
+
+TL;DR Support for binding with TableView was added. Some important features are missing and will be added in beta 2.
+
+## Added
+
+- [Collection] DataSource protocol for table views. It is very similar to the one provided by Apple while emphasis it
+- [Collection] View Models protocols to interact with a collection dataset.
+- [Collection] TableView templates to register ```ComponentViewModel``` instances on ```UITableView```
+- [Collection] TableView layout system
+- [Binding] Added `bindTo` on optional `Command`
+
+## Enhancements
+
+- Renamed ```ViewModel``` as ```ComponentViewModel``` for consistency with other related protocols (```ComponentView``` and ```ComponentController```)
+
 # 0.12.0 alpha 2
 
 Akane is now compatible with Xcode 7.1+.
