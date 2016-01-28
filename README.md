@@ -17,14 +17,12 @@ It provides you :
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today native apps become bigger than ever. Maintaining a single file is not possible anymore.
 
-Akane makes you split your code into multiple classes, some of which should familiar:
+Akane makes you split your code into small components which are composed of multiple classes, some of which should familiar:
 
 - **M**odel
 - **V**iew
 - **V**iew **M**odel
 - ViewController
-
-Basically, the idea is to move code you used to write into your ViewController to those dedicated classes.
 
 ### Model
 
@@ -96,10 +94,6 @@ class UserView : UIView, ComponentView {
     // bind 'disconnect' command with 'buttonDisconnect'
     observer.observe(viewModel.disconnect)
             .bindTo(self.buttonDisconnect)
-
-    // bind 'disconnect' with 'buttonDisconnect' 'hidden'
-    observer.observe(viewModel.disconnect)
-            .bindTo(self.buttonDisconnect.bnd_hidden)
   }
 }
 
@@ -115,13 +109,53 @@ struct UserHelloConverter {
 
 ```
 
+## ViewController
+
+ViewController, through `ComponentViewController` class, makes the link between `ComponentViewModel` and `ComponentView`.
+
+Just pass your `ComponentViewModel` to your ViewController to bind it to its view.
+
+```swift
+
+application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
+
+  let rootViewController = self.window.rootViewController as! ComponentViewController
+  let user = User(username: "Mikasa", gender: .Female)
+
+  rootViewController.viewModel = UserViewModel(user: user)
+
+  return true
+}
+
+```
+
+You can even define your custom ViewControllers if you need to:
+
+```swift
+
+extension UserView {
+  static func componentControllerClass() -> ComponentViewController.Type {
+    return UserViewController.self
+  }
+}
+
+class UserViewController : ComponentViewController {
+  func viewDidLoad() {
+    super.viewDidLoad()
+    print("User component view loaded")
+  }
+}
+
+```
+
+
 # Collections
 
 Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s. You will need 3 things:
 
-- A `DataSource` providing the data to the view for consumption. You will need to use specific types depending on your needs: `DataSourceTableViewItems` or `DataSourceTableViewSections` for `UITableView`
-- A `ComponentCollectionViewModel` providing the collection raw data and view models for each collection data. You will need to use specific types depending on your needs: `ComponentCollectionItemsViewModel` or `ComponentCollectionSectionsViewModel` for both `UITableView` and `UICollectionView`
-- To make your view conform with `ComponentTableView`
+- A `DataSource`
+- A `ComponentCollectionViewModel`
+- To make your view conform to `ComponentTableView`
 
 **Note that collection support is not yet implemented for `UICollectionView`.**
 
@@ -143,6 +177,30 @@ struct AuthorListDataSource: DataSourceTableViewItems {
   func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier) {
     return (item: self.data[indexPath.row], identifier: .Author)
   }
+
+  func tableViewItemTemplate(identifier: ItemIdentifier) -> Template {
+    return TemplateComponentView(AuthorViewCell.self)
+  }
+}
+
+class AuthorListViewModel: ComponentCollectionItemsViewModel {
+  typealias DataType = Observable<Array<Author>>
+  typealias ItemType = Author
+  typealias ItemViewModelType = AuthorItemViewModel
+
+  var data: DataType
+
+  init() {
+    self.data = Observable([
+      Author("Emile Zola"),
+      Author("Maupassant"),
+      Author("Victor Hugo")
+    ])
+  }
+
+  func createItemViewModel(item: ItemType) -> ItemViewModelType {
+    return AuthorItemViewModel(author: item)
+  }
 }
 
 class AuthorListTableView: UITableView, ComponentTableView {
@@ -150,15 +208,6 @@ class AuthorListTableView: UITableView, ComponentTableView {
   typealias ViewModelType = AuthorListViewModel
 }
 
-class AuthorListViewModel: ComponentCollectionItemsViewModel {
-  typealias CollectionDataType = Observable<Array<Author>>
-  typealias ItemType = Author
-  typealias ItemViewModelType = AuthorItemViewModel
-
-  func createItemViewModel(item: ItemType) -> ItemViewModelType {
-    return AuthorItemViewModel(author: item)
-  }
-}
 ```
 
 # United we stand
