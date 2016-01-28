@@ -13,9 +13,9 @@ import Foundation
 ///
 /// Intended to be binded on a `ComponentTableView` or a `ComponentCollectionView`
 public protocol ComponentCollectionViewModel : ComponentViewModel {
-    typealias CollectionDataType
+    typealias DataType
 
-    var collection: CollectionDataType { get }
+    var data: DataType { get }
 }
 
 /// a `ComponentCollectionViewModel` representing a Collection set of items view model
