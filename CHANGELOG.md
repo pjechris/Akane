@@ -1,6 +1,6 @@
 # CHANGELOG
 
-# 0.12.0 beta 1 [WIP]
+# 0.12.0 beta 1
 
 TL;DR Support for binding with TableView was added. Some important features are missing and will be added in beta 2.
 
