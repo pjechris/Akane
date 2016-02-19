@@ -39,6 +39,12 @@ public class CollectionViewDelegate<CollectionViewType where
         objc_setAssociatedObject(self.collectionView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
+    /// make the delegate effective
+    func becomeDataSource(observer: ViewObserver, data: DataSourceType.DataType) {
+        self.observer = observer
+        self.dataSource = DataSourceType.init(data: data)
+    }
+
     // MARK: DataSource
 
     public func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
