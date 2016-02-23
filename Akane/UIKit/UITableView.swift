@@ -27,18 +27,19 @@ public extension UITableView {
 
 extension UITableView {
     func register(template: Template, type: CollectionRowType) {
-        switch(type) {
-        case .Item(let identifier) where template.nib != nil:
-            self.registerNib(template.nib, forCellReuseIdentifier: identifier)
-
-        case .Item(let identifier):
+        switch(type, template.source) {
+        case (.Item(let identifier), .Nib(let nib)):
+            self.registerNib(nib, forCellReuseIdentifier: identifier)
+        case (.Item(let identifier), .File()):
             self.registerClass(template.templateClass, forCellReuseIdentifier: identifier)
 
-        case .Section(let identifier, _) where template.nib != nil:
-            self.registerNib(template.nib, forHeaderFooterViewReuseIdentifier: identifier)
-
-        case .Section(let identifier, _):
+        case (.Section(let identifier, _), .Nib(let nib)):
+            self.registerNib(nib, forHeaderFooterViewReuseIdentifier: identifier)
+        case (.Section(let identifier, _), .File()):
             self.registerClass(template.templateClass, forHeaderFooterViewReuseIdentifier: identifier)
+
+        default:
+            break
         }
     }
 }

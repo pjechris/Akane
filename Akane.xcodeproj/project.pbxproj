@@ -110,6 +110,8 @@
 		496854AB1BD68B7C00589F4C /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
 		496854AC1BD68B7C00589F4C /* ConverterOption.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterOption.swift; sourceTree = "<group>"; };
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
+		499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
+		499336B81C7C5CF3005DEFDC /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
 		49C48AA61C4C488100700D4D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		49C592B51C5591D5005AFE25 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		49C8CBE11C68E54800727EAF /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
@@ -263,7 +265,7 @@
 				493CA3761C50ED2D005ED20F /* Delegate */,
 				493CA3791C50ED2D005ED20F /* Layout */,
 				493CA37C1C50ED2D005ED20F /* Template */,
-				493CA37F1C50ED2D005ED20F /* View */,
+				499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -305,13 +307,6 @@
 				49C592B51C5591D5005AFE25 /* TemplateView.swift */,
 			);
 			path = Template;
-			sourceTree = "<group>";
-		};
-		493CA37F1C50ED2D005ED20F /* View */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = View;
 			sourceTree = "<group>";
 		};
 		493CA3911C50ED4A005ED20F /* Binding */ = {
@@ -372,6 +367,7 @@
 			children = (
 				49C48AA61C4C488100700D4D /* UITableView.swift */,
 				49C8CBE11C68E54800727EAF /* UICollectionView.swift */,
+				499336B81C7C5CF3005DEFDC /* CellView.swift */,
 			);
 			path = UIKit;
 			sourceTree = "<group>";
@@ -588,6 +584,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				499336B71C7C5C64005DEFDC /* CollectionReusableView.swift in Sources */,
 				493CA38F1C50ED2D005ED20F /* Template.swift in Sources */,
 				4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */,
 				493CA3A61C50ED4A005ED20F /* Observation.swift in Sources */,
@@ -608,6 +605,7 @@
 				493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */,
 				4950AFF21C6804DB00E4E86E /* ComponentCollectionView.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
+				499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */,
 				493CA3A31C50ED4A005ED20F /* BondDisposeAdapter.swift in Sources */,
 				493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */,
 				493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */,

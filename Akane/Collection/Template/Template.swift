@@ -9,16 +9,24 @@
 import Foundation
 
 /**
- Define properties of a reusable view element
+ Define properties of a reusable collection view
 */
 public protocol Template {
-    /// nib to load the template view from
-    var nib: UINib? { get }
+    /// source to load the template view from
+    var source: TemplateSource { get }
+
     /// the template view class type
-    var templateClass: AnyClass { get }
+    var templateClass: CollectionReusableView.Type { get }
 
     /// make the binding between the reused view and a correspoding `ComponentViewModel`.
     /// - parameter reusedTemplateView: a view created from this `Template`
     /// - parameter wrapper: third-party object to make the binding between the viewModel and the reused view
     func bind<O:Observation, V: ComponentViewModel where O.Element == V>(reusedTemplateView: UIView, wrapper: ViewModelWrapper<O>)
+}
+
+/// Define Sources from which a Template can be created
+public enum TemplateSource {
+    case Nib(UINib)
+    case StoryboardId(String)
+    case File()
 }

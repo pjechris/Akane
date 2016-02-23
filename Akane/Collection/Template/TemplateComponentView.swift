@@ -11,17 +11,17 @@ import Foundation
 /**
  Create templates for `ComponentView`(s)
 */
-public class TemplateComponentView<ComponentType: UITableViewCell where ComponentType: ComponentView> : Template {
-    public private(set) var nib: UINib?
-    public var templateClass: AnyClass { return self.componentViewType }
+public struct TemplateComponentView<ComponentType : UIView where ComponentType : protocol<CollectionReusableView, ComponentView>> : Template {
+    public let source: TemplateSource
+    public var templateClass: CollectionReusableView.Type { return self.componentViewType }
 
-    private let prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)?
+    private let prepareForReuse: ((CollectionReusableView, NSIndexPath) -> Void)?
     private let componentViewType: ComponentType.Type
 
-    public init(_ componentType: ComponentType.Type, fromNib nibName: String?, prepareForReuse: ((UITableViewCell, NSIndexPath) -> Void)? = nil) {
+    public init(_ componentType: ComponentType.Type, from source: TemplateSource = .File()) {
         self.componentViewType = componentType
-        self.prepareForReuse = prepareForReuse
-        self.nib = nibName.map { return UINib(nibName: $0, bundle: nil) }
+        self.source = source
+        self.prepareForReuse = nil
     }
 
     public func bind<O: Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {

@@ -9,20 +9,27 @@
 import Foundation
 
 extension UICollectionView {
-    func register(template: Template, type: CollectionRowType) {
-        switch(type) {
-        case .Item(let identifier) where template.nib != nil:
-            self.registerNib(template.nib, forCellWithReuseIdentifier: identifier)
+    var layoutDelegate: AnyObject? {
+        get { return nil }
+        set {  }
+    }
+}
 
-        case .Item(let identifier):
+extension UICollectionView {
+    func register(template: Template, type: CollectionRowType) {
+        switch(type, template.source) {
+        case (.Item(let identifier), .Nib(let nib)):
+            self.registerNib(nib, forCellWithReuseIdentifier: identifier)
+        case (.Item(let identifier), .File()):
             self.registerClass(template.templateClass, forCellWithReuseIdentifier: identifier)
 
-        case .Section(let identifier, let kind) where template.nib != nil:
-            self.registerNib(template.nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
-
-        case .Section(let identifier, let kind):
+        case (.Section(let identifier, let kind), .Nib(let nib)):
+            self.registerNib(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+        case (.Section(let identifier, let kind), .File()):
             self.registerClass(template.templateClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+
+        default:
+            break
         }
     }
-
 }

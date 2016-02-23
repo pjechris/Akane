@@ -11,13 +11,13 @@ import Foundation
 /**
  Create templates for simple `UIView`s
 */
-public class TemplateView : Template {
-    public let nib: UINib?
-    public let templateClass: AnyClass
+public struct TemplateView : Template {
+    public let source: TemplateSource
+    public let templateClass: CollectionReusableView.Type
 
-    init(templateClass: AnyClass, nibName: String) {
+    init(templateClass: CollectionReusableView.Type, from source: TemplateSource = .File()) {
         self.templateClass = templateClass
-        self.nib = UINib(nibName: nibName, bundle: nil)
+        self.source = source
     }
 
     public func bind<O : Observation, V : ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
