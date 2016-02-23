@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- AutoLayout support for `UICollectionView` and `UITableView`
+ AutoLayout support for `UITableView`
 */
-public class CollectionAutoLayout : NSObject, CollectionLayout {
+public class TableViewFlowLayout : NSObject, TableViewLayout {
     static let defaultEstimatedHeight: CGFloat = 42
 
     let estimatedRowHeight: CGFloat
@@ -23,7 +23,7 @@ public class CollectionAutoLayout : NSObject, CollectionLayout {
     }
 
     convenience public override init() {
-        self.init(estimatedHeight: CollectionAutoLayout.defaultEstimatedHeight)
+        self.init(estimatedHeight: TableViewFlowLayout.defaultEstimatedHeight)
     }
 
     public init(estimatedRowHeight: CGFloat, estimatedFooterHeight: CGFloat, estimatedHeaderHeight: CGFloat) {

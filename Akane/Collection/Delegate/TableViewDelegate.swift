@@ -21,7 +21,6 @@ public class TableViewDelegate<TableViewType : UITableView where
     public typealias CollectionViewModelType = TableViewType.ViewModelType
     public typealias DataSourceType = TableViewType.DataSourceType
 
-    var layout: CollectionLayout = CollectionAutoLayout()
     var templateHolder: [CollectionRowType:Template]
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
@@ -96,14 +95,14 @@ public class TableViewDelegate<TableViewType : UITableView where
     /// - see: `CollectionLayout.estimatedHeightForItem(_:)`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, estimatedHeightForRowAtIndexPath:)`
     public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.layout.estimatedHeightForItem(indexPath)
+        return tableView.layout.estimatedHeightForItem(indexPath)
     }
 
     @objc
     /// - see: `CollectionLayout.heightForItem(_:)`
     /// - see: `UITableViewDelegate.tableView(_:, heightForRowAtIndexPath:)`
     public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return self.layout.heightForItem(indexPath)
+        return tableView.layout.heightForItem(indexPath)
     }
 
     @objc

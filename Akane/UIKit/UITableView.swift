@@ -8,6 +8,23 @@
 
 import Foundation
 
+var TableViewLayoutAttr = "TableViewLayoutAttr"
+
+public extension UITableView {
+    public var layout: TableViewLayout {
+        get {
+            if let layout =  objc_getAssociatedObject(self, &TableViewLayoutAttr) as? TableViewLayout {
+                return layout
+            }
+
+            let layout = TableViewFlowLayout()
+            objc_setAssociatedObject(self, &TableViewLayoutAttr, layout, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+            return layout
+        }
+        set { objc_setAssociatedObject(self, &TableViewLayoutAttr, newValue, .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+    }
+}
+
 extension UITableView {
     func register(template: Template, type: CollectionRowType) {
         switch(type) {

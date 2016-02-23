@@ -23,8 +23,6 @@
 		493CA38A1C50ED2D005ED20F /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3751C50ED2D005ED20F /* TableDataSource.swift */; };
 		493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3771C50ED2D005ED20F /* TableViewDelegate.swift */; };
 		493CA38C1C50ED2D005ED20F /* TableViewSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3781C50ED2D005ED20F /* TableViewSectionDelegate.swift */; };
-		493CA38D1C50ED2D005ED20F /* CollectionAutoLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA37A1C50ED2D005ED20F /* CollectionAutoLayout.swift */; };
-		493CA38E1C50ED2D005ED20F /* CollectionLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA37B1C50ED2D005ED20F /* CollectionLayout.swift */; };
 		493CA38F1C50ED2D005ED20F /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA37D1C50ED2D005ED20F /* Template.swift */; };
 		493CA3901C50ED2D005ED20F /* TemplateComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA37E1C50ED2D005ED20F /* TemplateComponentView.swift */; };
 		493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3931C50ED4A005ED20F /* Bond.swift */; };
@@ -49,10 +47,14 @@
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; };
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
+		499336B71C7C5C64005DEFDC /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */; };
+		499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499336B81C7C5CF3005DEFDC /* CellView.swift */; };
 		49C48AA71C4C488100700D4D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48AA61C4C488100700D4D /* UITableView.swift */; };
 		49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C592B51C5591D5005AFE25 /* TemplateView.swift */; };
 		49C8CBE21C68E54800727EAF /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C8CBE11C68E54800727EAF /* UICollectionView.swift */; };
 		49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D1EA311C513D5A00AB2D9B /* ComponentItemViewModel.swift */; };
+		49E4579F1C7C662800E0F0FB /* TableViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4579D1C7C662800E0F0FB /* TableViewFlowLayout.swift */; };
+		49E457A01C7C662800E0F0FB /* TableViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4579E1C7C662800E0F0FB /* TableViewLayout.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -84,8 +86,6 @@
 		493CA3751C50ED2D005ED20F /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
 		493CA3771C50ED2D005ED20F /* TableViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewDelegate.swift; sourceTree = "<group>"; };
 		493CA3781C50ED2D005ED20F /* TableViewSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionDelegate.swift; sourceTree = "<group>"; };
-		493CA37A1C50ED2D005ED20F /* CollectionAutoLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionAutoLayout.swift; sourceTree = "<group>"; };
-		493CA37B1C50ED2D005ED20F /* CollectionLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionLayout.swift; sourceTree = "<group>"; };
 		493CA37D1C50ED2D005ED20F /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
 		493CA37E1C50ED2D005ED20F /* TemplateComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateComponentView.swift; sourceTree = "<group>"; };
 		493CA3931C50ED4A005ED20F /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
@@ -114,6 +114,8 @@
 		49C592B51C5591D5005AFE25 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		49C8CBE11C68E54800727EAF /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		49D1EA311C513D5A00AB2D9B /* ComponentItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentItemViewModel.swift; sourceTree = "<group>"; };
+		49E4579D1C7C662800E0F0FB /* TableViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFlowLayout.swift; sourceTree = "<group>"; };
+		49E4579E1C7C662800E0F0FB /* TableViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewLayout.swift; sourceTree = "<group>"; };
 		64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.debug.xcconfig"; sourceTree = "<group>"; };
 		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -289,8 +291,8 @@
 		493CA3791C50ED2D005ED20F /* Layout */ = {
 			isa = PBXGroup;
 			children = (
-				493CA37A1C50ED2D005ED20F /* CollectionAutoLayout.swift */,
-				493CA37B1C50ED2D005ED20F /* CollectionLayout.swift */,
+				49E4579D1C7C662800E0F0FB /* TableViewFlowLayout.swift */,
+				49E4579E1C7C662800E0F0FB /* TableViewLayout.swift */,
 			);
 			path = Layout;
 			sourceTree = "<group>";
@@ -590,6 +592,7 @@
 				4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */,
 				493CA3A61C50ED4A005ED20F /* Observation.swift in Sources */,
 				493CA3AB1C50ED4A005ED20F /* ObservationWrapper.swift in Sources */,
+				49E457A01C7C662800E0F0FB /* TableViewLayout.swift in Sources */,
 				493CA3A81C50ED4A005ED20F /* ViewObserverCollection.swift in Sources */,
 				493CA3B21C50EE42005ED20F /* ComponentViewModel.swift in Sources */,
 				493CA3801C50ED2D005ED20F /* ComponentController.swift in Sources */,
@@ -608,16 +611,15 @@
 				493CA3A31C50ED4A005ED20F /* BondDisposeAdapter.swift in Sources */,
 				493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */,
 				493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */,
+				49E4579F1C7C662800E0F0FB /* TableViewFlowLayout.swift in Sources */,
 				49C48AA71C4C488100700D4D /* UITableView.swift in Sources */,
 				493CA3A91C50ED4A005ED20F /* ViewObserverDelegate.swift in Sources */,
 				493CA3A71C50ED4A005ED20F /* ViewObserver.swift in Sources */,
-				493CA38E1C50ED2D005ED20F /* CollectionLayout.swift in Sources */,
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */,
 				493CA3A51C50ED4A005ED20F /* DisposeBag.swift in Sources */,
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
 				49C8CBE21C68E54800727EAF /* UICollectionView.swift in Sources */,
-				493CA38D1C50ED2D005ED20F /* CollectionAutoLayout.swift in Sources */,
 				493CA3A21C50ED4A005ED20F /* Bindable.swift in Sources */,
 				493CA3881C50ED2D005ED20F /* CollectionDataSource.swift in Sources */,
 				493CA3AC1C50ED4A005ED20F /* ViewModelWrapper.swift in Sources */,
