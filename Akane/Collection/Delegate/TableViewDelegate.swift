@@ -21,7 +21,7 @@ public class TableViewDelegate<TableViewType : UITableView where
     public typealias CollectionViewModelType = TableViewType.ViewModelType
     public typealias DataSourceType = TableViewType.DataSourceType
 
-    var templateHolder: [CollectionRowType:Template]
+    var templateHolder: [CollectionElementCategory:Template]
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
     unowned var tableView: TableViewType
@@ -70,10 +70,10 @@ public class TableViewDelegate<TableViewType : UITableView where
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.templateHolder.findOrCreate(.Item(identifier: data.identifier.rawValue)) {
+        let template = self.templateHolder.findOrCreate(.Cell(identifier: data.identifier.rawValue)) {
             let template = self.dataSource.tableViewItemTemplate(data.identifier)
 
-            self.tableView.register(template, type: .Item(identifier: data.identifier.rawValue))
+            self.tableView.register(template, type: .Cell(identifier: data.identifier.rawValue))
 
             return template
         }

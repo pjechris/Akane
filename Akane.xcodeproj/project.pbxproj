@@ -37,11 +37,11 @@
 		493CA3AA1C50ED4A005ED20F /* CommandWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39E1C50ED4A005ED20F /* CommandWrapper.swift */; };
 		493CA3AB1C50ED4A005ED20F /* ObservationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39F1C50ED4A005ED20F /* ObservationWrapper.swift */; };
 		493CA3AC1C50ED4A005ED20F /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3A01C50ED4A005ED20F /* ViewModelWrapper.swift */; };
-		493CA3AE1C50EE1F005ED20F /* CollectionRowType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3AD1C50EE1F005ED20F /* CollectionRowType.swift */; };
 		493CA3B11C50EE42005ED20F /* ComponentCollectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3AF1C50EE42005ED20F /* ComponentCollectionViewModel.swift */; };
 		493CA3B21C50EE42005ED20F /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */; };
 		4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */; };
 		4950AFF21C6804DB00E4E86E /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950AFF11C6804DB00E4E86E /* ComponentCollectionView.swift */; };
+		49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		496854AE1BD68B7C00589F4C /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AB1BD68B7C00589F4C /* Converter.swift */; };
@@ -100,11 +100,11 @@
 		493CA39E1C50ED4A005ED20F /* CommandWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandWrapper.swift; sourceTree = "<group>"; };
 		493CA39F1C50ED4A005ED20F /* ObservationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapper.swift; sourceTree = "<group>"; };
 		493CA3A01C50ED4A005ED20F /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
-		493CA3AD1C50EE1F005ED20F /* CollectionRowType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionRowType.swift; sourceTree = "<group>"; };
 		493CA3AF1C50EE42005ED20F /* ComponentCollectionViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionViewModel.swift; sourceTree = "<group>"; };
 		493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
 		4950AFF11C6804DB00E4E86E /* ComponentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
+		49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionElementCategory.swift; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854AB1BD68B7C00589F4C /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -260,12 +260,12 @@
 		493CA3711C50ED2D005ED20F /* Collection */ = {
 			isa = PBXGroup;
 			children = (
-				493CA3AD1C50EE1F005ED20F /* CollectionRowType.swift */,
+				49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */,
+				499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */,
 				493CA3721C50ED2D005ED20F /* DataSource */,
 				493CA3761C50ED2D005ED20F /* Delegate */,
 				493CA3791C50ED2D005ED20F /* Layout */,
 				493CA37C1C50ED2D005ED20F /* Template */,
-				499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */,
 			);
 			path = Collection;
 			sourceTree = "<group>";
@@ -600,7 +600,6 @@
 				49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */,
 				493CA38C1C50ED2D005ED20F /* TableViewSectionDelegate.swift in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
-				493CA3AE1C50EE1F005ED20F /* CollectionRowType.swift in Sources */,
 				493CA3A41C50ED4A005ED20F /* Dispose.swift in Sources */,
 				493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */,
 				4950AFF21C6804DB00E4E86E /* ComponentCollectionView.swift in Sources */,
@@ -617,6 +616,7 @@
 				493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */,
 				493CA3A51C50ED4A005ED20F /* DisposeBag.swift in Sources */,
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
+				49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */,
 				49C8CBE21C68E54800727EAF /* UICollectionView.swift in Sources */,
 				493CA3A21C50ED4A005ED20F /* Bindable.swift in Sources */,
 				493CA3881C50ED2D005ED20F /* CollectionDataSource.swift in Sources */,

@@ -16,7 +16,7 @@ public class CollectionViewDelegate<CollectionViewType where
     public typealias CollectionViewModelType = CollectionViewType.ViewModelType
     public typealias DataSourceType = CollectionViewType.DataSourceType
 
-    var templateHolder: [CollectionRowType:Template]
+    var templateHolder: [CollectionElementCategory:Template]
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
     unowned var collectionView: CollectionViewType
@@ -57,10 +57,10 @@ public class CollectionViewDelegate<CollectionViewType where
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.templateHolder.findOrCreate(.Item(identifier: data.identifier.rawValue)) {
+        let template = self.templateHolder.findOrCreate(.Cell(identifier: data.identifier.rawValue)) {
             let template = self.dataSource.collectionViewItemTemplate(data.identifier)
 
-            self.collectionView.register(template, type: .Item(identifier: data.identifier.rawValue))
+            self.collectionView.register(template, type: .Cell(identifier: data.identifier.rawValue))
 
             return template
         }

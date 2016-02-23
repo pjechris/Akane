@@ -8,15 +8,16 @@
 
 import Foundation
 
-enum CollectionRowType {
-    case Item(identifier: String)
+public enum CollectionElementCategory {
+    case Cell(identifier: String)
     case Section(identifier: String, kind: String)
+//    case Decoration
 }
 
-extension CollectionRowType : Hashable {
-    var hashValue : Int {
+extension CollectionElementCategory : Hashable {
+    public var hashValue : Int {
         switch(self) {
-        case .Item(let itemIdentifier):
+        case .Cell(let itemIdentifier):
             return itemIdentifier.hashValue
         case .Section(let sectionIdentifier, let sectionKind):
             return sectionIdentifier.hashValue ^ sectionKind.hashValue
@@ -24,9 +25,9 @@ extension CollectionRowType : Hashable {
     }
 }
 
-func ==(lhs: CollectionRowType, rhs: CollectionRowType) -> Bool {
+public func ==(lhs: CollectionElementCategory, rhs: CollectionElementCategory) -> Bool {
     switch (lhs, rhs) {
-    case (.Item(let itemIdentifier1), .Item(let itemIdentifier2)):
+    case (.Cell(let itemIdentifier1), .Cell(let itemIdentifier2)):
         return itemIdentifier1 == itemIdentifier2
     case(.Section(let sectionIdentifier1, let sectionKind1), .Section(let sectionIdentifier2, let sectionKind2)):
         return sectionKind1 == sectionKind2 && sectionIdentifier1 == sectionIdentifier2
@@ -36,8 +37,8 @@ func ==(lhs: CollectionRowType, rhs: CollectionRowType) -> Bool {
 }
 
 extension Dictionary {
-    /// Find value associated to ```CollectionRowType``` key or create it
-    /// - parameter key: a ```CollectionRowType``` key
+    /// Find value associated to ```CollectionElementCategory``` key or create it
+    /// - parameter key: a ```CollectionElementCategory``` key
     /// - parameter create: called when no value was found for ```key```. Return a new value to associate with
     /// - returns: found ```Value``` or a created one
     mutating func findOrCreate(key: Key, @noescape create: () -> Value) -> Value {

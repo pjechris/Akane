@@ -16,11 +16,11 @@ extension UICollectionView {
 }
 
 extension UICollectionView {
-    func register(template: Template, type: CollectionRowType) {
+    func register(template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
-        case (.Item(let identifier), .Nib(let nib)):
+        case (.Cell(let identifier), .Nib(let nib)):
             self.registerNib(nib, forCellWithReuseIdentifier: identifier)
-        case (.Item(let identifier), .File()):
+        case (.Cell(let identifier), .File()):
             self.registerClass(template.templateClass, forCellWithReuseIdentifier: identifier)
 
         case (.Section(let identifier, let kind), .Nib(let nib)):

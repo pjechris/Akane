@@ -26,11 +26,11 @@ public extension UITableView {
 }
 
 extension UITableView {
-    func register(template: Template, type: CollectionRowType) {
+    func register(template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
-        case (.Item(let identifier), .Nib(let nib)):
+        case (.Cell(let identifier), .Nib(let nib)):
             self.registerNib(nib, forCellReuseIdentifier: identifier)
-        case (.Item(let identifier), .File()):
+        case (.Cell(let identifier), .File()):
             self.registerClass(template.templateClass, forCellReuseIdentifier: identifier)
 
         case (.Section(let identifier, _), .Nib(let nib)):
