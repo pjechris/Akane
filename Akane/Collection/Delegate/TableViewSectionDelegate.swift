@@ -66,8 +66,8 @@ class TableViewSectionDelegate<TableViewType : UITableView where
 
         let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(data.identifier.rawValue)!
 
-        if let item = data.item {
-            let viewModel = self.collectionViewModel.createSectionViewModel(item as! CollectionViewModelType.SectionType)
+        if template.needsComponentViewModel {
+            let viewModel = self.collectionViewModel.createSectionViewModel(data.item as? CollectionViewModelType.SectionType)
 
             self.observer?.observe(viewModel).bindTo(view, template: template)
         }

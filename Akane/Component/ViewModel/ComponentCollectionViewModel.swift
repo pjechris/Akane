@@ -37,5 +37,5 @@ public protocol ComponentCollectionSectionsViewModel : ComponentCollectionItemsV
     /// create a new `SectionViewModelType` for the given section item
     /// - parameter item: the section item to create a `ComponentViewModel` for
     /// - returns a new viewmodel of type `SectionViewModelType`
-    func createSectionViewModel(item: SectionType) -> SectionViewModelType
+    func createSectionViewModel(item: SectionType?) -> SectionViewModelType
 }

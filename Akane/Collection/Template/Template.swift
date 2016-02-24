@@ -18,6 +18,8 @@ public protocol Template {
     /// the template view class type
     var templateClass: CollectionReusableView.Type { get }
 
+    var needsComponentViewModel: Bool { get }
+
     /// make the binding between the reused view and a correspoding `ComponentViewModel`.
     /// - parameter reusedTemplateView: a view created from this `Template`
     /// - parameter wrapper: third-party object to make the binding between the viewModel and the reused view

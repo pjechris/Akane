@@ -12,6 +12,8 @@ import Foundation
  Create templates for `ComponentView`(s)
 */
 public struct TemplateComponentView<ComponentType : UIView where ComponentType : protocol<CollectionReusableView, ComponentView>> : Template {
+    public let needsComponentViewModel = true
+
     public let source: TemplateSource
     public var templateClass: CollectionReusableView.Type { return self.componentViewType }
 

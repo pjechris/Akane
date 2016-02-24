@@ -12,6 +12,8 @@ import Foundation
  Create templates for simple `UIView`s
 */
 public struct TemplateView : Template {
+    public let needsComponentViewModel = false
+
     public let source: TemplateSource
     public let templateClass: CollectionReusableView.Type
 
