@@ -137,7 +137,7 @@ public extension ViewObserverDelegate where
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
         let viewModel = viewModel as! Self.ViewModelType
-        let delegate = CollectionViewDelegate(collectionView: self, collectionViewModel: viewModel)
+        let delegate = CollectionViewSectionDelegate(collectionView: self, collectionViewModel: viewModel)
 
         delegate.becomeDataSource(observer, data: viewModel.data)
     }
@@ -156,7 +156,7 @@ public extension ViewObserverDelegate where
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
         let viewModel = viewModel as! Self.ViewModelType
-        let delegate = CollectionViewDelegate(collectionView: self, collectionViewModel: viewModel)
+        let delegate = CollectionViewSectionDelegate(collectionView: self, collectionViewModel: viewModel)
 
         viewModel.data.observe { [unowned observer] collection in
             delegate.becomeDataSource(observer, data: collection)
