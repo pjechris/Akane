@@ -32,22 +32,22 @@ class TableViewSectionDelegate<TableViewType : UITableView where
 
     @objc
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return tableView.layout.heightForSection(section, sectionKind: "footer")
+        return tableView.layout.heightForSection(section, sectionKind: "footer") ?? tableView.sectionFooterHeight
     }
 
     @objc
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return tableView.layout.heightForSection(section, sectionKind: "header")
+        return tableView.layout.heightForSection(section, sectionKind: "header") ?? tableView.sectionHeaderHeight
     }
 
     @objc
     func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
-        return tableView.layout.estimatedHeightForSection(section, sectionKind: "footer")
+        return tableView.layout.estimatedHeightForSection(section, sectionKind: "footer") ?? tableView.estimatedSectionFooterHeight
     }
 
     @objc
     func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
-        return tableView.layout.estimatedHeightForSection(section, sectionKind: "header")
+        return tableView.layout.estimatedHeightForSection(section, sectionKind: "header") ?? tableView.estimatedSectionHeaderHeight
     }
 
     func viewForSection(section: Int, sectionKind: String) -> UIView? {

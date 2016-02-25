@@ -12,50 +12,49 @@ import Foundation
  AutoLayout support for `UITableView`
 */
 public class TableViewFlowLayout : NSObject, TableViewLayout {
-    static let defaultEstimatedHeight: CGFloat = 42
+    public typealias Height = (estimated: CGFloat?, actual: CGFloat)
 
-    let estimatedRowHeight: CGFloat
-    let estimatedFooterHeight: CGFloat
-    let estimaedHeaderHeight: CGFloat
+    let rowHeight: Height?
+    let footerHeight: Height?
+    let headerHeight: Height?
 
-    convenience public init(estimatedHeight: CGFloat) {
-        self.init(estimatedRowHeight: estimatedHeight, estimatedFooterHeight: estimatedHeight, estimatedHeaderHeight: estimatedHeight)
+    public init(rowHeight: Height? = nil, headerHeight: Height? = nil, footerHeight: Height? = nil) {
+        self.rowHeight = rowHeight
+        self.headerHeight = headerHeight
+        self.footerHeight = footerHeight
     }
 
-    convenience public override init() {
-        self.init(estimatedHeight: TableViewFlowLayout.defaultEstimatedHeight)
+    public func heightForCell(indexPath: NSIndexPath) -> CGFloat? {
+        return self.rowHeight?.actual
     }
 
-    public init(estimatedRowHeight: CGFloat, estimatedFooterHeight: CGFloat, estimatedHeaderHeight: CGFloat) {
-        self.estimatedRowHeight = estimatedRowHeight
-        self.estimatedFooterHeight = estimatedFooterHeight
-        self.estimaedHeaderHeight = estimatedHeaderHeight
+    public func estimatedHeightForCell(indexPath: NSIndexPath) -> CGFloat? {
+        return self.rowHeight?.estimated
     }
 
-    public func heightForItem(indexPath: NSIndexPath) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-
-    public func estimatedHeightForItem(indexPath: NSIndexPath) -> CGFloat {
-        return self.estimatedRowHeight
-    }
-
-    public func heightForSection(section: Int, sectionKind: String) -> CGFloat {
-        return UITableViewAutomaticDimension
-    }
-
-    public func estimatedHeightForSection(section: Int, sectionKind: String) -> CGFloat {
+    public func heightForSection(section: Int, sectionKind: String) -> CGFloat? {
         switch(sectionKind) {
         case "header":
-            return self.estimaedHeaderHeight
+            return self.headerHeight?.actual
         case "footer":
-            return self.estimatedFooterHeight
+            return self.footerHeight?.actual
+        default:
+            return nil
+        }
+    }
+
+    public func estimatedHeightForSection(section: Int, sectionKind: String) -> CGFloat? {
+        switch(sectionKind) {
+        case "header":
+            return self.headerHeight?.estimated
+        case "footer":
+            return self.footerHeight?.estimated
         default:
             return 0
         }
     }
 
     public func didReuseView(reusableView: UIView) {
-
+        reusableView.layoutIfNeeded()
     }
 }
