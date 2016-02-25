@@ -15,8 +15,7 @@ var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 /// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and
 /// `DataSource`, `ComponentCollectionViewModel`, `CollectionLayout`
 public class TableViewDelegate<TableViewType : UITableView where
-    TableViewType : ComponentTableView,
-    TableViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UITableViewDataSource, UITableViewDelegate
+    TableViewType : ComponentTableView> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
     public typealias CollectionViewModelType = TableViewType.ViewModelType
     public typealias DataSourceType = TableViewType.DataSourceType

@@ -18,7 +18,6 @@ public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
     Self.DataSourceType : DataSourceTableViewItems,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
@@ -34,7 +33,6 @@ public extension ViewObserverDelegate where
     Self : UITableView,
     Self : ComponentTableView,
     Self.DataSourceType : DataSourceTableViewItems,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
     Self.ViewModelType.DataType: Observation,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType.Element
 {
@@ -55,8 +53,6 @@ public extension ViewObserverDelegate where
     Self : ComponentTableView,
     Self.ViewModelType : ComponentCollectionSectionsViewModel,
     Self.DataSourceType : DataSourceTableViewSections,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
-    Self.DataSourceType.SectionIdentifier.RawValue == String,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
@@ -73,8 +69,6 @@ public extension ViewObserverDelegate where
     Self : ComponentTableView,
     Self.ViewModelType : ComponentCollectionSectionsViewModel,
     Self.DataSourceType : DataSourceTableViewSections,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
-    Self.DataSourceType.SectionIdentifier.RawValue == String,
     Self.ViewModelType.DataType: Observation,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType.Element
 {
@@ -94,7 +88,6 @@ public extension ViewObserverDelegate where
     Self : UICollectionView,
     Self : ComponentCollectionView,
     Self.DataSourceType : DataSourceCollectionViewItems,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
@@ -110,7 +103,6 @@ public extension ViewObserverDelegate where
     Self : UICollectionView,
     Self : ComponentCollectionView,
     Self.DataSourceType : DataSourceTableViewItems,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType.Element,
     Self.ViewModelType.DataType: Observation
 {
@@ -131,8 +123,6 @@ public extension ViewObserverDelegate where
     Self : ComponentCollectionView,
     Self.ViewModelType : ComponentCollectionSectionsViewModel,
     Self.DataSourceType : DataSourceCollectionViewSections,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
-    Self.DataSourceType.SectionIdentifier.RawValue == String,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType
 {
     func bind(observer: ViewObserver, viewModel: ComponentViewModel) {
@@ -149,8 +139,6 @@ public extension ViewObserverDelegate where
     Self : ComponentCollectionView,
     Self.ViewModelType : ComponentCollectionSectionsViewModel,
     Self.DataSourceType : DataSourceCollectionViewSections,
-    Self.DataSourceType.ItemIdentifier.RawValue == String,
-    Self.DataSourceType.SectionIdentifier.RawValue == String,
     Self.ViewModelType.DataType: Observation,
     Self.DataSourceType.DataType == Self.ViewModelType.DataType.Element
 {

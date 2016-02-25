@@ -10,10 +10,8 @@ import Foundation
 
 class TableViewSectionDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
-    TableViewType.DataSourceType.ItemIdentifier.RawValue == String,
     TableViewType.DataSourceType : DataSourceTableViewSections,
-    TableViewType.ViewModelType : ComponentCollectionSectionsViewModel,
-    TableViewType.DataSourceType.SectionIdentifier.RawValue == String> : TableViewDelegate<TableViewType>
+    TableViewType.ViewModelType : ComponentCollectionSectionsViewModel> : TableViewDelegate<TableViewType>
 {
 
     override init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {

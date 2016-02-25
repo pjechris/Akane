@@ -12,10 +12,8 @@ public class CollectionViewSectionDelegate<
     CollectionViewType where
     CollectionViewType : UICollectionView,
     CollectionViewType : ComponentCollectionView,
-    CollectionViewType.DataSourceType.ItemIdentifier.RawValue == String,
     CollectionViewType.DataSourceType : DataSourceCollectionViewSections,
-    CollectionViewType.ViewModelType : ComponentCollectionSectionsViewModel,
-    CollectionViewType.DataSourceType.SectionIdentifier.RawValue == String> : CollectionViewDelegate<CollectionViewType>
+    CollectionViewType.ViewModelType : ComponentCollectionSectionsViewModel> : CollectionViewDelegate<CollectionViewType>
 {
     override init(collectionView: CollectionViewType, collectionViewModel: CollectionViewModelType) {
         super.init(collectionView: collectionView, collectionViewModel: collectionViewModel)

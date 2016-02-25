@@ -10,8 +10,7 @@ import Foundation
 
 public class CollectionViewDelegate<CollectionViewType where
     CollectionViewType : UICollectionView,
-    CollectionViewType : ComponentCollectionView,
-    CollectionViewType.DataSourceType.ItemIdentifier.RawValue == String> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
+    CollectionViewType : ComponentCollectionView> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {
     public typealias CollectionViewModelType = CollectionViewType.ViewModelType
     public typealias DataSourceType = CollectionViewType.DataSourceType

@@ -13,7 +13,7 @@ public protocol DataSourceTableViewItems : DataSource {
     /// Type of the row items returned by the data source for the `UITableView`
     typealias ItemType
     /// Possible identifier(s) associated with a row item. Use an `enum`
-    typealias ItemIdentifier: RawRepresentable
+    typealias ItemIdentifier: RawStringRepresentable
 
     /// Ask to return the item that correspond to the specified index path
     /// - returns an optional row item with an identifier for the current item and index path
@@ -31,7 +31,7 @@ public protocol DataSourceTableViewSections : DataSourceTableViewItems {
     /// If you do not intend to associate any data with your section, just set it to `Any`
     typealias SectionType
     /// Possible identifier(s) associated with a section item. Use an `enum`
-    typealias SectionIdentifier: RawRepresentable
+    typealias SectionIdentifier: RawStringRepresentable
 
     /// Ask to return the item associated with the section index
     /// - returns an optional section item with an identifier for the current section

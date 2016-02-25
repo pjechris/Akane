@@ -10,7 +10,7 @@ import Foundation
 
 public protocol DataSourceCollectionViewItems : DataSource {
     typealias ItemType
-    typealias ItemIdentifier: RawRepresentable
+    typealias ItemIdentifier: RawStringRepresentable
 
     func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
@@ -19,7 +19,7 @@ public protocol DataSourceCollectionViewItems : DataSource {
 
 public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems {
     typealias SectionType
-    typealias SectionIdentifier: RawRepresentable
+    typealias SectionIdentifier: RawStringRepresentable
 
     func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 
