@@ -54,9 +54,7 @@ class TableViewSectionDelegate<TableViewType : UITableView where
         let data = self.dataSource.sectionItemAtIndex(section)
         let sectionType = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: sectionKind)
 
-        guard let template = self.dataSource.tableViewSectionTemplate(data.identifier) else {
-            return nil
-        }
+        let template = self.dataSource.tableViewSectionTemplate(data.identifier, kind: sectionKind)
 
         if (self.templateHolder[sectionType] == nil) {
             self.tableView.register(template, type: sectionType)

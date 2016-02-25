@@ -41,5 +41,5 @@ public protocol DataSourceTableViewSections : DataSourceTableViewItems {
     /// - parameter identifier: use the identifier to compare and return the suited `Template`
     /// - returns optional `Template` associated with the given identifier. Return nil when you do not want to display
     /// a section
-    func tableViewSectionTemplate(identifier: SectionIdentifier) -> Template?
+    func tableViewSectionTemplate(identifier: SectionIdentifier, kind: String) -> Template
 }

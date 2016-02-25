@@ -23,5 +23,5 @@ public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems
 
     func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 
-    func collectionViewSectionTemplate(identifier: SectionIdentifier) -> Template
+    func collectionViewSectionTemplate(identifier: SectionIdentifier, kind: String) -> Template
 }

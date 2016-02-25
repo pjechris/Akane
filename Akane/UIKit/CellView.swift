@@ -7,8 +7,13 @@
 //
 
 import Foundation
+import UIKit
 
 extension UITableViewCell : CollectionReusableView {
+
+}
+
+extension UITableViewHeaderFooterView : CollectionReusableView {
 
 }
 

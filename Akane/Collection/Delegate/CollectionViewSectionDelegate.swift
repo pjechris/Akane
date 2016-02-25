@@ -23,7 +23,7 @@ public class CollectionViewSectionDelegate<
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let data = self.dataSource.sectionItemAtIndex(indexPath.section)
         let template = self.templateHolder.findOrCreate(.Section(identifier: data.identifier.rawValue, kind: kind)) {
-            let template = self.dataSource.collectionViewSectionTemplate(data.identifier)
+            let template = self.dataSource.collectionViewSectionTemplate(data.identifier, kind: kind)
 
             self.collectionView.register(template, type: .Section(identifier: data.identifier.rawValue, kind: kind))
 
