@@ -1,26 +1,28 @@
 # Akane
 
-Akane helps you building better iOS native apps by using MVVM design pattern.
-Focus is to provide you :
+Akane helps you building better iOS native apps by leveraging an **MVVM** design pattern.
 
-- A safe environment to minimize code mistakes as much as possible.
-- Team conflict "free". You're working on a different feature than your team members? Then you should be free of Git merging issues.
-- A feature-oriented architecture. Adding/maintining features should be easy.
-- SoC (Separation of Concern) so that you know where code belongs to.
+The main goal of Akane is to provide you with:
+
+- A safe environment conceived to **minimize bad coding practices** as much as possible
+- A **feature-oriented** architecture. Adding/maintaining features is easy with Akane
+- A fine-grained **Separation of Concerns**, which translates to 
+	- much less merge conflicts
+	- a deeper knowledge of your code
 
 # Getting started
 
-## What is different from classic iOS MVC?
+## What are the main differences from the classic iOS MVC pattern?
 
-Not a lot changes actually. You still have your usual *M*odel, *V*iew and ViewController classes.
+Not a lot changes actually. You still have your usual **M**odel, **V**iew and **V**iewController classes.
 
-However we did added a fourth class: *V*iew*M*odel, hence the MVVM pattern.
+However we did add a fourth class: **V**iew**M**odel, hence the **MVVM** pattern.
 
-How does it change you way of coding? Well it's pretty simple:
-- All the *business* logic that you used to put into ViewController should be reported into ViewModel
-- All the *layout* logic you used to put into ViewController should be reported into a custom View
+How does it improve your way of coding? Well, that's pretty simple:
+- All the *business* logic that you used to write into the ViewControllers shall now be moved to the ViewModels
+- All the *layout* logic you used to put into the ViewController should now be moved to a View
 
-Not that hard, yeah?
+Not that hard, huh?
 
 ## Installation
 
@@ -30,8 +32,8 @@ pod install Akane
 
 # Contributing
 
-Akane is an Open Source project. As such don't hesitate to contribute through tickets and/or pull requests!
+Akane is an Open Source project. As such, please do not hesitate to contribute through tickets and/or pull requests.
 
 # Liencse
 
-Akane is released under the MIT License. Please see the LICENSE file for details.
+Akane is released under the MIT License. Please see the LICENSE file for further details.
