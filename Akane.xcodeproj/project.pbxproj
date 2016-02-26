@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		18528EF01C3E09E601C476C3 /* Pods_AkaneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */; };
-		3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */; };
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
 		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
@@ -63,7 +61,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
@@ -108,12 +105,6 @@
 		49C48AA61C4C488100700D4D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		49C592B51C5591D5005AFE25 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
 		49D1EA311C513D5A00AB2D9B /* ComponentItemViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentItemViewModel.swift; sourceTree = "<group>"; };
-		64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.debug.xcconfig"; sourceTree = "<group>"; };
-		6578808C14FC427CF464ABA6 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
-		9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkaneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		CE0D63DADFA21F0027D621C0 /* Pods-Akane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.release.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.release.xcconfig"; sourceTree = "<group>"; };
-		FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,7 +112,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3A3536EEDE049EFA205D9993 /* Pods_Akane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -130,7 +120,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				496854821BD6741D00589F4C /* Akane.framework in Frameworks */,
-				18528EF01C3E09E601C476C3 /* Pods_AkaneTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -161,8 +150,6 @@
 				4926EACD1A5EBCBF005A3D71 /* Akane */,
 				4926EADA1A5EBCC0005A3D71 /* AkaneTests */,
 				4926EACC1A5EBCBF005A3D71 /* Products */,
-				E506DFC8C5467B7BF04E2DE7 /* Pods */,
-				771E527F440EEBC1A3FAD0EC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -365,27 +352,6 @@
 			path = UIKit;
 			sourceTree = "<group>";
 		};
-		771E527F440EEBC1A3FAD0EC /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				6578808C14FC427CF464ABA6 /* libPods.a */,
-				FD3EC1DAF4569BDB72152603 /* Pods_Akane.framework */,
-				9EA144F4793171E9728BF11C /* Pods_AkaneTests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		E506DFC8C5467B7BF04E2DE7 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */,
-				272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */,
-				64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */,
-				CE0D63DADFA21F0027D621C0 /* Pods-Akane.release.xcconfig */,
-			);
-			name = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -404,12 +370,10 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 496854891BD6741D00589F4C /* Build configuration list for PBXNativeTarget "Akane" */;
 			buildPhases = (
-				BC7F806027D5EC8890D52CB3 /* Check Pods Manifest.lock */,
 				496854731BD6741C00589F4C /* Sources */,
 				496854741BD6741C00589F4C /* Frameworks */,
 				496854751BD6741C00589F4C /* Headers */,
 				496854761BD6741C00589F4C /* Resources */,
-				8E4253E5142C32D7FCEB33F9 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -424,12 +388,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4968548C1BD6741D00589F4C /* Build configuration list for PBXNativeTarget "AkaneTests" */;
 			buildPhases = (
-				058449C59271F02D2D6A4975 /* Check Pods Manifest.lock */,
 				4968547D1BD6741C00589F4C /* Sources */,
 				4968547E1BD6741C00589F4C /* Frameworks */,
 				4968547F1BD6741C00589F4C /* Resources */,
-				61957B2EEBE12A7EDAC19CA1 /* Copy Pods Resources */,
-				1AB9805C6BDA48534C313DEA /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -493,84 +454,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
-
-/* Begin PBXShellScriptBuildPhase section */
-		058449C59271F02D2D6A4975 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		1AB9805C6BDA48534C313DEA /* Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Embed Pods Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		61957B2EEBE12A7EDAC19CA1 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		8E4253E5142C32D7FCEB33F9 /* Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Akane/Pods-Akane-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BC7F806027D5EC8890D52CB3 /* Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Check Pods Manifest.lock";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		496854731BD6741C00589F4C /* Sources */ = {
@@ -657,6 +540,10 @@
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_OPTIMIZATION_LEVEL = 0;
@@ -698,6 +585,11 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
@@ -714,7 +606,6 @@
 		};
 		4968548A1BD6741D00589F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 64FF410E47E46E6E14897B8B /* Pods-Akane.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -724,7 +615,6 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = Akane/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
@@ -741,7 +631,6 @@
 		};
 		4968548B1BD6741D00589F4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = CE0D63DADFA21F0027D621C0 /* Pods-Akane.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -767,12 +656,10 @@
 		};
 		4968548D1BD6741D00589F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 719F28447484223560D25F1B /* Pods-AkaneTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				ENABLE_TESTABILITY = YES;
 				GCC_NO_COMMON_BLOCKS = YES;
 				INFOPLIST_FILE = AkaneTests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
@@ -785,7 +672,6 @@
 		};
 		4968548E1BD6741D00589F4C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 272B18823048DDCD39BA2927 /* Pods-AkaneTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
