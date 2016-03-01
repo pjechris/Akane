@@ -10,30 +10,46 @@ import Foundation
 import Bond
 
 /**
- Default implementation of ```Command``` protocol
- 
- Provide the developer with 2 blocks :
- - ```canExecute``` a block updating the command availability. Optional
- - ```action``` the block containing the action to execute
+`RelayCommand` is a concretization of the `Command` protocol providing
+ basic actions.
+
+It provides 2 closures:
+- `canExecute` a block updating the command availability. Optional
+- `action` the block containing the action to execute
 */
 public class RelayCommand : Command {
     public private(set) var canExecute : Observable<Bool> = Observable(true)
     private let action: (UIControl?) -> ()
     private let canExecuteUpdater: () -> Bool
-
-    /// - parameter canExecute: a block returning true if command is available, false otherwise
-    /// - parameter action: the command logic to execute when ```execute``` is called
-    /// - seeAlso: ```init(action:)```
+    
+    // MARK: Initializers
+    
+    /**
+    Instantiates a new `RelayCommand`.
+    
+    - parameter canExecuteUpdater: A closure returning `true` if the command is 
+    available, false otherwise
+    - parameter action:            The command logic to execute when `execute` 
+    is called
+    
+    - seeAlso: `init(action:)`
+    */
     public init(canExecute canExecuteUpdater: () -> Bool, action: (UIControl?) -> ()) {
         self.canExecuteUpdater = canExecuteUpdater
         self.action = action
     }
 
-    /// Create a command with the given action. The command is considered as always executable
-    /// - Parameter action: the command logic to execute when ```execute``` is called
+    /**
+    Creates a command with the given action. The command is considered as always
+    executable
+    
+    - parameter action: The command logic to execute when `execute` is called
+    */
     public convenience init(action: (UIControl?) -> ()) {
         self.init(canExecute: { return true }, action: action)
     }
+    
+    // MARK: Execution
 
     /// Update the command execute status using the provided initializer block
     public func updateCanExecute() {

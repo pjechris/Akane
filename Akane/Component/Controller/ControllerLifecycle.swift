@@ -15,7 +15,7 @@ protocol Lifecycle : class {
 }
 
 /**
- Handle controller view and view model lifecycles.
+Handles controller view and view model lifecycles.
 */
 class ControllerLifecycle<C:UIViewController where C:ComponentController> : Lifecycle {
     var binder: ViewObserverCollection!

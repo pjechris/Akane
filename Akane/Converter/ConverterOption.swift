@@ -12,10 +12,16 @@ import Foundation
  `Converter` requiring some options to work correctly
 */
 public protocol ConverterOption {
-    /// Options type. Should be a dedicated struct
+    
+    /// Option type. Should be a dedicated struct
     typealias ConvertOptionType
 
-    /// init the converter with some options. For a given instance, options never change after initialization
-    /// - parameter options: the converter options
+    // MARK: Initializer
+    
+    /**
+    Creates the converter with some options. For a given instance, options never change after initialization
+    
+    - parameter options: The converter options
+    */
     init(options: ConvertOptionType)
 }

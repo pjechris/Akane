@@ -10,8 +10,9 @@ import Foundation
 import UIKit
 
 /**
- Default implementation of `ComponentController`. You need to extend from this class rather than from `UIViewController`
- to make binding binding your component view and your view model work.
+Default implementation of `ComponentController`. You need to extend from this 
+class rather than from `UIViewController` to make binding binding your component
+view and your view model work.
 */
 public class ComponentViewController : UIViewController, ComponentController {
     public var viewModel: ComponentViewModel! {

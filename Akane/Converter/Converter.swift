@@ -9,16 +9,27 @@
 import Foundation
 
 /**
- Make conversion from ```ValueType``` to ```ConvertValueType```
+Converts a value from `ValueType` to `ConvertValueType`
 */
 public protocol Converter {
     typealias ValueType
     typealias ConvertValueType
 
+    // MARK: Initizalizer
+    
+    /**
+    Obtains a new `Converter`
+    */
     init()
 
-    /// do the conversion
-    /// - parameter value: the value to convert
-    /// - returns the value converted
+    // MARK: Conversion
+    
+    /**
+    Performs the conversion from a `ValueType` to a `ConvertValueType`.
+    
+    - parameter value: The value to convert
+    
+    - returns: The converted value
+    */
     func convert(value: ValueType) -> ConvertValueType
 }
