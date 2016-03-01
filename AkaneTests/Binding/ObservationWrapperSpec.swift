@@ -22,7 +22,7 @@ class ObservationWrapperSpec : QuickSpec {
             disposeBag = CompositeDisposable()
             value = Observable(nil)
 
-            observer = ObservationWrapper(observable: value, disposeBag: disposeBag)
+            observer = ObservationWrapper(observable: value, disposeBag: disposeBag, attribute: { _ in return nil as String? })
         }
 
         describe("bindTo") {

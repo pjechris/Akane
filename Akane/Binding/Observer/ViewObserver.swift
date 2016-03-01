@@ -18,6 +18,7 @@ import Bond
 */
 public protocol ViewObserver : class {
     func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
+    func observe<T : Observation, AttributeType : Any>(observable: T, attribute: T.Element -> AttributeType) -> ObservationWrapper<AttributeType>
 
     func observe<T: Command>(command: T) -> CommandWrapper
 

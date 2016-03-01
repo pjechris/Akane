@@ -35,12 +35,15 @@ class ViewObserverCollection : ViewObserver, Dispose {
         self.bindings.removeAll()
     }
 
-
-    func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {
-        let binding = ObservationWrapper<T.Element>(observable: observable, disposeBag: self.disposeBag)
+    func observe<T : Observation, AttributeType : Any>(observable: T, attribute: T.Element -> AttributeType) -> ObservationWrapper<AttributeType> {
+        let binding = ObservationWrapper<AttributeType>(observable: observable, disposeBag: self.disposeBag, attribute: attribute)
 
         self.bindings.append(binding.event)
         return binding
+    }
+
+    func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {
+        return self.observe(observable) { return $0 }
     }
 
     func observe<T>(observable: Observable<T>) -> ObservationWrapper<T> {

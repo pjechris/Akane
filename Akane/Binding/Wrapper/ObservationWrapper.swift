@@ -24,12 +24,12 @@ public class ObservationWrapper<E> {
     internal let event: EventProducer<E>
     private let disposeBag: DisposeBag
 
-    internal convenience init<T:Observation where T.Element == E>(observable:T, disposeBag: DisposeBag) {
-        let internalObservable = Bond.Observable<E>(observable.value)
+    internal convenience init<T : Observation>(observable: T, disposeBag: DisposeBag, attribute: T.Element -> E) {
+        let internalObservable = Bond.Observable<E>(attribute(observable.value))
 
         disposeBag.addDisposable(
             observable.observe { [unowned internalObservable] value in
-                internalObservable.next(value)
+                internalObservable.next(attribute(value))
             }
         )
 
