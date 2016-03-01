@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- Define properties of a reusable view element
+Define properties of a reusable view element
 */
 public protocol Template {
     /// nib to load the template view from

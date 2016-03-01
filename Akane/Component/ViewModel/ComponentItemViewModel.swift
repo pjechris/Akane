@@ -8,12 +8,20 @@
 
 import Foundation
 
-/// a `ComponentViewModel` representing an item from a Collection set
-///
-/// Intended to be binded on a `UICollectionViewCell` or a `UITableViewCell`
+/**
+A ComponentItemViewModel is a `ComponentViewModel` representing an item from
+a Collection set
+
+It is intended to be bound on a `UICollectionViewCell` or a 
+`UITableViewCell`
+*/
 public protocol ComponentItemViewModel : ComponentViewModel {
-    /// executed when the item is selected
+    
+    // MARK: Commands
+    
+    /// Executed when the item is selected.
     var select: Command? { get }
-    /// executed when the item is unselected
+    
+    /// Executed when the item is unselected.
     var unselect: Command? { get }
 }

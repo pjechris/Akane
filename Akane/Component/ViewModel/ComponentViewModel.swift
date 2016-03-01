@@ -10,14 +10,29 @@ import Foundation
 
 var ViewModelIsMountedAttr = "ViewModelIsMountedAttr"
 
-/// Store a Component related business logic (network, models, algorithm, ...).
-///
-/// Intended to be binded on a `UIView` conforming to `ComponentView`.
+/**
+A ComponentViewModel stores a Component-related business logic. 
+As an example, a ComponentViewModel can implement networking logic, 
+model instantiations, or simple algorithms.
+
+It is intended to be bound on a `UIView` conforming to `ComponentView`.
+
+Whenever a CompnentViewModel is displayed for the first time, the 
+`willMount` function is called, in order to perform additional 
+configuration.
+*/
 public protocol ComponentViewModel : class {
-    /// whether the `ComponentViewModel` is mounted or not. Marked as mounted when displayed the first time
+    
+    // MARK: Properties
+    
+    /// Defines whether the `ComponentViewModel` is mounted or not. 
+    /// A ComponentViewModel is marked as mounted when displayed the first time.
     var isMounted: Bool { get }
 
-    /// notify the `ComponentViewModel` is going to be mounted. Use this method to make additional operations
+    // MARK: Lifecycle
+    
+    /// Notifies the `ComponentViewModel` when it is going to be mounted. 
+    /// Use this method to perform additional operations.
     func willMount()
 }
 
@@ -27,8 +42,7 @@ public extension ComponentViewModel {
         set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(bool: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    /// does nothing
+    /// The base implementation is a no-op.
     func willMount() {
-
     }
 }

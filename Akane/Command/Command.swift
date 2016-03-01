@@ -10,14 +10,18 @@ import Foundation
 import Bond
 
 /**
- A Command is just an action you can execute. It also provides information about whether or not this command
- should be made available to user
+A Command is just an action you can execute. It also provides information about 
+whether or not this command should be made available to user
 */
 public protocol Command {
-    /// is this command enabled
+    /// Returns `true` if the command is enabled.
     var canExecute: Observable<Bool> { get }
-
-    /// run the command action
-    /// - parameter trigger: the UIControl which triggered the command. Might be nil if triggered by code
+    
+    /**
+    Runs the command action
+    
+    - parameter trigger: The `UIControl` which triggered the command. 
+    Might be `nil` when triggered programmatically.
+    */
     func execute(trigger: UIControl?)
 }

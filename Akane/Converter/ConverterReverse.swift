@@ -9,8 +9,18 @@
 import Foundation
 
 /**
- `Converter` allowing to make conversion from ```ConvertValueType``` to ```ValueType```
+ `Converter` allowing to make conversion from `ConvertValueType` to `ValueType`
 */
 public protocol ConverterReverse : Converter {
+    
+    // MARK: Conversion
+    
+    /**
+     Perform the inverse conversion, from `ValueType` to `ConvertValueType`
+     
+     - parameter value: The value to convert back
+     
+     - returns: The converted value
+     */
     func convertBack(value: ConvertValueType) -> ValueType
 }
