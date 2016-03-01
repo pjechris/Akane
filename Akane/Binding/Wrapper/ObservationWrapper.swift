@@ -110,3 +110,25 @@ public class ObservationWrapper<E> {
         self.disposeBag.addDisposable(BondDisposeAdapter(disposable))
     }
 }
+
+extension ObservationWrapper where E : OptionalType {
+
+    func convert<T: Converter where Element.WrappedType == T.ValueType>(converter: T.Type) -> ObservationWrapper<T.ConvertValueType?> {
+        let nextEvent = self.event.map { (value:Element) -> T.ConvertValueType? in
+            return value.isNil ? nil : converter.init().convert(value.value!)
+        }
+
+        return ObservationWrapper<T.ConvertValueType?>(event: nextEvent, disposeBag: self.disposeBag)
+    }
+
+    func convert<T: Converter where Element.WrappedType == T.ValueType, T.ConvertValueType: OptionalType>(converter: T.Type) -> ObservationWrapper<T.ConvertValueType> {
+        let nextEvent = self.event.map { (value:Element) -> T.ConvertValueType in
+            return value.isNil
+                ? T.ConvertValueType(optional: nil)
+                : converter.init().convert(value.value!)
+        }
+
+        return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
+    }
+
+}
