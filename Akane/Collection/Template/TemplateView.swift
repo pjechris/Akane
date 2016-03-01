@@ -17,7 +17,7 @@ public struct TemplateView : Template {
     public let source: TemplateSource
     public let templateClass: CollectionReusableView.Type
 
-    init(templateClass: CollectionReusableView.Type, from source: TemplateSource = .File()) {
+    public init(templateClass: CollectionReusableView.Type, from source: TemplateSource = .File()) {
         self.templateClass = templateClass
         self.source = source
     }
