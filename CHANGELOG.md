@@ -1,5 +1,32 @@
 # CHANGELOG
 
+# 0.12.0 beta 2
+
+TL;DR Support binding with CollectionView was added. Some important features are missing and will be added in beta 3.
+API is still in beta and might change in further betas
+
+## Added
+
+- [Collection] Support for CollectionView binding.
+- [Template] Support for template coming from storyboard. You can now use enum `Nib(nib)`, `StoryboardId(id)`
+or `File()` to load a template from a source.
+
+## Enhancements
+
+- [DataSource] `ItemIdentifier` and `SectionIdentifier` now need to conform to `RawStringRepresentable` instead of `RawStringRepresentable`.
+Just add `RawStringRepresentable` to your String enum declaration to make it automatically conform to the protocol.
+- [Layout] Uniformized `UICollectionView` and `UITableView` by adding a `layout` attribute to the later one.
+- [DataSource] Changed signature of method `tableViewSectionTemplate`.
+- [Layout] Renamed `CollectionLayout` and `CollectionAutoLayout` as `TableViewLayout` and `TableViewFlowLayout`.
+- [Observer] Allow to return an attribute of an observed property to bind with. Use `observe(observable:attribute:)` method.
+- [Converter] Allow to use a `Converter` expecting `A` with a `Optional<A>`.
+
+## Bugfixes
+
+- [Layout] Fixed `TemplateView` init not marked as public.
+- [Component] Fixed crash with optional lifecycle.
+- [DataSource] Fixed `DataType` not marked as implicit optional
+
 # 0.12.0 beta 1
 
 TL;DR Support for binding with TableView was added. Some important features are missing and will be added in beta 2.
