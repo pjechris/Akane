@@ -8,34 +8,47 @@
 
 import Foundation
 
-/// a `ComponentViewModel` representing a Collection. Using this base protocol does not make lot of sense: use
-/// `ComponentCollectionItemsViewModel` or `ComponentCollectionSectionsViewModel`
-///
-/// Intended to be binded on a `ComponentTableView` or a `ComponentCollectionView`
+/**
+A ComponentCollectionViewModel is a `ComponentViewModel` which ties to a
+Collection. It is intended to be bound to a `ComponentTableView` or a 
+`ComponentCollectionView`.
+
+This protocol is not meant to be used directly. Please refer to
+`ComponentCollectionItemsViewModel` or `ComponentCollectionSectionsViewModel`
+instead.
+*/
 public protocol ComponentCollectionViewModel : ComponentViewModel {
     typealias DataType
 
     var data: DataType! { get }
 }
 
-/// a `ComponentCollectionViewModel` representing a Collection set of items view model
+/// The `ComponentCollectionViewModel` representing a Collection of items view model
 public protocol ComponentCollectionItemsViewModel : ComponentCollectionViewModel {
     typealias ItemType
     typealias ItemViewModelType : ComponentViewModel
 
-    /// create a new `ItemViewModelType` for the given item
-    /// - parameter item: the item to create a `ComponentViewModel` for
-    /// - returns a new viewmodel of type `ItemViewModelType`
+    /**
+    Creates a new `ItemViewModelType` for the given item
+    
+    - parameter item: The item to create a `ComponentViewModel` for
+    
+    - returns: A new ViewModel of type `ItemViewModelType`
+    */
     func createItemViewModel(item: ItemType) -> ItemViewModelType
 }
 
-/// a `ComponentCollectionItemsViewModel` representing a Collection set of items view model which *may* have sections
+/// The `ComponentCollectionItemsViewModel` representing a Collection set of items view model which *may* have sections
 public protocol ComponentCollectionSectionsViewModel : ComponentCollectionItemsViewModel {
     typealias SectionType
     typealias SectionViewModelType : ComponentViewModel
 
-    /// create a new `SectionViewModelType` for the given section item
-    /// - parameter item: the section item to create a `ComponentViewModel` for
-    /// - returns a new viewmodel of type `SectionViewModelType`
+    /**
+     Creates a new `SectionViewModelType` for the given section item
+
+     - parameter item: The section item to create a `ComponentViewModel` for
+
+     - returns: A new viewmodel of type `SectionViewModelType`
+     */
     func createSectionViewModel(item: SectionType?) -> SectionViewModelType
 }

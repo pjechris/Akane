@@ -10,10 +10,12 @@ import Foundation
 import Bond
 
 /**
- Minimalistic API tailored to interact wiht a ```Observation``` from a view.
-
- Restricted accesses/methods are intended: if you face yourself as being stuck because of the small API, then it probably
- means you need to put your code inside a ```ComponentViewModel``` or a ```Converter``` instead.
+`ObservationWrapper` provides a minimalistic API tailored to interact with an 
+`Observation` from withing a `ComponentView`.
+ 
+**Tip:** restricted accesses/methods are intended: if you feel you are stuck because of
+the API, then it probably means you need to move your code to a
+`ComponentViewModel` or a `Converter` instead.
 
 */
 public class ObservationWrapper<E> {
@@ -45,9 +47,15 @@ public class ObservationWrapper<E> {
             self?.value = value
         }
     }
+    
+    // MARK: Binding
 
-    /// Bind the observation value to a bindable class
-    /// - parameter bindable: the bindable item. Should be a view attribute, like a label text attribute.
+    /**
+    Binds the observation value to a bindable entity.
+    
+    - parameter bindable: The bindable item. Should be a view attribute, such as
+    the text of a label.
+    */
     public func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
         let next = bindable.advance()
 
@@ -56,9 +64,13 @@ public class ObservationWrapper<E> {
             next(value!)
         })
     }
-
-    /// Bind the observation value to a optional bindable class
-    /// - parameter bindable: the optional bindable item. If nil nothing happens
+    
+    /**
+    Binds the observation value to a optional bindable class.
+    
+    - parameter bindable: The optional bindable item. Passing `nil` produces
+     a no-op.
+    */
     public func bindTo<T: Bindable where T.Element == Element?>(bindable: T) {
          self.onBind(bindable.advance())
     }
@@ -66,10 +78,19 @@ public class ObservationWrapper<E> {
     public func combine<T: Observation>(observables: T...) -> Self {
         return self
     }
+    
+    // MARK: Covnersion
 
-    /// Convert the observation value into a new value by applying the argument converter
-    /// - parameter converter: the converter type to use to transform the observation value
-    /// - returns: a new ObservationWrapper whose observation is the current converted observation value
+    /**
+    Converts the observed event value to a new value by applying the `converter`
+    argument.
+    
+    - parameter converter: The converter type to use to transform the 
+    observation value.
+    
+    - returns: A new ObservationWrapper whose observation is the current 
+    converted observation value.
+    */
     public func convert<T: Converter where T.ValueType == Element>(converter: T.Type) -> ObservationWrapper<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convert(value)
@@ -78,6 +99,17 @@ public class ObservationWrapper<E> {
         return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
+    /**
+    Converts the observed event value to a new value by applying the `converter`
+    argument.
+     
+    - parameter converter: The converter type to use to transform the
+     observation value.
+    - parameter options:   The options of the conversion.
+     
+    - returns: A new ObservationWrapper whose observation is the current
+    converted observation value.
+    */
     public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ObservationWrapper<T.ConvertValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convert(value)
@@ -86,6 +118,16 @@ public class ObservationWrapper<E> {
         return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
+    /**
+    Provides a reverse conversion of the event value from `ConvertValueType` to
+    `ValueType`.
+     
+    - parameter converter: The converter type to use to transform the
+    observation value.
+     
+    - returns: A new ObservationWrapper whose observation is the current
+    converted observation value.
+    */
     public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(converter: T.Type) -> ObservationWrapper<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init().convertBack(value)
@@ -94,6 +136,17 @@ public class ObservationWrapper<E> {
         return ObservationWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
+    /**
+    Provides a reverse conversion of the event value from `ConvertValueType` to
+    `ValueType`.
+     
+    - parameter converter: The converter type to use to transform the
+    observation value.
+    - parameter options:   The options of the conversion.
+     
+    - returns: A new ObservationWrapper whose observation is the current
+    converted observation value.
+    */
     public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(converter: T.Type, options:() -> T.ConvertOptionType) -> ObservationWrapper<T.ValueType> {
         let nextEvent = self.event.map { (value:Element) in
             return converter.init(options: options()).convertBack(value)
@@ -101,7 +154,15 @@ public class ObservationWrapper<E> {
 
         return ObservationWrapper<T.ValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
+    
+    // MARK: Callbacks
 
+    /**
+    Provides a callback invoked at the moment of the binding.
+    The callback receives the events which still are in the buffer.
+     
+    - parameter bind: The callback closure called at the moment of the binding.
+    */
     private func onBind(bind: Element? -> Void) {
         let disposable = self.event.observe { value in
             bind(value)

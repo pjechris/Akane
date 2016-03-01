@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- To use on `UITableView` to make connections between the view, its `ComponentCollectionViewModel` and its `DataSource`
+To use on `UITableView` to make connections between the view, its `ComponentCollectionViewModel` and its `DataSource`
 */
 public protocol ComponentTableView : ComponentView, ViewObserverDelegate {
     typealias DataSourceType: DataSourceTableViewItems

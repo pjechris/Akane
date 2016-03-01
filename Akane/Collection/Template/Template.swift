@@ -9,7 +9,7 @@
 import Foundation
 
 /**
- Define properties of a reusable collection view
+Define properties of a reusable collection view
 */
 public protocol Template {
     /// source to load the template view from

@@ -11,6 +11,6 @@ import Foundation
 public protocol Bindable {
     typealias Element
 
-    /// - returns a closure that can be used to dispatch events to the receiver.
+    // - returns: a closure that can be used to dispatch events to the receiver.
     func advance() -> (Element -> Void)
 }

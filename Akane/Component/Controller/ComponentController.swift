@@ -9,30 +9,54 @@
 import Foundation
 
 /**
- ComponentController is a Controller making the link between a ```ComponentView``` and its ```ComponentViewModel```.
- Do not use this protocol directly but rather `ComponentViewController`
+ComponentController is a Controller making the link between a `ComponentView`
+and its `ComponentViewModel`.
+
+Do not use this protocol directly. Refer to `ComponentViewController` instead.
+ 
+This protocol should benefit greatly by the use of generics, but this would
+break compatibility with Storyboards and Xibs.
 */
 public protocol ComponentController : class {
-    /// the Controller component view
-    /// While using generics to constraint it would be great, it causes issues with Storyboards and Xibs.
+    
+    // MARK: Associated component elements
+    
+    /// The Controller's ComponentView.
     var componentView: ComponentView! { get }
 
-    /// the Controller view model
-    /// While using generics to constraint it would be great, it causes issues with Storyboards and Xibs.
+    /// The Controller's CompnentViewModel.
     var viewModel: ComponentViewModel! { get set }
 
-    /// Init with a view which sould implement ```ComponentView``` protocol.
-    /// Once again, using generics to would have been great but it causes issues with Storyboards and Xibs :(
+    // MARK: Initializers
+    
+    /// Inits with a view which sould implement `ComponentView` protocol.
     init(view: UIView)
 
-    /// Add a child Component controller
-    /// - parameter childController: the child controller to add
+    // MARK: Child `ComonentController`s
+    
+    /**
+    Adds a child controller.
+    
+    - parameter childController: The child `ComonentController` to add.
+    */
     func addController<C:UIViewController where C:ComponentController>(childController: C)
 
-    /// Search through child controllers and return the matching ```ComponentController```
-    /// - Returns the ```ComponentController``` whose ```componentView``` equals ```component, nil otherwise
+    /**
+    Searches through child controllers and returns the matching 
+    `ComponentController`.
+    
+    - parameter component: The `ComponentView` presented by the
+    `ComponentController` to be searched after.
+    
+    - returns: The `ComponentController` whose `ComponentView` equals
+    `component`, `nil` otherwise.
+    */
     func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController?
 
-    /// Called when both ```viewModel``` and ```componentView``` are loaded
+    // MARK: Lifecycle
+    
+    /**
+    Called once both the `ViewModel` and the `ComponentView` have been loaded.
+    */
     func didLoad()
 }

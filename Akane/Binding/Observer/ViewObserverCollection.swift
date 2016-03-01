@@ -10,7 +10,7 @@ import Foundation
 import Bond
 
 /**
- Contain multiple ```ViewObserver``` instances which can be disposed at any time
+ Contain multiple `ViewObserver` instances which can be disposed at any time
 */
 class ViewObserverCollection : ViewObserver, Dispose {
     var count: Int { return self.bindings.count }
