@@ -49,7 +49,7 @@ public class ComponentViewController : UIViewController, ComponentController {
 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.lifecycle.mountOnce()
+        self.lifecycle?.mountOnce()
     }
 
     func prepareIfNeeded() {
@@ -63,8 +63,8 @@ public class ComponentViewController : UIViewController, ComponentController {
 extension ComponentController where Self:UIViewController {
     public func didLoad() {
 
-    }
-    
+}
+
     public func addController<C:UIViewController where C:ComponentController>(childController: C) {
         if (!self.childViewControllers.contains(childController)) {
             self.addChildViewController(childController)
