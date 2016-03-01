@@ -3,7 +3,7 @@
 # 0.12.0 beta 2
 
 TL;DR Support binding with CollectionView was added. Some important features are missing and will be added in beta 3.
-API is still in beta and might change in further betas
+API is globally stable but some changes might happen in further betas.
 
 ## Added
 
@@ -20,12 +20,18 @@ Just add `RawStringRepresentable` to your String enum declaration to make it aut
 - [Layout] Renamed `CollectionLayout` and `CollectionAutoLayout` as `TableViewLayout` and `TableViewFlowLayout`.
 - [Observer] Allow to return an attribute of an observed property to bind with. Use `observe(observable:attribute:)` method.
 - [Converter] Allow to use a `Converter` expecting `A` with a `Optional<A>`.
+- [Framework] Added Carthage support -
+[viteinfinite](https://github.com/viteinfinite) [#PR8](https://github.com/akane/Akane/pull/8)
+- [Doc] Documentation was improved -
+[viteinfinite](https://github.com/viteinfinite)
+[#PR10](https://github.com/akane/Akane/pull/10)
+[#PR11](https://github.com/akane/Akane/pull/11)
 
 ## Bugfixes
 
 - [Layout] Fixed `TemplateView` init not marked as public.
 - [Component] Fixed crash with optional lifecycle.
-- [DataSource] Fixed `DataType` not marked as implicit optional
+- [DataSource] Fixed `DataType` not marked as implicitly unwrapped optional.
 
 # 0.12.0 beta 1
 
