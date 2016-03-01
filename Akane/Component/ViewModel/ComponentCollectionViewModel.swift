@@ -15,7 +15,7 @@ import Foundation
 public protocol ComponentCollectionViewModel : ComponentViewModel {
     typealias DataType
 
-    var data: DataType { get }
+    var data: DataType! { get }
 }
 
 /// a `ComponentCollectionViewModel` representing a Collection set of items view model
