@@ -234,7 +234,19 @@ class AuthorListTableView: UITableView, ComponentTableView {
 
 ```
 
-# United we stand
+# Akane is *Component-Oriented*
+
+With Akane, each visual feature you want to add to your app is a *Component*.
+
+A screen containing a tableView of tasks to do is a component, and the tableView's header can be a component too if it contains some logic.
+Akane encourages the creation of small reusable components throughout your app, in order to improve the maintainability and the meaningfulness of your code.
+
+Each component, with Akane, is composed of:
+- `ComponentViewController`
+- `ComponentViewModel`
+- `ComponentView`
+
+# United We Stand
 
 Akane works great by itself but is even better when combined with our other tools:
 
