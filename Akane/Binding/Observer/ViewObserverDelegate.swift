@@ -24,7 +24,7 @@ public extension ViewObserverDelegate where
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = TableViewDelegate(tableView: self, collectionViewModel: viewModel)
 
-        delegate.becomeDataSource(observer, data: viewModel.data)
+        delegate.becomeDataSource(observer, dataSource: DataSourceType(data: viewModel.data))
     }
 }
 
@@ -41,7 +41,7 @@ public extension ViewObserverDelegate where
         let delegate = TableViewDelegate(tableView: self, collectionViewModel: viewModel)
 
         viewModel.data.observe { [unowned observer] collection in
-            delegate.becomeDataSource(observer, data: collection)
+            delegate.becomeDataSource(observer, dataSource: DataSourceType(data: collection))
         }
     }
 }
@@ -59,7 +59,7 @@ public extension ViewObserverDelegate where
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = TableViewSectionDelegate(tableView: self, collectionViewModel: viewModel)
 
-        delegate.becomeDataSource(observer, data: viewModel.data)
+        delegate.becomeDataSource(observer, dataSource: DataSourceType(data: viewModel.data))
     }
 }
 
@@ -77,7 +77,7 @@ public extension ViewObserverDelegate where
         let delegate = TableViewSectionDelegate(tableView: self, collectionViewModel: viewModel)
 
         viewModel.data.observe { [unowned observer] collection in
-            delegate.becomeDataSource(observer, data: collection)
+            delegate.becomeDataSource(observer, dataSource: DataSourceType(data: collection))
         }
     }
 }
@@ -94,7 +94,7 @@ public extension ViewObserverDelegate where
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = CollectionViewDelegate(collectionView: self, collectionViewModel: viewModel)
 
-        delegate.becomeDataSource(observer, data: viewModel.data)
+        delegate.becomeDataSource(observer, dataSource: DataSourceType(data: viewModel.data))
     }
 }
 
@@ -111,7 +111,7 @@ public extension ViewObserverDelegate where
         let delegate = CollectionViewDelegate(collectionView: self, collectionViewModel: viewModel)
 
         viewModel.data.observe { [unowned observer] collection in
-            delegate.becomeDataSource(observer, data: collection)
+            delegate.becomeDataSource(observer, dataSource: DataSourceType(data: collection))
         }
     }
 }
@@ -129,7 +129,7 @@ public extension ViewObserverDelegate where
         let viewModel = viewModel as! Self.ViewModelType
         let delegate = CollectionViewSectionDelegate(collectionView: self, collectionViewModel: viewModel)
 
-        delegate.becomeDataSource(observer, data: viewModel.data)
+        delegate.becomeDataSource(observer, dataSource: DataSourceType(data: viewModel.data))
     }
 }
 
@@ -147,7 +147,7 @@ public extension ViewObserverDelegate where
         let delegate = CollectionViewSectionDelegate(collectionView: self, collectionViewModel: viewModel)
 
         viewModel.data.observe { [unowned observer] collection in
-            delegate.becomeDataSource(observer, data: collection)
+            delegate.becomeDataSource(observer, dataSource: DataSourceType(data: collection))
         }
     }
 }

@@ -29,24 +29,24 @@ public class TableViewDelegate<TableViewType : UITableView where
     }
 
     /// init the delegate with a `UITableView` and its view model
-    init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
+    public init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
         self.tableView = tableView
         self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
 
         super.init()
 
-        // Without casting swift complains about ambiguous delegate
-        (self.tableView as UITableView).delegate = self
-        tableView.dataSource = self
-
         objc_setAssociatedObject(self.tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
     /// make the delegate effective
-    func becomeDataSource(observer: ViewObserver, data: DataSourceType.DataType) {
+    public func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
         self.observer = observer
-        self.dataSource = DataSourceType.init(data: data)
+        self.dataSource = dataSource
+
+        // Without casting swift complains about ambiguous delegate
+        (self.tableView as UITableView).delegate = self
+        tableView.dataSource = self
     }
 
     // MARK: DataSource

@@ -24,24 +24,25 @@ public class CollectionViewDelegate<CollectionViewType where
     }
 
     /// init the delegate with a `UITableView` and its view model
-    init(collectionView: CollectionViewType, collectionViewModel: CollectionViewModelType) {
+    public init(collectionView: CollectionViewType, collectionViewModel: CollectionViewModelType) {
         self.collectionView = collectionView
         self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
 
         super.init()
 
-        // Without casting swift complains about ambiguous delegate
-        (self.collectionView as UICollectionView).delegate = self
-        collectionView.dataSource = self
-
         objc_setAssociatedObject(self.collectionView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     }
 
     /// make the delegate effective
-    func becomeDataSource(observer: ViewObserver, data: DataSourceType.DataType) {
+    func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
         self.observer = observer
-        self.dataSource = DataSourceType.init(data: data)
+        self.dataSource = dataSource
+
+        // Without casting swift complains about ambiguous delegate
+        (self.collectionView as UICollectionView).delegate = self
+        collectionView.dataSource = self
+
     }
 
     // MARK: DataSource

@@ -8,13 +8,13 @@
 
 import Foundation
 
-class TableViewSectionDelegate<TableViewType : UITableView where
+public class TableViewSectionDelegate<TableViewType : UITableView where
     TableViewType : ComponentTableView,
     TableViewType.DataSourceType : DataSourceTableViewSections,
     TableViewType.ViewModelType : ComponentCollectionSectionsViewModel> : TableViewDelegate<TableViewType>
 {
 
-    override init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
+    public override init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
         super.init(tableView: tableView, collectionViewModel: collectionViewModel)
     }
 
