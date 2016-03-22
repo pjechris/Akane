@@ -17,8 +17,9 @@ view and your view model work.
 public class ComponentViewController : UIViewController, ComponentController {
     public var viewModel: ComponentViewModel! {
         didSet {
+            self.didLoadComponent()
+
             if (self.isViewLoaded()) {
-                self.prepareIfNeeded()
                 self.lifecycle.bindView()
             }
         }
@@ -28,7 +29,7 @@ public class ComponentViewController : UIViewController, ComponentController {
         get { return self.view as! ComponentView }
     }
 
-    var lifecycle: ControllerLifecycle<ComponentViewController>!
+    lazy var lifecycle: ControllerLifecycle<ComponentViewController>! = ControllerLifecycle(controller: self)
 
     required public init(view: UIView) {
         super.init(nibName: nil, bundle: nil)
@@ -43,7 +44,6 @@ public class ComponentViewController : UIViewController, ComponentController {
 
     public override func viewDidLoad() {
         if (self.viewModel != nil) {
-            self.prepareIfNeeded()
             self.lifecycle.bindView()
         }
     }
@@ -53,18 +53,12 @@ public class ComponentViewController : UIViewController, ComponentController {
         self.lifecycle?.mountOnce()
     }
 
-    func prepareIfNeeded() {
-        if (self.lifecycle == nil) {
-            self.lifecycle = ControllerLifecycle(controller: self)
-            self.didLoad()
-        }
+    public func didLoadComponent() {
+
     }
 }
 
 extension ComponentController where Self:UIViewController {
-    public func didLoad() {
-
-}
 
     public func addController<C:UIViewController where C:ComponentController>(childController: C) {
         if (!self.childViewControllers.contains(childController)) {

@@ -56,7 +56,7 @@ public protocol ComponentController : class {
     // MARK: Lifecycle
     
     /**
-    Called once both the `ViewModel` and the `ComponentView` have been loaded.
+    Should be called every time `viewModel` is setted on Controller.
     */
-    func didLoad()
+    func didLoadComponent()
 }
