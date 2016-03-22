@@ -81,6 +81,12 @@ public class ObservationWrapper<E> {
     
     // MARK: Covnersion
 
+    public func convert<NewElement>(converter: (Element -> NewElement)) -> ObservationWrapper<NewElement> {
+        let nextEvent = self.event.map(converter)
+
+        return ObservationWrapper<NewElement>(event: nextEvent, disposeBag: self.disposeBag)
+    }
+
     /**
     Converts the observed event value to a new value by applying the `converter`
     argument.
