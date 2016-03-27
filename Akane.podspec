@@ -15,4 +15,5 @@ Pod::Spec.new do |s|
   s.requires_arc              = true
 
   s.dependency 'Bond', '~> 4.x'
+  s.dependency 'HasAssociatedObjects'
 end

@@ -6,7 +6,7 @@ target 'Akane' do
   podspec
 end
 
-target 'AkaneTests', :exclusive => true do
+target 'AkaneTests' do
   pod "Quick"
   pod "Nimble"
 end
