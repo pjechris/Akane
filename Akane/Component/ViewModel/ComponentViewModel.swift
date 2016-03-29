@@ -36,13 +36,23 @@ public protocol ComponentViewModel : class {
     func willMount()
 }
 
-public extension ComponentViewModel {
-    internal(set) var isMounted: Bool {
+extension ComponentViewModel {
+    public internal(set) var isMounted: Bool {
         get { return (objc_getAssociatedObject(self, &ViewModelIsMountedAttr) as? NSNumber).map { return $0.boolValue } ?? false }
         set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(bool: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// The base implementation is a no-op.
-    func willMount() {
+    public func willMount() {
+    }
+
+    func mount() {
+        guard !self.isMounted else {
+            return
+        }
+
+        self.willMount()
+        self.isMounted = true
+
     }
 }

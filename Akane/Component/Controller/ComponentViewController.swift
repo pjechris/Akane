@@ -50,7 +50,7 @@ public class ComponentViewController : UIViewController, ComponentController {
 
     public override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-        self.lifecycle?.mountOnce()
+        self.viewModel?.mount()
     }
 
     public func didLoadComponent() {

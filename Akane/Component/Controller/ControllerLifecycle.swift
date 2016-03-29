@@ -25,15 +25,6 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
         self.controller = controller
     }
 
-    func mountOnce() {
-        let viewModel = self.controller.viewModel
-
-        if (!viewModel.isMounted) {
-            viewModel.willMount()
-            viewModel.isMounted = true
-        }
-    }
-
     func bindView() {
         let componentView = self.controller.componentView
         self.binder = ViewObserverCollection(view: self.controller.view, lifecycle: self)
