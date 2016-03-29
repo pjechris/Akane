@@ -19,13 +19,9 @@ public class CollectionViewSectionDelegate<
     @objc
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let data = self.dataSource.sectionItemAtIndex(indexPath.section)
-        let template = self.templateHolder.findOrCreate(.Section(identifier: data.identifier.rawValue, kind: kind)) {
-            let template = self.dataSource.collectionViewSectionTemplate(data.identifier, kind: kind)
+        let template = self.dataSource.collectionViewSectionTemplate(data.identifier, kind: kind)
 
-            self.collectionView.register(template, type: .Section(identifier: data.identifier.rawValue, kind: kind))
-
-            return template
-        }
+        collectionView.registerIfNeeded(template, type: .Section(identifier: data.identifier.rawValue, kind: kind))
 
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: data.identifier.rawValue, forIndexPath: indexPath)
 

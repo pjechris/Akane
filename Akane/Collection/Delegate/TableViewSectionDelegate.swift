@@ -52,12 +52,9 @@ public class TableViewSectionDelegate<
     func viewForSection(section: Int, sectionKind: String) -> UIView? {
         let data = self.dataSource.sectionItemAtIndex(section)
         let sectionType = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: sectionKind)
-
         let template = self.dataSource.tableViewSectionTemplate(data.identifier, kind: sectionKind)
 
-        if (self.templateHolder[sectionType] == nil) {
-            self.tableView.register(template, type: sectionType)
-        }
+        self.tableView.registerIfNeeded(template, type: sectionType)
 
         let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(data.identifier.rawValue)!
 

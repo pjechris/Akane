@@ -7,15 +7,15 @@
 //
 
 import Foundation
+import HasAssociatedObjects
 
 extension UICollectionView {
-    var layoutDelegate: AnyObject? {
-        get { return nil }
-        set {  }
+    func registerIfNeeded(template: Template, type: CollectionElementCategory) {
+        if self.registeredTemplates[type] == nil {
+            self.register(template, type: type)
+        }
     }
-}
 
-extension UICollectionView {
     func register(template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
         case (.Cell(let identifier), .Nib(let nib)):
@@ -30,6 +30,28 @@ extension UICollectionView {
 
         default:
             break
+        }
+    }
+}
+
+extension UICollectionView : HasAssociatedObjects {
+    struct Keys {
+        static let RegisteredTemplates = "Akane.RegisteredTemplates"
+    }
+
+    var registeredTemplates: [CollectionElementCategory:Template]! {
+        get {
+            guard let templates = self.associatedObjects[Keys.RegisteredTemplates] as? [CollectionElementCategory:Template] else {
+                let templates: [CollectionElementCategory:Template] = [:]
+
+                self.registeredTemplates = templates
+                return templates
+            }
+
+            return templates
+        }
+        set {
+            self.associatedObjects[Keys.RegisteredTemplates] = newValue
         }
     }
 }

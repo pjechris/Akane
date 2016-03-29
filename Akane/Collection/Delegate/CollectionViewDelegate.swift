@@ -12,18 +12,16 @@ public class CollectionViewDelegate<
     CollectionViewModelType : ComponentCollectionItemsViewModel,
     DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {
-    var templateHolder: [CollectionElementCategory:Template]
-    weak var observer: ViewObserver?
-    weak var collectionViewModel: CollectionViewModelType!
-    unowned var collectionView: UICollectionView
-    var dataSource: DataSourceType! {
+    public private(set) weak var observer: ViewObserver?
+    public private(set) weak var collectionViewModel: CollectionViewModelType!
+    public private(set) unowned var collectionView: UICollectionView
+    public private(set) var dataSource: DataSourceType! {
         didSet { self.collectionView.reloadData() }
     }
 
     /// init the delegate with a `UITableView` and its view model
     public init(collectionView: UICollectionView, collectionViewModel: CollectionViewModelType) {
         self.collectionView = collectionView
-        self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
 
         super.init()
@@ -54,13 +52,9 @@ public class CollectionViewDelegate<
 
     public func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.templateHolder.findOrCreate(.Cell(identifier: data.identifier.rawValue)) {
-            let template = self.dataSource.collectionViewItemTemplate(data.identifier)
+        let template = self.dataSource.collectionViewItemTemplate(data.identifier)
 
-            self.collectionView.register(template, type: .Cell(identifier: data.identifier.rawValue))
-
-            return template
-        }
+        self.collectionView.registerIfNeeded(template, type: .Cell(identifier: data.identifier.rawValue))
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 

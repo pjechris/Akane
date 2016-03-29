@@ -18,18 +18,16 @@ public class TableViewDelegate<
     CollectionViewModelType : ComponentCollectionItemsViewModel,
     DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
-    var templateHolder: [CollectionElementCategory:Template]
-    weak var observer: ViewObserver?
-    weak var collectionViewModel: CollectionViewModelType!
-    unowned var tableView: UITableView
-    var dataSource: DataSourceType! {
+    public private(set) weak var observer: ViewObserver?
+    public private(set) weak var collectionViewModel: CollectionViewModelType!
+    public private(set) unowned var tableView: UITableView
+    public private(set) var dataSource: DataSourceType! {
         didSet { self.tableView.reloadData() }
     }
 
     /// init the delegate with a `UITableView` and its view model
     public init(tableView: UITableView, collectionViewModel: CollectionViewModelType) {
         self.tableView = tableView
-        self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
 
         super.init()
