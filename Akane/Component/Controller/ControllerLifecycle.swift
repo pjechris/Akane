@@ -39,10 +39,6 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
         self.binder = ViewObserverCollection(view: self.controller.view, lifecycle: self)
 
         componentView.bindings(binder, viewModel: self.controller.viewModel)
-
-        if let delegate = componentView as? ViewObserverDelegate {
-            delegate.bind(self.binder, viewModel: self.controller.viewModel)
-        }
     }
 
     func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {

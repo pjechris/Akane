@@ -9,13 +9,10 @@
 import Foundation
 
 public class CollectionViewSectionDelegate<
-    CollectionViewType where
-    CollectionViewType : UICollectionView,
-    CollectionViewType : ComponentCollectionView,
-    CollectionViewType.DataSourceType : DataSourceCollectionViewSections,
-    CollectionViewType.ViewModelType : ComponentCollectionSectionsViewModel> : CollectionViewDelegate<CollectionViewType>
+    CollectionViewModelType : ComponentCollectionSectionsViewModel,
+    DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<CollectionViewModelType, DataSourceType>
 {
-    override init(collectionView: CollectionViewType, collectionViewModel: CollectionViewModelType) {
+    public override init(collectionView: UICollectionView, collectionViewModel: CollectionViewModelType) {
         super.init(collectionView: collectionView, collectionViewModel: collectionViewModel)
     }
 

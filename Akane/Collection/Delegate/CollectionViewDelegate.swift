@@ -8,23 +8,20 @@
 
 import Foundation
 
-public class CollectionViewDelegate<CollectionViewType where
-    CollectionViewType : UICollectionView,
-    CollectionViewType : ComponentCollectionView> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
+public class CollectionViewDelegate<
+    CollectionViewModelType : ComponentCollectionItemsViewModel,
+    DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {
-    public typealias CollectionViewModelType = CollectionViewType.ViewModelType
-    public typealias DataSourceType = CollectionViewType.DataSourceType
-
     var templateHolder: [CollectionElementCategory:Template]
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
-    unowned var collectionView: CollectionViewType
+    unowned var collectionView: UICollectionView
     var dataSource: DataSourceType! {
         didSet { self.collectionView.reloadData() }
     }
 
     /// init the delegate with a `UITableView` and its view model
-    public init(collectionView: CollectionViewType, collectionViewModel: CollectionViewModelType) {
+    public init(collectionView: UICollectionView, collectionViewModel: CollectionViewModelType) {
         self.collectionView = collectionView
         self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
@@ -35,7 +32,7 @@ public class CollectionViewDelegate<CollectionViewType where
     }
 
     /// make the delegate effective
-    func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
+    public func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
         self.observer = observer
         self.dataSource = dataSource
 

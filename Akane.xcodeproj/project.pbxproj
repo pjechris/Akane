@@ -14,7 +14,6 @@
 		493CA3801C50ED2D005ED20F /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3641C50ED2D005ED20F /* ComponentController.swift */; };
 		493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3651C50ED2D005ED20F /* ComponentViewController.swift */; };
 		493CA3821C50ED2D005ED20F /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3661C50ED2D005ED20F /* ControllerLifecycle.swift */; };
-		493CA3841C50ED2D005ED20F /* ComponentTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA36B1C50ED2D005ED20F /* ComponentTableView.swift */; };
 		493CA3851C50ED2D005ED20F /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA36C1C50ED2D005ED20F /* ComponentView.swift */; };
 		493CA3881C50ED2D005ED20F /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3731C50ED2D005ED20F /* CollectionDataSource.swift */; };
 		493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3741C50ED2D005ED20F /* DataSource.swift */; };
@@ -31,7 +30,6 @@
 		493CA3A61C50ED4A005ED20F /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3981C50ED4A005ED20F /* Observation.swift */; };
 		493CA3A71C50ED4A005ED20F /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39A1C50ED4A005ED20F /* ViewObserver.swift */; };
 		493CA3A81C50ED4A005ED20F /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39B1C50ED4A005ED20F /* ViewObserverCollection.swift */; };
-		493CA3A91C50ED4A005ED20F /* ViewObserverDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39C1C50ED4A005ED20F /* ViewObserverDelegate.swift */; };
 		493CA3AA1C50ED4A005ED20F /* CommandWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39E1C50ED4A005ED20F /* CommandWrapper.swift */; };
 		493CA3AB1C50ED4A005ED20F /* ObservationWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39F1C50ED4A005ED20F /* ObservationWrapper.swift */; };
 		493CA3AC1C50ED4A005ED20F /* ViewModelWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3A01C50ED4A005ED20F /* ViewModelWrapper.swift */; };
@@ -39,7 +37,6 @@
 		493CA3B21C50EE42005ED20F /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */; };
 		4943F2511C7EF9090081B4A7 /* RawStringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4943F2501C7EF9090081B4A7 /* RawStringRepresentable.swift */; };
 		4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */; };
-		4950AFF21C6804DB00E4E86E /* ComponentCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950AFF11C6804DB00E4E86E /* ComponentCollectionView.swift */; };
 		49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -47,7 +44,6 @@
 		496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AC1BD68B7C00589F4C /* ConverterOption.swift */; };
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
 		496EF9301C7DBCD100E18688 /* CollectionViewSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496EF92F1C7DBCD100E18688 /* CollectionViewSectionDelegate.swift */; };
-		499336B71C7C5C64005DEFDC /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499336B61C7C5C64005DEFDC /* CollectionReusableView.swift */; };
 		499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499336B81C7C5CF3005DEFDC /* CellView.swift */; };
 		49C48AA71C4C488100700D4D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48AA61C4C488100700D4D /* UITableView.swift */; };
 		49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C592B51C5591D5005AFE25 /* TemplateView.swift */; };
@@ -78,7 +74,6 @@
 		493CA3641C50ED2D005ED20F /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
 		493CA3651C50ED2D005ED20F /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewController.swift; sourceTree = "<group>"; };
 		493CA3661C50ED2D005ED20F /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
-		493CA36B1C50ED2D005ED20F /* ComponentTableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentTableView.swift; sourceTree = "<group>"; };
 		493CA36C1C50ED2D005ED20F /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		493CA3731C50ED2D005ED20F /* CollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		493CA3741C50ED2D005ED20F /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
@@ -95,7 +90,6 @@
 		493CA3981C50ED4A005ED20F /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		493CA39A1C50ED4A005ED20F /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		493CA39B1C50ED4A005ED20F /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
-		493CA39C1C50ED4A005ED20F /* ViewObserverDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverDelegate.swift; sourceTree = "<group>"; };
 		493CA39E1C50ED4A005ED20F /* CommandWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandWrapper.swift; sourceTree = "<group>"; };
 		493CA39F1C50ED4A005ED20F /* ObservationWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapper.swift; sourceTree = "<group>"; };
 		493CA3A01C50ED4A005ED20F /* ViewModelWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelWrapper.swift; sourceTree = "<group>"; };
@@ -103,7 +97,6 @@
 		493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		4943F2501C7EF9090081B4A7 /* RawStringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawStringRepresentable.swift; sourceTree = "<group>"; };
 		4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
-		4950AFF11C6804DB00E4E86E /* ComponentCollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentCollectionView.swift; sourceTree = "<group>"; };
 		49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionElementCategory.swift; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,9 +225,7 @@
 		493CA3671C50ED2D005ED20F /* View */ = {
 			isa = PBXGroup;
 			children = (
-				493CA36B1C50ED2D005ED20F /* ComponentTableView.swift */,
 				493CA36C1C50ED2D005ED20F /* ComponentView.swift */,
-				4950AFF11C6804DB00E4E86E /* ComponentCollectionView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -330,7 +321,6 @@
 			children = (
 				493CA39A1C50ED4A005ED20F /* ViewObserver.swift */,
 				493CA39B1C50ED4A005ED20F /* ViewObserverCollection.swift */,
-				493CA39C1C50ED4A005ED20F /* ViewObserverDelegate.swift */,
 			);
 			path = Observer;
 			sourceTree = "<group>";
@@ -493,7 +483,6 @@
 				493CA3A41C50ED4A005ED20F /* Dispose.swift in Sources */,
 				493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */,
 				4943F2511C7EF9090081B4A7 /* RawStringRepresentable.swift in Sources */,
-				4950AFF21C6804DB00E4E86E /* ComponentCollectionView.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
 				499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */,
 				493CA3A31C50ED4A005ED20F /* BondDisposeAdapter.swift in Sources */,
@@ -501,7 +490,6 @@
 				493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */,
 				49E4579F1C7C662800E0F0FB /* TableViewFlowLayout.swift in Sources */,
 				49C48AA71C4C488100700D4D /* UITableView.swift in Sources */,
-				493CA3A91C50ED4A005ED20F /* ViewObserverDelegate.swift in Sources */,
 				493CA3A71C50ED4A005ED20F /* ViewObserver.swift in Sources */,
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */,
@@ -514,7 +502,6 @@
 				493CA3AC1C50ED4A005ED20F /* ViewModelWrapper.swift in Sources */,
 				493CA3AA1C50ED4A005ED20F /* CommandWrapper.swift in Sources */,
 				493CA3B11C50EE42005ED20F /* ComponentCollectionViewModel.swift in Sources */,
-				493CA3841C50ED2D005ED20F /* ComponentTableView.swift in Sources */,
 				493CA3851C50ED2D005ED20F /* ComponentView.swift in Sources */,
 				496854AE1BD68B7C00589F4C /* Converter.swift in Sources */,
 			);

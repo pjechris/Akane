@@ -14,22 +14,20 @@ var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
 /// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and
 /// `DataSource`, `ComponentCollectionViewModel`, `CollectionLayout`
-public class TableViewDelegate<TableViewType : UITableView where
-    TableViewType : ComponentTableView> : NSObject, UITableViewDataSource, UITableViewDelegate
+public class TableViewDelegate<
+    CollectionViewModelType : ComponentCollectionItemsViewModel,
+    DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
-    public typealias CollectionViewModelType = TableViewType.ViewModelType
-    public typealias DataSourceType = TableViewType.DataSourceType
-
     var templateHolder: [CollectionElementCategory:Template]
     weak var observer: ViewObserver?
     weak var collectionViewModel: CollectionViewModelType!
-    unowned var tableView: TableViewType
+    unowned var tableView: UITableView
     var dataSource: DataSourceType! {
         didSet { self.tableView.reloadData() }
     }
 
     /// init the delegate with a `UITableView` and its view model
-    public init(tableView: TableViewType, collectionViewModel: CollectionViewModelType) {
+    public init(tableView: UITableView, collectionViewModel: CollectionViewModelType) {
         self.tableView = tableView
         self.templateHolder = [:]
         self.collectionViewModel = collectionViewModel
@@ -69,13 +67,9 @@ public class TableViewDelegate<TableViewType : UITableView where
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
     public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.templateHolder.findOrCreate(.Cell(identifier: data.identifier.rawValue)) {
-            let template = self.dataSource.tableViewItemTemplate(data.identifier)
+        let template = self.dataSource.tableViewItemTemplate(data.identifier)
 
-            self.tableView.register(template, type: .Cell(identifier: data.identifier.rawValue))
-
-            return template
-        }
+        tableView.registerIfNeeded(template, type: .Cell(identifier: data.identifier.rawValue))
 
         let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 

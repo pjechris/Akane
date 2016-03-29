@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import HasAssociatedObjects
 
 var TableViewLayoutAttr = "TableViewLayoutAttr"
 
@@ -26,6 +27,13 @@ public extension UITableView {
 }
 
 extension UITableView {
+
+    func registerIfNeeded(template: Template, type: CollectionElementCategory) {
+        if self.registeredTemplates[type] == nil {
+            self.register(template, type: type)
+        }
+    }
+
     func register(template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
         case (.Cell(let identifier), .Nib(let nib)):
@@ -40,6 +48,30 @@ extension UITableView {
 
         default:
             break
+        }
+
+        self.registeredTemplates[type] = template
+    }
+}
+
+extension UITableView : HasAssociatedObjects {
+    struct Keys {
+        static let RegisteredTemplates = "Akane.RegisteredTemplates"
+    }
+
+    var registeredTemplates: [CollectionElementCategory:Template]! {
+        get {
+            guard let templates = self.associatedObjects[Keys.RegisteredTemplates] as? [CollectionElementCategory:Template] else {
+                let templates: [CollectionElementCategory:Template] = [:]
+
+                self.registeredTemplates = templates
+                return templates
+            }
+
+            return templates
+        }
+        set {
+            self.associatedObjects[Keys.RegisteredTemplates] = newValue
         }
     }
 }
