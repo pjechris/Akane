@@ -36,35 +36,38 @@ class ViewObserverCollection : ViewObserver, Dispose {
     }
 
     func observe<T : Observation, AttributeType : Any>(observable: T, attribute: T.Element -> AttributeType) -> ObservationWrapper<AttributeType> {
-        let binding = ObservationWrapper<AttributeType>(observable: observable, disposeBag: self.disposeBag, attribute: attribute)
+        let wrapper = ObservationWrapper<AttributeType>(observable: observable, attribute: attribute)
 
-        self.bindings.append(binding.event)
-        return binding
+        self.disposeBag.addDisposable(wrapper)
+        self.bindings.append(wrapper.event)
+        return wrapper
     }
 
     func observe<T : Observation>(observable: T) -> ObservationWrapper<T.Element> {
         return self.observe(observable) { return $0 }
     }
 
-    func observe<T>(observable: Observable<T>) -> ObservationWrapper<T> {
-        let binding = ObservationWrapper<T>(event: observable, disposeBag: self.disposeBag)
-
-        self.bindings.append(binding.event)
-        return binding
-    }
-
     func observe<T : Command>(command: T) -> CommandWrapper {
-        return CommandWrapper(command: command, disposeBag: self.disposeBag)
+        let wrapper = CommandWrapper(command: command)
+
+        self.disposeBag.addDisposable(wrapper)
+        return wrapper
     }
 
     func observe<T: Observation where T.Element: ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T> {
-        return ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle, disposeBag: self.disposeBag)
+        let wrapper = ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle)
+
+        self.disposeBag.addDisposable(wrapper)
+        return wrapper
     }
 
     func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>> {
         let binding = Observable(viewModel)
+        let wrapper = ViewModelWrapper.init(viewModel: binding, lifecycle: lifecycle)
 
+        self.disposeBag.addDisposable(wrapper)
         self.bindings.append(binding)
-        return ViewModelWrapper.init(viewModel: binding, lifecycle: lifecycle, disposeBag: self.disposeBag)
+
+        return wrapper
     }
 }

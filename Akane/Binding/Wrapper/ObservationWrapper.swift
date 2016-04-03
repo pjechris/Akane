@@ -26,8 +26,9 @@ public class ObservationWrapper<E> {
     internal let event: EventProducer<E>
     private let disposeBag: DisposeBag
 
-    internal convenience init<T : Observation>(observable: T, disposeBag: DisposeBag, attribute: T.Element -> E) {
+    internal convenience init<T : Observation>(observable: T, attribute: T.Element -> E) {
         let internalObservable = Bond.Observable<E>(attribute(observable.value))
+        let disposeBag = CompositeDisposable()
 
         disposeBag.addDisposable(
             observable.observe { [unowned internalObservable] value in
@@ -198,4 +199,10 @@ extension ObservationWrapper where E : OptionalType {
         return ObservationWrapper<T.ConvertValueType>(event: nextEvent, disposeBag: self.disposeBag)
     }
 
+}
+
+extension ObservationWrapper : Dispose {
+    public func dispose() {
+        self.disposeBag.dispose()
+    }
 }

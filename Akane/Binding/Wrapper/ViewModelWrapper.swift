@@ -14,13 +14,13 @@ public class ViewModelWrapper<T: Observation where T.Element: ComponentViewModel
     public typealias ViewModelType = T.Element
 
     let viewModel: ObservationType
-    let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag
     unowned let lifecycle: Lifecycle
 
-    init(viewModel: ObservationType, lifecycle: Lifecycle, disposeBag: DisposeBag) {
+    init(viewModel: ObservationType, lifecycle: Lifecycle) {
         self.viewModel = viewModel
         self.lifecycle = lifecycle
-        self.disposeBag = disposeBag
+        self.disposeBag = CompositeDisposable()
     }
 
     public func bindTo<T:UIView where T:ComponentView>(view: T?) {
@@ -49,5 +49,11 @@ public class ViewModelWrapper<T: Observation where T.Element: ComponentViewModel
                 controller!.viewModel = viewModel
             }
         )
+    }
+}
+
+extension ViewModelWrapper : Dispose {
+    public func dispose() {
+        self.disposeBag.dispose()
     }
 }

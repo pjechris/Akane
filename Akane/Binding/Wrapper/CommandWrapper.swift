@@ -11,11 +11,11 @@ import Bond
 
 public class CommandWrapper {
     let command: Command
-    let disposeBag: DisposeBag
+    private let disposeBag: DisposeBag
 
-    init(command: Command, disposeBag: DisposeBag) {
+    init(command: Command) {
         self.command = command
-        self.disposeBag = disposeBag
+        self.disposeBag = CompositeDisposable()
     }
 
     public func bindTo(control: UIControl?, events: UIControlEvents = .TouchUpInside) {
@@ -33,5 +33,11 @@ public class CommandWrapper {
 
         self.disposeBag.addDisposable(BondDisposeAdapter(enabled))
         self.disposeBag.addDisposable(BondDisposeAdapter(action))
+    }
+}
+
+extension CommandWrapper : Dispose {
+    public func dispose() {
+        self.disposeBag.dispose()
     }
 }

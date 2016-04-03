@@ -15,14 +15,11 @@ import Bond
 class ObservationWrapperSpec : QuickSpec {
     override func spec() {
         var observer: ObservationWrapper<String?>!
-        var disposeBag: Akane.DisposeBag!
         var value: Observable<String?>!
 
         beforeEach {
-            disposeBag = CompositeDisposable()
             value = Observable(nil)
-
-            observer = ObservationWrapper(observable: value, disposeBag: disposeBag, attribute: { return $0 })
+            observer = ObservationWrapper(observable: value, attribute: { return $0 })
         }
 
         describe("bindTo") {
@@ -42,7 +39,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             context("when disposed") {
                 it("should stop update the binding") {
-                    disposeBag.dispose()
+                    observer.dispose()
                     value.next("the world is mine")
                     expect(bindedItem.text).to(beNil())
                 }
