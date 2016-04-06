@@ -12,36 +12,32 @@ import Bond
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
-/// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and
-/// `DataSource`, `ComponentCollectionViewModel`, `CollectionLayout`
-public class TableViewDelegate<
-    CollectionViewModelType : ComponentCollectionItemsViewModel,
-    DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
+/// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and `DataSource`
+public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
     public private(set) weak var observer: ViewObserver?
-    public private(set) weak var collectionViewModel: CollectionViewModelType!
-    public private(set) unowned var tableView: UITableView
-    public private(set) var dataSource: DataSourceType! {
-        didSet { self.tableView.reloadData() }
-    }
+    public private(set) var dataSource: DataSourceType
 
-    /// init the delegate with a `UITableView` and its view model
-    public init(tableView: UITableView, collectionViewModel: CollectionViewModelType) {
-        self.tableView = tableView
-        self.collectionViewModel = collectionViewModel
-
-        super.init()
-
-        objc_setAssociatedObject(self.tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-
-    /// make the delegate effective
-    public func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
+    /**
+     - parameter observer:   the observer which will be used to register observations on cells
+     - parameter dataSource: the dataSource used to provide data to the tableView
+     */
+    public init(observer: ViewObserver, dataSource: DataSourceType) {
         self.observer = observer
         self.dataSource = dataSource
+        
+        super.init()
+    }
 
-        // Without casting swift complains about ambiguous delegate
-        (self.tableView as UITableView).delegate = self
+    /**
+     Makes the class both delegate and dataSource of tableView.
+
+     - parameter tableView: a UITableView on which you want to be delegate and dataSource
+     */
+    public func becomeDataSourceAndDelegate(tableView: UITableView) {
+        objc_setAssociatedObject(tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+        tableView.delegate = self
         tableView.dataSource = self
     }
 
@@ -71,9 +67,7 @@ public class TableViewDelegate<
 
         let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 
-        if let item = data.item {
-            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType)
-
+        if let viewModel = self.dataSource.createItemViewModel(data.item) {
             self.observer?.observe(viewModel).bindTo(cell, template: template)
         }
 
@@ -102,7 +96,7 @@ public class TableViewDelegate<
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willSelectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if let item = self.dataSource.itemAtIndexPath(indexPath).item,
-            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as? ComponentItemViewModel {
+            let viewModel = self.dataSource.createItemViewModel(item) as? ComponentItemViewModel {
             return (viewModel.select != nil) ? indexPath : nil
         }
 
@@ -117,7 +111,7 @@ public class TableViewDelegate<
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didSelectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         viewModel.select!.execute(nil)
     }
@@ -127,7 +121,7 @@ public class TableViewDelegate<
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willDeselectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         return (viewModel.unselect != nil) ? indexPath : nil
     }
@@ -137,7 +131,7 @@ public class TableViewDelegate<
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didDeselectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         viewModel.unselect!.execute(nil)
     }

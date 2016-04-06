@@ -8,25 +8,23 @@
 
 import Foundation
 
-public class TableViewSectionDelegate<
-    CollectionViewModelType : ComponentCollectionSectionsViewModel,
-    DataSourceType : DataSourceTableViewSections> : TableViewDelegate<CollectionViewModelType, DataSourceType>
+public class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSections> : TableViewDelegate<DataSourceType>
 {
 
-    public override init(tableView: UITableView, collectionViewModel: CollectionViewModelType) {
-        super.init(tableView: tableView, collectionViewModel: collectionViewModel)
+    public override init(observer: ViewObserver, dataSource: DataSourceType) {
+        super.init(observer: observer, dataSource: dataSource)
     }
 
     // MARK: DataSource
 
     @objc
     func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        return self.viewForSection(section, sectionKind: "footer")
+        return self.viewForSection(tableView, section: section, sectionKind: "footer")
     }
 
     @objc
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        return self.viewForSection(section, sectionKind: "header")
+        return self.viewForSection(tableView, section: section, sectionKind: "header")
     }
 
     @objc
@@ -49,19 +47,19 @@ public class TableViewSectionDelegate<
         return tableView.layout.estimatedHeightForSection(section, sectionKind: "header") ?? tableView.estimatedSectionHeaderHeight
     }
 
-    func viewForSection(section: Int, sectionKind: String) -> UIView? {
+    func viewForSection(tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
         let data = self.dataSource.sectionItemAtIndex(section)
         let sectionType = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: sectionKind)
         let template = self.dataSource.tableViewSectionTemplate(data.identifier, kind: sectionKind)
 
-        self.tableView.registerIfNeeded(template, type: sectionType)
+        tableView.registerIfNeeded(template, type: sectionType)
 
         let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(data.identifier.rawValue)!
 
         if template.needsComponentViewModel {
-            let viewModel = self.collectionViewModel.createSectionViewModel(data.item as? CollectionViewModelType.SectionType)
-
-            self.observer?.observe(viewModel).bindTo(view, template: template)
+            if let viewModel = self.dataSource.createSectionViewModel(data.item) {
+                self.observer?.observe(viewModel).bindTo(view, template: template)
+            }
         }
 
         return view

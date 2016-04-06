@@ -8,36 +8,32 @@
 
 import Foundation
 
-public class CollectionViewDelegate<
-    CollectionViewModelType : ComponentCollectionItemsViewModel,
-    DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
+public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {
     public private(set) weak var observer: ViewObserver?
-    public private(set) weak var collectionViewModel: CollectionViewModelType!
-    public private(set) unowned var collectionView: UICollectionView
-    public private(set) var dataSource: DataSourceType! {
-        didSet { self.collectionView.reloadData() }
-    }
+    public private(set) var dataSource: DataSourceType
 
-    /// init the delegate with a `UITableView` and its view model
-    public init(collectionView: UICollectionView, collectionViewModel: CollectionViewModelType) {
-        self.collectionView = collectionView
-        self.collectionViewModel = collectionViewModel
-
-        super.init()
-
-        objc_setAssociatedObject(self.collectionView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
-    }
-
-    /// make the delegate effective
-    public func becomeDataSource(observer: ViewObserver, dataSource: DataSourceType) {
+    /**
+     - parameter observer:   the observer which will be used to register observations on cells
+     - parameter dataSource: the dataSource used to provide data to the collectionView
+     */
+    public init(observer: ViewObserver, dataSource: DataSourceType) {
         self.observer = observer
         self.dataSource = dataSource
 
-        // Without casting swift complains about ambiguous delegate
-        (self.collectionView as UICollectionView).delegate = self
-        collectionView.dataSource = self
+        super.init()
+    }
 
+    /**
+     Makes the class both delegate and dataSource of collectionView
+
+     - parameter collectionView: a UICollectionView on which you want to be delegate and dataSource
+     */
+    public func becomeDataSourceAndDelegate(collectionView: UICollectionView) {
+        objc_setAssociatedObject(collectionView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+
+        collectionView.delegate = self
+        collectionView.dataSource = self
     }
 
     // MARK: DataSource
@@ -54,13 +50,11 @@ public class CollectionViewDelegate<
         let data = self.dataSource.itemAtIndexPath(indexPath)
         let template = self.dataSource.collectionViewItemTemplate(data.identifier)
 
-        self.collectionView.registerIfNeeded(template, type: .Cell(identifier: data.identifier.rawValue))
+        collectionView.registerIfNeeded(template, type: .Cell(identifier: data.identifier.rawValue))
 
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
 
-        if let item = data.item {
-            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType)
-
+        if let viewModel = self.dataSource.createItemViewModel(data.item) {
             self.observer?.observe(viewModel).bindTo(cell, template: template)
         }
         
@@ -75,7 +69,7 @@ public class CollectionViewDelegate<
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldSelectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, shouldSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if let item = self.dataSource.itemAtIndexPath(indexPath).item,
-            let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as? ComponentItemViewModel {
+            let viewModel = self.dataSource.createItemViewModel(item) as? ComponentItemViewModel {
                 return (viewModel.select != nil) ? indexPath : nil
         }
 
@@ -88,7 +82,7 @@ public class CollectionViewDelegate<
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didSelectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         viewModel.select!.execute(nil)
     }
@@ -98,7 +92,7 @@ public class CollectionViewDelegate<
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldDeselectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, shouldDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         return (viewModel.unselect != nil) ? indexPath : nil
     }
@@ -108,7 +102,7 @@ public class CollectionViewDelegate<
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didDeselectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.collectionViewModel.createItemViewModel(item as! CollectionViewModelType.ItemType) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
 
         viewModel.unselect!.execute(nil)
     }

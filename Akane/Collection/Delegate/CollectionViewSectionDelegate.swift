@@ -8,12 +8,10 @@
 
 import Foundation
 
-public class CollectionViewSectionDelegate<
-    CollectionViewModelType : ComponentCollectionSectionsViewModel,
-    DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<CollectionViewModelType, DataSourceType>
+public class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<DataSourceType>
 {
-    public override init(collectionView: UICollectionView, collectionViewModel: CollectionViewModelType) {
-        super.init(collectionView: collectionView, collectionViewModel: collectionViewModel)
+    public override init(observer: ViewObserver, dataSource: DataSourceType) {
+        super.init(observer: observer, dataSource: dataSource)
     }
 
     @objc
@@ -26,9 +24,9 @@ public class CollectionViewSectionDelegate<
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: data.identifier.rawValue, forIndexPath: indexPath)
 
         if template.needsComponentViewModel {
-            let viewModel = self.collectionViewModel.createSectionViewModel(data.item as? CollectionViewModelType.SectionType)
-
-            self.observer?.observe(viewModel).bindTo(cell, template: template)
+            if let viewModel = self.dataSource.createSectionViewModel(data.item) {
+                self.observer?.observe(viewModel).bindTo(cell, template: template)
+            }
         }
 
         return cell
