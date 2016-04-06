@@ -15,7 +15,7 @@ import Bond
 - `ComponentViewModel`s
 - any entity conforming to `Observation`
 */
-public protocol ViewObserver : class {
+protocol ViewObserver : class {
     
     /**
     Observes an entity conforming to `Observation`.
@@ -26,8 +26,7 @@ public protocol ViewObserver : class {
     - returns: An `ObservationWrapper` that can be used from within a 
     `ComponentView`.
     */
-    func observe<T: Observation>(observable: T) -> ObservationWrapper<T.Element>
-    func observe<T : Observation, AttributeType : Any>(observable: T, attribute: T.Element -> AttributeType) -> ObservationWrapper<AttributeType>
+    func observe<AnyValue>(value: AnyValue) -> AnyBinding<AnyValue>
 
     /**
     Observes a `Command`.
@@ -36,8 +35,9 @@ public protocol ViewObserver : class {
      
     - returns: A `CommandWrapper`.
     */
-    func observe<T: Command>(command: T) -> CommandWrapper
-
+//    func observe<T: Command>(command: T) -> CommandWrapper
+    func observe(value: Command) -> CommandObserver
+    
     /**
     Observes an entity conforming to `Observation`.
      
@@ -46,8 +46,9 @@ public protocol ViewObserver : class {
      
     - returns: A `ViewModelWrapper`
     */
-    func observe<T: Observation where T.Element:ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
-    
+//    func observe<T: Observation where T.Element:ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
+    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType>
+
     /**
     Observes a `ComponentViewModel`.
      
@@ -55,5 +56,5 @@ public protocol ViewObserver : class {
      
     - returns: A `ViewModelWrappr`.
     */
-    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
+//    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
 }

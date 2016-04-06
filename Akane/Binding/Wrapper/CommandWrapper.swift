@@ -9,6 +9,45 @@
 import Foundation
 import Bond
 
+class CommandObserver : Binding<Command> {
+    private let command: Command
+    private var controls: [UIControl] = []
+
+    init(command: Command) {
+        self.command = command
+    }
+
+    deinit {
+        self.unobserve()
+    }
+
+    func unobserve() {
+        for control in self.controls {
+            control.removeTarget(self, action: nil, forControlEvents: .AllEvents)
+        }
+
+        self.controls = []
+    }
+
+    func bindTo(control: UIControl?, events: UIControlEvents = .TouchUpInside) {
+        if let control = control {
+            self.bindTo(control, events: events)
+        }
+    }
+
+    func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
+        control.addTarget(self, action: "onTouch", forControlEvents: events)
+
+        
+        self.controls.append(control)
+    }
+
+    @objc
+    func onTouch(sender: UIControl) {
+        self.command.execute(sender)
+    }
+}
+
 public class CommandWrapper {
     let command: Command
     private let disposeBag: DisposeBag

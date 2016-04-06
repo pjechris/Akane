@@ -15,11 +15,11 @@ extension Bond.Observable : Akane.Bindable {
     }
 }
 
-extension CompositeDisposable : DisposeBag {
-    func addDisposable(disposable: Dispose) {
-        self.addDisposable(BlockDisposable() { disposable.dispose() })
-    }
-}
+//extension CompositeDisposable : DisposeBag {
+//    func addDisposable(disposable: Dispose) {
+//        self.addDisposable(BlockDisposable() { disposable.dispose() })
+//    }
+//}
 
 extension Bond.Observable : Observation {
     public typealias Element = EventType
@@ -31,4 +31,32 @@ extension Bond.Observable : Observation {
 
         return BondDisposeAdapter(dispose)
     }
+}
+
+extension ViewObserver {
+    func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyBinding<AnyValue> {
+        let binding = AnyBinding<AnyValue>()
+
+        let _ : DisposableType = observable.observe { value in
+            binding.value(value)
+        }
+
+        // FIXME need to save the binding for deallocation
+        // FIXME observer is never deallocated
+
+        return binding
+    }
+
+//    func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) {
+//        let observer = ViewModelObserver<ViewModelType>(lifecycle: )
+//
+//        let _ : DisposableType = observable.observe { value in
+//            observer.value(value)
+//        }
+//
+//        // FIXME need to save the binding for deallocation
+//        // FIXME observer is never deallocated
+//
+//        return observer
+//    }
 }

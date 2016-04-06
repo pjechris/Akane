@@ -1,7 +1,7 @@
 //
 // This file is part of Akane
 //
-// Created by JC on 27/11/15.
+// Created by JC on 04/04/16.
 // For the full copyright and license information, please view the LICENSE
 // file that was distributed with this source code
 //
@@ -14,12 +14,10 @@ import Bond
 
 class ObservationWrapperSpec : QuickSpec {
     override func spec() {
-        var observer: ObservationWrapper<String?>!
-        var value: Observable<String?>!
+        var observer: AnyBinding<String?>!
 
         beforeEach {
-            value = Observable(nil)
-            observer = ObservationWrapper(observable: value, attribute: { return $0 })
+            observer = AnyBinding(value: nil)
         }
 
         describe("bindTo") {
@@ -32,56 +30,55 @@ class ObservationWrapperSpec : QuickSpec {
 
             context("when value changed") {
                 it("should update the binding") {
-                    value.next("Hello World")
+                    observer.value("Hello World")
                     expect(bindedItem.text) == "Hello World"
                 }
             }
+        }
 
-            context("when disposed") {
-                it("should stop update the binding") {
-                    observer.dispose()
-                    value.next("the world is mine")
-                    expect(bindedItem.text).to(beNil())
-                }
+        describe("unbind") {
+            var bindedItem: UILabel!
+
+            beforeEach {
+                bindedItem = UILabel()
+                observer.bindTo(bindedItem.bnd_text)
+            }
+
+            it("should stop update the binding") {
+                observer.unbind()
+                observer.value("the world is mine")
+                expect(bindedItem.text).to(beNil())
             }
         }
 
         describe("convert") {
             it("should return the converted value") {
-                let observer = observer.convert(UppercaseConverterStub.self)
+                var result: String? = nil
+                let _ = observer.convert { value -> String? in
+                    result = value?.uppercaseString
 
-                value.next("this is giant")
-                expect(observer.value) == "THIS IS GIANT"
+                    return result
+                }
+
+                observer.value("this is giant")
+                expect(result) == "THIS IS GIANT"
             }
 
             context("when chaining") {
                 it ("should return the last converted value") {
-                    let observer = observer
-                        .convert(UppercaseConverterStub.self)
-                        .convert(SpacePreserverStub.self)
+                    var result: String? = nil
+                    let _ = observer.convert { value -> String? in
+                        result = value?
+                            .uppercaseString
+                            .stringByReplacingOccurrencesOfString(" ", withString: "+")
 
-                    value.next("there is no space left")
-                    expect(observer.value) == "THERE+IS+NO+SPACE+LEFT"
+                        return result
+                    }
+
+                    observer.value("there is no space left")
+                    expect(result) == "THERE+IS+NO+SPACE+LEFT"
                 }
             }
         }
-    }
-}
-
-struct SpacePreserverStub : Converter {
-    typealias ValueType = String?
-    typealias ConvertValueType = String?
-
-    func convert(value: ValueType) -> ConvertValueType {
-        return value?.stringByReplacingOccurrencesOfString(" ", withString: "+")
-    }
-}
-
-struct UppercaseConverterStub : Converter {
-    typealias ValueType = String?
-    typealias ConvertValueType = String?
-
-    func convert(value: ValueType) -> ConvertValueType {
-        return value?.uppercaseString
     }
 }

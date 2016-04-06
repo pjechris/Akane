@@ -9,6 +9,33 @@
 import Foundation
 import Bond
 
+public class ViewModelObserver<ViewModelType: ComponentViewModel> : Binding<ViewModelType> {
+    unowned let lifecycle: Lifecycle
+
+    init(lifecycle: Lifecycle) {
+        self.lifecycle = lifecycle
+        super.init()
+    }
+
+    public func bindTo<ViewType: UIView where ViewType: ComponentView>(view: ViewType?) {
+        if let view = view {
+            self.bindTo(view)
+        }
+    }
+
+    public func bindTo<ViewType: UIView where ViewType: ComponentView>(view: ViewType) {
+        let controller: ComponentViewController? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
+
+        guard (controller != nil) else {
+            return
+        }
+
+        self.next { value in
+            controller!.viewModel = value
+        }
+    }
+}
+
 public class ViewModelWrapper<T: Observation where T.Element: ComponentViewModel> {
     public typealias ObservationType = T
     public typealias ViewModelType = T.Element
