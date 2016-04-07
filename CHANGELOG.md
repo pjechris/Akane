@@ -1,5 +1,26 @@
 # CHANGELOG
 
+# WIP
+
+TL;DR Drastically simplified DataSource protocols for UITableView and UICollectionView.
+Now you only have `DataSource*` protocols to use.
+
+## Added
+
+- [Wrapper] added method `convert(_: (Element -> NewElement))` for simple conversions. 
+
+## Enhancements
+
+- [Controller] Changed method `didLoad` to `didLoadComponent`. Additionally this method is called every
+time the ViewModel is setted.
+- [DataSource] Removed `ComponentCollectionView` and `ComponentTableView`.
+- [DataSource] Removed `ComponentCollectionViewModel`. Methods moved to `DataSource`.
+- [DataSource] Removed `DataType` typealias
+
+## Bugfixes
+
+- [Controller] Fixed a crash with lifecycle when not allocated
+
 # 0.12.0 beta 2
 
 TL;DR Support binding with CollectionView was added. Some important features are missing and will be added in beta 3.

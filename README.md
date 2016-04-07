@@ -11,7 +11,7 @@ The main goal of Akane is to provide you with:
 
 - A safe environment conceived to **minimize bad coding practices** as much as possible
 - A **feature-oriented** architecture. Adding/maintaining features is easy with Akane
-- A fine-grained **Separation of Concerns**, which translates to 
+- A fine-grained **Separation of Concerns**, which translates to
   - much less merge conflicts
   - a deeper knowledge of your code
 
@@ -50,7 +50,7 @@ struct User {
 
 ## ViewModel
 
-The *ViewModel* is where all your business logic should be put into. 
+The *ViewModel* is where all your business logic should be put into.
 
 ### Tips
 
@@ -81,7 +81,7 @@ class UserViewModel : ComponentViewModel {
 
 ## View
 
-Each View **must** correspond to one (and only one) ViewModel. It should be a dedicated (business named) class, just like your ViewModel. 
+Each View **must** correspond to one (and only one) ViewModel. It should be a dedicated (business named) class, just like your ViewModel.
 
 ### Tips
 
@@ -185,17 +185,14 @@ Handling collection data with `UITableView` or`UICollectionView` is a little har
 
 ```swift
 struct AuthorListDataSource: DataSourceTableViewItems {
-  typealias DataType = Array<Author>
-
   typealias ItemType = Author
+  typealias ItemViewModelType = AuthorItemViewModel
   enum ItemIdentifier: String {
     case Author
   }
 
-  let data: DataType
-
-  init(data: DataType) {
-    self.data = data
+  init(authors: Array<Author>) {
+    self.authors = authors
   }
 
   func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier) {
@@ -205,31 +202,34 @@ struct AuthorListDataSource: DataSourceTableViewItems {
   func tableViewItemTemplate(identifier: ItemIdentifier) -> Template {
     return TemplateComponentView(AuthorViewCell.self)
   }
+
+  func createItemViewModel(item: ItemType?) -> ItemViewModelType? {
+    return AuthorItemViewModel(author: item!)
+  }
 }
 
 class AuthorListViewModel: ComponentCollectionItemsViewModel {
-  typealias DataType = Observable<Array<Author>>
-  typealias ItemType = Author
-  typealias ItemViewModelType = AuthorItemViewModel
-
-  var data: DataType
+  let authors: Array<Author>
+  let dataSource: AuthorListDataSource
 
   init() {
-    self.data = Observable([
+    self.authors = [
       Author("Emile Zola"),
       Author("Maupassant"),
       Author("Victor Hugo")
-    ])
-  }
-
-  func createItemViewModel(item: ItemType) -> ItemViewModelType {
-    return AuthorItemViewModel(author: item)
+    ]
+    self.dataSource = AuthorListDataSource(authors: self.authors)
   }
 }
 
-class AuthorListTableView: UITableView, ComponentTableView {
-  typealias DataSourceType = AuthorListDataSource
-  typealias ViewModelType = AuthorListViewModel
+class AuthorListTableView: UITableView, ComponentView {
+
+  func bindings(observer: ViewObserver, viewModel: ComponentViewModel) {
+    let viewModel = viewModel as! AuthorListViewModel
+    let delegate = TableViewDelegate(observer: observer, dataSource: viewModel.dataSource)
+
+    delegate.becomeDataSourceAndDelegate(self, reload: true)
+  }
 }
 
 ```
