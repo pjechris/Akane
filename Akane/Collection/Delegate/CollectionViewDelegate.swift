@@ -29,11 +29,15 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
 
      - parameter collectionView: a UICollectionView on which you want to be delegate and dataSource
      */
-    public func becomeDataSourceAndDelegate(collectionView: UICollectionView) {
+    public func becomeDataSourceAndDelegate(collectionView: UICollectionView, reload: Bool = true) {
         objc_setAssociatedObject(collectionView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
         collectionView.delegate = self
         collectionView.dataSource = self
+
+        if reload {
+            collectionView.reloadData()
+        }
     }
 
     // MARK: DataSource

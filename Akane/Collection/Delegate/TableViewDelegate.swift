@@ -34,11 +34,15 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
 
      - parameter tableView: a UITableView on which you want to be delegate and dataSource
      */
-    public func becomeDataSourceAndDelegate(tableView: UITableView) {
+    public func becomeDataSourceAndDelegate(tableView: UITableView, reload: Bool = true) {
         objc_setAssociatedObject(tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
         tableView.delegate = self
         tableView.dataSource = self
+
+        if reload {
+            tableView.reloadData()
+        }
     }
 
     // MARK: DataSource
