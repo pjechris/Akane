@@ -34,8 +34,8 @@ extension Bond.Observable : Observation {
 }
 
 extension ViewObserver {
-    func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyBinding<AnyValue> {
-        let binding = AnyBinding<AnyValue>()
+    func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObserver<AnyValue> {
+        let binding = AnyObserver<AnyValue>()
 
         let _ : DisposableType = observable.observe { value in
             binding.value(value)

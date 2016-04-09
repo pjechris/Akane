@@ -26,7 +26,7 @@ public struct TemplateComponentView<ComponentType : UIView where ComponentType :
         self.prepareForReuse = nil
     }
 
-    public func bind<O: Observation, V: ComponentViewModel where O.Element == V>(cell: UIView, wrapper: ViewModelWrapper<O>) {
+    public func bind<V: ComponentViewModel>(cell: UIView, wrapper: ViewModelObserver<V>) {
         wrapper.bindTo(cell as! ComponentType)
     }
 }

@@ -23,7 +23,7 @@ public protocol Template {
     /// make the binding between the reused view and a correspoding `ComponentViewModel`.
     /// - parameter reusedTemplateView: a view created from this `Template`
     /// - parameter wrapper: third-party object to make the binding between the viewModel and the reused view
-    func bind<O:Observation, V: ComponentViewModel where O.Element == V>(reusedTemplateView: UIView, wrapper: ViewModelWrapper<O>)
+    func bind<V: ComponentViewModel>(reusedTemplateView: UIView, wrapper: ViewModelObserver<V>)
 }
 
 /// Define Sources from which a Template can be created

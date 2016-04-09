@@ -13,48 +13,35 @@ import Bond
 `ViewObserver` provides an entry point for observing:
 - `Command`s
 - `ComponentViewModel`s
-- any entity conforming to `Observation`
+- any other value
 */
-protocol ViewObserver : class {
+public protocol ViewObserver : class {
     
     /**
-    Observes an entity conforming to `Observation`.
+    Takes the current value to create a `AnyObserver`. No real observation is made as value never changes.
      
-    - parameter observable: The entity to be observed. Must conform to the 
-    `Observation` protocol.
+    - parameter value: the value to be use.
      
-    - returns: An `ObservationWrapper` that can be used from within a 
+    - returns: An `AnyObserver` that can be used from within a
     `ComponentView`.
     */
-    func observe<AnyValue>(value: AnyValue) -> AnyBinding<AnyValue>
+    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue>
 
     /**
     Observes a `Command`.
      
     - parameter command: The `Command` to be observed.
      
-    - returns: A `CommandWrapper`.
+    - returns: A `CommandObserver`.
     */
-//    func observe<T: Command>(command: T) -> CommandWrapper
     func observe(value: Command) -> CommandObserver
     
     /**
-    Observes an entity conforming to `Observation`.
-     
-    - parameter observableViewModel: An entity conforming to `Observation` whose
-    event is of tpye `ComponentViewModel`.
-     
-    - returns: A `ViewModelWrapper`
-    */
-//    func observe<T: Observation where T.Element:ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T>
-    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType>
+     Observes a `ComponentViewModel`.
 
-    /**
-    Observes a `ComponentViewModel`.
-     
-    - parameter viewModel: The `ComponentViewModel` to be observed.
-     
-    - returns: A `ViewModelWrappr`.
-    */
-//    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>>
+     - parameter viewModel: The `ComponentViewModel` to be observed.
+
+     - returns: A `ViewModelObserver`.
+     */
+    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType>
 }

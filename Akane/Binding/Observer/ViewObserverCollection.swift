@@ -16,7 +16,7 @@ class ViewObserverCollection : ViewObserver {
     var count: Int { return self.bindings.count }
     unowned let lifecycle: Lifecycle
 
-    private(set) var bindings:[AnyObject] = []
+    private(set) var bindings:[_Observer] = []
     private unowned let view: UIView
 
     init(view: UIView, lifecycle: Lifecycle) {
@@ -27,13 +27,12 @@ class ViewObserverCollection : ViewObserver {
     deinit {
     }
 
-    func dispose() {
-        // call unbind/unobserve on all observers/bindings
+    func unobserve() {
         self.bindings.removeAll()
     }
 
-    func observe<AnyValue>(value: AnyValue) -> AnyBinding<AnyValue> {
-        let binding = AnyBinding(value: value)
+    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
+        let binding = AnyObserver(value: value)
 
         self.bindings.append(binding)
 
@@ -48,7 +47,6 @@ class ViewObserverCollection : ViewObserver {
         return observer
     }
 
-
     func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
         let observer = ViewModelObserver<ViewModelType>(lifecycle: self.lifecycle)
 
@@ -56,28 +54,4 @@ class ViewObserverCollection : ViewObserver {
 
         return observer
     }
-
-//    func observe<T : Command>(command: T) -> CommandWrapper {
-//        let wrapper = CommandWrapper(command: command)
-//
-//        self.disposeBag.addDisposable(wrapper)
-//        return wrapper
-//    }
-
-//    func observe<T: Observation where T.Element: ComponentViewModel>(observableViewModel: T) -> ViewModelWrapper<T> {
-//        let wrapper = ViewModelWrapper.init(viewModel: observableViewModel, lifecycle: lifecycle)
-//
-//        self.disposeBag.addDisposable(wrapper)
-//        return wrapper
-//    }
-//
-//    func observe<T: ComponentViewModel>(viewModel: T) -> ViewModelWrapper<Observable<T>> {
-//        let binding = Observable(viewModel)
-//        let wrapper = ViewModelWrapper.init(viewModel: binding, lifecycle: lifecycle)
-//
-//        self.disposeBag.addDisposable(wrapper)
-//        self.bindings.append(binding)
-//
-//        return wrapper
-//    }
 }
