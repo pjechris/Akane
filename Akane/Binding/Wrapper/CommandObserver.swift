@@ -17,7 +17,7 @@ public class CommandObserver : Observer {
     var next: [(Command -> Void)] = [] {
         didSet { self.runNext() }
     }
-    
+
     private var controls: [UIControl] = []
 
     init(command: Command) {

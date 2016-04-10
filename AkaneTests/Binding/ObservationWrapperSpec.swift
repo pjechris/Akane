@@ -45,7 +45,7 @@ class ObservationWrapperSpec : QuickSpec {
             }
 
             it("should stop update the binding") {
-                observer.unbind()
+                observer.unobserve()
                 observer.value("the world is mine")
                 expect(bindedItem.text).to(beNil())
             }

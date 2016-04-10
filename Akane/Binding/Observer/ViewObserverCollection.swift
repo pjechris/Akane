@@ -10,13 +10,11 @@ import Foundation
 import Bond
 
 /**
- Contain multiple `ViewObserver` instances which can be disposed at any time
+ Contain multiple `Observer` instances which can be disposed at any time
 */
 class ViewObserverCollection : ViewObserver {
-    var count: Int { return self.bindings.count }
     unowned let lifecycle: Lifecycle
 
-    private(set) var bindings:[_Observer] = []
     private unowned let view: UIView
 
     init(view: UIView, lifecycle: Lifecycle) {
@@ -25,24 +23,25 @@ class ViewObserverCollection : ViewObserver {
     }
 
     deinit {
+        self.removeAllObservers()
     }
 
     func unobserve() {
-        self.bindings.removeAll()
+        self.removeAllObservers()
     }
 
     func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
-        let binding = AnyObserver(value: value)
+        let observer = AnyObserver(value: value)
 
-        self.bindings.append(binding)
+        self.append(observer)
 
-        return binding
+        return observer
     }
 
     func observe(value: Command) -> CommandObserver {
         let observer = CommandObserver(command: value)
 
-        self.bindings.append(observer)
+        self.append(observer)
 
         return observer
     }
@@ -50,7 +49,7 @@ class ViewObserverCollection : ViewObserver {
     func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
         let observer = ViewModelObserver<ViewModelType>(lifecycle: self.lifecycle)
 
-        self.bindings.append(observer)
+        self.append(observer)
 
         return observer
     }

@@ -24,7 +24,7 @@ public class AnyObserver<Element> : Observer {
     var next: [(Element -> Void)] = [] {
         didSet { self.runNext() }
     }
-
+    
     init() {
     }
 

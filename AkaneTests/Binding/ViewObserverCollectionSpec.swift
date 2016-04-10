@@ -43,10 +43,10 @@ class ViewObserverCollectionSpec : QuickSpec {
             }
 
             context("when observing observable view model") {
-                var viewModel: Observable<ViewModelMock>!
+                var viewModel: ViewModelMock!
 
                 beforeEach {
-                    viewModel = Observable(ViewModelMock())
+                    viewModel = ViewModelMock()
 
                     lifecycle.presenterToReturn = ComponentViewController.init(view: view.viewToBind)
                 }
@@ -54,7 +54,7 @@ class ViewObserverCollectionSpec : QuickSpec {
                 it("should bind view with viewmodel") {
                     collection.observe(viewModel).bindTo(view.viewToBind)
 
-                    expect(lifecycle.presenterToReturn!.viewModel as? ViewModelMock) === viewModel.value
+                    expect(lifecycle.presenterToReturn!.viewModel as? ViewModelMock) === viewModel
                 }
 
                 it("should NOT save observation") {
@@ -65,28 +65,14 @@ class ViewObserverCollectionSpec : QuickSpec {
             }
         }
 
-        describe("dispose") {
+        describe("unobserve") {
             beforeEach {
                 collection.observe(Observable("Should Be Disposed"))
             }
 
-            it("should dispose bindings") {
-                collection.dispose()
+            it("should unobserve bindings") {
+                collection.unobserve()
                 expect(collection.count) == 0
-            }
-
-            it("should dispose view model") {
-                let firstViewModel = ViewModelMock()
-                let secondViewModel = ViewModelMock()
-                let observable = Observable(firstViewModel)
-
-                lifecycle.presenterToReturn = ComponentViewController.init(view: view.viewToBind)
-                collection.observe(observable).bindTo(view.viewToBind)
-
-                collection.dispose()
-                observable.next(secondViewModel)
-
-                expect(lifecycle.presenterToReturn!.viewModel as? ViewModelMock) !== secondViewModel
             }
         }
     }
