@@ -173,20 +173,12 @@ class UserViewController : ComponentViewController {
 
 ## Collections
 
-Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s. You will need 3 things:
-
-- A `DataSource`
-- A `ComponentCollectionViewModel`
-- To make your view conform to `ComponentTableView`
-
-**Collection support is not implemented yet for `UICollectionView`.**
+Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s as you will need a `DataSource` to provide data.
 
 ### Example
 
 ```swift
 struct AuthorListDataSource: DataSourceTableViewItems {
-  typealias ItemType = Author
-  typealias ItemViewModelType = AuthorItemViewModel
   enum ItemIdentifier: String {
     case Author
   }
@@ -195,7 +187,7 @@ struct AuthorListDataSource: DataSourceTableViewItems {
     self.authors = authors
   }
 
-  func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier) {
+  func itemAtIndexPath(indexPath: NSIndexPath) -> (item: Author?, identifier: ItemIdentifier) {
     return (item: self.data[indexPath.row], identifier: .Author)
   }
 
@@ -203,12 +195,12 @@ struct AuthorListDataSource: DataSourceTableViewItems {
     return TemplateComponentView(AuthorViewCell.self)
   }
 
-  func createItemViewModel(item: ItemType?) -> ItemViewModelType? {
+  func createItemViewModel(item: Author?) -> AuthorItemViewModel? {
     return AuthorItemViewModel(author: item!)
   }
 }
 
-class AuthorListViewModel: ComponentCollectionItemsViewModel {
+class AuthorListViewModel: ComponentViewModel {
   let authors: Array<Author>
   let dataSource: AuthorListDataSource
 
