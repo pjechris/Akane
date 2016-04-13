@@ -1,13 +1,13 @@
 # CHANGELOG
 
-# WIP
+# 0.12.0
 
 TL;DR Drastically simplified DataSource protocols for UITableView and UICollectionView.
 Now you only have `DataSource*` protocols to use.
 
 ## Added
 
-- [Wrapper] added method `convert(_: (Element -> NewElement))` for simple conversions. 
+- [Wrapper] added method `convert(_: (Element -> NewElement))` for simple conversions.
 
 ## Enhancements
 
