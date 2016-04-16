@@ -24,10 +24,6 @@
 		493CA3901C50ED2D005ED20F /* TemplateComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA37E1C50ED2D005ED20F /* TemplateComponentView.swift */; };
 		493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3931C50ED4A005ED20F /* Bond.swift */; };
 		493CA3A21C50ED4A005ED20F /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3941C50ED4A005ED20F /* Bindable.swift */; };
-		493CA3A31C50ED4A005ED20F /* BondDisposeAdapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3951C50ED4A005ED20F /* BondDisposeAdapter.swift */; };
-		493CA3A41C50ED4A005ED20F /* Dispose.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3961C50ED4A005ED20F /* Dispose.swift */; };
-		493CA3A51C50ED4A005ED20F /* DisposeBag.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3971C50ED4A005ED20F /* DisposeBag.swift */; };
-		493CA3A61C50ED4A005ED20F /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3981C50ED4A005ED20F /* Observation.swift */; };
 		493CA3A71C50ED4A005ED20F /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39A1C50ED4A005ED20F /* ViewObserver.swift */; };
 		493CA3A81C50ED4A005ED20F /* ViewObserverCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA39B1C50ED4A005ED20F /* ViewObserverCollection.swift */; };
 		493CA3B21C50EE42005ED20F /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */; };
@@ -85,10 +81,6 @@
 		493CA37E1C50ED2D005ED20F /* TemplateComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateComponentView.swift; sourceTree = "<group>"; };
 		493CA3931C50ED4A005ED20F /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
 		493CA3941C50ED4A005ED20F /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
-		493CA3951C50ED4A005ED20F /* BondDisposeAdapter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondDisposeAdapter.swift; sourceTree = "<group>"; };
-		493CA3961C50ED4A005ED20F /* Dispose.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dispose.swift; sourceTree = "<group>"; };
-		493CA3971C50ED4A005ED20F /* DisposeBag.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DisposeBag.swift; sourceTree = "<group>"; };
-		493CA3981C50ED4A005ED20F /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		493CA39A1C50ED4A005ED20F /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		493CA39B1C50ED4A005ED20F /* ViewObserverCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollection.swift; sourceTree = "<group>"; };
 		493CA3B01C50EE42005ED20F /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
@@ -298,10 +290,6 @@
 			children = (
 				493CA3921C50ED4A005ED20F /* Adapter */,
 				493CA3941C50ED4A005ED20F /* Bindable.swift */,
-				493CA3951C50ED4A005ED20F /* BondDisposeAdapter.swift */,
-				493CA3961C50ED4A005ED20F /* Dispose.swift */,
-				493CA3971C50ED4A005ED20F /* DisposeBag.swift */,
-				493CA3981C50ED4A005ED20F /* Observation.swift */,
 				493CA3991C50ED4A005ED20F /* Observer */,
 				493CA39D1C50ED4A005ED20F /* Wrapper */,
 			);
@@ -467,7 +455,6 @@
 				493CA38F1C50ED2D005ED20F /* Template.swift in Sources */,
 				49D380BB1CA885850036B804 /* CollectionReusableView.swift in Sources */,
 				4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */,
-				493CA3A61C50ED4A005ED20F /* Observation.swift in Sources */,
 				49E457A01C7C662800E0F0FB /* TableViewLayout.swift in Sources */,
 				493CA3A81C50ED4A005ED20F /* ViewObserverCollection.swift in Sources */,
 				49E98F091CB9141600204556 /* CommandObserver.swift in Sources */,
@@ -481,12 +468,10 @@
 				49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */,
 				493CA38C1C50ED2D005ED20F /* TableViewSectionDelegate.swift in Sources */,
 				496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */,
-				493CA3A41C50ED4A005ED20F /* Dispose.swift in Sources */,
 				493CA3A11C50ED4A005ED20F /* Bond.swift in Sources */,
 				4943F2511C7EF9090081B4A7 /* RawStringRepresentable.swift in Sources */,
 				496854AF1BD68B7C00589F4C /* ConverterOption.swift in Sources */,
 				499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */,
-				493CA3A31C50ED4A005ED20F /* BondDisposeAdapter.swift in Sources */,
 				49E6A0321CB6C91D00FA59E5 /* Observer.swift in Sources */,
 				493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */,
 				493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */,
@@ -496,7 +481,6 @@
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */,
 				49E98F081CB9141600204556 /* ViewModelObserver.swift in Sources */,
-				493CA3A51C50ED4A005ED20F /* DisposeBag.swift in Sources */,
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
 				49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */,
 				49C8CBE21C68E54800727EAF /* UICollectionView.swift in Sources */,
