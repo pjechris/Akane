@@ -18,14 +18,23 @@ public class CollectionViewSectionDelegate<DataSourceType : DataSourceCollection
     public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
         let data = self.dataSource.sectionItemAtIndex(indexPath.section)
         let template = self.dataSource.collectionViewSectionTemplate(data.identifier, kind: kind)
+        let element = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: kind)
 
-        collectionView.registerIfNeeded(template, type: .Section(identifier: data.identifier.rawValue, kind: kind))
+        collectionView.registerIfNeeded(template, type: element)
 
         let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: data.identifier.rawValue, forIndexPath: indexPath)
 
         if template.needsComponentViewModel {
             if let viewModel = self.dataSource.createSectionViewModel(data.item) {
                 self.observer?.observe(viewModel).bindTo(cell, template: template)
+
+                if var updatable = viewModel as? Updatable {
+                    updatable.onRender = { [weak collectionView, weak cell] in
+                        if let collectionView = collectionView, cell = cell {
+                            collectionView.update(element, atIndexPath: indexPath)
+                        }
+                    }
+                }
             }
         }
 

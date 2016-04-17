@@ -73,6 +73,14 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
 
         if let viewModel = self.dataSource.createItemViewModel(data.item) {
             self.observer?.observe(viewModel).bindTo(cell, template: template)
+
+            if var updatable = viewModel as? Updatable {
+                updatable.onRender = { [weak tableView, weak cell] in
+                    if let tableView = tableView, cell = cell {
+                        tableView.update(cell)
+                    }
+                }
+            }
         }
 
         return cell

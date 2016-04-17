@@ -59,6 +59,14 @@ public class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSectio
         if template.needsComponentViewModel {
             if let viewModel = self.dataSource.createSectionViewModel(data.item) {
                 self.observer?.observe(viewModel).bindTo(view, template: template)
+
+                if var updatable = viewModel as? Updatable {
+                    updatable.onRender = { [weak tableView, weak view] in
+                        if let tableView = tableView, view = view {
+                            tableView.update(view)
+                        }
+                    }
+                }
             }
         }
 
