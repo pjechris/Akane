@@ -12,45 +12,56 @@ import Bond
 /**
  Contain multiple `Observer` instances which can be disposed at any time
 */
-class ViewObserverCollection : ViewObserver {
-    unowned let lifecycle: Lifecycle
+class ViewObserverCollection {
+    private typealias ObserverType = (observer: _Observer, onRemove: (Void -> Void)?)
 
-    private unowned let view: UIView
-
-    init(view: UIView, lifecycle: Lifecycle) {
-        self.view = view
-        self.lifecycle = lifecycle
-    }
+    var count: Int { return self.observers.count }
+    private var observers: [ObserverType] = []
 
     deinit {
         self.removeAllObservers()
     }
 
+    func append(observer: _Observer, onRemove: (Void -> Void)? = nil) {
+        self.observers.append((observer: observer, onRemove: onRemove))
+    }
+
+    func removeAllObservers() {
+        for observer in self.observers {
+            observer.onRemove?()
+        }
+
+        self.observers = []
+    }
+
     func unobserve() {
         self.removeAllObservers()
     }
-
-    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
-        let observer = AnyObserver(value: value)
-
-        self.append(observer)
-
-        return observer
-    }
-
-    func observe(value: Command) -> CommandObserver {
-        let observer = CommandObserver(command: value)
-
-        self.append(observer)
-
-        return observer
-    }
-
-    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
-        let observer = ViewModelObserver<ViewModelType>(lifecycle: self.lifecycle)
-
-        self.append(observer)
-
-        return observer
-    }
 }
+
+//extension ViewObserverCollection : ViewObserver {
+//
+//    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
+//        let observer = AnyObserver(value: value)
+//
+//        self.append(observer)
+//
+//        return observer
+//    }
+//
+//    func observe(value: Command) -> CommandObserver {
+//        let observer = CommandObserver(command: value)
+//
+//        self.append(observer)
+//
+//        return observer
+//    }
+//
+//    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
+//        let observer = ViewModelObserver<ViewModelType>(lifecycle: self.lifecycle)
+//
+//        self.append(observer)
+//
+//        return observer
+//    }
+//}

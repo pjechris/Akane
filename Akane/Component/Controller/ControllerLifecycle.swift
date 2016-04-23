@@ -27,9 +27,9 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
 
     func bindView() {
         let componentView = self.controller.componentView
-        self.binder = ViewObserverCollection(view: self.controller.view, lifecycle: self)
+        self.binder = ViewObserverCollection()
 
-        componentView.bindings(binder, viewModel: self.controller.viewModel)
+        componentView.bindings(componentView, viewModel: self.controller.viewModel)
     }
 
     func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {

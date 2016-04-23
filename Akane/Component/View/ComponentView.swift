@@ -7,8 +7,9 @@
 //
 
 import Foundation
+import HasAssociatedObjects
 
-var ComponentViewPresenterAttr = "ComponentViewPresenterAttr"
+var ComponentViewLifecycleAttr = "ComponentViewLifecycleAttr"
 
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
@@ -17,8 +18,7 @@ ComponentView is used on an `UIView` in order to associate it to a
 - *Future enhancements:* this protocol will be generic once we will be able to 
 use generics with Storyboard/Xib
 */
-public protocol ComponentView : class {
-    
+public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
     /**
     Define the bindings between the fields (IBOutlet) and the ComponentViewModel
     
@@ -29,7 +29,12 @@ public protocol ComponentView : class {
     func bindings(observer: ViewObserver, viewModel: AnyObject)
 }
 
-public extension ComponentView where Self : UIView {
+extension ComponentView {
+    // FIXME make var weak
+    public weak var componentLifecycle: Lifecycle? {
+        get { return self.associatedObjects[ComponentViewLifecycleAttr] as? Lifecycle }
+        set { self.associatedObjects[ComponentViewLifecycleAttr] = newValue }
+    }
 
     /**
     `ComponentViewController` class associated to the `ComponentView`
@@ -39,5 +44,31 @@ public extension ComponentView where Self : UIView {
     */
     public static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
+    }
+}
+
+extension ComponentView {
+    public func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
+        let observation = AnyObserver(value: value)
+
+        self.observerCollection?.append(observation)
+
+        return observation
+    }
+
+    public func observe(value: Command) -> CommandObserver {
+        let observation = CommandObserver(command: value)
+
+        self.observerCollection?.append(observation)
+
+        return observation
+    }
+
+    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
+        let observation = ViewModelObserver<ViewModelType>(lifecycle: self.componentLifecycle!)
+
+        self.observerCollection?.append(observation)
+
+        return observation
     }
 }

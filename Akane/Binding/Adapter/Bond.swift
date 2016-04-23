@@ -15,25 +15,7 @@ extension Bond.Observable : Akane.Bindable {
     }
 }
 
-//extension CompositeDisposable : DisposeBag {
-//    func addDisposable(disposable: Dispose) {
-//        self.addDisposable(BlockDisposable() { disposable.dispose() })
-//    }
-//}
-
-extension Bond.Observable : Observation {
-    public typealias Element = EventType
-
-    public func observe(observer: Element -> ()) -> Dispose {
-        let dispose: DisposableType = self.observe { value in
-            observer(value)
-        }
-
-        return BondDisposeAdapter(dispose)
-    }
-}
-
-extension ViewObserver {
+extension ViewObserver where Self : ComponentView {
     func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObserver<AnyValue> {
         let observer = AnyObserver<AnyValue>()
 
@@ -41,23 +23,24 @@ extension ViewObserver {
             observer.value(value)
         }
 
-        self.append(observer) {
+        self.observerCollection?.append(observer) {
             disposable.dispose()
         }
 
         return observer
     }
 
-//    func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) {
-//        let observer = ViewModelObserver<ViewModelType>(lifecycle: )
-//
-//        let _ : DisposableType = observable.observe { value in
-//            observer.value(value)
-//        }
-//
-//        // FIXME need to save the binding for deallocation
-//        // FIXME observer is never deallocated
-//
-//        return observer
-//    }
+    func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) -> ViewModelObserver<ViewModelType> {
+        let observer = ViewModelObserver<ViewModelType>(lifecycle: self.componentLifecycle!)
+
+        let disposable : DisposableType = observable.observe { value in
+            observer.value(value)
+        }
+
+        self.observerCollection?.append(observer) {
+           disposable.dispose()
+        }
+
+        return observer
+    }
 }

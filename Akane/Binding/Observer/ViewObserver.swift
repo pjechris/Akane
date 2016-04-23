@@ -10,7 +10,6 @@ import Foundation
 import Bond
 import HasAssociatedObjects
 
-
 /**
 `ViewObserver` provides an entry point for observing:
 - `Command`s
@@ -48,31 +47,14 @@ public protocol ViewObserver : class, HasAssociatedObjects {
 }
 
 var ViewObserverObserversKey = "ViewObserverObserversKey"
-extension ViewObserver where Self : HasAssociatedObjects {
+extension ViewObserver {
     private typealias ObserverType = (observer: _Observer, onRemove: (Void -> Void)?)
 
-    var count: Int { return self.observers?.count ?? 0 }
-
-    private var observers: [ObserverType]? {
-        get { return self.associatedObjects[ViewObserverObserversKey] as? [ObserverType] }
-        set { self.associatedObjects[ViewObserverObserversKey] = newValue }
-    }
-    
-
-    func append(observer: _Observer, onRemove: (Void -> Void)? = nil) {
-        var observers = self.observers ?? []
-
-        observers.append((observer: observer, onRemove: onRemove))
-        self.observers = observers
-    }
-
-    func removeAllObservers() {
-        if let observers = self.observers {
-            for observer in observers {
-                observer.onRemove?()
-            }
+    var observerCollection: ViewObserverCollection? {
+        get {
+            return self.associatedObjects[ViewObserverObserversKey] as? ViewObserverCollection
         }
 
-        self.observers = []
+        set { self.associatedObjects[ViewObserverObserversKey] = newValue }
     }
 }
