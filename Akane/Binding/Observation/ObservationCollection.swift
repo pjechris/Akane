@@ -10,10 +10,10 @@ import Foundation
 import Bond
 
 /**
- Contain multiple `Observer` instances which can be disposed at any time
+ Contain multiple `Observation` instances which can be disposed at any time
 */
-class ViewObserverCollection {
-    private typealias ObserverType = (observer: _Observer, onRemove: (Void -> Void)?)
+class ObservationCollection {
+    private typealias ObserverType = (observer: _Observation, onRemove: (Void -> Void)?)
 
     var count: Int { return self.observers.count }
     private var observers: [ObserverType] = []
@@ -22,7 +22,7 @@ class ViewObserverCollection {
         self.removeAllObservers()
     }
 
-    func append(observer: _Observer, onRemove: (Void -> Void)? = nil) {
+    func append(observer: _Observation, onRemove: (Void -> Void)? = nil) {
         self.observers.append((observer: observer, onRemove: onRemove))
     }
 

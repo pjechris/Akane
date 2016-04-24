@@ -22,7 +22,7 @@ public struct TemplateView : Template {
         self.source = source
     }
 
-    public func bind<V: ComponentViewModel>(reusedTemplateView: UIView, wrapper: ViewModelObserver<V>) {
+    public func bind<V: ComponentViewModel>(reusedTemplateView: UIView, wrapper: ViewModelObservation<V>) {
         // no binding
     }
 }

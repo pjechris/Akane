@@ -16,7 +16,7 @@ import HasAssociatedObjects
  the API, then it probably means you need to move your code to a
  `ComponentViewModel` or a `Converter` instead.
  */
-public class AnyObserver<Element> : Observer {
+public class AnyObservation<Element> : Observation {
     var value: Element? = nil {
         didSet { self.runNext() }
     }
@@ -39,8 +39,8 @@ public class AnyObserver<Element> : Observer {
 }
 
 // MARK : Convert
-extension AnyObserver {
-    public func convert<NewElement>(transformer: (Element -> NewElement)) -> AnyObserver<NewElement> {
+extension AnyObservation {
+    public func convert<NewElement>(transformer: (Element -> NewElement)) -> AnyObservation<NewElement> {
 
         return self.observeNext { nextObserver, value in
             nextObserver.value(transformer(value))
@@ -52,16 +52,16 @@ extension AnyObserver {
 
      - parameter transformer: `Converter` class used to transform the observation value.
 
-     - returns: A new `AnyObserver` whose observation is the current converted observation value.
+     - returns: A new `AnyObservation` whose observation is the current converted observation value.
      */
-    public func convert<T: Converter where T.ValueType == Element>(transformer: T.Type) -> AnyObserver<T.ConvertValueType> {
+    public func convert<T: Converter where T.ValueType == Element>(transformer: T.Type) -> AnyObservation<T.ConvertValueType> {
 
         return self.observeNext { nextObserver, value in
             nextObserver.value(transformer.init().convert(value))
         }
     }
 
-    public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObserver<T.ConvertValueType> {
+    public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObservation<T.ConvertValueType> {
         
         return self.observeNext{ nextObserver, value in
             let newValue = transformer.init(options: options()).convert(value)
@@ -72,7 +72,7 @@ extension AnyObserver {
 }
 
 // MARK : ConvertBack
-extension AnyObserver {
+extension AnyObservation {
     /**
      Provides a reverse conversion of the event value from `ConvertValueType` to
      `ValueType`.
@@ -80,15 +80,15 @@ extension AnyObserver {
      - parameter converter: The converter type to use to transform the
      observation value.
 
-     - returns: A new AnyObserver whose value is the converted current `Element`.
+     - returns: A new AnyObservation whose value is the converted current `Element`.
      */
-    public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(transformer: T.Type) -> AnyObserver<T.ValueType> {
+    public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(transformer: T.Type) -> AnyObservation<T.ValueType> {
         return self.observeNext { nextObserver, value in
             nextObserver.value(transformer.init().convertBack(value))
         }
     }
 
-    public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObserver<T.ValueType> {
+    public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObservation<T.ValueType> {
 
         return self.observeNext { nextObserver, value in
             let newValue = transformer.init(options: options()).convertBack(value)
@@ -99,7 +99,7 @@ extension AnyObserver {
 }
 
 // MARK : BindTo
-extension AnyObserver {
+extension AnyObservation {
     /**
      Updates `Bindable` with current `Element` value.
 

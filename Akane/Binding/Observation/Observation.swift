@@ -8,19 +8,19 @@
 
 import Foundation
 
-protocol _Observer : class {
+protocol _Observation : class {
     func unobserve()
     func runNext()
 }
 
-protocol Observer : _Observer {
+protocol Observation : _Observation {
     typealias Element
 
     var value: Element? { get set }
     var next: [(Element -> Void)] { get set }
 }
 
-extension Observer {
+extension Observation {
     func value(value: Element) {
         self.value = value
     }
@@ -33,8 +33,8 @@ extension Observer {
         }
     }
 
-    func observeNext<NewElement>(yield: ((AnyObserver<NewElement>, Element) -> Void))  -> AnyObserver<NewElement> {
-        let nextObserver = AnyObserver<NewElement>()
+    func observeNext<NewElement>(yield: ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
+        let nextObserver = AnyObservation<NewElement>()
 
         self.next.append { value in
             yield(nextObserver, value)

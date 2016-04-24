@@ -48,24 +48,24 @@ extension ComponentView {
 }
 
 extension ComponentView {
-    public func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
-        let observation = AnyObserver(value: value)
+    public func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue> {
+        let observation = AnyObservation(value: value)
 
         self.observerCollection?.append(observation)
 
         return observation
     }
 
-    public func observe(value: Command) -> CommandObserver {
-        let observation = CommandObserver(command: value)
+    public func observe(value: Command) -> CommandObservation {
+        let observation = CommandObservation(command: value)
 
         self.observerCollection?.append(observation)
 
         return observation
     }
 
-    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
-        let observation = ViewModelObserver<ViewModelType>(lifecycle: self.componentLifecycle!)
+    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType> {
+        let observation = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
 
         self.observerCollection?.append(observation)
 

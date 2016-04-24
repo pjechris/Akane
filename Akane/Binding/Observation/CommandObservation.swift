@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-public class CommandObserver : Observer {
+public class CommandObservation : Observation {
     var value: Command? = nil {
         didSet { self.runNext() }
     }
@@ -39,7 +39,7 @@ public class CommandObserver : Observer {
     }
 }
 
-extension CommandObserver {
+extension CommandObservation {
     public func bindTo(control: UIControl?, events: UIControlEvents = .TouchUpInside) {
         if let control = control {
             self.bindTo(control, events: events)

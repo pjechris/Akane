@@ -18,41 +18,41 @@ import HasAssociatedObjects
 */
 public protocol ViewObserver : class, HasAssociatedObjects {
     /**
-    Takes the current value to create a `AnyObserver`. No real observation is made as value never changes.
+    Takes the current value to create a `AnyObservation`. No real observation is made as value never changes.
      
     - parameter value: the value to be use.
      
-    - returns: An `AnyObserver` that can be used from within a
+    - returns: An `AnyObservation` that can be used from within a
     `ComponentView`.
     */
-    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue>
+    func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue>
 
     /**
     Observes a `Command`.
      
     - parameter command: The `Command` to be observed.
      
-    - returns: A `CommandObserver`.
+    - returns: A `CommandObservation`.
     */
-    func observe(value: Command) -> CommandObserver
+    func observe(value: Command) -> CommandObservation
     
     /**
      Observes a `ComponentViewModel`.
 
      - parameter viewModel: The `ComponentViewModel` to be observed.
 
-     - returns: A `ViewModelObserver`.
+     - returns: A `ViewModelObservation`.
      */
-    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType>
+    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType>
 }
 
 var ViewObserverObserversKey = "ViewObserverObserversKey"
 extension ViewObserver {
-    private typealias ObserverType = (observer: _Observer, onRemove: (Void -> Void)?)
+    private typealias ObserverType = (observer: _Observation, onRemove: (Void -> Void)?)
 
-    var observerCollection: ViewObserverCollection? {
+    var observerCollection: ObservationCollection? {
         get {
-            return self.associatedObjects[ViewObserverObserversKey] as? ViewObserverCollection
+            return self.associatedObjects[ViewObserverObserversKey] as? ObservationCollection
         }
 
         set { self.associatedObjects[ViewObserverObserversKey] = newValue }

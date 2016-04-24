@@ -9,7 +9,7 @@
 import Foundation
 import Bond
 
-public class ViewModelObserver<ViewModelType: ComponentViewModel> : Observer {
+public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
     var value: ViewModelType? = nil {
         didSet { self.runNext() }
     }
@@ -25,7 +25,7 @@ public class ViewModelObserver<ViewModelType: ComponentViewModel> : Observer {
     }
 }
 
-extension ViewModelObserver {
+extension ViewModelObservation {
 
     public func bindTo<ViewType: UIView where ViewType: ComponentView>(view: ViewType?) {
         if let view = view {
