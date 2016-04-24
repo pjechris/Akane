@@ -20,7 +20,7 @@ public class ComponentViewController : UIViewController, ComponentController {
             self.didLoadComponent()
 
             if (self.isViewLoaded()) {
-                self.lifecycle.bindView()
+                self.makeBindings()
             }
         }
     }
@@ -28,8 +28,6 @@ public class ComponentViewController : UIViewController, ComponentController {
     public var componentView: ComponentView! {
         get { return self.view as! ComponentView }
     }
-
-    lazy var lifecycle: ControllerLifecycle<ComponentViewController>! = ControllerLifecycle(controller: self)
 
     required public init(view: UIView) {
         super.init(nibName: nil, bundle: nil)
@@ -43,9 +41,7 @@ public class ComponentViewController : UIViewController, ComponentController {
     }
 
     public override func viewDidLoad() {
-        if (self.viewModel != nil) {
-            self.lifecycle.bindView()
-        }
+        self.makeBindings()
     }
 
     public override func viewWillAppear(animated: Bool) {

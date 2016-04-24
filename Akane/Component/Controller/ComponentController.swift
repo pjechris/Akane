@@ -17,7 +17,7 @@ Do not use this protocol directly. Refer to `ComponentViewController` instead.
 This protocol should benefit greatly by the use of generics, but this would
 break compatibility with Storyboards and Xibs.
 */
-public protocol ComponentController : class {
+public protocol ComponentController : class, Lifecycle {
     
     // MARK: Associated component elements
     
@@ -59,4 +59,20 @@ public protocol ComponentController : class {
     Should be called every time `viewModel` is setted on Controller.
     */
     func didLoadComponent()
+}
+
+extension ComponentController {
+    func makeBindings() {
+        guard let viewModel = self.viewModel else {
+            return
+        }
+
+        self.stopBindings()
+        self.componentView.componentLifecycle = self
+        self.componentView.bindings(self.componentView, viewModel: viewModel)
+    }
+
+    func stopBindings() {
+        self.componentView.observerCollection?.removeAllObservers()
+    }
 }

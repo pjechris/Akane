@@ -10,34 +10,21 @@ import Foundation
 
 var BinderAttribute = "ViewStyleNameAttribute"
 
-protocol Lifecycle : class {
+public protocol Lifecycle : class {
     func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController?
 }
 
 /**
 Handles controller view and view model lifecycles.
 */
-class ControllerLifecycle<C:UIViewController where C:ComponentController> : Lifecycle {
-    var binder: ViewObserverCollection!
-    unowned private let controller: C
+extension ComponentController where Self : UIViewController {
 
-    init(controller: C) {
-        self.controller = controller
-    }
-
-    func bindView() {
-        let componentView = self.controller.componentView
-        self.binder = ViewObserverCollection()
-
-        componentView.bindings(componentView, viewModel: self.controller.viewModel)
-    }
-
-    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {
-        guard (subview.isDescendantOfView(self.controller.view) || subview.window == nil) else {
+    public func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {
+        guard (subview.isDescendantOfView(self.view) || subview.window == nil) else {
             return nil
         }
 
-        if let controller = self.controller.controllerForComponent(subview) {
+        if let controller = self.controllerForComponent(subview) {
             return controller
         }
 
@@ -45,7 +32,7 @@ class ControllerLifecycle<C:UIViewController where C:ComponentController> : Life
             let componentClass:ComponentViewController.Type = subview.dynamicType.componentControllerClass()
             let controller = componentClass.init(view: subview)
 
-            self.controller.addController(controller)
+            self.addController(controller)
 
             return controller
         }
