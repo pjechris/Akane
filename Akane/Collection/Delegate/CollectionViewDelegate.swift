@@ -82,8 +82,8 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldSelectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, shouldSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if let item = self.dataSource.itemAtIndexPath(indexPath).item,
-            let viewModel = self.dataSource.createItemViewModel(item) as? ComponentItemViewModel {
-                return (viewModel.select != nil) ? indexPath : nil
+            let _ = self.dataSource.createItemViewModel(item) as? Selectable {
+                return indexPath
         }
 
         return nil
@@ -95,9 +95,9 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didSelectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! Selectable
 
-        viewModel.select!.execute(nil)
+        viewModel.commandSelect.execute(nil)
     }
 
     @objc
@@ -105,9 +105,9 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldDeselectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, shouldDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
+        let _ = self.dataSource.createItemViewModel(item) as! Unselectable
 
-        return (viewModel.unselect != nil) ? indexPath : nil
+        return indexPath
     }
 
     @objc
@@ -115,9 +115,9 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didDeselectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.dataSource.createItemViewModel(item) as! ComponentItemViewModel
+        let viewModel = self.dataSource.createItemViewModel(item) as! Unselectable
 
-        viewModel.unselect!.execute(nil)
+        viewModel.commandUnselect.execute(nil)
     }
 
 }
