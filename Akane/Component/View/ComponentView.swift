@@ -27,6 +27,14 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
     */
     func bindings(observer: ViewObserver, viewModel: AnyObject)
+
+    /**
+     `ComponentViewController` class associated to the `ComponentView`
+
+     - returns: The `ComponentViewController` type.
+     The Default implementation returns `ComponentViewController.self`
+     */
+    static func componentControllerClass() -> ComponentViewController.Type
 }
 
 extension ComponentView {
@@ -36,12 +44,6 @@ extension ComponentView {
         set { self.associatedObjects[ComponentViewLifecycleAttr] = newValue }
     }
 
-    /**
-    `ComponentViewController` class associated to the `ComponentView`
-    
-    - returns: The `ComponentViewController` type. 
-    The Default implementation returns `ComponentViewController.self`
-    */
     public static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
     }
