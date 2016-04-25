@@ -16,9 +16,9 @@ whether or not this command should be made available to user
 public protocol Command {
     /// Returns `true` if the command is enabled.
     var canExecute: Observable<Bool> { get }
-    
+
     /**
-    Runs the command action
+    Runs the command action only if `canExecute` is true
     
     - parameter trigger: The `UIControl` which triggered the command. 
     Might be `nil` when triggered programmatically.

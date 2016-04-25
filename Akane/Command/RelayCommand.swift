@@ -37,6 +37,8 @@ public class RelayCommand : Command {
     public init(canExecute canExecuteUpdater: () -> Bool, action: (UIControl?) -> ()) {
         self.canExecuteUpdater = canExecuteUpdater
         self.action = action
+
+        self.updateCanExecute()
     }
 
     /**
