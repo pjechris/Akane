@@ -10,6 +10,7 @@
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
 		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
+		490F40121CCE229C00BACD18 /* WeakValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F40111CCE229C00BACD18 /* WeakValue.swift */; };
 		493CA3801C50ED2D005ED20F /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3641C50ED2D005ED20F /* ComponentController.swift */; };
 		493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3651C50ED2D005ED20F /* ComponentViewController.swift */; };
 		493CA3821C50ED2D005ED20F /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3661C50ED2D005ED20F /* ControllerLifecycle.swift */; };
@@ -67,6 +68,7 @@
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
+		490F40111CCE229C00BACD18 /* WeakValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakValue.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		493CA3641C50ED2D005ED20F /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
@@ -172,6 +174,7 @@
 				490ABDAD1A5EBF08007EA312 /* Akane.h */,
 				4926EAFB1A5EBD4A005A3D71 /* Info.plist */,
 				4943F2501C7EF9090081B4A7 /* RawStringRepresentable.swift */,
+				490F40111CCE229C00BACD18 /* WeakValue.swift */,
 				493CA3911C50ED4A005ED20F /* Binding */,
 				493CA3711C50ED2D005ED20F /* Collection */,
 				491705391C0279A100DD4284 /* Command */,
@@ -473,6 +476,7 @@
 				49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */,
 				495039291CC3C0A100A37432 /* Updatable.swift in Sources */,
 				493CA3821C50ED2D005ED20F /* ControllerLifecycle.swift in Sources */,
+				490F40121CCE229C00BACD18 /* WeakValue.swift in Sources */,
 				49D1EA321C513D5A00AB2D9B /* ComponentItemViewModel.swift in Sources */,
 				49E746631CCD7C68005A695F /* AnyObservation.swift in Sources */,
 				493CA38C1C50ED2D005ED20F /* TableViewSectionDelegate.swift in Sources */,

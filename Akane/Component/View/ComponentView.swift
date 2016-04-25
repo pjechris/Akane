@@ -40,8 +40,14 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
 extension ComponentView {
     // FIXME make var weak
     public weak var componentLifecycle: Lifecycle? {
-        get { return self.associatedObjects[ComponentViewLifecycleAttr] as? Lifecycle }
-        set { self.associatedObjects[ComponentViewLifecycleAttr] = newValue }
+        get {
+            guard let weakValue = self.associatedObjects[ComponentViewLifecycleAttr] as? AnyWeakValue else {
+                return nil
+            }
+
+            return weakValue.value as? Lifecycle
+        }
+        set { self.associatedObjects[ComponentViewLifecycleAttr] = AnyWeakValue(newValue) }
     }
 
     public static func componentControllerClass() -> ComponentViewController.Type {
