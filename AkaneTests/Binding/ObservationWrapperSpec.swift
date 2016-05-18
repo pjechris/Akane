@@ -14,10 +14,10 @@ import Bond
 
 class ObservationWrapperSpec : QuickSpec {
     override func spec() {
-        var observer: AnyObserver<String?>!
+        var observer: AnyObservation<String?>!
 
         beforeEach {
-            observer = AnyObserver(value: nil)
+            observer = AnyObservation(value: nil)
         }
 
         describe("bindTo") {
