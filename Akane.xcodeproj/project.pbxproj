@@ -70,6 +70,8 @@
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
 		490F40111CCE229C00BACD18 /* WeakValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakValue.swift; sourceTree = "<group>"; };
+		490F40131CCE25B700BACD18 /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
+		490F40151CCE25CE00BACD18 /* Unselectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unselectable.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		493CA3641C50ED2D005ED20F /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
