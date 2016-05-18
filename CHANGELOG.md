@@ -1,5 +1,23 @@
 # CHANGELOG
 
+# WIP
+
+## Added
+
+- [View] You can access `componentLifecycle` from `ComponentView`.
+- [Collection] You can now reload a row/section. Just make your `ComponentViewModel` conform to new `Updatable` protocol.
+- [ViewModel] Added `router` property on `ComponentViewModel`. Use it to navigate btw your controllers.
+
+## Enhancements
+
+- [Binding] Simplified internal code, which should be easier to understand.
+- [ViewModel] Replaced `ComponentItemViewModel` with `Selectable` and `Unselectable`.
+
+## Bugfixes
+
+- [View] Fixed `componentControllerClass` could not be overriden.
+- [Command] Fixed `updateCanExecute` not called into init
+
 # 0.12.0
 
 TL;DR Drastically simplified DataSource protocols for UITableView and UICollectionView.
