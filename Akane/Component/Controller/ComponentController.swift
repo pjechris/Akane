@@ -27,11 +27,6 @@ public protocol ComponentController : class, Lifecycle {
     /// The Controller's CompnentViewModel.
     var viewModel: ComponentViewModel! { get set }
 
-    // MARK: Initializers
-    
-    /// Inits with a view which sould implement `ComponentView` protocol.
-    init(view: UIView)
-
     // MARK: Child `ComonentController`s
     
     /**

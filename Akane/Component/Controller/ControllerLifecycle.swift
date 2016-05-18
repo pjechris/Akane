@@ -30,7 +30,10 @@ extension ComponentController where Self : UIViewController {
 
         if (createIfNeeded) {
             let componentClass:ComponentViewController.Type = subview.dynamicType.componentControllerClass()
-            let controller = componentClass.init(view: subview)
+            let controller = componentClass.init(coder: NSCoder())!
+
+            controller.view = subview
+            controller.viewDidLoad()
 
             self.addController(controller)
 

@@ -50,7 +50,6 @@
 		49D380BB1CA885850036B804 /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D380BA1CA885850036B804 /* CollectionReusableView.swift */; };
 		49E4579F1C7C662800E0F0FB /* TableViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4579D1C7C662800E0F0FB /* TableViewFlowLayout.swift */; };
 		49E457A01C7C662800E0F0FB /* TableViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E4579E1C7C662800E0F0FB /* TableViewLayout.swift */; };
-		49E7465D1CCD7BE4005A695F /* ViewObserverCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7465C1CCD7BE4005A695F /* ViewObserverCollectionSpec.swift */; };
 		49E746631CCD7C68005A695F /* AnyObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E7465F1CCD7C68005A695F /* AnyObservation.swift */; };
 		49E746641CCD7C68005A695F /* CommandObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E746601CCD7C68005A695F /* CommandObservation.swift */; };
 		49E746651CCD7C68005A695F /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E746611CCD7C68005A695F /* Observation.swift */; };
@@ -115,7 +114,6 @@
 		49D380BA1CA885850036B804 /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		49E4579D1C7C662800E0F0FB /* TableViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFlowLayout.swift; sourceTree = "<group>"; };
 		49E4579E1C7C662800E0F0FB /* TableViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewLayout.swift; sourceTree = "<group>"; };
-		49E7465C1CCD7BE4005A695F /* ViewObserverCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserverCollectionSpec.swift; sourceTree = "<group>"; };
 		49E7465F1CCD7C68005A695F /* AnyObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyObservation.swift; sourceTree = "<group>"; };
 		49E746601CCD7C68005A695F /* CommandObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandObservation.swift; sourceTree = "<group>"; };
 		49E746611CCD7C68005A695F /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
@@ -145,8 +143,8 @@
 		490EEA191C08B79000DE194B /* Binding */ = {
 			isa = PBXGroup;
 			children = (
+				499BF61B1CECB2E30054DE39 /* Observation */,
 				490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */,
-				49E7465C1CCD7BE4005A695F /* ViewObserverCollectionSpec.swift */,
 			);
 			path = Binding;
 			sourceTree = "<group>";
@@ -548,7 +546,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				49E7465D1CCD7BE4005A695F /* ViewObserverCollectionSpec.swift in Sources */,
 				499BF6211CECB9860054DE39 /* ObservationCollectionSpec.swift in Sources */,
 				499BF6231CECBD1A0054DE39 /* ComponentRouterSpec.swift in Sources */,
 				490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */,

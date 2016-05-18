@@ -38,30 +38,3 @@ class ObservationCollection {
         self.removeAllObservers()
     }
 }
-
-//extension ViewObserverCollection : ViewObserver {
-//
-//    func observe<AnyValue>(value: AnyValue) -> AnyObserver<AnyValue> {
-//        let observer = AnyObserver(value: value)
-//
-//        self.append(observer)
-//
-//        return observer
-//    }
-//
-//    func observe(value: Command) -> CommandObserver {
-//        let observer = CommandObserver(command: value)
-//
-//        self.append(observer)
-//
-//        return observer
-//    }
-//
-//    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObserver<ViewModelType> {
-//        let observer = ViewModelObserver<ViewModelType>(lifecycle: self.lifecycle)
-//
-//        self.append(observer)
-//
-//        return observer
-//    }
-//}

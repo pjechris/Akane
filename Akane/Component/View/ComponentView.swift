@@ -38,7 +38,6 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
 }
 
 extension ComponentView {
-    // FIXME make var weak
     public weak var componentLifecycle: Lifecycle? {
         get {
             guard let weakValue = self.associatedObjects[ComponentViewLifecycleAttr] as? AnyWeakValue else {
