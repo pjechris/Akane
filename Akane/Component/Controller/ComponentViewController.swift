@@ -16,32 +16,15 @@ view and your view model work.
 */
 public class ComponentViewController : UIViewController, ComponentController {
     public var viewModel: ComponentViewModel! {
-        didSet {
-            self.didLoadComponent()
-
-            if (self.isViewLoaded()) {
-                self.makeBindings()
-            }
-        }
+        didSet { self.didSetViewModel() }
     }
 
     public var componentView: ComponentView! {
         get { return self.view as! ComponentView }
     }
 
-    required public init(view: UIView) {
-        super.init(nibName: nil, bundle: nil)
-
-        self.view = view
-        self.viewDidLoad()
-    }
-    
-    required public init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-
-    public override func viewDidLoad() {
-        self.makeBindings()
+    override public var view: UIView! {
+        didSet { self.makeBindings() }
     }
 
     public override func viewWillAppear(animated: Bool) {
@@ -49,8 +32,18 @@ public class ComponentViewController : UIViewController, ComponentController {
         self.viewModel?.mount()
     }
 
-    public func didLoadComponent() {
+    private func didSetViewModel() {
+        defer {
+            if (self.isViewLoaded()) {
+                self.makeBindings()
+            }
+        }
 
+        self.viewModel.router = self as? ComponentRouter
+        self.didLoadComponent()
+    }
+
+    public func didLoadComponent() {
     }
 }
 
