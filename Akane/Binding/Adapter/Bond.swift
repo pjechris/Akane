@@ -16,7 +16,7 @@ extension Bond.Observable : Akane.Bindable {
 }
 
 extension ViewObserver {
-    func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
+    public func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
         let observer = AnyObservation<AnyValue>()
 
         let disposable : DisposableType = observable.observe { value in
@@ -30,11 +30,11 @@ extension ViewObserver {
         return observer
     }
 
-    func observe<AnyValue, AnyAttribute>(observable: Observable<AnyValue>, attribute: AnyValue -> AnyAttribute) -> AnyObservation<AnyAttribute> {
+    public func observe<AnyValue, AnyAttribute>(observable: Observable<AnyValue>, attribute: AnyValue -> AnyAttribute) -> AnyObservation<AnyAttribute> {
         return self.observe(observable).convert(attribute)
     }
 
-    func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
+    public func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
         let observer = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
 
         let disposable : DisposableType = observable.observe { value in
