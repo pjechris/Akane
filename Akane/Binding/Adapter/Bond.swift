@@ -30,6 +30,10 @@ extension ViewObserver {
         return observer
     }
 
+    func observe<AnyValue, AnyAttribute>(observable: Observable<AnyValue>, attribute: AnyValue -> AnyAttribute) -> AnyObservation<AnyAttribute> {
+        return self.observe(observable).convert(attribute)
+    }
+
     func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
         let observer = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
 
