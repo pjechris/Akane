@@ -13,6 +13,7 @@
 		490F40121CCE229C00BACD18 /* WeakValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F40111CCE229C00BACD18 /* WeakValue.swift */; };
 		490F40141CCE25B700BACD18 /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F40131CCE25B700BACD18 /* Selectable.swift */; };
 		490F40161CCE25CE00BACD18 /* Unselectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490F40151CCE25CE00BACD18 /* Unselectable.swift */; };
+		4922AC141CF30895009354E6 /* AnyObservationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4922AC131CF30895009354E6 /* AnyObservationSpec.swift */; };
 		493CA3801C50ED2D005ED20F /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3641C50ED2D005ED20F /* ComponentController.swift */; };
 		493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3651C50ED2D005ED20F /* ComponentViewController.swift */; };
 		493CA3821C50ED2D005ED20F /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 493CA3661C50ED2D005ED20F /* ControllerLifecycle.swift */; };
@@ -32,6 +33,7 @@
 		495039291CC3C0A100A37432 /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 495039281CC3C0A100A37432 /* Updatable.swift */; };
 		4950392D1CC3C2A500A37432 /* UITableView+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950392C1CC3C2A500A37432 /* UITableView+Update.swift */; };
 		4950AFF01C68041A00E4E86E /* CollectionViewDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */; };
+		49545B8A1CF35D9A002A484F /* BondSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49545B891CF35D9A002A484F /* BondSpec.swift */; };
 		49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -75,6 +77,7 @@
 		490F40111CCE229C00BACD18 /* WeakValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakValue.swift; sourceTree = "<group>"; };
 		490F40131CCE25B700BACD18 /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
 		490F40151CCE25CE00BACD18 /* Unselectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Unselectable.swift; sourceTree = "<group>"; };
+		4922AC131CF30895009354E6 /* AnyObservationSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyObservationSpec.swift; sourceTree = "<group>"; };
 		4926EADC1A5EBCC0005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		493CA3641C50ED2D005ED20F /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
@@ -96,6 +99,7 @@
 		495039281CC3C0A100A37432 /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
 		4950392C1CC3C2A500A37432 /* UITableView+Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Update.swift"; sourceTree = "<group>"; };
 		4950AFEF1C68041A00E4E86E /* CollectionViewDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewDelegate.swift; sourceTree = "<group>"; };
+		49545B891CF35D9A002A484F /* BondSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondSpec.swift; sourceTree = "<group>"; };
 		49611BA01C7C71C7001AFA9C /* CollectionElementCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionElementCategory.swift; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,6 +147,7 @@
 		490EEA191C08B79000DE194B /* Binding */ = {
 			isa = PBXGroup;
 			children = (
+				49545B881CF35D86002A484F /* Adapter */,
 				499BF61B1CECB2E30054DE39 /* Observation */,
 				490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */,
 			);
@@ -331,6 +336,14 @@
 			path = Observer;
 			sourceTree = "<group>";
 		};
+		49545B881CF35D86002A484F /* Adapter */ = {
+			isa = PBXGroup;
+			children = (
+				49545B891CF35D9A002A484F /* BondSpec.swift */,
+			);
+			path = Adapter;
+			sourceTree = "<group>";
+		};
 		496854991BD67AFC00589F4C /* Converter */ = {
 			isa = PBXGroup;
 			children = (
@@ -345,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				499BF6201CECB9860054DE39 /* ObservationCollectionSpec.swift */,
+				4922AC131CF30895009354E6 /* AnyObservationSpec.swift */,
 			);
 			path = Observation;
 			sourceTree = "<group>";
@@ -548,8 +562,10 @@
 			files = (
 				499BF6211CECB9860054DE39 /* ObservationCollectionSpec.swift in Sources */,
 				499BF6231CECBD1A0054DE39 /* ComponentRouterSpec.swift in Sources */,
+				4922AC141CF30895009354E6 /* AnyObservationSpec.swift in Sources */,
 				490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */,
 				499BF61F1CECB3230054DE39 /* ComponentViewControllerSpec.swift in Sources */,
+				49545B8A1CF35D9A002A484F /* BondSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
