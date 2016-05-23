@@ -10,6 +10,9 @@ import Foundation
 import Bond
 import HasAssociatedObjects
 
+var ViewObserverObserversKey = "ViewObserverObserversKey"
+var ViewObserverLifecycleAttr = "ViewObserverLifecycleAttr"
+
 /**
 `ViewObserver` provides an entry point for observing:
 - `Command`s
@@ -17,8 +20,10 @@ import HasAssociatedObjects
 - any other value
 */
 public protocol ViewObserver : class, HasAssociatedObjects {
+
+
     /**
-    Takes the current value to create a `AnyObservation`. No real observation is made as value never changes.
+    Takes the current value to create a `AnyObservation`.
      
     - parameter value: the value to be use.
      
@@ -46,7 +51,43 @@ public protocol ViewObserver : class, HasAssociatedObjects {
     func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType>
 }
 
-var ViewObserverObserversKey = "ViewObserverObserversKey"
+extension ViewObserver {
+    public internal(set) weak var componentLifecycle: Lifecycle? {
+        get {
+            guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
+                return nil
+            }
+
+            return weakValue.value as? Lifecycle
+        }
+        set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
+    }
+
+    public func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue> {
+        let observation = AnyObservation(value: value)
+
+        self.observerCollection?.append(observation)
+
+        return observation
+    }
+
+    public func observe(value: Command) -> CommandObservation {
+        let observation = CommandObservation(command: value)
+
+        self.observerCollection?.append(observation)
+
+        return observation
+    }
+
+    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType> {
+        let observation = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
+
+        self.observerCollection?.append(observation)
+        
+        return observation
+    }
+}
+
 extension ViewObserver {
     private typealias ObserverType = (observer: _Observation, onRemove: (Void -> Void)?)
 

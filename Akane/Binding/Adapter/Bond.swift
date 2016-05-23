@@ -15,7 +15,7 @@ extension Bond.Observable : Akane.Bindable {
     }
 }
 
-extension ViewObserver where Self : ComponentView {
+extension ViewObserver {
     func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
         let observer = AnyObservation<AnyValue>()
 

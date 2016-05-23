@@ -9,8 +9,6 @@
 import Foundation
 import HasAssociatedObjects
 
-var ComponentViewLifecycleAttr = "ComponentViewLifecycleAttr"
-
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
@@ -38,44 +36,8 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
 }
 
 extension ComponentView {
-    public weak var componentLifecycle: Lifecycle? {
-        get {
-            guard let weakValue = self.associatedObjects[ComponentViewLifecycleAttr] as? AnyWeakValue else {
-                return nil
-            }
-
-            return weakValue.value as? Lifecycle
-        }
-        set { self.associatedObjects[ComponentViewLifecycleAttr] = AnyWeakValue(newValue) }
-    }
 
     public static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
-    }
-}
-
-extension ComponentView {
-    public func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue> {
-        let observation = AnyObservation(value: value)
-
-        self.observerCollection?.append(observation)
-
-        return observation
-    }
-
-    public func observe(value: Command) -> CommandObservation {
-        let observation = CommandObservation(command: value)
-
-        self.observerCollection?.append(observation)
-
-        return observation
-    }
-
-    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        let observation = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
-
-        self.observerCollection?.append(observation)
-
-        return observation
     }
 }
