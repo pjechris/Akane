@@ -19,8 +19,8 @@ public class ComponentViewController : UIViewController, ComponentController {
         didSet { self.didSetViewModel() }
     }
 
-    public var componentView: ComponentView! {
-        get { return self.view as! ComponentView }
+    public var componentView: ComponentView? {
+        get { return self.isViewLoaded() ? self.view as? ComponentView : nil }
     }
 
     override public var view: UIView! {
@@ -32,15 +32,10 @@ public class ComponentViewController : UIViewController, ComponentController {
         self.viewModel?.mount()
     }
 
-    private func didSetViewModel() {
-        defer {
-            if (self.isViewLoaded()) {
-                self.makeBindings()
-            }
-        }
-
+    func didSetViewModel() {
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
+        self.makeBindings()
     }
 
     public func didLoadComponent() {

@@ -41,23 +41,16 @@ class ComponentViewControllerSpec : QuickSpec {
         }
 
         describe("set viewModel multiple times") {
-            it("calls makeBindings multiple times") {
-                let count = viewController.countMakeBindings
-                let setNb: UInt = 3
+            let setNb: UInt = 3
 
+            beforeEach {
                 for _ in 1...setNb {
                     viewController.viewModel = ViewModelMock()
                 }
-
-                expect(viewController.countMakeBindings) == count + setNb
             }
 
-            it("makeBindings calls == stopBindings calls") {
-                for _ in 1...3 {
-                    viewController.viewModel = ViewModelMock()
-
-                    expect(viewController.countMakeBindings) == viewController.countStopBindings
-                }
+            it("calls makeBindings multiple times") {
+                expect(viewController.countMakeBindings) == setNb
             }
         }
     }
@@ -67,7 +60,6 @@ extension ComponentViewControllerSpec {
     class ComponentViewControllerMock : ComponentViewController {
         var receivedDidLoadComponent: Bool = false
         var countMakeBindings: UInt = 0
-        var countStopBindings: UInt = 0
         var stubIsViewLoaded: Bool? = nil
 
         override func didLoadComponent() {
@@ -78,12 +70,11 @@ extension ComponentViewControllerSpec {
             return self.stubIsViewLoaded ?? super.isViewLoaded()
         }
 
-        func makeBindings() {
+        // FIXME
+        // can't overload makeBindings
+        override func didSetViewModel() {
             self.countMakeBindings += 1
-        }
-
-        func stopBindings() {
-            self.countStopBindings += 1
+            super.didSetViewModel()
         }
     }
 

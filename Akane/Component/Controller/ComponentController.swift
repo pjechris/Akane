@@ -22,7 +22,7 @@ public protocol ComponentController : class, Lifecycle {
     // MARK: Associated component elements
     
     /// The Controller's ComponentView.
-    var componentView: ComponentView! { get }
+    var componentView: ComponentView? { get }
 
     /// The Controller's CompnentViewModel.
     var viewModel: ComponentViewModel! { get set }
@@ -57,17 +57,17 @@ public protocol ComponentController : class, Lifecycle {
 }
 
 extension ComponentController {
-    func makeBindings() {
-        guard let viewModel = self.viewModel else {
+    public func makeBindings() {
+        guard let viewModel = self.viewModel, let componentView = self.componentView else {
             return
         }
 
         self.stopBindings()
-        self.componentView.componentLifecycle = self
-        self.componentView.bindings(self.componentView, viewModel: viewModel)
+        componentView.componentLifecycle = self
+        componentView.bindings(componentView, viewModel: viewModel)
     }
 
-    func stopBindings() {
-        self.componentView.observerCollection?.removeAllObservers()
+    public func stopBindings() {
+        self.componentView?.observerCollection?.removeAllObservers()
     }
 }
