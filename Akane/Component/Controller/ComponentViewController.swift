@@ -24,7 +24,11 @@ public class ComponentViewController : UIViewController, ComponentController {
     }
 
     override public var view: UIView! {
-        didSet { self.makeBindings() }
+        get { return super.view }
+        set {
+            super.view = newValue
+            self.makeBindings()
+        }
     }
 
     public override func viewWillAppear(animated: Bool) {
