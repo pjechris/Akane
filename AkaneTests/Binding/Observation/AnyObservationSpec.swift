@@ -31,7 +31,7 @@ class AnyObservationSpec : QuickSpec {
             context("with conversion") {
                 context("with no option") {
                     it("binds converted value") {
-                        observation.convert(SimpleConverter.self).bindTo(binding)
+                        observation.convert(AddExclamationConverter.self).bindTo(binding)
 
                         expect(binding.receivedBinding) == "hey hello world!"
                     }
@@ -43,7 +43,7 @@ class AnyObservationSpec : QuickSpec {
                             .convert(ComplexConverter.self) { .Uppercase }
                             .bindTo(binding)
 
-                        expect(binding.receivedBinding) == "HEY HELLO WORLD!"
+                        expect(binding.receivedBinding) == "HELLO WORLD"
                     }
                 }
             }
@@ -62,7 +62,7 @@ extension AnyObservationSpec {
         }
     }
 
-    class SimpleConverter: Converter {
+    class AddExclamationConverter: Converter {
         required init() {
 
         }
