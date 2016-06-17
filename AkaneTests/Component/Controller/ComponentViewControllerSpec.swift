@@ -19,6 +19,31 @@ class ComponentViewControllerSpec : QuickSpec {
             viewController = ComponentViewControllerMock(nibName: nil, bundle: nil)
         }
 
+        describe("set view") {
+            beforeEach {
+                viewController.view = ViewMock()
+            }
+
+            it("sets componentView") {
+                expect(viewController.componentView).toNot(beNil())
+            }
+        }
+
+        describe("makeBindings") {
+            beforeEach {
+                viewController.view = ViewMock()
+                viewController.viewModel = ViewModelMock()
+            }
+
+            it("sets observerCollection") {
+                expect(viewController.componentView?.observerCollection).toNot(beNil())
+            }
+
+            it("sets componentLifecycle") {
+                expect(viewController.componentView?.componentLifecycle) === viewController
+            }
+        }
+
         describe("set viewModel") {
             beforeEach {
 
@@ -75,6 +100,12 @@ extension ComponentViewControllerSpec {
         override func didSetViewModel() {
             self.countMakeBindings += 1
             super.didSetViewModel()
+        }
+    }
+
+    class ViewMock : UIView, ComponentView {
+        func bindings(observer: ViewObserver, viewModel: AnyObject) {
+            
         }
     }
 
