@@ -20,8 +20,9 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
     unowned let lifecycle: Lifecycle
 
-    init(lifecycle: Lifecycle) {
+    init(value: ViewModelType?, lifecycle: Lifecycle) {
         self.lifecycle = lifecycle
+        self.value = value
     }
 }
 

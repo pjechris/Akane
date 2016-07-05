@@ -34,7 +34,7 @@ extension Observation {
     }
 
     func observeNext<NewElement>(yield: ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
-        let nextObserver = AnyObservation<NewElement>()
+        let nextObserver = AnyObservation<NewElement>(value: nil)
 
         self.next.append { value in
             yield(nextObserver, value)

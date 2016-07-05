@@ -24,12 +24,8 @@ public class AnyObservation<Element> : Observation {
     var next: [(Element -> Void)] = [] {
         didSet { self.runNext() }
     }
-    
-    init() {
-    }
 
-    convenience init(value: Element) {
-        self.init()
+    init(value: Element?) {
         self.value = value
     }
 

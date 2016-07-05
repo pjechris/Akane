@@ -80,7 +80,7 @@ extension ViewObserver {
     }
 
     public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        let observation = ViewModelObservation<ViewModelType>(lifecycle: self.componentLifecycle!)
+        let observation = ViewModelObservation<ViewModelType>(value: value, lifecycle: self.componentLifecycle!)
 
         self.observerCollection?.append(observation)
         
