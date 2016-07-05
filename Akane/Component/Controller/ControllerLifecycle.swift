@@ -30,7 +30,7 @@ extension ComponentController where Self : UIViewController {
 
         if (createIfNeeded) {
             let componentClass:ComponentViewController.Type = subview.dynamicType.componentControllerClass()
-            let controller = componentClass.init(coder: NSCoder())!
+            let controller = componentClass.init(coder: NSCoder.empty())!
 
             controller.view = subview
             controller.viewDidLoad()
@@ -41,5 +41,15 @@ extension ComponentController where Self : UIViewController {
         }
         
         return nil
+    }
+}
+
+// https://medium.com/@mxcl/uiviewcontroller-initializers-in-swift-b4b624448290
+extension NSCoder {
+    class func empty() -> NSCoder {
+        let data = NSMutableData()
+        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        archiver.finishEncoding()
+        return NSKeyedUnarchiver(forReadingWithData: data)
     }
 }
