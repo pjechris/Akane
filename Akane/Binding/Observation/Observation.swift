@@ -10,7 +10,8 @@ import Foundation
 
 protocol _Observation : class {
     func unobserve()
-    func runNext()
+    /// Run any observations that might have been made
+    func run()
 }
 
 protocol Observation : _Observation {
@@ -21,11 +22,12 @@ protocol Observation : _Observation {
 }
 
 extension Observation {
-    func value(value: Element) {
+    func put(value: Element) {
         self.value = value
+        self.run()
     }
 
-    func runNext() {
+    func run() {
         if let value = self.value {
             for step in self.next {
                 step(value)
@@ -33,18 +35,19 @@ extension Observation {
         }
     }
 
-    func observeNext<NewElement>(yield: ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
+    func observe<NewElement>(yield: ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
         let nextObserver = AnyObservation<NewElement>(value: nil)
 
-        self.next.append { value in
+        self.observe { value in
             yield(nextObserver, value)
         }
 
         return nextObserver
     }
 
-    func next(block: (Element -> Void)) {
+    func observe(block: (Element -> Void)) {
         self.next.append(block)
+        self.run()
     }
 
     func unobserve() {

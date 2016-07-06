@@ -17,13 +17,9 @@ import HasAssociatedObjects
  `ComponentViewModel` or a `Converter` instead.
  */
 public class AnyObservation<Element> : Observation {
-    var value: Element? = nil {
-        didSet { self.runNext() }
-    }
+    var value: Element? = nil
 
-    var next: [(Element -> Void)] = [] {
-        didSet { self.runNext() }
-    }
+    var next: [(Element -> Void)] = []
 
     init(value: Element?) {
         self.value = value
@@ -38,8 +34,8 @@ public class AnyObservation<Element> : Observation {
 extension AnyObservation {
     public func convert<NewElement>(transformer: (Element -> NewElement)) -> AnyObservation<NewElement> {
 
-        return self.observeNext { nextObserver, value in
-            nextObserver.value(transformer(value))
+        return self.observe { nextObserver, value in
+            nextObserver.put(transformer(value))
         }
     }
 
@@ -52,17 +48,17 @@ extension AnyObservation {
      */
     public func convert<T: Converter where T.ValueType == Element>(transformer: T.Type) -> AnyObservation<T.ConvertValueType> {
 
-        return self.observeNext { nextObserver, value in
-            nextObserver.value(transformer.init().convert(value))
+        return self.observe { nextObserver, value in
+            nextObserver.put(transformer.init().convert(value))
         }
     }
 
     public func convert<T: protocol<Converter, ConverterOption> where T.ValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObservation<T.ConvertValueType> {
         
-        return self.observeNext{ nextObserver, value in
+        return self.observe{ nextObserver, value in
             let newValue = transformer.init(options: options()).convert(value)
 
-            nextObserver.value(newValue)
+            nextObserver.put(newValue)
         }
     }
 }
@@ -79,17 +75,17 @@ extension AnyObservation {
      - returns: A new AnyObservation whose value is the converted current `Element`.
      */
     public func convertBack<T: ConverterReverse where T.ConvertValueType == Element>(transformer: T.Type) -> AnyObservation<T.ValueType> {
-        return self.observeNext { nextObserver, value in
-            nextObserver.value(transformer.init().convertBack(value))
+        return self.observe { nextObserver, value in
+            nextObserver.put(transformer.init().convertBack(value))
         }
     }
 
     public func convertBack<T: protocol<ConverterReverse, ConverterOption> where T.ConvertValueType == Element>(transformer: T.Type, options:() -> T.ConvertOptionType) -> AnyObservation<T.ValueType> {
 
-        return self.observeNext { nextObserver, value in
+        return self.observe { nextObserver, value in
             let newValue = transformer.init(options: options()).convertBack(value)
 
-            nextObserver.value(newValue)
+            nextObserver.put(newValue)
         }
     }
 }
@@ -103,7 +99,7 @@ extension AnyObservation {
      the text of a label.
      */
     public func bindTo<T: Bindable where T.Element == Element>(bindable: T) {
-        self.next.append { value in
+        self.observe { value in
             bindable.advance()(value)
         }
     }
@@ -115,7 +111,7 @@ extension AnyObservation {
      a no-op.
      */
     public func bindTo<T: Bindable where T.Element == Optional<Element>>(bindable: T) {
-        self.next.append { value in
+        self.observe { value in
             bindable.advance()(value)
         }
     }

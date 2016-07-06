@@ -10,13 +10,9 @@ import Foundation
 import Bond
 
 public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
-    var value: ViewModelType? = nil {
-        didSet { self.runNext() }
-    }
+    var value: ViewModelType? = nil
 
-    var next: [(ViewModelType -> Void)] = [] {
-        didSet { self.runNext() }
-    }
+    var next: [(ViewModelType -> Void)] = []
 
     unowned let lifecycle: Lifecycle
 
@@ -41,7 +37,7 @@ extension ViewModelObservation {
             return
         }
 
-        self.next { value in
+        self.observe { value in
             controller!.viewModel = value
         }
     }

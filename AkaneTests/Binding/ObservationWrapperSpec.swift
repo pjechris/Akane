@@ -30,7 +30,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             context("when value changed") {
                 it("should update the binding") {
-                    observer.value("Hello World")
+                    observer.put("Hello World")
                     expect(bindedItem.text) == "Hello World"
                 }
             }
@@ -46,7 +46,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             it("should stop update the binding") {
                 observer.unobserve()
-                observer.value("the world is mine")
+                observer.put("the world is mine")
                 expect(bindedItem.text).to(beNil())
             }
         }
@@ -60,7 +60,7 @@ class ObservationWrapperSpec : QuickSpec {
                     return result
                 }
 
-                observer.value("this is giant")
+                observer.put("this is giant")
                 expect(result) == "THIS IS GIANT"
             }
 
@@ -75,7 +75,7 @@ class ObservationWrapperSpec : QuickSpec {
                         return result
                     }
 
-                    observer.value("there is no space left")
+                    observer.put("there is no space left")
                     expect(result) == "THERE+IS+NO+SPACE+LEFT"
                 }
             }

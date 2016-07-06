@@ -20,7 +20,7 @@ extension ViewObserver {
         let observer = AnyObservation<AnyValue>(value: nil)
 
         let disposable : DisposableType = observable.observe { value in
-            observer.value(value)
+            observer.put(value)
         }
 
         self.observerCollection?.append(observer) {
@@ -38,7 +38,7 @@ extension ViewObserver {
         let observer = ViewModelObservation<ViewModelType>(value: nil, lifecycle: self.componentLifecycle!)
 
         let disposable : DisposableType = observable.observe { value in
-            observer.value(value)
+            observer.put(value)
         }
 
         self.observerCollection?.append(observer) {

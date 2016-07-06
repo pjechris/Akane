@@ -10,13 +10,9 @@ import Foundation
 import Bond
 
 public class CommandObservation : Observation {
-    var value: Command? = nil {
-        didSet { self.runNext() }
-    }
+    var value: Command? = nil
 
-    var next: [(Command -> Void)] = [] {
-        didSet { self.runNext() }
-    }
+    var next: [(Command -> Void)] = []
 
     private var controls: [UIControl] = []
 
