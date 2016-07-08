@@ -16,8 +16,17 @@ public class CommandObservation : Observation {
 
     private var controls: [UIControl] = []
 
-    init(command: Command) {
+    var canExecuteObservation: AnyObservation<Bool>? = nil
+    var isExecutingObservation: AnyObservation<Bool>? = nil
+
+    init(command: Command, observer: ViewObserver?) {
         self.value = command
+
+        self.canExecuteObservation = observer?.observe(command.canExecute)
+
+        if let asyncCommand = command as? AsyncCommand {
+            self.isExecutingObservation = observer?.observe(asyncCommand.isExecuting)
+        }
     }
 
     deinit {
@@ -28,6 +37,9 @@ public class CommandObservation : Observation {
         for control in self.controls {
             control.removeTarget(self, action: nil, forControlEvents: .AllEvents)
         }
+
+        self.canExecuteObservation?.unobserve()
+        self.isExecutingObservation?.unobserve()
 
         self.controls = []
         self.next = []
@@ -42,10 +54,19 @@ extension CommandObservation {
         }
     }
 
+    /**
+     Binds command on `control`. It also attaches:
+     - command `canExecute` with control `enabled`
+     - command `isExecuting` (if AsyncCommand) with control `userInteractionEnabled`
+     */
     public func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
         control.addTarget(self, action: "onTouch", forControlEvents: events)
 
         self.controls.append(control)
+
+        // FIXME remove dep on Bond
+        self.canExecuteObservation?.bindTo(control.bnd_enabled)
+        self.isExecutingObservation?.bindTo(control.bnd_userInteractionEnabled)
     }
 
     @objc

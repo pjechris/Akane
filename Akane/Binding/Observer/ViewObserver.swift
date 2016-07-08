@@ -71,8 +71,8 @@ extension ViewObserver {
         return observation
     }
 
-    public func observe(value: Command) -> CommandObservation {
-        let observation = CommandObservation(command: value)
+    public func observe(command: Command) -> CommandObservation {
+        let observation = CommandObservation(command: command, observer: self)
 
         self.observerCollection?.append(observation)
 
