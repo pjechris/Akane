@@ -11,27 +11,27 @@ import Foundation
 /// Performs navigation through Controllers inside the application.
 public protocol ComponentRouter: class {
     /**
-     Route a `ComponentViewModel`. `ComponentRouter` should try to display a new UIViewController for this context
+     Route a `ComponentViewModel`. `ComponentRouter` should try to display a new UIViewController for this context.
 
      - parameter context: new context to go to.
      - parameter name: a context name. Not mandatory.
      */
-    func route(context: ComponentViewModel, named name: String?)
-}
+    func route(context: ComponentViewModel, named name: String)
 
-extension ComponentRouter {
-    /**
-     @see route(_:_:)
-     */
-    public func route(context: ComponentViewModel) {
-        self.route(context, named: nil)
-    }
+    func route(context: ComponentViewModel)
 }
 
 extension ComponentRouter where Self : UIViewController {
-    public func route(context: ComponentViewModel, named name: String?) {
-        if let name = name where self.shouldPerformSegueWithIdentifier(name, sender: context) {
+    /// Calls to `UIViewController.performSegueWithIdentifier`
+    public func route(context: ComponentViewModel, named name: String) {
+        if self.shouldPerformSegueWithIdentifier(name, sender: context) {
             self.performSegueWithIdentifier(name, sender: context)
         }
+    }
+
+    /// Does nothing
+    /// Overrides this method if you want to 'push' or 'present' a `UIViewController` for current context
+    public func route(context: ComponentViewModel) {
+
     }
 }

@@ -16,7 +16,7 @@ class ComponentRouterSpec : QuickSpec {
         var router: ComponentRouter!
 
         describe("route") {
-            context("when router is UIViewController") {
+            context("router is UIViewController") {
                 var controllerRouter: ControllerRouterMock!
 
                 beforeEach {
@@ -24,11 +24,19 @@ class ComponentRouterSpec : QuickSpec {
                     router = controllerRouter
                 }
 
-                context("with no name") {
-                    it("calls overridden implementation") {
-                        controllerRouter.route(RouteContextMock())
+                context("unnamed route") {
+                    it("receives route") {
+                        router.route(RouteContextMock())
 
                         expect(controllerRouter.receivedRoute) == true
+                    }
+                }
+
+                context("named route") {
+                    it("forwards to segue") {
+                        router.route(RouteContextMock(), named: "foo")
+
+                        expect(controllerRouter.receivedPerformSegueWithIdentifier) == true
                     }
                 }
             }
@@ -38,10 +46,15 @@ class ComponentRouterSpec : QuickSpec {
 
 extension ComponentRouterSpec {
     class ControllerRouterMock : UIViewController, ComponentRouter {
-        var receivedRoute: Bool = false
+        var receivedRoute = false
+        var receivedPerformSegueWithIdentifier = false
 
-        func route(context: ComponentViewModel, named name: String?) {
+        func route(context: ComponentViewModel) {
             self.receivedRoute = true
+        }
+
+        override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
+            self.receivedPerformSegueWithIdentifier = true
         }
     }
 
