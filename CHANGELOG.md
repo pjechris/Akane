@@ -7,6 +7,7 @@
 - [View] You can access `componentLifecycle` from `ComponentView`.
 - [Collection] You can now reload a row/section. Just make your `ComponentViewModel` conform to new `Updatable` protocol.
 - [ViewModel] Added `router` property on `ComponentViewModel`. Use it to navigate btw your controllers.
+- [Command] Added `AsyncCommand`.
 
 ## Enhancements
 

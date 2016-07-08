@@ -42,9 +42,11 @@
 		496854B01BD68B7C00589F4C /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496854AD1BD68B7C00589F4C /* ConverterReverse.swift */; };
 		496EF9301C7DBCD100E18688 /* CollectionViewSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 496EF92F1C7DBCD100E18688 /* CollectionViewSectionDelegate.swift */; };
 		499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499336B81C7C5CF3005DEFDC /* CellView.swift */; };
+		4993D8B21D2FE3D50061EBAC /* AsyncCommandSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4993D8B11D2FE3D50061EBAC /* AsyncCommandSpec.swift */; };
 		499BF61F1CECB3230054DE39 /* ComponentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BF61E1CECB3230054DE39 /* ComponentViewControllerSpec.swift */; };
 		499BF6211CECB9860054DE39 /* ObservationCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BF6201CECB9860054DE39 /* ObservationCollectionSpec.swift */; };
 		499BF6231CECBD1A0054DE39 /* ComponentRouterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499BF6221CECBD1A0054DE39 /* ComponentRouterSpec.swift */; };
+		49A2A55F1D2D2D3D00C754C0 /* AsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49A2A55E1D2D2D3D00C754C0 /* AsyncCommand.swift */; };
 		49C3065D1CD90C9000CABDF4 /* ComponentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C3065C1CD90C9000CABDF4 /* ComponentRouter.swift */; };
 		49C48AA71C4C488100700D4D /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C48AA61C4C488100700D4D /* UITableView.swift */; };
 		49C592B61C5591D5005AFE25 /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49C592B51C5591D5005AFE25 /* TemplateView.swift */; };
@@ -108,9 +110,11 @@
 		496854AD1BD68B7C00589F4C /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
 		496EF92F1C7DBCD100E18688 /* CollectionViewSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionViewSectionDelegate.swift; sourceTree = "<group>"; };
 		499336B81C7C5CF3005DEFDC /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
+		4993D8B11D2FE3D50061EBAC /* AsyncCommandSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommandSpec.swift; sourceTree = "<group>"; };
 		499BF61E1CECB3230054DE39 /* ComponentViewControllerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewControllerSpec.swift; sourceTree = "<group>"; };
 		499BF6201CECB9860054DE39 /* ObservationCollectionSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationCollectionSpec.swift; sourceTree = "<group>"; };
 		499BF6221CECBD1A0054DE39 /* ComponentRouterSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRouterSpec.swift; sourceTree = "<group>"; };
+		49A2A55E1D2D2D3D00C754C0 /* AsyncCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommand.swift; sourceTree = "<group>"; };
 		49C3065C1CD90C9000CABDF4 /* ComponentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRouter.swift; sourceTree = "<group>"; };
 		49C48AA61C4C488100700D4D /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		49C592B51C5591D5005AFE25 /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			children = (
 				490EEA171C08ADCD00DE194B /* Command.swift */,
 				490EEA151C08ADA500DE194B /* RelayCommand.swift */,
+				49A2A55E1D2D2D3D00C754C0 /* AsyncCommand.swift */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -201,8 +206,9 @@
 		4926EADA1A5EBCC0005A3D71 /* AkaneTests */ = {
 			isa = PBXGroup;
 			children = (
-				499BF61C1CECB30B0054DE39 /* Component */,
 				490EEA191C08B79000DE194B /* Binding */,
+				4993D8B01D2FE3B70061EBAC /* Command */,
+				499BF61C1CECB30B0054DE39 /* Component */,
 				4926EADB1A5EBCC0005A3D71 /* Supporting Files */,
 			);
 			path = AkaneTests;
@@ -312,8 +318,8 @@
 		493CA3911C50ED4A005ED20F /* Binding */ = {
 			isa = PBXGroup;
 			children = (
-				493CA3921C50ED4A005ED20F /* Adapter */,
 				493CA3941C50ED4A005ED20F /* Bindable.swift */,
+				493CA3921C50ED4A005ED20F /* Adapter */,
 				49E7465E1CCD7C68005A695F /* Observation */,
 				493CA3991C50ED4A005ED20F /* Observer */,
 			);
@@ -352,6 +358,14 @@
 				496854AD1BD68B7C00589F4C /* ConverterReverse.swift */,
 			);
 			path = Converter;
+			sourceTree = "<group>";
+		};
+		4993D8B01D2FE3B70061EBAC /* Command */ = {
+			isa = PBXGroup;
+			children = (
+				4993D8B11D2FE3D50061EBAC /* AsyncCommandSpec.swift */,
+			);
+			path = Command;
 			sourceTree = "<group>";
 		};
 		499BF61B1CECB2E30054DE39 /* Observation */ = {
@@ -545,6 +559,7 @@
 				490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */,
 				493CA3891C50ED2D005ED20F /* DataSource.swift in Sources */,
 				490EEA181C08ADCD00DE194B /* Command.swift in Sources */,
+				49A2A55F1D2D2D3D00C754C0 /* AsyncCommand.swift in Sources */,
 				490F40141CCE25B700BACD18 /* Selectable.swift in Sources */,
 				49611BA11C7C71C7001AFA9C /* CollectionElementCategory.swift in Sources */,
 				49C8CBE21C68E54800727EAF /* UICollectionView.swift in Sources */,
@@ -566,6 +581,7 @@
 				490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */,
 				499BF61F1CECB3230054DE39 /* ComponentViewControllerSpec.swift in Sources */,
 				49545B8A1CF35D9A002A484F /* BondSpec.swift in Sources */,
+				4993D8B21D2FE3D50061EBAC /* AsyncCommandSpec.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

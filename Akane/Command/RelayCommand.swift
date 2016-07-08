@@ -19,8 +19,8 @@ It provides 2 closures:
 */
 public class RelayCommand : Command {
     public private(set) var canExecute : Observable<Bool> = Observable(true)
-    private let action: (UIControl?) -> ()
-    private let canExecuteUpdater: () -> Bool
+    var action: ((UIControl?) -> ())! = nil
+    var canExecuteUpdater: () -> Bool
     
     // MARK: Initializers
     
