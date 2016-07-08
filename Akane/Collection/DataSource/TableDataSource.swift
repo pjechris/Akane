@@ -11,10 +11,10 @@ import Foundation
 /// Provide data and `Template`s for a `UITableView`
 public protocol DataSourceTableViewItems : DataSource {
     /// Type of the row items returned by the data source for the `UITableView`
-    typealias ItemType
+    associatedtype ItemType
     /// Possible identifier(s) associated with a row item. Use an `enum`
-    typealias ItemIdentifier: RawStringRepresentable
-    typealias ItemViewModelType : ComponentViewModel
+    associatedtype ItemIdentifier: RawStringRepresentable
+    associatedtype ItemViewModelType : ComponentViewModel
 
     /// Ask to return the item that correspond to the specified index path
     /// - returns an optional row item with an identifier for the current item and index path
@@ -39,10 +39,10 @@ public protocol DataSourceTableViewItems : DataSource {
 public protocol DataSourceTableViewSections : DataSourceTableViewItems {
     /// Type of the section items.
     /// If you do not intend to associate any data with your section, just set it to `Any`
-    typealias SectionType
+    associatedtype SectionType
     /// Possible identifier(s) associated with a section item. Use an `enum`
-    typealias SectionIdentifier: RawStringRepresentable
-    typealias SectionViewModelType : ComponentViewModel
+    associatedtype SectionIdentifier: RawStringRepresentable
+    associatedtype SectionViewModelType : ComponentViewModel
 
     /// Ask to return the item associated with the section index
     /// - returns an optional section item with an identifier for the current section

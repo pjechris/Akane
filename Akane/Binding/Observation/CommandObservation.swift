@@ -60,7 +60,7 @@ extension CommandObservation {
      - command `isExecuting` (if AsyncCommand) with control `userInteractionEnabled`
      */
     public func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
-        control.addTarget(self, action: "onTouch", forControlEvents: events)
+        control.addTarget(self, action: #selector(self.onTouch(_:)), forControlEvents: events)
 
         self.controls.append(control)
 

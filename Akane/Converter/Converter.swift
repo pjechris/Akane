@@ -12,8 +12,8 @@ import Foundation
 Converts a value from `ValueType` to `ConvertValueType`
 */
 public protocol Converter {
-    typealias ValueType
-    typealias ConvertValueType
+    associatedtype ValueType
+    associatedtype ConvertValueType
 
     // MARK: Initizalizer
     

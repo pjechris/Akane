@@ -9,7 +9,7 @@
 import Foundation
 
 public protocol Bindable {
-    typealias Element
+    associatedtype Element
 
     // - returns: a closure that can be used to dispatch events to the receiver.
     func advance() -> (Element -> Void)

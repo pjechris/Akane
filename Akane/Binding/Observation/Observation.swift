@@ -15,7 +15,7 @@ protocol _Observation : class {
 }
 
 protocol Observation : _Observation {
-    typealias Element
+    associatedtype Element
 
     var value: Element? { get set }
     var next: [(Element -> Void)] { get set }

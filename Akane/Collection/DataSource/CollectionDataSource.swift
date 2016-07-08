@@ -9,9 +9,9 @@
 import Foundation
 
 public protocol DataSourceCollectionViewItems : DataSource {
-    typealias ItemType
-    typealias ItemIdentifier: RawStringRepresentable
-    typealias ItemViewModelType : ComponentViewModel
+    associatedtype ItemType
+    associatedtype ItemIdentifier: RawStringRepresentable
+    associatedtype ItemViewModelType : ComponentViewModel
 
     func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
@@ -28,9 +28,9 @@ public protocol DataSourceCollectionViewItems : DataSource {
 }
 
 public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems {
-    typealias SectionType
-    typealias SectionIdentifier: RawStringRepresentable
-    typealias SectionViewModelType : ComponentViewModel
+    associatedtype SectionType
+    associatedtype SectionIdentifier: RawStringRepresentable
+    associatedtype SectionViewModelType : ComponentViewModel
 
     func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 

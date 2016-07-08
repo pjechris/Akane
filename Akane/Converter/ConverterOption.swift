@@ -14,7 +14,7 @@ import Foundation
 public protocol ConverterOption {
     
     /// Option type. Should be a dedicated struct
-    typealias ConvertOptionType
+    associatedtype ConvertOptionType
 
     // MARK: Initializer
     
