@@ -13,7 +13,7 @@ import Quick
 
 class AsyncCommandSpec : QuickSpec {
     override func spec() {
-        var command: AsyncCommand!
+        var command: AsyncCommand<Void>!
 
         describe("execute") {
 

@@ -9,6 +9,8 @@
 import Foundation
 import Bond
 
+public typealias VoidCommand = RelayCommand<Void>
+
 /**
 `RelayCommand` is a concretization of the `Command` protocol providing
  basic actions.
@@ -17,10 +19,11 @@ It provides 2 closures:
 - `canExecute` a block updating the command availability. Optional
 - `action` the block containing the action to execute
 */
-public class RelayCommand : Command {
+public class RelayCommand<Parameter> : Command {
     public private(set) var canExecute : Observable<Bool> = Observable(true)
-    var action: ((UIControl?) -> ())! = nil
     public internal(set) var isExecuting = Observable(false)
+
+    var action: ((Parameter?) -> ())! = nil
     var canExecuteUpdater: () -> Bool
     
     // MARK: Initializers
@@ -35,7 +38,7 @@ public class RelayCommand : Command {
     
     - seeAlso: `init(action:)`
     */
-    public init(canExecute canExecuteUpdater: () -> Bool, action: (UIControl?) -> ()) {
+    public init(canExecute canExecuteUpdater: () -> Bool, action: (Parameter?) -> ()) {
         self.canExecuteUpdater = canExecuteUpdater
         self.action = action
 
@@ -48,7 +51,7 @@ public class RelayCommand : Command {
     
     - parameter action: The command logic to execute when `execute` is called
     */
-    public convenience init(action: (UIControl?) -> ()) {
+    public convenience init(action: (Parameter?) -> ()) {
         self.init(canExecute: { return true }, action: action)
     }
     
@@ -60,9 +63,15 @@ public class RelayCommand : Command {
     }
 
     /// - see: `Command.execute(_:)`
-    public func execute(trigger: UIControl?) {
-        if self.canExecute.value {
-            self.action(trigger)
+    public func execute(parameter: Any?) {
+        guard !self.isExecuting.value && self.canExecute.value else {
+            return
         }
+
+        guard let param = parameter as? Parameter else {
+            return self.action(nil)
+        }
+
+        self.action(param)
     }
 }

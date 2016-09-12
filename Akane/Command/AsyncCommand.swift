@@ -12,14 +12,13 @@ import Bond
 /**
  Adds an attribute `isExecuting` which you can observe to determine whether or not the command is running.
 */
-public class AsyncCommand : RelayCommand {
-
+public class AsyncCommand<Parameter> : RelayCommand<Parameter> {
     /**
      @see RelayCommand
      `action` closure receives an extra parameter compared to `RelayCommand`: `completed`. Use it to inform `AsyncCommand`
      that your action is terminated and thus `isExecuting` should be passed to `false`.
     */
-    public init(canExecute canExecuteUpdater: () -> Bool, action: (UIControl?, completed: (Void -> Void)) -> Void) {
+    public init(canExecute canExecuteUpdater: () -> Bool, action: (Parameter?, completed: (Void -> Void)) -> Void) {
         super.init(canExecute: canExecuteUpdater, action: { _ in })
 
         self.action = { [weak self] control in
@@ -32,17 +31,7 @@ public class AsyncCommand : RelayCommand {
         }
     }
 
-    public convenience init(action: (UIControl?, completed: (Void -> Void)) -> Void) {
+    public convenience init(action: (Parameter?, completed: (Void -> Void)) -> Void) {
         self.init(canExecute: { return true }, action: action)
     }
-
-    /// Action is executable only if not already executing
-    public override func execute(trigger: UIControl?) {
-        guard !self.isExecuting.value else {
-            return
-        }
-
-        super.execute(trigger)
-    }
-
 }

@@ -1,5 +1,11 @@
 # CHANGELOG
 
+# WIP
+
+## Changes
+
+- `Command` now expects data instead than the control itself.
+
 # 0.14.0
 
 ## Added

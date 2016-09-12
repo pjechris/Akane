@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		490D56441D86F20D001F0D08 /* Commandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D56431D86F20D001F0D08 /* Commandable.swift */; };
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
 		490EEA1C1C08B7B400DE194B /* ObservationWrapperSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */; };
@@ -73,6 +74,7 @@
 
 /* Begin PBXFileReference section */
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
+		490D56431D86F20D001F0D08 /* Commandable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commandable.swift; sourceTree = "<group>"; };
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		490EEA171C08ADCD00DE194B /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		490EEA1B1C08B7B400DE194B /* ObservationWrapperSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationWrapperSpec.swift; sourceTree = "<group>"; };
@@ -164,6 +166,7 @@
 				490EEA171C08ADCD00DE194B /* Command.swift */,
 				490EEA151C08ADA500DE194B /* RelayCommand.swift */,
 				49A2A55E1D2D2D3D00C754C0 /* AsyncCommand.swift */,
+				490D56431D86F20D001F0D08 /* Commandable.swift */,
 			);
 			path = Command;
 			sourceTree = "<group>";
@@ -552,6 +555,7 @@
 				499336B91C7C5CF3005DEFDC /* CellView.swift in Sources */,
 				493CA3811C50ED2D005ED20F /* ComponentViewController.swift in Sources */,
 				493CA38B1C50ED2D005ED20F /* TableViewDelegate.swift in Sources */,
+				490D56441D86F20D001F0D08 /* Commandable.swift in Sources */,
 				49E746641CCD7C68005A695F /* CommandObservation.swift in Sources */,
 				49E4579F1C7C662800E0F0FB /* TableViewFlowLayout.swift in Sources */,
 				49C48AA71C4C488100700D4D /* UITableView.swift in Sources */,
