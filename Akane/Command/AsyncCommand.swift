@@ -13,7 +13,6 @@ import Bond
  Adds an attribute `isExecuting` which you can observe to determine whether or not the command is running.
 */
 public class AsyncCommand : RelayCommand {
-    private(set) var isExecuting = Observable(false)
 
     /**
      @see RelayCommand

@@ -23,10 +23,7 @@ public class CommandObservation : Observation {
         self.value = command
 
         self.canExecuteObservation = observer?.observe(command.canExecute)
-
-        if let asyncCommand = command as? AsyncCommand {
-            self.isExecutingObservation = observer?.observe(asyncCommand.isExecuting)
-        }
+        self.isExecutingObservation = observer?.observe(command.isExecuting)
     }
 
     deinit {
@@ -66,7 +63,9 @@ extension CommandObservation {
 
         // FIXME remove dep on Bond
         self.canExecuteObservation?.bindTo(control.bnd_enabled)
-        self.isExecutingObservation?.bindTo(control.bnd_userInteractionEnabled)
+        self.isExecutingObservation?
+            .convert { !$0 }
+            .bindTo(control.bnd_userInteractionEnabled)
     }
 
     @objc

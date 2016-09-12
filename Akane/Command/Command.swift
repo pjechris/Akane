@@ -17,6 +17,8 @@ public protocol Command {
     /// Returns `true` if the command is enabled.
     var canExecute: Observable<Bool> { get }
 
+    var isExecuting: Observable<Bool> { get }
+
     /**
     Runs the command action only if `canExecute` is true
     

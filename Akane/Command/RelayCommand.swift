@@ -20,6 +20,7 @@ It provides 2 closures:
 public class RelayCommand : Command {
     public private(set) var canExecute : Observable<Bool> = Observable(true)
     var action: ((UIControl?) -> ())! = nil
+    public internal(set) var isExecuting = Observable(false)
     var canExecuteUpdater: () -> Bool
     
     // MARK: Initializers
