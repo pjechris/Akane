@@ -64,12 +64,13 @@ import Akane
 
 class UserViewModel : ComponentViewModel {
   let user: Observable<User>?
-  let disconnect: Command = RelayCommand() { [unowned self]
-    self.user.next(nil)
-  }
+  var disconnect: Command! = nil
 
   init(user: User) {
     self.user = Observable(user)
+    self.disconnect = RelayCommand() { [unowned self] in
+      self.user.next(nil)
+    }
   }
 
   func isConnected() -> Bool {
