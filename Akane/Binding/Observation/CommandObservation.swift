@@ -70,6 +70,11 @@ extension CommandObservation {
 
     @objc
     func onTouch(sender: UIControl) {
-        self.value?.execute(sender)
+        if let commandable = sender as Commandable {
+            self.value?.execute(commandable)
+        }
+        else {
+            self.value?.execute(sender)
+        }
     }
 }

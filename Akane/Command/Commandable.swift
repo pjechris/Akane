@@ -8,7 +8,16 @@
 
 import Foundation
 
-/// Passing an object conforming to this protocol to `Command` passes its value to `Command.execute`.
+/**
+ Passing an object conforming to this protocol to `Command` passes its value to `Command.execute`.
+ Some UIKit views are made `Commandable`:
+ - UITextField
+ - UIStepper
+ - UISlider
+ - UISwitch
+ - UISegmentedControl
+
+ **/
 public protocol Commandable {
     var commandParameter: Any? { get }
 }
