@@ -17,6 +17,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
 {
     public private(set) weak var observer: ViewObserver?
     public private(set) var dataSource: DataSourceType
+    var viewModels: [NSIndexPath:ComponentViewModel] = [:]
 
     /**
      - parameter observer:   the observer which will be used to register observations on cells
@@ -41,6 +42,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
         tableView.dataSource = self
 
         if reload {
+            self.viewModels.removeAll()
             tableView.reloadData()
         }
     }
@@ -81,6 +83,8 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
                     }
                 }
             }
+
+            self.viewModels[indexPath] = viewModel
         }
 
         return cell
@@ -108,7 +112,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willSelectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         if let item = self.dataSource.itemAtIndexPath(indexPath).item,
-            let _ = self.dataSource.createItemViewModel(item) as? Selectable {
+            let _ = self.viewModels[indexPath] as? Selectable {
             return indexPath
         }
 
@@ -123,7 +127,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didSelectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.dataSource.createItemViewModel(item) as! Selectable
+        let viewModel = self.viewModels[indexPath] as! Selectable
 
         viewModel.commandSelect.execute(nil)
     }
@@ -133,7 +137,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willDeselectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let _ = self.dataSource.createItemViewModel(item) as! Unselectable
+        let _ = self.viewModels[indexPath] as! Unselectable
 
         return indexPath
     }
@@ -143,7 +147,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didDeselectRowAtIndexPath:)`
     public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
         let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.dataSource.createItemViewModel(item) as! Unselectable
+        let viewModel = self.viewModels[indexPath] as! Unselectable
 
         viewModel.commandUnselect.execute(nil)
     }
