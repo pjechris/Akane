@@ -13,8 +13,8 @@ class SearchAuthorsViewModel : ComponentViewModel {
    private var authors: [Author]
    
    let authorsViewModel: AuthorsViewModel
-   lazy var searchFor: Command = RelayCommand<UITextField>() { [unowned self] in
-      self.filterAuthors($0?.text)
+   lazy var searchFor: Command = RelayCommand<String>() { [unowned self] in
+      self.filterAuthors($0)
    }
    
    init() {
