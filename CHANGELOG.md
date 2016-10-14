@@ -6,6 +6,10 @@
 
 - `Command` now expects data instead than the control itself.
 
+## Bugfixes
+
+- Fixed some mispelled delegate methods of `UICollectionViewDelegate`.
+
 # 0.14.0
 
 ## Added
