@@ -85,12 +85,11 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldSelectItemAtIndexPath:)`
     public func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        if let item = self.dataSource.itemAtIndexPath(indexPath).item,
-            let _ = self.viewModels[indexPath] as? Selectable {
-            return true
+        guard let _ = self.viewModels[indexPath] as? Selectable else {
+            return false
         }
 
-        return false
+        return true
     }
 
     @objc
@@ -98,8 +97,9 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didSelectItemAtIndexPath:)`
     public func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.viewModels[indexPath] as! Selectable
+        guard let viewModel = self.viewModels[indexPath] as? Selectable else {
+            return
+        }
 
         viewModel.commandSelect.execute(nil)
     }
@@ -108,18 +108,20 @@ public class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewIte
     /// - returns the row index path if its viewModel is of type `ComponentItemViewModel` and it defines `unselect`, nil otherwise
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, shouldDeselectItemAtIndexPath:)`
     public func collectionView(collectionView: UICollectionView, shouldDeselectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let _ = self.viewModels[indexPath] as! Unselectable
+        guard let _ = self.viewModels[indexPath] as? Unselectable else {
+            return false
+        }
 
-        return indexPath
+        return true
     }
 
     @objc
     /// Call the row view model `unselect` `Command`
     /// - seeAlso: `UICollectionViewDelegate.collectionView(_:, didDeselectRowAtIndexPath:)`
     public func collectionView(collectionView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
-        let viewModel = self.viewModels[indexPath] as! Unselectable
+        guard let viewModel = self.viewModels[indexPath] as? Unselectable else {
+            return
+        }
 
         viewModel.commandUnselect.execute(nil)
     }
