@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1EAEED1747ACED8692BC7493 /* Pods_Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1EC13DDCAB79FC32FE589A45 /* Pods_Akane.framework */; };
 		490D56441D86F20D001F0D08 /* Commandable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490D56431D86F20D001F0D08 /* Commandable.swift */; };
 		490EEA161C08ADA500DE194B /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA151C08ADA500DE194B /* RelayCommand.swift */; };
 		490EEA181C08ADCD00DE194B /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 490EEA171C08ADCD00DE194B /* Command.swift */; };
@@ -60,6 +61,7 @@
 		49E746651CCD7C68005A695F /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E746611CCD7C68005A695F /* Observation.swift */; };
 		49E746661CCD7C68005A695F /* ViewModelObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E746621CCD7C68005A695F /* ViewModelObservation.swift */; };
 		49E746681CCD7EAD005A695F /* ObservationCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E746671CCD7EAD005A695F /* ObservationCollection.swift */; };
+		C48119E24E38619CD4C3FA40 /* Pods_AkaneTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 61C7A29408EB0C6D8ECE5524 /* Pods_AkaneTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1EC13DDCAB79FC32FE589A45 /* Pods_Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		33C9AB9C5CC149A850B35F55 /* Pods-AkaneTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.release.xcconfig"; sourceTree = "<group>"; };
+		36B103A27BD2923F5EBA8F93 /* Pods-AkaneTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AkaneTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests.debug.xcconfig"; sourceTree = "<group>"; };
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		490D56431D86F20D001F0D08 /* Commandable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commandable.swift; sourceTree = "<group>"; };
 		490EEA151C08ADA500DE194B /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
@@ -129,6 +134,9 @@
 		49E746611CCD7C68005A695F /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		49E746621CCD7C68005A695F /* ViewModelObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelObservation.swift; sourceTree = "<group>"; };
 		49E746671CCD7EAD005A695F /* ObservationCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationCollection.swift; sourceTree = "<group>"; };
+		61C7A29408EB0C6D8ECE5524 /* Pods_AkaneTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AkaneTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A0A37383BC9D1329650F470 /* Pods-Akane.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.debug.xcconfig"; sourceTree = "<group>"; };
+		FCB79B879E710B05295FD592 /* Pods-Akane.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Akane.release.xcconfig"; path = "Pods/Target Support Files/Pods-Akane/Pods-Akane.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -136,6 +144,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1EAEED1747ACED8692BC7493 /* Pods_Akane.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +153,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				496854821BD6741D00589F4C /* Akane.framework in Frameworks */,
+				C48119E24E38619CD4C3FA40 /* Pods_AkaneTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,6 +187,8 @@
 				4926EACD1A5EBCBF005A3D71 /* Akane */,
 				4926EADA1A5EBCC0005A3D71 /* AkaneTests */,
 				4926EACC1A5EBCBF005A3D71 /* Products */,
+				9D8B28101853F1E9DE99BC9A /* Pods */,
+				C733DA17E52AD3366B841636 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -420,6 +432,26 @@
 			path = Observation;
 			sourceTree = "<group>";
 		};
+		9D8B28101853F1E9DE99BC9A /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				9A0A37383BC9D1329650F470 /* Pods-Akane.debug.xcconfig */,
+				FCB79B879E710B05295FD592 /* Pods-Akane.release.xcconfig */,
+				36B103A27BD2923F5EBA8F93 /* Pods-AkaneTests.debug.xcconfig */,
+				33C9AB9C5CC149A850B35F55 /* Pods-AkaneTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		C733DA17E52AD3366B841636 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				1EC13DDCAB79FC32FE589A45 /* Pods_Akane.framework */,
+				61C7A29408EB0C6D8ECE5524 /* Pods_AkaneTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -438,10 +470,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 496854891BD6741D00589F4C /* Build configuration list for PBXNativeTarget "Akane" */;
 			buildPhases = (
+				930D013D2F123A34BA63C7D9 /* [CP] Check Pods Manifest.lock */,
 				496854731BD6741C00589F4C /* Sources */,
 				496854741BD6741C00589F4C /* Frameworks */,
 				496854751BD6741C00589F4C /* Headers */,
 				496854761BD6741C00589F4C /* Resources */,
+				FAA9AD93180858DA9817F667 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -456,9 +490,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4968548C1BD6741D00589F4C /* Build configuration list for PBXNativeTarget "AkaneTests" */;
 			buildPhases = (
+				5659EAC0278197F5FBD10F17 /* [CP] Check Pods Manifest.lock */,
 				4968547D1BD6741C00589F4C /* Sources */,
 				4968547E1BD6741C00589F4C /* Frameworks */,
 				4968547F1BD6741C00589F4C /* Resources */,
+				EAD5AA1062D145AA7AB1CB4A /* [CP] Embed Pods Frameworks */,
+				19549C8B1DFC5D32CFE4ABF0 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -482,9 +519,11 @@
 				TargetAttributes = {
 					496854771BD6741C00589F4C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 					496854801BD6741C00589F4C = {
 						CreatedOnToolsVersion = 7.0;
+						LastSwiftMigration = 0800;
 					};
 				};
 			};
@@ -522,6 +561,84 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19549C8B1DFC5D32CFE4ABF0 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5659EAC0278197F5FBD10F17 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		930D013D2F123A34BA63C7D9 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		EAD5AA1062D145AA7AB1CB4A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-AkaneTests/Pods-AkaneTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FAA9AD93180858DA9817F667 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Akane/Pods-Akane-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		496854731BD6741C00589F4C /* Sources */ = {
@@ -686,6 +803,7 @@
 		};
 		4968548A1BD6741D00589F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9A0A37383BC9D1329650F470 /* Pods-Akane.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -703,6 +821,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -711,6 +830,7 @@
 		};
 		4968548B1BD6741D00589F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = FCB79B879E710B05295FD592 /* Pods-Akane.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -728,6 +848,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Akane.Akane;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 2.3;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
@@ -736,6 +857,7 @@
 		};
 		4968548D1BD6741D00589F4C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 36B103A27BD2923F5EBA8F93 /* Pods-AkaneTests.debug.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -747,11 +869,13 @@
 				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Debug;
 		};
 		4968548E1BD6741D00589F4C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 33C9AB9C5CC149A850B35F55 /* Pods-AkaneTests.release.xcconfig */;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -763,6 +887,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = Akane.AkaneTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 2.3;
 			};
 			name = Release;
 		};

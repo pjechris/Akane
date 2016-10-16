@@ -1,21 +1,21 @@
 PODS:
-  - Bond (4.0.3)
+  - Bond (4.3.1)
   - HasAssociatedObjects (0.1.1)
-  - Nimble (3.0.0)
+  - Nimble (4.1.0)
   - Quick (0.8.0)
 
 DEPENDENCIES:
   - Bond (~> 4.x)
   - HasAssociatedObjects
-  - Nimble
+  - Nimble (~> 4.x)
   - Quick
 
 SPEC CHECKSUMS:
-  Bond: ff9ac940c47270d42b83a1cc5e14c0cec44b8357
+  Bond: 55903fc67f09e8e49791a657163cabba1d6fb29d
   HasAssociatedObjects: 5fe944d22f26ea708d0b9e188fdec3236ef3b95b
-  Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
+  Nimble: 97a0a4cae5124c117115634b2d055d8c97d0af19
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
 
-PODFILE CHECKSUM: d03764997a7f2a9cd3dad8952f1b9b34ff28f313
+PODFILE CHECKSUM: d32fe65b8f2541c28978cae70d1f44a3e264e8b2
 
-COCOAPODS: 1.0.0.beta.3
+COCOAPODS: 1.1.0.rc.2

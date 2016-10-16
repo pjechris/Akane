@@ -8,5 +8,5 @@ end
 
 target 'AkaneTests' do
   pod "Quick"
-  pod "Nimble"
+  pod "Nimble", '~> 4.x'
 end
