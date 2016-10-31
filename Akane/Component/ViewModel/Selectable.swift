@@ -13,5 +13,5 @@ import Foundation
  */
 public protocol Selectable {
     /// To execute when the element is "selected"
-    var commandSelect: Command { get }
+    var commandSelect: Command! { get }
 }

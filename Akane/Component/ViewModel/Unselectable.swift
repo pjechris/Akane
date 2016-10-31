@@ -13,5 +13,5 @@ import Foundation
  */
 public protocol Unselectable {
     /// To execute when the element is "unselected"
-    var commandUnselect: Command { get }
+    var commandUnselect: Command! { get }
 }

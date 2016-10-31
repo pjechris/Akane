@@ -23,12 +23,8 @@ public class ComponentViewController : UIViewController, ComponentController {
         get { return self.isViewLoaded() ? self.view as? ComponentView : nil }
     }
 
-    override public var view: UIView! {
-        get { return super.view }
-        set {
-            super.view = newValue
-            self.makeBindings()
-        }
+    public override func viewDidLoad() {
+        self.makeBindings()
     }
 
     public override func viewWillAppear(animated: Bool) {
