@@ -13,16 +13,16 @@ import Bond
  Contain multiple `Observation` instances which can be disposed at any time
 */
 class ObservationCollection {
-    private typealias ObserverType = (observer: _Observation, onRemove: (Void -> Void)?)
+    fileprivate typealias ObserverType = (observer: _Observation, onRemove: ((Void) -> Void)?)
 
     var count: Int { return self.observers.count }
-    private var observers: [ObserverType] = []
+    fileprivate var observers: [ObserverType] = []
 
     deinit {
         self.removeAllObservers()
     }
 
-    func append(observer: _Observation, onRemove: (Void -> Void)? = nil) {
+    func append(_ observer: _Observation, onRemove: ((Void) -> Void)? = nil) {
         self.observers.append((observer: observer, onRemove: onRemove))
     }
 

@@ -7,20 +7,23 @@
 //
 
 import Foundation
+import ReactiveKit
 import Bond
 
-extension Bond.Observable : Akane.Bindable {
-    public func advance() -> (Element -> Void) {
-        return self.sink(nil)
+extension Bond : Akane.Bindable {
+    public func advance() -> ((Element) -> Void) {
+        return { _ in }
     }
 }
 
 extension ViewObserver {
-    public func observe<AnyValue>(observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
+    public func observe<AnyValue>(_ observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
         let observer = AnyObservation<AnyValue>(value: nil)
 
-        let disposable : DisposableType = observable.observe { value in
-            observer.put(value)
+        let disposable : Disposable = observable.observe { value in
+            if case let Event.next(nextValue) = value {
+                observer.put(nextValue)
+            }
         }
 
         self.observerCollection?.append(observer) {
@@ -30,15 +33,17 @@ extension ViewObserver {
         return observer
     }
 
-    public func observe<AnyValue, AnyAttribute>(observable: Observable<AnyValue>, attribute: AnyValue -> AnyAttribute) -> AnyObservation<AnyAttribute> {
+    public func observe<AnyValue, AnyAttribute>(_ observable: Observable<AnyValue>, attribute: @escaping (Property<AnyValue>) -> AnyAttribute) -> AnyObservation<AnyAttribute> {
         return self.observe(observable).convert(attribute)
     }
 
-    public func observe<ViewModelType: ComponentViewModel>(observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
+    public func observe<ViewModelType: ComponentViewModel>(_ observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
         let observer = ViewModelObservation<ViewModelType>(value: nil, lifecycle: self.componentLifecycle!)
 
-        let disposable : DisposableType = observable.observe { value in
-            observer.put(value)
+        let disposable : Disposable = observable.observe { value in
+            if case let Event.next(nextViewModel) = value {
+                observer.put(nextViewModel)
+            }
         }
 
         self.observerCollection?.append(observer) {

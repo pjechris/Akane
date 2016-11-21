@@ -91,8 +91,8 @@ extension ComponentViewControllerSpec {
             self.receivedDidLoadComponent = true
         }
 
-        override func isViewLoaded() -> Bool {
-            return self.stubIsViewLoaded ?? super.isViewLoaded()
+        override var isViewLoaded: Bool {
+            return self.stubIsViewLoaded ?? super.isViewLoaded
         }
 
         // FIXME
@@ -104,7 +104,7 @@ extension ComponentViewControllerSpec {
     }
 
     class ViewMock : UIView, ComponentView {
-        func bindings(observer: ViewObserver, viewModel: AnyObject) {
+        func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
             
         }
     }

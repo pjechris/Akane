@@ -34,7 +34,7 @@ public protocol ComponentController : class, Lifecycle {
     
     - parameter childController: The child `ComonentController` to add.
     */
-    func addController<C:UIViewController where C:ComponentController>(childController: C)
+    func addController<C:UIViewController>(_ childController: C) where C:ComponentController
 
     /**
     Searches through child controllers and returns the matching 
@@ -46,7 +46,7 @@ public protocol ComponentController : class, Lifecycle {
     - returns: The `ComponentController` whose `ComponentView` equals
     `component`, `nil` otherwise.
     */
-    func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController?
+    func controllerForComponent<V:UIView>(_ component: V) -> ComponentViewController? where V:ComponentView
 
     // MARK: Lifecycle
     

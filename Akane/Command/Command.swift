@@ -25,11 +25,11 @@ public protocol Command {
     - parameter trigger: The `UIControl` which triggered the command. 
     Might be `nil` when triggered programmatically.
     */
-    func execute(parameter: Any?)
+    func execute(_ parameter: Any?)
 }
 
 extension Command {
-    public func execute(control: Commandable) {
+    public func execute(_ control: Commandable) {
         self.execute(control.commandParameter)
     }
 }

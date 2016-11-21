@@ -9,7 +9,7 @@
 import Foundation
 
 extension UITableView {
-    func update(cell: UIView) {
+    func update(_ cell: UIView) {
         self.beginUpdates()
         cell.layoutIfNeeded()
         self.endUpdates()
@@ -17,16 +17,16 @@ extension UITableView {
 }
 
 extension UICollectionView {
-    func update(element: CollectionElementCategory, atIndexPath indexPath: NSIndexPath) {
+    func update(_ element: CollectionElementCategory, atIndexPath indexPath: IndexPath) {
         let invalidationContext = UICollectionViewLayoutInvalidationContext()
 
         switch (element) {
-        case .Cell(_):
-            invalidationContext.invalidateItemsAtIndexPaths([indexPath])
-        case .Section(_, let kind):
-            invalidationContext.invalidateSupplementaryElementsOfKind(kind, atIndexPaths: [indexPath])
+        case .cell(_):
+            invalidationContext.invalidateItems(at: [indexPath])
+        case .section(_, let kind):
+            invalidationContext.invalidateSupplementaryElements(ofKind: kind, at: [indexPath])
         }
 
-        self.collectionViewLayout.invalidateLayoutWithContext(invalidationContext)
+        self.collectionViewLayout.invalidateLayout(with: invalidationContext)
     }
 }

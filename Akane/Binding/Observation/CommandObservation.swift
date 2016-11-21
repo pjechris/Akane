@@ -9,12 +9,12 @@
 import Foundation
 import Bond
 
-public class CommandObservation : Observation {
+open class CommandObservation : Observation {
     var value: Command? = nil
 
-    var next: [(Command -> Void)] = []
+    var next: [((Command) -> Void)] = []
 
-    private var controls: [UIControl] = []
+    fileprivate var controls: [UIControl] = []
 
     var canExecuteObservation: AnyObservation<Bool>? = nil
     var isExecutingObservation: AnyObservation<Bool>? = nil
@@ -32,7 +32,7 @@ public class CommandObservation : Observation {
 
     func unobserve() {
         for control in self.controls {
-            control.removeTarget(self, action: nil, forControlEvents: .AllEvents)
+            control.removeTarget(self, action: nil, for: .allEvents)
         }
 
         self.canExecuteObservation?.unobserve()
@@ -45,7 +45,7 @@ public class CommandObservation : Observation {
 }
 
 extension CommandObservation {
-    public func bindTo(control: UIControl?, events: UIControlEvents = .TouchUpInside) {
+    public func bindTo(_ control: UIControl?, events: UIControlEvents = .touchUpInside) {
         if let control = control {
             self.bindTo(control, events: events)
         }
@@ -56,20 +56,20 @@ extension CommandObservation {
      - command `canExecute` with control `enabled`
      - command `isExecuting` (if AsyncCommand) with control `userInteractionEnabled`
      */
-    public func bindTo(control: UIControl, events: UIControlEvents = .TouchUpInside) {
-        control.addTarget(self, action: #selector(self.onTouch(_:)), forControlEvents: events)
+    public func bindTo(_ control: UIControl, events: UIControlEvents = .touchUpInside) {
+        control.addTarget(self, action: #selector(self.onTouch(_:)), for: events)
 
         self.controls.append(control)
-
+        
         // FIXME remove dep on Bond
-        self.canExecuteObservation?.bindTo(control.bnd_enabled)
+        self.canExecuteObservation?.bind(to: control.bnd_isEnabled)
         self.isExecutingObservation?
             .convert { !$0 }
-            .bindTo(control.bnd_userInteractionEnabled)
+            .bind(to: control.bnd_isUserInteractionEnabled)
     }
 
     @objc
-    func onTouch(sender: UIControl) {
+    func onTouch(_ sender: UIControl) {
         if let commandable = sender as? Commandable {
             self.value?.execute(commandable)
         }

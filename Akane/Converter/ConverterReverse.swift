@@ -22,5 +22,5 @@ public protocol ConverterReverse : Converter {
      
      - returns: The converted value
      */
-    func convertBack(value: ConvertValueType) -> ValueType
+    func convertBack(_ value: ConvertValueType) -> ValueType
 }

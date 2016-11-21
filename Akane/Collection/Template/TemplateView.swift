@@ -17,12 +17,12 @@ public struct TemplateView : Template {
     public let source: TemplateSource
     public let templateClass: CollectionReusableView.Type
 
-    public init(templateClass: CollectionReusableView.Type, from source: TemplateSource = .File()) {
+    public init(templateClass: CollectionReusableView.Type, from source: TemplateSource = .file()) {
         self.templateClass = templateClass
         self.source = source
     }
 
-    public func bind<V: ComponentViewModel>(reusedTemplateView: UIView, wrapper: ViewModelObservation<V>) {
+    public func bind<V: ComponentViewModel>(_ reusedTemplateView: UIView, wrapper: ViewModelObservation<V>) {
         // no binding
     }
 }

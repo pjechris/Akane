@@ -23,12 +23,12 @@ public protocol Template {
     /// make the binding between the reused view and a correspoding `ComponentViewModel`.
     /// - parameter reusedTemplateView: a view created from this `Template`
     /// - parameter wrapper: third-party object to make the binding between the viewModel and the reused view
-    func bind<V: ComponentViewModel>(reusedTemplateView: UIView, wrapper: ViewModelObservation<V>)
+    func bind<V: ComponentViewModel>(_ reusedTemplateView: UIView, wrapper: ViewModelObservation<V>)
 }
 
 /// Define Sources from which a Template can be created
 public enum TemplateSource {
-    case Nib(UINib)
-    case StoryboardId(String)
-    case File()
+    case nib(UINib)
+    case storyboardId(String)
+    case file()
 }

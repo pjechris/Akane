@@ -13,11 +13,11 @@ import Bond
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
 /// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and `DataSource`
-public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
+open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
-    public private(set) weak var observer: ViewObserver?
-    public private(set) var dataSource: DataSourceType
-    var viewModels: [NSIndexPath:ComponentViewModel] = [:]
+    open fileprivate(set) weak var observer: ViewObserver?
+    open fileprivate(set) var dataSource: DataSourceType
+    var viewModels: [IndexPath:ComponentViewModel] = [:]
 
     /**
      - parameter observer:   the observer which will be used to register observations on cells
@@ -35,7 +35,7 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
 
      - parameter tableView: a UITableView on which you want to be delegate and dataSource
      */
-    public func becomeDataSourceAndDelegate(tableView: UITableView, reload: Bool = true) {
+    open func becomeDataSourceAndDelegate(_ tableView: UITableView, reload: Bool = true) {
         objc_setAssociatedObject(tableView, &TableViewDataSourceAttr, self, .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
 
         tableView.delegate = self
@@ -51,13 +51,13 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
 
     @objc
     /// - see: `UITableViewDataSource.numberOfSectionsInTableView(_:)`
-    public func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    open func numberOfSections(in tableView: UITableView) -> Int {
         return self.dataSource.numberOfSections()
     }
 
     @objc
     /// - see: `UITableViewDataSource.tableView(_:, numberOfRowsInSection:)`
-    public func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    open func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.dataSource.numberOfItemsInSection(section)
     }
 
@@ -65,20 +65,20 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - see: `DataSourceTableViewItems.itemAtIndexPath(_:)`
     /// - see: `DataSourceTableViewItems.tableViewItemTemplate(_:)`
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
         let template = self.dataSource.tableViewItemTemplate(data.identifier)
 
-        tableView.registerIfNeeded(template, type: .Cell(identifier: data.identifier.rawValue))
+        tableView.registerIfNeeded(template, type: .cell(identifier: data.identifier.rawValue))
 
-        let cell = tableView.dequeueReusableCellWithIdentifier(data.identifier.rawValue, forIndexPath: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: data.identifier.rawValue, for: indexPath)
 
         if let viewModel = self.dataSource.createItemViewModel(data.item) {
             self.observer?.observe(viewModel).bindTo(cell, template: template)
 
-            if var updatable = viewModel as? Updatable {
+            if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak tableView, weak cell] in
-                    if let tableView = tableView, cell = cell {
+                    if let tableView = tableView, let cell = cell {
                         tableView.update(cell)
                     }
                 }
@@ -95,14 +95,14 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     @objc
     /// - see: `CollectionLayout.estimatedHeightForItem(_:)`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, estimatedHeightForRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.layout.estimatedHeightForCell(indexPath) ?? tableView.estimatedRowHeight
     }
 
     @objc
     /// - see: `CollectionLayout.heightForItem(_:)`
     /// - see: `UITableViewDelegate.tableView(_:, heightForRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    open func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return tableView.layout.heightForCell(indexPath) ?? tableView.rowHeight
     }
 
@@ -110,8 +110,8 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// - returns the row index path if its viewModel is of type `ComponentItemViewModel` and it defines `select`, nil otherwise
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willSelectRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        if let item = self.dataSource.itemAtIndexPath(indexPath).item,
+    open func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
+        if let _ = self.dataSource.itemAtIndexPath(indexPath).item,
             let _ = self.viewModels[indexPath] as? Selectable {
             return indexPath
         }
@@ -125,8 +125,8 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     /// Call the row view model `select` `Command`
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didSelectRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
+    open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let viewModel = self.viewModels[indexPath] as! Selectable
 
         viewModel.commandSelect.execute(nil)
@@ -135,8 +135,8 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     @objc
     /// - returns the row index path if its viewModel is of type `ComponentItemViewModel` and it defines `unselect`, nil otherwise
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willDeselectRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, willDeselectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
+    open func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
+        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let _ = self.viewModels[indexPath] as! Unselectable
 
         return indexPath
@@ -145,8 +145,8 @@ public class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSOb
     @objc
     /// Call the row view model `unselect` `Command`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didDeselectRowAtIndexPath:)`
-    public func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        let item = self.dataSource.itemAtIndexPath(indexPath).item
+    open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let viewModel = self.viewModels[indexPath] as! Unselectable
 
         viewModel.commandUnselect.execute(nil)

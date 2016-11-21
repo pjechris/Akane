@@ -14,7 +14,7 @@ public protocol DataSource {
     func numberOfSections() -> Int
 
     /// Ask the number of items contained into a section
-    func numberOfItemsInSection(section: Int) -> Int
+    func numberOfItemsInSection(_ section: Int) -> Int
 }
 
 public extension DataSource {

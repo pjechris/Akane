@@ -8,29 +8,29 @@
 
 import Foundation
 
-public class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<DataSourceType>
+open class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<DataSourceType>
 {
     public override init(observer: ViewObserver, dataSource: DataSourceType) {
         super.init(observer: observer, dataSource: dataSource)
     }
 
     @objc
-    public func collectionView(collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: NSIndexPath) -> UICollectionReusableView {
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
         let data = self.dataSource.sectionItemAtIndex(indexPath.section)
         let template = self.dataSource.collectionViewSectionTemplate(data.identifier, kind: kind)
-        let element = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: kind)
+        let element = CollectionElementCategory.section(identifier: data.identifier.rawValue, kind: kind)
 
         collectionView.registerIfNeeded(template, type: element)
 
-        let cell = collectionView.dequeueReusableSupplementaryViewOfKind(kind, withReuseIdentifier: data.identifier.rawValue, forIndexPath: indexPath)
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: data.identifier.rawValue, for: indexPath)
 
         if template.needsComponentViewModel {
             if let viewModel = self.dataSource.createSectionViewModel(data.item) {
                 self.observer?.observe(viewModel).bindTo(cell, template: template)
 
-                if var updatable = viewModel as? Updatable {
+                if let updatable = viewModel as? Updatable {
                     updatable.onRender = { [weak collectionView, weak cell] in
-                        if let collectionView = collectionView, cell = cell {
+                        if let collectionView = collectionView, let _ = cell {
                             collectionView.update(element, atIndexPath: indexPath)
                         }
                     }

@@ -42,7 +42,7 @@ extension UISlider : Commandable {
 
 extension UISwitch : Commandable {
     public var commandParameter: Any? {
-        return self.on
+        return self.isOn
     }
 }
 

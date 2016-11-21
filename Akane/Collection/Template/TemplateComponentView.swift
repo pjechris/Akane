@@ -6,27 +6,27 @@
 // file that was distributed with this source code
 //
 
-import Foundation
+import UIKit
 
 /**
  Create templates for `ComponentView`(s)
 */
-public struct TemplateComponentView<ComponentType : UIView where ComponentType : protocol<CollectionReusableView, ComponentView>> : Template {
+public struct TemplateComponentView<ComponentType : UIView> : Template where ComponentType : CollectionReusableView & ComponentView {
     public let needsComponentViewModel = true
 
     public let source: TemplateSource
     public var templateClass: CollectionReusableView.Type { return self.componentViewType }
 
-    private let prepareForReuse: ((CollectionReusableView, NSIndexPath) -> Void)?
-    private let componentViewType: ComponentType.Type
+    fileprivate let prepareForReuse: ((CollectionReusableView, IndexPath) -> Void)?
+    fileprivate let componentViewType: ComponentType.Type
 
-    public init(_ componentType: ComponentType.Type, from source: TemplateSource = .File()) {
+    public init(_ componentType: ComponentType.Type, from source: TemplateSource = .file()) {
         self.componentViewType = componentType
         self.source = source
         self.prepareForReuse = nil
     }
 
-    public func bind<V: ComponentViewModel>(cell: UIView, wrapper: ViewModelObservation<V>) {
+    public func bind<V: ComponentViewModel>(_ cell: UIView, wrapper: ViewModelObservation<V>) {
         wrapper.bindTo(cell as! ComponentType)
     }
 }

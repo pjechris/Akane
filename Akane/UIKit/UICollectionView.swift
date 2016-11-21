@@ -10,23 +10,23 @@ import Foundation
 import HasAssociatedObjects
 
 extension UICollectionView {
-    func registerIfNeeded(template: Template, type: CollectionElementCategory) {
+    func registerIfNeeded(_ template: Template, type: CollectionElementCategory) {
         if self.registeredTemplates[type] == nil {
             self.register(template, type: type)
         }
     }
 
-    func register(template: Template, type: CollectionElementCategory) {
+    func register(_ template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
-        case (.Cell(let identifier), .Nib(let nib)):
-            self.registerNib(nib, forCellWithReuseIdentifier: identifier)
-        case (.Cell(let identifier), .File()):
-            self.registerClass(template.templateClass, forCellWithReuseIdentifier: identifier)
+        case (.cell(let identifier), .nib(let nib)):
+            self.register(nib, forCellWithReuseIdentifier: identifier)
+        case (.cell(let identifier), .file()):
+            self.register(template.templateClass, forCellWithReuseIdentifier: identifier)
 
-        case (.Section(let identifier, let kind), .Nib(let nib)):
-            self.registerNib(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
-        case (.Section(let identifier, let kind), .File()):
-            self.registerClass(template.templateClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+        case (.section(let identifier, let kind), .nib(let nib)):
+            self.register(nib, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
+        case (.section(let identifier, let kind), .file()):
+            self.register(template.templateClass, forSupplementaryViewOfKind: kind, withReuseIdentifier: identifier)
 
         default:
             break
