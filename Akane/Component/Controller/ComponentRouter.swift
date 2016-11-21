@@ -16,22 +16,22 @@ public protocol ComponentRouter: class {
      - parameter context: new context to go to.
      - parameter name: a context name. Not mandatory.
      */
-    func route(context: ComponentViewModel, named name: String)
+    func route(_ context: ComponentViewModel, named name: String)
 
-    func route(context: ComponentViewModel)
+    func route(_ context: ComponentViewModel)
 }
 
 extension ComponentRouter where Self : UIViewController {
     /// Calls to `UIViewController.performSegueWithIdentifier`
-    public func route(context: ComponentViewModel, named name: String) {
-        if self.shouldPerformSegueWithIdentifier(name, sender: context) {
-            self.performSegueWithIdentifier(name, sender: context)
+    public func route(_ context: ComponentViewModel, named name: String) {
+        if self.shouldPerformSegue(withIdentifier: name, sender: context) {
+            self.performSegue(withIdentifier: name, sender: context)
         }
     }
 
     /// Does nothing
     /// Overrides this method if you want to 'push' or 'present' a `UIViewController` for current context
-    public func route(context: ComponentViewModel) {
+    public func route(_ context: ComponentViewModel) {
 
     }
 }

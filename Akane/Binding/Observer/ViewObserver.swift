@@ -30,7 +30,7 @@ public protocol ViewObserver : class, HasAssociatedObjects {
     - returns: An `AnyObservation` that can be used from within a
     `ComponentView`.
     */
-    func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue>
+    func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue>
 
     /**
     Observes a `Command`.
@@ -39,7 +39,7 @@ public protocol ViewObserver : class, HasAssociatedObjects {
      
     - returns: A `CommandObservation`.
     */
-    func observe(value: Command) -> CommandObservation
+    func observe(_ value: Command) -> CommandObservation
     
     /**
      Observes a `ComponentViewModel`.
@@ -48,7 +48,7 @@ public protocol ViewObserver : class, HasAssociatedObjects {
 
      - returns: A `ViewModelObservation`.
      */
-    func observe<ViewModelType: ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType>
+    func observe<ViewModelType: ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType>
 }
 
 extension ViewObserver {
@@ -63,7 +63,7 @@ extension ViewObserver {
         set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
     }
 
-    public func observe<AnyValue>(value: AnyValue) -> AnyObservation<AnyValue> {
+    public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
         let observation = AnyObservation(value: value)
 
         self.observerCollection?.append(observation)
@@ -71,7 +71,7 @@ extension ViewObserver {
         return observation
     }
 
-    public func observe(command: Command) -> CommandObservation {
+    public func observe(_ command: Command) -> CommandObservation {
         let observation = CommandObservation(command: command, observer: self)
 
         self.observerCollection?.append(observation)
@@ -79,7 +79,7 @@ extension ViewObserver {
         return observation
     }
 
-    public func observe<ViewModelType : ComponentViewModel>(value: ViewModelType) -> ViewModelObservation<ViewModelType> {
+    public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
         let observation = ViewModelObservation<ViewModelType>(value: value, lifecycle: self.componentLifecycle!)
 
         self.observerCollection?.append(observation)
@@ -89,7 +89,7 @@ extension ViewObserver {
 }
 
 extension ViewObserver {
-    private typealias ObserverType = (observer: _Observation, onRemove: (Void -> Void)?)
+    fileprivate typealias ObserverType = (observer: _Observation, onRemove: ((Void) -> Void)?)
 
     var observerCollection: ObservationCollection? {
         get {

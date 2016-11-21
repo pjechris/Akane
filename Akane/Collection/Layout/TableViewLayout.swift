@@ -12,11 +12,11 @@ import Foundation
  Generic protocol to handle collection views (`UICollectionView` and `UITableView`) layouts
 */
 public protocol TableViewLayout : NSObjectProtocol {
-    func heightForCell(indexPath: NSIndexPath) -> CGFloat?
-    func estimatedHeightForCell(indexPath: NSIndexPath) -> CGFloat?
+    func heightForCell(_ indexPath: IndexPath) -> CGFloat?
+    func estimatedHeightForCell(_ indexPath: IndexPath) -> CGFloat?
 
-    func heightForSection(section: Int, sectionKind: String) -> CGFloat?
-    func estimatedHeightForSection(section: Int, sectionKind: String) -> CGFloat?
+    func heightForSection(_ section: Int, sectionKind: String) -> CGFloat?
+    func estimatedHeightForSection(_ section: Int, sectionKind: String) -> CGFloat?
 
-    func didReuseView(reusableView: UIView)
+    func didReuseView(_ reusableView: UIView)
 }

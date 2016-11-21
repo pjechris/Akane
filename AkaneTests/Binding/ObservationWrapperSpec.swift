@@ -25,7 +25,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             beforeEach {
                 bindedItem = UILabel()
-                observer.bindTo(bindedItem.bnd_text)
+                observer.bind(to: bindedItem.bnd_text)
             }
 
             context("when value changed") {
@@ -41,7 +41,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             beforeEach {
                 bindedItem = UILabel()
-                observer.bindTo(bindedItem.bnd_text)
+                observer.bind(to: bindedItem.bnd_text)
             }
 
             it("should stop update the binding") {
@@ -55,7 +55,7 @@ class ObservationWrapperSpec : QuickSpec {
             it("should return the converted value") {
                 var result: String? = nil
                 let _ = observer.convert { value -> String? in
-                    result = value?.uppercaseString
+                    result = value?.uppercased()
 
                     return result
                 }
@@ -69,8 +69,8 @@ class ObservationWrapperSpec : QuickSpec {
                     var result: String? = nil
                     let _ = observer.convert { value -> String? in
                         result = value?
-                            .uppercaseString
-                            .stringByReplacingOccurrencesOfString(" ", withString: "+")
+                            .uppercased()
+                            .replacingOccurrences(of: " ", with: "+")
 
                         return result
                     }

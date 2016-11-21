@@ -19,9 +19,9 @@ It provides 2 closures:
 - `canExecute` a block updating the command availability. Optional
 - `action` the block containing the action to execute
 */
-public class RelayCommand<Parameter> : Command {
-    public private(set) var canExecute : Observable<Bool> = Observable(true)
-    public internal(set) var isExecuting = Observable(false)
+open class RelayCommand<Parameter> : Command {
+    open fileprivate(set) var canExecute : Observable<Bool> = Observable(true)
+    open internal(set) var isExecuting = Observable(false)
 
     var action: ((Parameter?) -> ())! = nil
     var canExecuteUpdater: () -> Bool
@@ -38,7 +38,7 @@ public class RelayCommand<Parameter> : Command {
     
     - seeAlso: `init(action:)`
     */
-    public init(canExecute canExecuteUpdater: () -> Bool, action: (Parameter?) -> ()) {
+    public init(canExecute canExecuteUpdater: @escaping () -> Bool, action: @escaping (Parameter?) -> ()) {
         self.canExecuteUpdater = canExecuteUpdater
         self.action = action
 
@@ -51,19 +51,19 @@ public class RelayCommand<Parameter> : Command {
     
     - parameter action: The command logic to execute when `execute` is called
     */
-    public convenience init(action: (Parameter?) -> ()) {
+    public convenience init(action: @escaping (Parameter?) -> ()) {
         self.init(canExecute: { return true }, action: action)
     }
     
     // MARK: Execution
 
     /// Update the command execute status using the provided initializer block
-    public func updateCanExecute() {
+    open func updateCanExecute() {
         self.canExecute.value = self.canExecuteUpdater()
     }
 
     /// - see: `Command.execute(_:)`
-    public func execute(parameter: Any?) {
+    open func execute(_ parameter: Any?) {
         guard !self.isExecuting.value && self.canExecute.value else {
             return
         }

@@ -12,13 +12,13 @@ import Bond
 /**
  Adds an attribute `isExecuting` which you can observe to determine whether or not the command is running.
 */
-public class AsyncCommand<Parameter> : RelayCommand<Parameter> {
+open class AsyncCommand<Parameter> : RelayCommand<Parameter> {
     /**
      @see RelayCommand
      `action` closure receives an extra parameter compared to `RelayCommand`: `completed`. Use it to inform `AsyncCommand`
      that your action is terminated and thus `isExecuting` should be passed to `false`.
     */
-    public init(canExecute canExecuteUpdater: () -> Bool, action: (Parameter?, completed: (Void -> Void)) -> Void) {
+    public init(canExecute canExecuteUpdater: @escaping () -> Bool, action: @escaping (Parameter?, _ completed: ((Void) -> Void)) -> Void) {
         super.init(canExecute: canExecuteUpdater, action: { _ in })
 
         self.action = { [weak self] control in
@@ -27,11 +27,11 @@ public class AsyncCommand<Parameter> : RelayCommand<Parameter> {
             }
 
             strongSelf.isExecuting.next(true)
-            action(control, completed: { strongSelf.isExecuting.next(false) })
+            action(control, { strongSelf.isExecuting.next(false) })
         }
     }
 
-    public convenience init(action: (Parameter?, completed: (Void -> Void)) -> Void) {
+    public convenience init(action: @escaping (Parameter?, _ completed: ((Void) -> Void)) -> Void) {
         self.init(canExecute: { return true }, action: action)
     }
 }

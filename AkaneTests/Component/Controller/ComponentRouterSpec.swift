@@ -49,11 +49,11 @@ extension ComponentRouterSpec {
         var receivedRoute = false
         var receivedPerformSegueWithIdentifier = false
 
-        func route(context: ComponentViewModel) {
+        func route(_ context: ComponentViewModel) {
             self.receivedRoute = true
         }
 
-        override func performSegueWithIdentifier(identifier: String, sender: AnyObject?) {
+        override func performSegue(withIdentifier identifier: String, sender: Any?) {
             self.receivedPerformSegueWithIdentifier = true
         }
     }

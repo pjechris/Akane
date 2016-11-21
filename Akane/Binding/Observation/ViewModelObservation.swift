@@ -9,10 +9,10 @@
 import Foundation
 import Bond
 
-public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
+open class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
     var value: ViewModelType? = nil
 
-    var next: [(ViewModelType -> Void)] = []
+    var next: [((ViewModelType) -> Void)] = []
 
     unowned let lifecycle: Lifecycle
 
@@ -24,13 +24,13 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
 extension ViewModelObservation {
 
-    public func bindTo<ViewType: UIView where ViewType: ComponentView>(view: ViewType?) {
+    public func bindTo<ViewType: UIView>(_ view: ViewType?) where ViewType: ComponentView {
         if let view = view {
             self.bindTo(view)
         }
     }
 
-    public func bindTo<ViewType: UIView where ViewType: ComponentView>(view: ViewType) {
+    public func bindTo<ViewType: UIView>(_ view: ViewType) where ViewType: ComponentView {
         let controller: ComponentViewController? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
 
         guard (controller != nil) else {
@@ -42,7 +42,7 @@ extension ViewModelObservation {
         }
     }
 
-    func bindTo(cell: UIView, template: Template) {
+    func bindTo(_ cell: UIView, template: Template) {
         template.bind(cell, wrapper: self)
     }
 }

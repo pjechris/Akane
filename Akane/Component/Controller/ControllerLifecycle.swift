@@ -11,7 +11,7 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public protocol Lifecycle : class {
-    func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool) -> ComponentViewController?
+    func presenterForSubview<T:UIView>(_ subview: T, createIfNeeded: Bool) -> ComponentViewController? where T:ComponentView
 }
 
 /**
@@ -19,8 +19,8 @@ Handles controller view and view model lifecycles.
 */
 extension ComponentController where Self : UIViewController {
 
-    public func presenterForSubview<T:UIView where T:ComponentView>(subview: T, createIfNeeded: Bool = true) -> ComponentViewController? {
-        guard (subview.isDescendantOfView(self.view) || subview.window == nil) else {
+    public func presenterForSubview<T:UIView>(_ subview: T, createIfNeeded: Bool = true) -> ComponentViewController? where T:ComponentView {
+        guard (subview.isDescendant(of: self.view) || subview.window == nil) else {
             return nil
         }
 
@@ -29,7 +29,7 @@ extension ComponentController where Self : UIViewController {
         }
 
         if (createIfNeeded) {
-            let componentClass:ComponentViewController.Type = subview.dynamicType.componentControllerClass()
+            let componentClass:ComponentViewController.Type = type(of: subview).componentControllerClass()
             let controller = componentClass.init(coder: NSCoder.empty())!
 
             controller.view = subview
@@ -48,8 +48,8 @@ extension ComponentController where Self : UIViewController {
 extension NSCoder {
     class func empty() -> NSCoder {
         let data = NSMutableData()
-        let archiver = NSKeyedArchiver(forWritingWithMutableData: data)
+        let archiver = NSKeyedArchiver(forWritingWith: data)
         archiver.finishEncoding()
-        return NSKeyedUnarchiver(forReadingWithData: data)
+        return NSKeyedUnarchiver(forReadingWith: data as Data)
     }
 }

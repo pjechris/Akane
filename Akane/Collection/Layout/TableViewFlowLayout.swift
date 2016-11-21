@@ -11,7 +11,7 @@ import Foundation
 /**
  AutoLayout support for `UITableView`
 */
-public class TableViewFlowLayout : NSObject, TableViewLayout {
+open class TableViewFlowLayout : NSObject, TableViewLayout {
     public typealias Height = (estimated: CGFloat?, actual: CGFloat)
 
     let rowHeight: Height?
@@ -24,15 +24,15 @@ public class TableViewFlowLayout : NSObject, TableViewLayout {
         self.footerHeight = footerHeight
     }
 
-    public func heightForCell(indexPath: NSIndexPath) -> CGFloat? {
+    open func heightForCell(_ indexPath: IndexPath) -> CGFloat? {
         return self.rowHeight?.actual
     }
 
-    public func estimatedHeightForCell(indexPath: NSIndexPath) -> CGFloat? {
+    open func estimatedHeightForCell(_ indexPath: IndexPath) -> CGFloat? {
         return self.rowHeight?.estimated
     }
 
-    public func heightForSection(section: Int, sectionKind: String) -> CGFloat? {
+    open func heightForSection(_ section: Int, sectionKind: String) -> CGFloat? {
         switch(sectionKind) {
         case "header":
             return self.headerHeight?.actual
@@ -43,7 +43,7 @@ public class TableViewFlowLayout : NSObject, TableViewLayout {
         }
     }
 
-    public func estimatedHeightForSection(section: Int, sectionKind: String) -> CGFloat? {
+    open func estimatedHeightForSection(_ section: Int, sectionKind: String) -> CGFloat? {
         switch(sectionKind) {
         case "header":
             return self.headerHeight?.estimated
@@ -54,7 +54,7 @@ public class TableViewFlowLayout : NSObject, TableViewLayout {
         }
     }
 
-    public func didReuseView(reusableView: UIView) {
+    open func didReuseView(_ reusableView: UIView) {
         reusableView.layoutIfNeeded()
     }
 }

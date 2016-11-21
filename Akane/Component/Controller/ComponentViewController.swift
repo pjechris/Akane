@@ -14,20 +14,20 @@ Default implementation of `ComponentController`. You need to extend from this
 class rather than from `UIViewController` to make binding binding your component
 view and your view model work.
 */
-public class ComponentViewController : UIViewController, ComponentController {
-    public var viewModel: ComponentViewModel! {
+open class ComponentViewController : UIViewController, ComponentController {
+    open var viewModel: ComponentViewModel! {
         didSet { self.didSetViewModel() }
     }
 
-    public var componentView: ComponentView? {
-        get { return self.isViewLoaded() ? self.view as? ComponentView : nil }
+    open var componentView: ComponentView? {
+        get { return self.isViewLoaded ? self.view as? ComponentView : nil }
     }
 
-    public override func viewDidLoad() {
+    open override func viewDidLoad() {
         self.makeBindings()
     }
 
-    public override func viewWillAppear(animated: Bool) {
+    open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.mount()
     }
@@ -38,20 +38,20 @@ public class ComponentViewController : UIViewController, ComponentController {
         self.makeBindings()
     }
 
-    public func didLoadComponent() {
+    open func didLoadComponent() {
     }
 }
 
 extension ComponentController where Self:UIViewController {
 
-    public func addController<C:UIViewController where C:ComponentController>(childController: C) {
+    public func addController<C:UIViewController>(_ childController: C) where C:ComponentController {
         if (!self.childViewControllers.contains(childController)) {
             self.addChildViewController(childController)
-            childController.didMoveToParentViewController(self)
+            childController.didMove(toParentViewController: self)
         }
     }
 
-    public func controllerForComponent<V:UIView where V:ComponentView>(component: V) -> ComponentViewController? {
+    public func controllerForComponent<V:UIView>(_ component: V) -> ComponentViewController? where V:ComponentView {
         for childViewController in self.childViewControllers {
             if let controller = childViewController as? ComponentViewController {
                 if (controller.view == component) {

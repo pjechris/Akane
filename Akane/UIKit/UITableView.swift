@@ -28,23 +28,23 @@ public extension UITableView {
 
 extension UITableView {
 
-    func registerIfNeeded(template: Template, type: CollectionElementCategory) {
+    func registerIfNeeded(_ template: Template, type: CollectionElementCategory) {
         if self.registeredTemplates[type] == nil {
             self.register(template, type: type)
         }
     }
 
-    func register(template: Template, type: CollectionElementCategory) {
+    func register(_ template: Template, type: CollectionElementCategory) {
         switch(type, template.source) {
-        case (.Cell(let identifier), .Nib(let nib)):
-            self.registerNib(nib, forCellReuseIdentifier: identifier)
-        case (.Cell(let identifier), .File()):
-            self.registerClass(template.templateClass, forCellReuseIdentifier: identifier)
+        case (.cell(let identifier), .nib(let nib)):
+            self.register(nib, forCellReuseIdentifier: identifier)
+        case (.cell(let identifier), .file()):
+            self.register(template.templateClass, forCellReuseIdentifier: identifier)
 
-        case (.Section(let identifier, _), .Nib(let nib)):
-            self.registerNib(nib, forHeaderFooterViewReuseIdentifier: identifier)
-        case (.Section(let identifier, _), .File()):
-            self.registerClass(template.templateClass, forHeaderFooterViewReuseIdentifier: identifier)
+        case (.section(let identifier, _), .nib(let nib)):
+            self.register(nib, forHeaderFooterViewReuseIdentifier: identifier)
+        case (.section(let identifier, _), .file()):
+            self.register(template.templateClass, forHeaderFooterViewReuseIdentifier: identifier)
 
         default:
             break

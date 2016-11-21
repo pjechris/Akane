@@ -33,7 +33,7 @@ extension ComponentViewModel {
     /// A ComponentViewModel is marked as mounted when displayed the first time.
     public internal(set) var isMounted: Bool {
         get { return (objc_getAssociatedObject(self, &ViewModelIsMountedAttr) as? NSNumber).map { return $0.boolValue } ?? false }
-        set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(bool: newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
+        set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(value: newValue as Bool), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     weak public var router: ComponentRouter? {

@@ -9,17 +9,17 @@
 import Foundation
 
 public enum CollectionElementCategory {
-    case Cell(identifier: String)
-    case Section(identifier: String, kind: String)
+    case cell(identifier: String)
+    case section(identifier: String, kind: String)
 //    case Decoration
 }
 
 extension CollectionElementCategory : Hashable {
     public var hashValue : Int {
         switch(self) {
-        case .Cell(let itemIdentifier):
+        case .cell(let itemIdentifier):
             return itemIdentifier.hashValue
-        case .Section(let sectionIdentifier, let sectionKind):
+        case .section(let sectionIdentifier, let sectionKind):
             return sectionIdentifier.hashValue ^ sectionKind.hashValue
         }
     }
@@ -27,9 +27,9 @@ extension CollectionElementCategory : Hashable {
 
 public func ==(lhs: CollectionElementCategory, rhs: CollectionElementCategory) -> Bool {
     switch (lhs, rhs) {
-    case (.Cell(let itemIdentifier1), .Cell(let itemIdentifier2)):
+    case (.cell(let itemIdentifier1), .cell(let itemIdentifier2)):
         return itemIdentifier1 == itemIdentifier2
-    case(.Section(let sectionIdentifier1, let sectionKind1), .Section(let sectionIdentifier2, let sectionKind2)):
+    case(.section(let sectionIdentifier1, let sectionKind1), .section(let sectionIdentifier2, let sectionKind2)):
         return sectionKind1 == sectionKind2 && sectionIdentifier1 == sectionIdentifier2
     default:
         return false
@@ -41,7 +41,7 @@ extension Dictionary {
     /// - parameter key: a ```CollectionElementCategory``` key
     /// - parameter create: called when no value was found for ```key```. Return a new value to associate with
     /// - returns: found ```Value``` or a created one
-    mutating func findOrCreate(key: Key, @noescape create: () -> Value) -> Value {
+    mutating func findOrCreate(_ key: Key, create: () -> Value) -> Value {
         guard let element = self[key] else {
             let element = create()
 

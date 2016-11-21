@@ -31,5 +31,5 @@ public protocol Converter {
     
     - returns: The converted value
     */
-    func convert(value: ValueType) -> ConvertValueType
+    func convert(_ value: ValueType) -> ConvertValueType
 }

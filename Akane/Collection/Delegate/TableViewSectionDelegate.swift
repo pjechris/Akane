@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSections> : TableViewDelegate<DataSourceType>
+open class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSections> : TableViewDelegate<DataSourceType>
 {
 
     public override init(observer: ViewObserver, dataSource: DataSourceType) {
@@ -18,51 +18,51 @@ public class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSectio
     // MARK: DataSource
 
     @objc
-    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         return self.viewForSection(tableView, section: section, sectionKind: "footer")
     }
 
     @objc
-    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         return self.viewForSection(tableView, section: section, sectionKind: "header")
     }
 
     @objc
-    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return tableView.layout.heightForSection(section, sectionKind: "footer") ?? tableView.sectionFooterHeight
     }
 
     @objc
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return tableView.layout.heightForSection(section, sectionKind: "header") ?? tableView.sectionHeaderHeight
     }
 
     @objc
-    func tableView(tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
         return tableView.layout.estimatedHeightForSection(section, sectionKind: "footer") ?? tableView.estimatedSectionFooterHeight
     }
 
     @objc
-    func tableView(tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+    func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
         return tableView.layout.estimatedHeightForSection(section, sectionKind: "header") ?? tableView.estimatedSectionHeaderHeight
     }
 
-    func viewForSection(tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
+    func viewForSection(_ tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
         let data = self.dataSource.sectionItemAtIndex(section)
-        let sectionType = CollectionElementCategory.Section(identifier: data.identifier.rawValue, kind: sectionKind)
+        let sectionType = CollectionElementCategory.section(identifier: data.identifier.rawValue, kind: sectionKind)
         let template = self.dataSource.tableViewSectionTemplate(data.identifier, kind: sectionKind)
 
         tableView.registerIfNeeded(template, type: sectionType)
 
-        let view = tableView.dequeueReusableHeaderFooterViewWithIdentifier(data.identifier.rawValue)!
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: data.identifier.rawValue)!
 
         if template.needsComponentViewModel {
             if let viewModel = self.dataSource.createSectionViewModel(data.item) {
                 self.observer?.observe(viewModel).bindTo(view, template: template)
 
-                if var updatable = viewModel as? Updatable {
+                if let updatable = viewModel as? Updatable {
                     updatable.onRender = { [weak tableView, weak view] in
-                        if let tableView = tableView, view = view {
+                        if let tableView = tableView, let view = view {
                             tableView.update(view)
                         }
                     }

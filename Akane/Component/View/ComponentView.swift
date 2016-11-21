@@ -24,7 +24,7 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
     bindings
     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
     */
-    func bindings(observer: ViewObserver, viewModel: AnyObject)
+    func bindings(_ observer: ViewObserver, viewModel: AnyObject)
 
     /**
      `ComponentViewController` class associated to the `ComponentView`

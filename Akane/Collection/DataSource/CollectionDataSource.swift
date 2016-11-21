@@ -13,9 +13,9 @@ public protocol DataSourceCollectionViewItems : DataSource {
     associatedtype ItemIdentifier: RawStringRepresentable
     associatedtype ItemViewModelType : ComponentViewModel
 
-    func itemAtIndexPath(indexPath: NSIndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
+    func itemAtIndexPath(_ indexPath: IndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
-    func collectionViewItemTemplate(identifier: ItemIdentifier) -> Template
+    func collectionViewItemTemplate(_ identifier: ItemIdentifier) -> Template
 
     /**
      Creates a new `ItemViewModelType` for the given item
@@ -24,7 +24,7 @@ public protocol DataSourceCollectionViewItems : DataSource {
 
      - returns: A new ViewModel of type `ItemViewModelType`
      */
-    func createItemViewModel(item: ItemType?) -> ItemViewModelType?
+    func createItemViewModel(_ item: ItemType?) -> ItemViewModelType?
 }
 
 public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems {
@@ -32,9 +32,9 @@ public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems
     associatedtype SectionIdentifier: RawStringRepresentable
     associatedtype SectionViewModelType : ComponentViewModel
 
-    func sectionItemAtIndex(index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
+    func sectionItemAtIndex(_ index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
 
-    func collectionViewSectionTemplate(identifier: SectionIdentifier, kind: String) -> Template
+    func collectionViewSectionTemplate(_ identifier: SectionIdentifier, kind: String) -> Template
 
     /**
      Creates a new `SectionViewModelType` for the given section item
@@ -43,5 +43,5 @@ public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems
 
      - returns: A new viewmodel of type `SectionViewModelType`
      */
-    func createSectionViewModel(item: SectionType?) -> SectionViewModelType?
+    func createSectionViewModel(_ item: SectionType?) -> SectionViewModelType?
 }

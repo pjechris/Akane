@@ -22,10 +22,10 @@ class BondSpec : QuickSpec {
             observation = AnyObservation(value: "Hello Bond")
         }
 
-        describe("bindTo") {
+        describe("bind") {
             context("on bnd attribute") {
                 it("updates binding") {
-                    observation.bindTo(binding.bnd_text)
+                    observation.bind(to: binding.bnd_text)
 
                     expect(binding.text) == "Hello Bond"
                 }

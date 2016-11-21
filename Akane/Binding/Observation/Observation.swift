@@ -18,11 +18,11 @@ protocol Observation : _Observation {
     associatedtype Element
 
     var value: Element? { get set }
-    var next: [(Element -> Void)] { get set }
+    var next: [((Element) -> Void)] { get set }
 }
 
 extension Observation {
-    func put(value: Element) {
+    func put(_ value: Element) {
         self.value = value
         self.run()
     }
@@ -35,7 +35,7 @@ extension Observation {
         }
     }
 
-    func observe<NewElement>(yield: ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
+    func observe<NewElement>(_ yield: @escaping ((AnyObservation<NewElement>, Element) -> Void))  -> AnyObservation<NewElement> {
         let nextObserver = AnyObservation<NewElement>(value: nil)
 
         self.observe { value in
@@ -45,7 +45,7 @@ extension Observation {
         return nextObserver
     }
 
-    func observe(block: (Element -> Void)) {
+    func observe(_ block: @escaping ((Element) -> Void)) {
         self.next.append(block)
         self.run()
     }
