@@ -6,7 +6,7 @@
 
 import Foundation
 
-public class _AssociatedObjects: NSObject {
+public class AssociatedObjects: NSObject {
     
     public var dictionary: [String: Any] = [:]
     
@@ -34,17 +34,17 @@ public class _AssociatedObjects: NSObject {
     
 }
 
-public protocol _HasAssociatedObjects {
-    var _associatedObjects: _AssociatedObjects { get }
+public protocol HasAssociatedObjects {
+    var associatedObjects: AssociatedObjects { get }
 }
 
-private var _AssociatedObjectsKey: UInt8 = 0
+private var AssociatedObjectsKey: UInt8 = 0
 
-public extension _HasAssociatedObjects where Self: AnyObject {
-    var associatedObjects: _AssociatedObjects {
-        guard let associatedObjects = objc_getAssociatedObject(self, &_AssociatedObjectsKey) as? _AssociatedObjects else {
-            let associatedObjects = _AssociatedObjects()
-            objc_setAssociatedObject(self, &_AssociatedObjectsKey, associatedObjects, .OBJC_ASSOCIATION_RETAIN)
+extension HasAssociatedObjects where Self: AnyObject {
+    public var associatedObjects: AssociatedObjects {
+        guard let associatedObjects = objc_getAssociatedObject(self, &AssociatedObjectsKey) as? AssociatedObjects else {
+            let associatedObjects = AssociatedObjects()
+            objc_setAssociatedObject(self, &AssociatedObjectsKey, associatedObjects, .OBJC_ASSOCIATION_RETAIN)
             return associatedObjects
         }
         return associatedObjects

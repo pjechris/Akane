@@ -15,7 +15,7 @@ ComponentView is used on an `UIView` in order to associate it to a
 - *Future enhancements:* this protocol will be generic once we will be able to 
 use generics with Storyboard/Xib
 */
-public protocol ComponentView : class {
+public protocol ComponentView : class, HasAssociatedObjects {
 
     /**
      `ComponentViewController` class associated to the `ComponentView`

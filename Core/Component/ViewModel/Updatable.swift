@@ -10,14 +10,14 @@ import Foundation
 
 var UpdatableOnRenderAttr = "UpdatableOnRenderAttr"
 
-public protocol Updatable : class, _HasAssociatedObjects {
+public protocol Updatable : class, HasAssociatedObjects {
     func setNeedsUpdate()
 }
 
 extension Updatable {
     var onRender: ((Void) -> Void)? {
-        get { return self._associatedObjects[UpdatableOnRenderAttr] as? ((Void) -> Void) }
-        set { self._associatedObjects[UpdatableOnRenderAttr] = onRender }
+        get { return self.associatedObjects[UpdatableOnRenderAttr] as? ((Void) -> Void) }
+        set { self.associatedObjects[UpdatableOnRenderAttr] = onRender }
     }
 
     func setNeedsUpdate() {
