@@ -12,11 +12,11 @@ import Akane
 class AuthorViewCell: UITableViewCell, ComponentView {
    @IBOutlet var title: UILabel!
    
-   func bindings(observer: ViewObserver, viewModel: AnyObject) {
+   func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
       let viewModel = viewModel as! AuthorViewModel
       observer.observe(viewModel.author)
-         .convert { AuthorConverter().convert($0) }
-         .bindTo(self.title.bnd_text)
+        .convert { AuthorConverter().convert($0) }
+        .bind(to: self.title.bnd_text)
    }
 }
 
@@ -24,7 +24,7 @@ struct AuthorConverter {
    typealias ValueType = Author
    typealias ConvertValueType = String
    
-   func convert(author: ValueType) -> ConvertValueType {
+   func convert(_ author: ValueType) -> ConvertValueType {
       return author.name
    }
 }
