@@ -18,4 +18,9 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |ss|
     ss.source_files = 'Core/**/*.swift'
   end
+  
+  s.subspec 'Bindings' do |ss|
+    ss.source_files = 'Bindings/**/*.swift'
+    ss.dependency 'Bond', '~> 5.x'
+  end
 end
