@@ -24,6 +24,15 @@ public protocol ComponentView : class, HasAssociatedObjects {
      The Default implementation returns `ComponentViewController.self`
      */
     static func componentControllerClass() -> ComponentViewController.Type
+    
+    /**
+     Define the bindings between the fields (IBOutlet) and the ComponentViewModel
+     
+     - parameter observer:  The observer to use for defining  and registering
+     bindings
+     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
+     */
+    func bindings(viewModel: AnyObject)
 }
 
 extension ComponentView {

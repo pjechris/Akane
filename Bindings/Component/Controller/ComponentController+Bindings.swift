@@ -12,7 +12,7 @@ import Akane
 extension ComponentController {
     
     public func makeBindings() {
-        guard let viewModel = self.viewModel, let componentView = self.componentView as? ViewObserver & BindableComponentView else {
+        guard let viewModel = self.viewModel, let componentView = self.componentView as? ViewObserver else {
             return
         }
 
@@ -20,7 +20,7 @@ extension ComponentController {
         componentView.observerCollection = ObservationCollection()
 
         componentView.componentLifecycle = self
-        componentView.bindings(componentView, viewModel: viewModel)
+        componentView.bindings(viewModel: viewModel)
     }
 
     public func stopBindings() {

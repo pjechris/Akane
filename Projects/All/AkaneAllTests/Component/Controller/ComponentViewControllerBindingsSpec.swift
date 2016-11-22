@@ -87,6 +87,10 @@ extension ComponentViewControllerBindingsSpec {
     }
     
     class ViewMock : UIView, ViewObserver {
+        func bindings(viewModel: AnyObject) {
+            
+        }
+        
         func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
             
         }
