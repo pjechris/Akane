@@ -8,13 +8,13 @@
 
 import Foundation
 
-typealias AnyWeakValue = WeakValue<AnyObject>
+public typealias AnyWeakValue = WeakValue<AnyObject>
 
 /// Stores a weak ref on an AnyObject.
-class WeakValue<ValueType: AnyObject> {
-    weak var value: ValueType?
+public class WeakValue<ValueType: AnyObject> {
+    public weak var value: ValueType?
 
-    init(_ value: ValueType?) {
+    public init(_ value: ValueType?) {
         self.value = value
     }
 }

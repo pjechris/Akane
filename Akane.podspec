@@ -14,6 +14,4 @@ Pod::Spec.new do |s|
   s.source_files              = "Akane/**/*.swift"
   s.requires_arc              = true
 
-  s.dependency 'Bond', '~> 5.x'
-  s.dependency 'HasAssociatedObjects'
 end

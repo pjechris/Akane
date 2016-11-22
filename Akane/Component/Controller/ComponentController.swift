@@ -55,21 +55,3 @@ public protocol ComponentController : class, Lifecycle {
     */
     func didLoadComponent()
 }
-
-extension ComponentController {
-    public func makeBindings() {
-        guard let viewModel = self.viewModel, let componentView = self.componentView else {
-            return
-        }
-
-        self.stopBindings()
-        componentView.observerCollection = ObservationCollection()
-
-        componentView.componentLifecycle = self
-        componentView.bindings(componentView, viewModel: viewModel)
-    }
-
-    public func stopBindings() {
-        self.componentView?.observerCollection?.removeAllObservers()
-    }
-}

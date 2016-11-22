@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import HasAssociatedObjects
 
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
@@ -16,15 +15,7 @@ ComponentView is used on an `UIView` in order to associate it to a
 - *Future enhancements:* this protocol will be generic once we will be able to 
 use generics with Storyboard/Xib
 */
-public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
-    /**
-    Define the bindings between the fields (IBOutlet) and the ComponentViewModel
-    
-    - parameter observer:  The observer to use for defining  and registering 
-    bindings
-    - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
-    */
-    func bindings(_ observer: ViewObserver, viewModel: AnyObject)
+public protocol ComponentView : class {
 
     /**
      `ComponentViewController` class associated to the `ComponentView`

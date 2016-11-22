@@ -22,28 +22,41 @@ open class ComponentViewController : UIViewController, ComponentController {
     open var componentView: ComponentView? {
         get { return self.isViewLoaded ? self.view as? ComponentView : nil }
     }
+    
+    fileprivate var registeredBindingHandlers = [() -> ()]()
 
     open override func viewDidLoad() {
-        self.makeBindings()
+        super.viewDidLoad()
+        for handler in registeredBindingHandlers {
+            handler()
+        }
     }
 
     open override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.viewModel?.mount()
     }
-
+    
     func didSetViewModel() {
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
-        self.makeBindings()
+        for handler in registeredBindingHandlers {
+            handler()
+        }
     }
 
     open func didLoadComponent() {
     }
 }
 
-extension ComponentController where Self:UIViewController {
+extension ComponentController where Self:ComponentViewController {
+    public func registerBindingHandler(handler: @escaping () -> ()) {
+        registeredBindingHandlers.append(handler)
+    }
+}
 
+extension ComponentController where Self:UIViewController {
+    
     public func addController<C:UIViewController>(_ childController: C) where C:ComponentController {
         if (!self.childViewControllers.contains(childController)) {
             self.addChildViewController(childController)
