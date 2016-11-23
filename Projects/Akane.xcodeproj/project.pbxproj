@@ -1199,6 +1199,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.akane.AkaneCollections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AKANE_COLLECTIONS AKANE_BINDINGS";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1222,6 +1223,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.akane.AkaneCollections;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "AKANE_COLLECTIONS AKANE_BINDINGS";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1279,6 +1281,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.akane.AkaneBindings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG AKANE_BINDINGS";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -1302,6 +1305,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.akane.AkaneBindings;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = AKANE_BINDINGS;
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;
@@ -1526,6 +1530,7 @@
 				426040141DE50FE7009EBC40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		426040151DE50FE7009EBC40 /* Build configuration list for PBXNativeTarget "AkaneCollectionsTests" */ = {
 			isa = XCConfigurationList;
@@ -1534,6 +1539,7 @@
 				426040171DE50FE7009EBC40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		426040D81DE51146009EBC40 /* Build configuration list for PBXNativeTarget "AkaneBindings" */ = {
 			isa = XCConfigurationList;
@@ -1542,6 +1548,7 @@
 				426040DA1DE51146009EBC40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		426040DB1DE51146009EBC40 /* Build configuration list for PBXNativeTarget "AkaneBindingsTests" */ = {
 			isa = XCConfigurationList;
@@ -1550,6 +1557,7 @@
 				426040DD1DE51146009EBC40 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4282998E1DE4E2B700164AD5 /* Build configuration list for PBXProject "Akane" */ = {
 			isa = XCConfigurationList;

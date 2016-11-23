@@ -23,13 +23,9 @@ open class ComponentViewController : UIViewController, ComponentController {
         get { return self.isViewLoaded ? self.view as? ComponentView : nil }
     }
     
-    fileprivate var registeredBindingHandlers = [() -> ()]()
-
     open override func viewDidLoad() {
         super.viewDidLoad()
-        for handler in registeredBindingHandlers {
-            handler()
-        }
+        makeBindings()
     }
 
     open override func viewWillAppear(_ animated: Bool) {
@@ -40,18 +36,10 @@ open class ComponentViewController : UIViewController, ComponentController {
     func didSetViewModel() {
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
-        for handler in registeredBindingHandlers {
-            handler()
-        }
+        makeBindings()
     }
 
     open func didLoadComponent() {
-    }
-}
-
-extension ComponentController where Self:ComponentViewController {
-    public func registerBindingHandler(handler: @escaping () -> ()) {
-        registeredBindingHandlers.append(handler)
     }
 }
 

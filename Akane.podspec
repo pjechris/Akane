@@ -22,9 +22,11 @@ Pod::Spec.new do |s|
   s.subspec 'Bindings' do |ss|
     ss.source_files = 'Bindings/**/*.swift'
     ss.dependency 'Bond', '~> 5.x'
+    ss.xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "AKANE_BINDINGS" }
   end
 
   s.subspec 'Collections' do |ss|
     ss.source_files = 'Collections/**/*.swift'
+    ss.xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "AKANE_COLLECTIONS" }
   end
 end

@@ -8,6 +8,8 @@
 
 import Foundation
 
+#if AKANE_BINDINGS
+
 extension ComponentController {
     
     public func makeBindings() {
@@ -28,10 +30,4 @@ extension ComponentController {
     }
 }
 
-extension ComponentController where Self:ComponentViewController {
-    public func registerBindingHandlers() {
-        registerBindingHandler { [weak self] in
-            self?.makeBindings()
-        }
-    }
-}
+#endif

@@ -43,12 +43,39 @@ class ComponentViewControllerSpec : QuickSpec {
                 expect(viewController.receivedDidLoadComponent) == true
             }
         }
+        
+        describe("set viewModel") {
+            beforeEach {
+                
+            }
+            
+            it("calls makeBindings") {
+                viewController.viewModel = ViewModelMock()
+                
+                expect(viewController.countMakeBindings) == 1
+            }
+        }
+        
+        describe("set viewModel multiple times") {
+            let setNb: UInt = 3
+            
+            beforeEach {
+                for _ in 1...setNb {
+                    viewController.viewModel = ViewModelMock()
+                }
+            }
+            
+            it("calls makeBindings multiple times") {
+                expect(viewController.countMakeBindings) == setNb
+            }
+        }
     }
 }
 
 extension ComponentViewControllerSpec {
     class ComponentViewControllerMock : ComponentViewController {
         var receivedDidLoadComponent: Bool = false
+        var countMakeBindings: UInt = 0
         var stubIsViewLoaded: Bool? = nil
 
         override func didLoadComponent() {
@@ -57,6 +84,13 @@ extension ComponentViewControllerSpec {
 
         override var isViewLoaded: Bool {
             return self.stubIsViewLoaded ?? super.isViewLoaded
+        }
+        
+        // FIXME
+        // can't overload makeBindings
+        override func didSetViewModel() {
+            self.countMakeBindings += 1
+            super.didSetViewModel()
         }
     }
 

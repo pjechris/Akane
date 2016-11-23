@@ -35,9 +35,22 @@ public protocol ComponentView : class, HasAssociatedObjects {
     func bindings(viewModel: AnyObject)
 }
 
-extension ComponentView {
+var ViewObserverLifecycleAttr = "ViewObserverLifecycleAttr"
 
+extension ComponentView {
+    
     public static func componentControllerClass() -> ComponentViewController.Type {
         return ComponentViewController.self
+    }
+    
+    public internal(set) weak var componentLifecycle: Lifecycle? {
+        get {
+            guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
+                return nil
+            }
+            
+            return weakValue.value as? Lifecycle
+        }
+        set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
     }
 }

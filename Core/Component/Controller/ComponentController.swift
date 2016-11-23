@@ -55,3 +55,19 @@ public protocol ComponentController : class, Lifecycle {
     */
     func didLoadComponent()
 }
+
+#if !AKANE_BINDINGS
+
+extension ComponentController {
+    
+    public func makeBindings() {
+        guard let viewModel = self.viewModel, let componentView = self.componentView else {
+            return
+        }
+
+        componentView.componentLifecycle = self
+        componentView.bindings(viewModel: viewModel)
+    }
+}
+    
+#endif

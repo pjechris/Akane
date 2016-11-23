@@ -10,7 +10,6 @@ import Foundation
 import Bond
 
 var ViewObserverObserversKey = "ViewObserverObserversKey"
-var ViewObserverLifecycleAttr = "ViewObserverLifecycleAttr"
 
 /**
 `ViewObserver` provides an entry point for observing:
@@ -51,17 +50,6 @@ public protocol ViewObserver : ComponentView {
 }
 
 extension ComponentView {
-    public internal(set) weak var componentLifecycle: Lifecycle? {
-        get {
-            guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
-                return nil
-            }
-
-            return weakValue.value as? Lifecycle
-        }
-        set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
-    }
-
     public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
         let observation = AnyObservation(value: value)
 
