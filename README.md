@@ -1,21 +1,26 @@
 # Akane
-[![Build Status](https://travis-ci.org/akane/Akane.svg)](https://travis-ci.org/akane/Akane)
+![CocoaPods](https://img.shields.io/cocoapods/v/Akane.svg) [![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage) [![Build Status](https://travis-ci.org/akane/Akane.svg)](https://travis-ci.org/akane/Akane)
 
-```ruby
-pod install Akane
-```
 
-Akane helps you building better iOS native apps by leveraging an **MVVM** design pattern.
+Akane is a **lightweight** iOS framework that helps you building better native apps by adopting an **MVVM** design pattern.
 
-The main goal of Akane is to provide you with:
+              |  Main Goals
+--------------------------|------------------------------------------------------------
+:sweat_smile: | Safety: **minimize bad coding practices** as much as possible
+:wrench: | **Feature-Oriented**: adding and maintaining features is easy and, yes, safe
+:capital_abcd: | **Component-Oriented**: each visual feature you want to add to your app is a *Component*
+:scissors: | fine-grained **Separation of Concerns**, which means:
+:dancers: | Much less merge conflicts
+:sunglasses: | A better understanding of your code
 
-- A safe environment conceived to **minimize bad coding practices** as much as possible
-- A **feature-oriented** architecture. Adding/maintaining features is easy with Akane
-- A fine-grained **Separation of Concerns**, which translates to
-  - much less merge conflicts
-  - a deeper knowledge of your code
+Akane encourages the creation of small reusable *components* throughout your app, in order to improve the maintainability and the meaningfulness of your code.
 
-# MVVM versus iOS MVC
+Each component, with Akane, is composed of:
+- `ComponentViewController`
+- `ComponentViewModel`
+- `ComponentView`
+
+# Why Akane, Or MVVM versus iOS MVC
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today's app codebases grow bigger and bigger. Maintaining a single, huge, ViewController file is a dangerous operation which often results in unpredictable side effects.
 
@@ -30,34 +35,25 @@ Akane makes you split your code into small components which are composed of mult
 
 The *Model* is the layer containing the classes that model your application business.
 
-### Tips
-
-- A Song, a Movie, a Book, ... all those classes belong to this layer. They **must** contain no references to any `UIKit` or `Akane` component, such as `UIView`, `UIControl`, `ViewModel`, etc.
-
-### Example
+Songs, Movies, Books: all those `class`es or `struct`s belong to this layer. They should contain no reference to any `UIKit` or `Akane` component.
 
 ```swift
 struct User {
-  enum Gender: String {
-    case Male
-    case Female
+  enum Title: String {
+    case sir
+    case master
   }
 
   let username: String
-  let gender: Gender
+  let title: Title
 }
 ```
 
 ## ViewModel
 
-The *ViewModel* is where all your business logic should be put into.
+The *ViewModel* is where all your business logic should be implemented.
 
-### Tips
-
-- *Keep it agnostic*: no reference to any View or ViewController should be present in your ViewModel.
-- *Prefer ViewModel composition over inheritance*: split your code into multiple ViewModel, each one dealing with one business case and then create another ViewModel to aggregate all those logics.
-
-### Example
+Please, *Keep it agnostic*: no reference to any View or ViewController should be present in your ViewModel. Also, *Prefer ViewModel composition over inheritance*: split your code into multiple ViewModel, each one dealing with one business case and then create another ViewModel to aggregate all those logics.
 
 ```swift
 import Akane
@@ -82,19 +78,14 @@ class UserViewModel : ComponentViewModel {
 
 ## View
 
-Each View **must** correspond to one (and only one) ViewModel. It should be a dedicated (business named) class, just like your ViewModel.
+Each View **must** correspond to one (and only one) `ComponentViewModel`. It should be a dedicated (business named) class, just like your ViewModel.
 
-### Tips
+Please name the view meaningfully, by reflecting its business value: for instance BasketView, UserInfoView, etc. Also, a *View is only about UI logic*. Data **must** come from the ViewModel, by using binding to always be up-to-date.
 
-- Name a view meaningfully, by reflecting its business value: for instance BasketView, UserInfoView, etc.
-- *View is only about UI logic*. Data **must** come from the ViewModel, by using binding to always be up-to-date.
-
-The data flow between a ViewModel and its View is **always** unidirectional:
+The data flow between a ViewModel and its View is **always unidirectional**:
 
 - View <- ViewModel for data, through *bindings*
 - View -> ViewModel for actions, through *commands*: for instance, send a message or order a product.
-
-### Example
 
 ```swift
 import Akane
@@ -122,8 +113,8 @@ struct UserHelloConverter {
   typealias ConvertValueType = String
 
   func convert(user: ValueType) -> ConvertValueType {
-    let gender = (user.gender == .Male) ? "mr" : "miss"
-    return "Hello \(gender) \(user.username)"
+    let title = user.title.rawValue.uppercased()
+    return "Good morning, \(title) \(user.username)"
   }
 }
 
@@ -133,18 +124,14 @@ struct UserHelloConverter {
 
 The ViewController, through the `ComponentViewController` class, makes the link between `ComponentViewModel` and `ComponentView`.
 
-### Tips
-
 Just pass your `ComponentViewModel` to your ViewController to bind it to its view.
-
-### Example
 
 ```swift
 
 application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
 
   let rootViewController = self.window.rootViewController as! ComponentViewController
-  let user = User(username: "Mikasa", gender: .Female)
+  let user = User(username: "Bruce", title: .master)
 
   rootViewController.viewModel = UserViewModel(user: user)
 
@@ -172,72 +159,41 @@ class UserViewController : ComponentViewController {
 
 ```
 
-## Collections
+# Installing
 
-Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s as you will need a `DataSource` to provide data.
+Akane supports installation via CocoaPods and Carthage. 
 
-### Example
+## CocoaPods
 
-```swift
-struct AuthorListDataSource: DataSourceTableViewItems {
-  enum ItemIdentifier: String {
-    case Author
-  }
-
-  init(authors: Array<Author>) {
-    self.authors = authors
-  }
-
-  func itemAtIndexPath(indexPath: NSIndexPath) -> (item: Author?, identifier: ItemIdentifier) {
-    return (item: self.data[indexPath.row], identifier: .Author)
-  }
-
-  func tableViewItemTemplate(identifier: ItemIdentifier) -> Template {
-    return TemplateComponentView(AuthorViewCell.self)
-  }
-
-  func createItemViewModel(item: Author?) -> AuthorItemViewModel? {
-    return AuthorItemViewModel(author: item!)
-  }
-}
-
-class AuthorListViewModel: ComponentViewModel {
-  let authors: Array<Author>
-  let dataSource: AuthorListDataSource
-
-  init() {
-    self.authors = [
-      Author("Emile Zola"),
-      Author("Maupassant"),
-      Author("Victor Hugo")
-    ]
-    self.dataSource = AuthorListDataSource(authors: self.authors)
-  }
-}
-
-class AuthorListTableView: UITableView, ComponentView {
-
-  func bindings(observer: ViewObserver, viewModel: ComponentViewModel) {
-    let viewModel = viewModel as! AuthorListViewModel
-    let delegate = TableViewDelegate(observer: observer, dataSource: viewModel.dataSource)
-
-    delegate.becomeDataSourceAndDelegate(self, reload: true)
-  }
-}
-
+```ruby
+pod 'Akane/Core'
 ```
 
-# Akane is *Component-Oriented*
+In order to install Akane Bindings and Akane Collections, use:
 
-With Akane, each visual feature you want to add to your app is a *Component*.
+```ruby
+pod 'Akane/Core'
+pod 'Akane/Bindings'
+pod 'Akane/Collections'
+```
 
-A screen containing a tableView of tasks to do is a component, and the tableView's header can be a component too if it contains some logic.
-Akane encourages the creation of small reusable components throughout your app, in order to improve the maintainability and the meaningfulness of your code.
+## Carthage
 
-Each component, with Akane, is composed of:
-- `ComponentViewController`
-- `ComponentViewModel`
-- `ComponentView`
+Add `github "akane/Akane"` to your `Cartfile`.
+In order to use Akane Bindings and Akane Collections, you should also append `github "ReactiveKit/Bond"`.
+
+# Extensions
+
+Akane comes with two useful extensions: `Bindings` and `Collections`.
+
+## Bindings
+
+Akane Bindings build on the excellent `Bond` and `ReactiveKit` to bring Observable changes and `Commands`.
+
+## Collections
+
+Akane supports displaying collections of objects in `UITableViews` and `UICollectionViews`.
+Please [read the Collections.md documentation](Documentation/Collections.md) to know more.
 
 # United We Stand
 
