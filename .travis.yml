@@ -13,7 +13,7 @@ env:
     xcode_sdk=iphonesimulator
     xcode_platform="platform=iOS Simulator,name=iPhone 6"
 
-install: cd Projects/ pod install
+install: cd Projects
 
 script:
   - >
