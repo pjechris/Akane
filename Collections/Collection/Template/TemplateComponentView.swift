@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Akane
 
 /**
  Create templates for `ComponentView`(s)

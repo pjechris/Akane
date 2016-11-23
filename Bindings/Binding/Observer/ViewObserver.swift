@@ -8,7 +8,6 @@
 
 import Foundation
 import Bond
-import Akane
 
 var ViewObserverObserversKey = "ViewObserverObserversKey"
 var ViewObserverLifecycleAttr = "ViewObserverLifecycleAttr"
@@ -72,9 +71,9 @@ extension ComponentView {
     }
 
     public func observe(_ command: Command) -> CommandObservation {
-        guard let observedSelf = self as? ViewObserver else { fatalError() }
+        guard let observerSelf = self as? ViewObserver else { fatalError("The observed view does not implement the `ViewObservable` protocol") }
         
-        let observation = CommandObservation(command: command, observer: observedSelf)
+        let observation = CommandObservation(command: command, observer: observerSelf)
 
         self.observerCollection?.append(observation)
 

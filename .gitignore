@@ -20,3 +20,5 @@ DerivedData
 
 Pods/
 Podfile.lock
+Projects/Carthage/Checkouts
+Cartfile.resolved

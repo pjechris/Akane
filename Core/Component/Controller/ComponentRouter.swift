@@ -6,7 +6,7 @@
 // file that was distributed with this source code
 //
 
-import Foundation
+import UIKit
 
 /// Performs navigation through Controllers inside the application.
 public protocol ComponentRouter: class {

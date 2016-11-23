@@ -8,7 +8,6 @@
 
 import Foundation
 import Bond
-import Akane
 
 open class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
     var value: ViewModelType? = nil

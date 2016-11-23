@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 /**
  Create templates for simple `UIView`s

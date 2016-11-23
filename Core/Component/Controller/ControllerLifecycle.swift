@@ -6,7 +6,7 @@
 // file that was distributed with this source code
 //
 
-import Foundation
+import UIKit
 
 var BinderAttribute = "ViewStyleNameAttribute"
 

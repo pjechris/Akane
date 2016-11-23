@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 open class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {

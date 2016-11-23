@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 extension ViewModelObservation {
     func bindTo(_ cell: UIView, template: Template) {

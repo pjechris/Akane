@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 open class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<DataSourceType>
 {

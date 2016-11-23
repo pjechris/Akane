@@ -6,7 +6,7 @@
 // file that was distributed with this source code
 //
 
-import Foundation
+import UIKit
 
 /**
 ComponentController is a Controller making the link between a `ComponentView`

@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 open class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSections> : TableViewDelegate<DataSourceType>
 {

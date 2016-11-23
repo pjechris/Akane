@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 extension UICollectionView {
     func registerIfNeeded(_ template: Template, type: CollectionElementCategory) {

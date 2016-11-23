@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 public protocol DataSourceCollectionViewItems : DataSource {
     associatedtype ItemType

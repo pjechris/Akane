@@ -1,0 +1,3 @@
+github "Quick/Quick"
+github "Quick/Nimble"
+github "ReactiveKit/Bond" ~> 5.1

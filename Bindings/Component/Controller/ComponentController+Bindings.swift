@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 extension ComponentController {
     

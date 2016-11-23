@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Akane
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 

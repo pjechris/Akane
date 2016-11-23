@@ -8,7 +8,6 @@
 
 import Foundation
 import ReactiveKit
-import Akane
 import Bond
 
 extension Bond : Bindable {

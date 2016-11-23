@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 /// Provide data and `Template`s for a `UITableView`
 public protocol DataSourceTableViewItems : DataSource {

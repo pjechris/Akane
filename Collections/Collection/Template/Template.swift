@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Akane
 
 /**
 Define properties of a reusable collection view
