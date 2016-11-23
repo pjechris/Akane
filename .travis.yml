@@ -1,14 +1,19 @@
 language: objective-c
-osx_image: xcode7.3
+osx_image: xcode8.1
+before_install: 
+  - cd Projects
+  - brew update
+  - brew install carthage
+  - carthage bootstrap --verbose
 
 env:
   - >
     xcode_workspace=Akane.xcworkspace
-    xcode_scheme=Akane
+    xcode_scheme=AkaneCore
     xcode_sdk=iphonesimulator
     xcode_platform="platform=iOS Simulator,name=iPhone 6"
 
-install: pod install
+install: cd Projects/ pod install
 
 script:
   - >
