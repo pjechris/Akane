@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = "Akane"
-  s.version                   = "0.15.1"
+  s.version                   = "0.16.0"
   s.source                    = { :git => "https://github.com/akane/Akane.git",
                                   :tag => s.version.to_s }
 
@@ -8,12 +8,25 @@ Pod::Spec.new do |s|
   s.description               = "Akane is a MVVM framework helping you to build safer, cleaner and more maintenable iOS native apps"
   s.homepage                  = "https://github.com/akane/Akane"
   s.license                   = { :type => "MIT", :file => "LICENSE" }
-  s.author                    = 'pjechris', 'akane', 'xebia'
+  s.author                    = 'pjechris', 'viteinfinite', 'akane', 'xebia'
 
   s.ios.deployment_target     = "8.0"
-  s.source_files              = "Akane/**/*.swift"
   s.requires_arc              = true
 
-  s.dependency 'Bond', '~> 4.x'
-  s.dependency 'HasAssociatedObjects'
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |ss|
+    ss.source_files = 'Core/**/*.swift'
+  end
+  
+  s.subspec 'Bindings' do |ss|
+    ss.source_files = 'Bindings/**/*.swift'
+    ss.dependency 'Bond', '~> 5.x'
+    ss.xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "AKANE_BINDINGS" }
+  end
+
+  s.subspec 'Collections' do |ss|
+    ss.source_files = 'Collections/**/*.swift'
+    ss.xcconfig = { "SWIFT_ACTIVE_COMPILATION_CONDITIONS" => "AKANE_COLLECTIONS" }
+  end
 end
