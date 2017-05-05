@@ -8,6 +8,7 @@
 
 import Foundation
 import Bond
+import ReactiveKit
 import Nimble
 import Quick
 @testable import Akane
@@ -25,7 +26,7 @@ class BondSpec : QuickSpec {
         describe("bind") {
             context("on bnd attribute") {
                 it("updates binding") {
-                    observation.bind(to: binding.bnd_text)
+                    observation.bind(to: binding.reactive.text)
 
                     expect(binding.text) == "Hello Bond"
                 }

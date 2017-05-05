@@ -62,10 +62,10 @@ extension CommandObservation {
         self.controls.append(control)
         
         // FIXME remove dep on Bond
-        self.canExecuteObservation?.bind(to: control.bnd_isEnabled)
+        self.canExecuteObservation?.bind(to: control.reactive.isEnabled)
         self.isExecutingObservation?
             .convert { !$0 }
-            .bind(to: control.bnd_isUserInteractionEnabled)
+            .bind(to: control.reactive.isUserInteractionEnabled)
     }
 
     @objc

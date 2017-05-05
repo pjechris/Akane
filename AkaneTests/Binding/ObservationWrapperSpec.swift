@@ -25,7 +25,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             beforeEach {
                 bindedItem = UILabel()
-                observer.bind(to: bindedItem.bnd_text)
+                observer.bind(to: bindedItem.reactive.text)
             }
 
             context("when value changed") {
@@ -33,7 +33,22 @@ class ObservationWrapperSpec : QuickSpec {
                     observer.put("Hello World")
                     expect(bindedItem.text) == "Hello World"
                 }
+
+                context("when converted") {
+                    beforeEach {
+                        observer
+                            .convert { return $0?.uppercased() }
+                            .bind(to: bindedItem.reactive.text)
+                    }
+
+                    it("updates binding") {
+                        observer.put("Hello World")
+                        expect(bindedItem.text) == "HELLO WORLD"
+                    }
+                }
             }
+
+
         }
 
         describe("unbind") {
@@ -41,7 +56,7 @@ class ObservationWrapperSpec : QuickSpec {
 
             beforeEach {
                 bindedItem = UILabel()
-                observer.bind(to: bindedItem.bnd_text)
+                observer.bind(to: bindedItem.reactive.text)
             }
 
             it("should stop update the binding") {

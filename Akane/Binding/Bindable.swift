@@ -11,6 +11,5 @@ import Foundation
 public protocol Bindable {
     associatedtype Element
 
-    // - returns: a closure that can be used to dispatch events to the receiver.
-    func advance() -> ((Element) -> Void)
+    func advance(element: Element) -> Void
 }

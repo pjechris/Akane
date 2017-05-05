@@ -100,7 +100,7 @@ extension AnyObservation {
      */
     public func bind<T: Bindable>(to bindable: T) where T.Element == Element {
         self.observe { value in
-            bindable.advance()(value)
+            bindable.advance(element: value)
         }
     }
 
@@ -112,7 +112,7 @@ extension AnyObservation {
      */
     public func bind<T: Bindable>(to bindable: T) where T.Element == Optional<Element> {
         self.observe { value in
-            bindable.advance()(value)
+            bindable.advance(element: value)
         }
     }
 }

@@ -55,10 +55,8 @@ extension AnyObservationSpec {
     class BindingMock : Bindable {
         var receivedBinding: String? = nil
 
-        func advance() -> ((String?) -> Void) {
-            return {
-                self.receivedBinding = $0
-            }
+        func advance(element: String?) {
+            self.receivedBinding = element
         }
     }
 

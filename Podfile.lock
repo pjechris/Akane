@@ -1,24 +1,27 @@
 PODS:
-  - Bond (5.1.0):
-    - ReactiveKit (~> 3.1)
+  - Bond (6.2.6):
+    - Diff (~> 0.4)
+    - ReactiveKit (~> 3.5.3)
+  - Diff (0.5.3)
   - HasAssociatedObjects (0.1.1)
   - Nimble (5.1.1)
   - Quick (0.10.0)
-  - ReactiveKit (3.1.1)
+  - ReactiveKit (3.5.3)
 
 DEPENDENCIES:
-  - Bond (~> 5.x)
+  - Bond (~> 6.x)
   - HasAssociatedObjects
   - Nimble (~> 5.x)
   - Quick
 
 SPEC CHECKSUMS:
-  Bond: 37b7251e8aa7ac660458494a3ccaa1a17833a217
+  Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
+  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
   HasAssociatedObjects: 5fe944d22f26ea708d0b9e188fdec3236ef3b95b
   Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
   Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  ReactiveKit: e830df3deeb6cdf2acd18cee5cf07cb25488ae4e
+  ReactiveKit: 39a0723167d04107140cf540f04526deecd18891
 
 PODFILE CHECKSUM: e1478affeae5f6c9a93572e7499ffeb85702db74
 
-COCOAPODS: 1.2.0.beta.1
+COCOAPODS: 1.2.1
