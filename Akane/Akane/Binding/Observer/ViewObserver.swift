@@ -31,15 +31,6 @@ public protocol ViewObserver : class, HasAssociatedObjects {
     `ComponentView`.
     */
     func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue>
-
-    /**
-    Observes a `Command`.
-     
-    - parameter command: The `Command` to be observed.
-     
-    - returns: A `CommandObservation`.
-    */
-    func observe(_ value: Command) -> CommandObservation
     
     /**
      Observes a `ComponentViewModel`.
@@ -71,14 +62,6 @@ extension ViewObserver {
         return observation
     }
 
-    public func observe(_ command: Command) -> CommandObservation {
-        let observation = CommandObservation(command: command, observer: self)
-
-        self.observerCollection?.append(observation)
-
-        return observation
-    }
-
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
         let observation = ViewModelObservation<ViewModelType>(value: value, lifecycle: self.componentLifecycle!)
 
@@ -91,7 +74,7 @@ extension ViewObserver {
 extension ViewObserver {
     fileprivate typealias ObserverType = (observer: _Observation, onRemove: ((Void) -> Void)?)
 
-    var observerCollection: ObservationCollection? {
+    public var observerCollection: ObservationCollection? {
         get {
             return self.associatedObjects[ViewObserverObserversKey] as? ObservationCollection
         }

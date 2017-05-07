@@ -8,18 +8,21 @@
 
 import Foundation
 import Bond
+#if AKANE_AS_FRAMEWORK
+    import Akane
+#endif
 
 open class CommandObservation : Observation {
-    var value: Command? = nil
+    public var value: BondCommand? = nil
 
-    var next: [((Command) -> Void)] = []
+    public var next: [((BondCommand) -> Void)] = []
 
     fileprivate var controls: [UIControl] = []
 
     var canExecuteObservation: AnyObservation<Bool>? = nil
     var isExecutingObservation: AnyObservation<Bool>? = nil
 
-    init(command: Command, observer: ViewObserver?) {
+    init(command: BondCommand, observer: ViewObserver?) {
         self.value = command
 
         self.canExecuteObservation = observer?.observe(command.canExecute)
@@ -30,7 +33,7 @@ open class CommandObservation : Observation {
         self.unobserve()
     }
 
-    func unobserve() {
+    public func unobserve() {
         for control in self.controls {
             control.removeTarget(self, action: nil, for: .allEvents)
         }

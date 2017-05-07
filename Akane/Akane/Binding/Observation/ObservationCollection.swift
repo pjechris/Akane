@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import Bond
 
 /**
  Contain multiple `Observation` instances which can be disposed at any time
 */
-class ObservationCollection {
+public class ObservationCollection {
     fileprivate typealias ObserverType = (observer: _Observation, onRemove: ((Void) -> Void)?)
 
     var count: Int { return self.observers.count }
@@ -22,7 +21,7 @@ class ObservationCollection {
         self.removeAllObservers()
     }
 
-    func append(_ observer: _Observation, onRemove: ((Void) -> Void)? = nil) {
+    public func append(_ observer: _Observation, onRemove: ((Void) -> Void)? = nil) {
         self.observers.append((observer: observer, onRemove: onRemove))
     }
 

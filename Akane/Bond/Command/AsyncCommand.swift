@@ -8,6 +8,9 @@
 
 import Foundation
 import Bond
+#if AKANE_AS_FRAMEWORK
+    import Akane
+#endif
 
 /**
  Adds an attribute `isExecuting` which you can observe to determine whether or not the command is running.

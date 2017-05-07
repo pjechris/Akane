@@ -11,9 +11,20 @@ Pod::Spec.new do |s|
   s.author                    = 'pjechris', 'akane', 'xebia'
 
   s.ios.deployment_target     = "8.0"
-  s.source_files              = "Akane/**/*.swift"
   s.requires_arc              = true
 
-  s.dependency 'Bond', '~> 6.x'
-  s.dependency 'HasAssociatedObjects'
+  s.default_subspecs          = "Core", "Bond"
+
+  s.subspec 'Core' do |ss|
+    ss.source_files = "Akane/**/*.swift"
+
+    ss.dependency 'HasAssociatedObjects'
+  end
+
+  s.subspec 'Bond' do |ss|
+    ss.source_files = "Bond/**/*.swift"
+
+    ss.dependency 'Bond', '~> 6.x'
+    ss.dependency 'Akane/Core'
+  end
 end

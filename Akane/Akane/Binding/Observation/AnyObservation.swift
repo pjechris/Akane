@@ -16,12 +16,12 @@ import HasAssociatedObjects
  the API, then it probably means you need to move your code to a
  `ComponentViewModel` or a `Converter` instead.
  */
-open class AnyObservation<Element> : Observation {
-    var value: Element? = nil
+public class AnyObservation<Element> : Observation {
+    public var value: Element? = nil
 
-    var next: [((Element) -> Void)] = []
+    public var next: [((Element) -> Void)] = []
 
-    init(value: Element?) {
+    public init(value: Element?) {
         self.value = value
     }
 

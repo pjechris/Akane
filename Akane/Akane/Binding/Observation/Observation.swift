@@ -8,13 +8,13 @@
 
 import Foundation
 
-protocol _Observation : class {
+public protocol _Observation : class {
     func unobserve()
     /// Run any observations that might have been made
     func run()
 }
 
-protocol Observation : _Observation {
+public protocol Observation : _Observation {
     associatedtype Element
 
     var value: Element? { get set }
@@ -22,12 +22,12 @@ protocol Observation : _Observation {
 }
 
 extension Observation {
-    func put(_ value: Element) {
+    public func put(_ value: Element) {
         self.value = value
         self.run()
     }
 
-    func run() {
+    public func run() {
         if let value = self.value {
             for step in self.next {
                 step(value)
@@ -50,7 +50,7 @@ extension Observation {
         self.run()
     }
 
-    func unobserve() {
+    public func unobserve() {
         self.next = []
         self.value = nil
     }

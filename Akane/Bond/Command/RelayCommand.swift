@@ -8,6 +8,9 @@
 
 import Foundation
 import Bond
+#if AKANE_AS_FRAMEWORK
+    import Akane
+#endif
 
 public typealias VoidCommand = RelayCommand<Void>
 
@@ -19,7 +22,7 @@ It provides 2 closures:
 - `canExecute` a block updating the command availability. Optional
 - `action` the block containing the action to execute
 */
-open class RelayCommand<Parameter> : Command {
+open class RelayCommand<Parameter> : BondCommand {
     open fileprivate(set) var canExecute : Observable<Bool> = Observable(true)
     open internal(set) var isExecuting = Observable(false)
 

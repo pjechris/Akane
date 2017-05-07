@@ -7,16 +7,15 @@
 //
 
 import Foundation
-import Bond
 
-open class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
-    var value: ViewModelType? = nil
+public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observation {
+    public var value: ViewModelType? = nil
 
-    var next: [((ViewModelType) -> Void)] = []
+    public var next: [((ViewModelType) -> Void)] = []
 
     unowned let lifecycle: Lifecycle
 
-    init(value: ViewModelType?, lifecycle: Lifecycle) {
+    public init(value: ViewModelType?, lifecycle: Lifecycle) {
         self.lifecycle = lifecycle
         self.value = value
     }

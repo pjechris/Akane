@@ -9,6 +9,9 @@
 import Foundation
 import ReactiveKit
 import Bond
+#if AKANE_AS_FRAMEWORK
+import Akane
+#endif
 
 extension Bond : Akane.Bindable {
     public func advance(element: Element) -> Void {
@@ -48,5 +51,20 @@ extension ViewObserver {
         }
 
         return observer
+    }
+
+    /**
+     Observes a `Command`.
+
+     - parameter command: The `Command` to be observed.
+
+     - returns: A `CommandObservation`.
+     */
+    public func observe(_ command: BondCommand) -> CommandObservation {
+        let observation = CommandObservation(command: command, observer: self)
+
+        self.observerCollection?.append(observation)
+
+        return observation
     }
 }

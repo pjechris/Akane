@@ -7,6 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
+    import Akane
+#endif
 
 /**
  Passing an object conforming to this protocol to `Command` passes its value to `Command.execute`.
