@@ -27,6 +27,6 @@ public struct TemplateComponentView<ComponentType : UIView> : Template where Com
     }
 
     public func bind<V: ComponentViewModel>(_ cell: UIView, wrapper: ViewModelObservation<V>) {
-        wrapper.bindTo(cell as! ComponentType)
+        wrapper.bind(to: cell as! ComponentType)
     }
 }

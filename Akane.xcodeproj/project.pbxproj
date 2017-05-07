@@ -30,7 +30,6 @@
 		49D472B61EBF547500E1435E /* AkaneBond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D472AD1EBF547500E1435E /* AkaneBond.framework */; };
 		49D472C41EBF548200E1435E /* Bond.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4729D1EBF545700E1435E /* Bond.swift */; };
 		49D472C51EBF548600E1435E /* AsyncCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4729F1EBF545700E1435E /* AsyncCommand.swift */; };
-		49D472C61EBF548600E1435E /* Command.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472A01EBF545700E1435E /* Command.swift */; };
 		49D472C81EBF548600E1435E /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472A21EBF545700E1435E /* RelayCommand.swift */; };
 		49D472CD1EBF551E00E1435E /* CommandObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472CB1EBF54F400E1435E /* CommandObservation.swift */; };
 		49D472E61EBF558700E1435E /* CollectionElementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472CF1EBF558700E1435E /* CollectionElementCategory.swift */; };
@@ -63,6 +62,7 @@
 		49D473211EBF5D9700E1435E /* ComponentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473171EBF5D8100E1435E /* ComponentViewControllerSpec.swift */; };
 		49D473241EBF5EAE00E1435E /* BondSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473191EBF5D8100E1435E /* BondSpec.swift */; };
 		49D473251EBF5EB300E1435E /* AsyncCommandSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4731B1EBF5D8100E1435E /* AsyncCommandSpec.swift */; };
+		49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473261EBFCC1200E1435E /* BondCommand.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +107,6 @@
 		49D472901EBF542400E1435E /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		49D4729D1EBF545700E1435E /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
 		49D4729F1EBF545700E1435E /* AsyncCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AsyncCommand.swift; sourceTree = "<group>"; };
-		49D472A01EBF545700E1435E /* Command.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Command.swift; sourceTree = "<group>"; };
 		49D472A21EBF545700E1435E /* RelayCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RelayCommand.swift; sourceTree = "<group>"; };
 		49D472AD1EBF547500E1435E /* AkaneBond.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = AkaneBond.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D472B51EBF547500E1435E /* AkaneBondTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneBondTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -142,6 +141,7 @@
 		49D473191EBF5D8100E1435E /* BondSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BondSpec.swift; sourceTree = "<group>"; };
 		49D4731B1EBF5D8100E1435E /* AsyncCommandSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCommandSpec.swift; sourceTree = "<group>"; };
 		49D4731C1EBF5D8100E1435E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		49D473261EBFCC1200E1435E /* BondCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondCommand.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -318,8 +318,8 @@
 		49D4729E1EBF545700E1435E /* Command */ = {
 			isa = PBXGroup;
 			children = (
+				49D473261EBFCC1200E1435E /* BondCommand.swift */,
 				49D4729F1EBF545700E1435E /* AsyncCommand.swift */,
-				49D472A01EBF545700E1435E /* Command.swift */,
 				49D472A21EBF545700E1435E /* RelayCommand.swift */,
 			);
 			path = Command;
@@ -705,6 +705,7 @@
 				49D472931EBF542400E1435E /* Converter.swift in Sources */,
 				49D4729A1EBF542400E1435E /* ViewModelObservation.swift in Sources */,
 				49D472F51EBF558700E1435E /* UICollectionView.swift in Sources */,
+				49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */,
 				49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */,
 				49D472981EBF542400E1435E /* Observation.swift in Sources */,
 				49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */,
@@ -730,7 +731,6 @@
 			files = (
 				49D472C51EBF548600E1435E /* AsyncCommand.swift in Sources */,
 				49D472C41EBF548200E1435E /* Bond.swift in Sources */,
-				49D472C61EBF548600E1435E /* Command.swift in Sources */,
 				49D472C81EBF548600E1435E /* RelayCommand.swift in Sources */,
 				49D472CD1EBF551E00E1435E /* CommandObservation.swift in Sources */,
 			);

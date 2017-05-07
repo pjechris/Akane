@@ -16,7 +16,7 @@ class AuthorViewCell: UITableViewCell, ComponentView {
       let viewModel = viewModel as! AuthorViewModel
       observer.observe(viewModel.author)
         .convert { AuthorConverter().convert($0) }
-        .bind(to: self.title.bnd_text)
+        .bind(to: self.title.reactive.text)
    }
 }
 

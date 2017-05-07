@@ -4,6 +4,4 @@ use_frameworks!
 
 target 'Example' do
   pod 'Akane', :path => '../'
-  pod 'Akane/Bindings', :path => '../'
-  pod 'Akane/Collections', :path => '../'
 end

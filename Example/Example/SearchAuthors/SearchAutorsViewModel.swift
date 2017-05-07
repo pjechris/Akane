@@ -12,10 +12,10 @@ import Akane
 class SearchAuthorsViewModel : ComponentViewModel {
    fileprivate var authors: [Author]
    
-   let authorsViewModel: AuthorsViewModel
-   lazy var searchFor: Command = RelayCommand<String>() { [unowned self] in
-      self.filterAuthors($0)
-   }
+    let authorsViewModel: AuthorsViewModel
+    lazy var searchFor: RelayCommand<String> = RelayCommand<String>() { [unowned self] in
+        self.filterAuthors($0)
+    }
    
    init() {
       self.authors = [

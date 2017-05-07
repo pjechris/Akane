@@ -48,9 +48,9 @@ open class CommandObservation : Observation {
 }
 
 extension CommandObservation {
-    public func bindTo(_ control: UIControl?, events: UIControlEvents = .touchUpInside) {
+    public func bind(to control: UIControl?, events: UIControlEvents = .touchUpInside) {
         if let control = control {
-            self.bindTo(control, events: events)
+            self.bind(to: control, events: events)
         }
     }
 
@@ -59,7 +59,7 @@ extension CommandObservation {
      - command `canExecute` with control `enabled`
      - command `isExecuting` (if AsyncCommand) with control `userInteractionEnabled`
      */
-    public func bindTo(_ control: UIControl, events: UIControlEvents = .touchUpInside) {
+    public func bind(to control: UIControl, events: UIControlEvents = .touchUpInside) {
         control.addTarget(self, action: #selector(self.onTouch(_:)), for: events)
 
         self.controls.append(control)
