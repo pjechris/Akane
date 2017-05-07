@@ -7,7 +7,7 @@ env:
     xcode_sdk=iphonesimulator
     xcode_platform="platform=iOS Simulator,name=iPhone 6"
 
-install: pod install
+install: pod install --repo-update
 
 script:
   - >
