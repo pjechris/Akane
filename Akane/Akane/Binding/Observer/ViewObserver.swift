@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import Bond
 import HasAssociatedObjects
 
 var ViewObserverObserversKey = "ViewObserverObserversKey"

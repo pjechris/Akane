@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import Bond
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
