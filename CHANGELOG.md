@@ -1,6 +1,12 @@
 # CHANGELOG
 
-# WIP
+## 0.16.0
+
+### Changes
+- Swift 3 support. - [viteinfinite](https://github.com/viteinfinite)
+- Moved Bond dependency into a subspec (still included by default).
+
+# 0.15.0
 
 ## Changes
 
