@@ -9,7 +9,8 @@
 import Foundation
 import Nimble
 import Quick
-@testable import Akane
+import Akane
+@testable import AkaneBond
 
 class AsyncCommandSpec : QuickSpec {
     override func spec() {
