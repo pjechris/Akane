@@ -156,58 +156,18 @@ class UserViewController : ComponentViewController {
 
 ```
 
-<<<<<<< Updated upstream
-# Installing
-=======
 ## Collections
 
-<<<<<<< Updated upstream
-Handling collection data with `UITableView` or`UICollectionView` is a little harder than with usual `UIView`s as you will need a `DataSource` to provide data.
-=======
-Akane supports installation via CocoaPods and Carthage.
->>>>>>> Stashed changes
+Akane supports displaying collections of objects in `UITableViews` and `UICollectionViews`.
+Please [read the Collections.md documentation](Documentation/Collections.md) to know more.
 
-### Example
 
-<<<<<<< Updated upstream
-```swift
-struct AuthorListDataSource: DataSourceTableViewItems {
-  enum ItemIdentifier: String {
-    case Author
-  }
->>>>>>> Stashed changes
+# Installation
 
 Akane supports installation via CocoaPods and Carthage.
 
 ## CocoaPods
 
-```ruby
-pod 'Akane/Core'
-```
-
-In order to install Akane Bindings and Akane Collections, use:
-
-<<<<<<< Updated upstream
-```ruby
-pod 'Akane/Core'
-pod 'Akane/Bindings'
-pod 'Akane/Collections'
-```
-=======
-class AuthorListViewModel: ComponentViewModel {
-  let authors: Array<Author>
-  let dataSource: AuthorListDataSource
-
-  init() {
-    self.authors = [
-      Author("Emile Zola"),
-      Author("Maupassant"),
-      Author("Victor Hugo")
-    ]
-    self.dataSource = AuthorListDataSource(authors: self.authors)
-  }
-}
-=======
 ```ruby
 pod 'Akane'
 ```
@@ -217,44 +177,11 @@ Akane builds on top of Bond for managing bindings. If you do want to use your ow
 ```ruby
 pod 'Akane/Core'
 ```
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 ## Carthage
 
-<<<<<<< Updated upstream
 Add `github "akane/Akane"` to your `Cartfile`.
 In order to use Akane Bindings and Akane Collections, you should also append `github "ReactiveKit/Bond"`.
-=======
-<<<<<<< Updated upstream
-  func bindings(observer: ViewObserver, viewModel: ComponentViewModel) {
-    let viewModel = viewModel as! AuthorListViewModel
-    let delegate = TableViewDelegate(observer: observer, dataSource: viewModel.dataSource)
->>>>>>> Stashed changes
-
-# Extensions
-
-Akane comes with two useful extensions: `Bindings` and `Collections`.
-
-## Bindings
-
-Akane Bindings build on the excellent `Bond` and `ReactiveKit` to bring Observable changes and `Commands`.
-
-## Collections
-
-<<<<<<< Updated upstream
-Akane supports displaying collections of objects in `UITableViews` and `UICollectionViews`.
-Please [read the Collections.md documentation](Documentation/Collections.md) to know more.
-=======
-Each component, with Akane, is composed of:
-- `ComponentViewController`
-- `ComponentViewModel`
-- `ComponentView`
-=======
-Add `github "akane/Akane"` to your `Cartfile`.
-In order to use Bond, you should also append `github "ReactiveKit/Bond"`.
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 
 # United We Stand
 
