@@ -13,9 +13,9 @@ class SearchAuthorsView : UIView, ComponentView {
    @IBOutlet var searchField: UITextField!
    @IBOutlet var authorsView: AuthorsView!
    
-   func bindings(observer: ViewObserver, viewModel: AnyObject) {
+   func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
       let viewModel = viewModel as! SearchAuthorsViewModel
-      observer.observe(viewModel.searchFor).bindTo(self.searchField, events: [.ValueChanged, .EditingChanged])
-      observer.observe(viewModel.authorsViewModel).bindTo(authorsView);
+    observer.observe(viewModel.searchFor).bind(to: self.searchField, events: [.valueChanged, .editingChanged])
+    observer.observe(viewModel.authorsViewModel).bind(to: authorsView);
    }
 }

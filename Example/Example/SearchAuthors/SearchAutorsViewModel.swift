@@ -10,12 +10,12 @@ import Foundation
 import Akane
 
 class SearchAuthorsViewModel : ComponentViewModel {
-   private var authors: [Author]
+   fileprivate var authors: [Author]
    
-   let authorsViewModel: AuthorsViewModel
-   lazy var searchFor: Command = RelayCommand<String>() { [unowned self] in
-      self.filterAuthors($0)
-   }
+    let authorsViewModel: AuthorsViewModel
+    lazy var searchFor: RelayCommand<String> = RelayCommand<String>() { [unowned self] in
+        self.filterAuthors($0)
+    }
    
    init() {
       self.authors = [
@@ -26,10 +26,10 @@ class SearchAuthorsViewModel : ComponentViewModel {
       self.authorsViewModel = AuthorsViewModel(authors: self.authors)
    }
    
-   private func filterAuthors(str: String?) -> () {
-      guard let searchString = str?.lowercaseString where searchString.characters.count > 0 else { self.authorsViewModel.authors.next(self.authors); return }
+   fileprivate func filterAuthors(_ str: String?) -> () {
+      guard let searchString = str?.lowercased(), searchString.characters.count > 0 else { self.authorsViewModel.authors.next(self.authors); return }
       self.authorsViewModel.authors.next(self.authors.filter() { e in
-         return e.name.lowercaseString.rangeOfString(searchString) != nil
+        return e.name.lowercased().range(of: searchString) != nil
       })
    }
 }
