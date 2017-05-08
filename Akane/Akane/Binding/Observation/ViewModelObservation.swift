@@ -13,9 +13,9 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
     public var next: [((ViewModelType) -> Void)] = []
 
-    unowned let lifecycle: Lifecycle
+    unowned let lifecycle: ComponentContainer
 
-    public init(value: ViewModelType?, lifecycle: Lifecycle) {
+    public init(value: ViewModelType?, lifecycle: ComponentContainer) {
         self.lifecycle = lifecycle
         self.value = value
     }

@@ -42,13 +42,13 @@ public protocol ViewObserver : class, HasAssociatedObjects {
 }
 
 extension ViewObserver {
-    public internal(set) weak var componentLifecycle: Lifecycle? {
+    public internal(set) weak var componentLifecycle: ComponentContainer? {
         get {
             guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
                 return nil
             }
 
-            return weakValue.value as? Lifecycle
+            return weakValue.value as? ComponentContainer
         }
         set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
     }

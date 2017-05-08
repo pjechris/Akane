@@ -10,8 +10,8 @@ import Foundation
 
 var BinderAttribute = "ViewStyleNameAttribute"
 
-public protocol Lifecycle : class {
     func presenterForSubview<T:UIView>(_ subview: T, createIfNeeded: Bool) -> ComponentViewController? where T:ComponentView
+public protocol ComponentContainer : class {
 }
 
 /**

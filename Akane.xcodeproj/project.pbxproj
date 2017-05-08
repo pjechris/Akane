@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */; };
 		49D472761EBF537E00E1435E /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472691EBF537E00E1435E /* ComponentController.swift */; };
 		49D472771EBF537E00E1435E /* ComponentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726A1EBF537E00E1435E /* ComponentRouter.swift */; };
 		49D472781EBF537E00E1435E /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726B1EBF537E00E1435E /* ComponentViewController.swift */; };
-		49D472791EBF537E00E1435E /* ControllerLifecycle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726C1EBF537E00E1435E /* ControllerLifecycle.swift */; };
 		49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726E1EBF537E00E1435E /* ComponentView.swift */; };
 		49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472701EBF537E00E1435E /* ComponentViewModel.swift */; };
 		49D4727E1EBF537E00E1435E /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472731EBF537E00E1435E /* Updatable.swift */; };
@@ -87,10 +87,10 @@
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainer.swift; sourceTree = "<group>"; };
 		49D472691EBF537E00E1435E /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
 		49D4726A1EBF537E00E1435E /* ComponentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRouter.swift; sourceTree = "<group>"; };
 		49D4726B1EBF537E00E1435E /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewController.swift; sourceTree = "<group>"; };
-		49D4726C1EBF537E00E1435E /* ControllerLifecycle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ControllerLifecycle.swift; sourceTree = "<group>"; };
 		49D4726E1EBF537E00E1435E /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		49D472701EBF537E00E1435E /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		49D472731EBF537E00E1435E /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
@@ -226,6 +226,7 @@
 		49D472671EBF537E00E1435E /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */,
 				49D472681EBF537E00E1435E /* Controller */,
 				49D4726D1EBF537E00E1435E /* View */,
 				49D4726F1EBF537E00E1435E /* ViewModel */,
@@ -239,7 +240,6 @@
 				49D472691EBF537E00E1435E /* ComponentController.swift */,
 				49D4726A1EBF537E00E1435E /* ComponentRouter.swift */,
 				49D4726B1EBF537E00E1435E /* ComponentViewController.swift */,
-				49D4726C1EBF537E00E1435E /* ControllerLifecycle.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -678,10 +678,10 @@
 				49D472921EBF542400E1435E /* Bindable.swift in Sources */,
 				49D472F11EBF558700E1435E /* Template.swift in Sources */,
 				49D472F41EBF558700E1435E /* CellView.swift in Sources */,
-				49D472791EBF537E00E1435E /* ControllerLifecycle.swift in Sources */,
 				49D4727F1EBF537E00E1435E /* RawStringRepresentable.swift in Sources */,
 				49D472EB1EBF558700E1435E /* CollectionViewDelegate.swift in Sources */,
 				49D472F61EBF558700E1435E /* UITableView+Update.swift in Sources */,
+				497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */,
 				49D472EF1EBF558700E1435E /* TableViewFlowLayout.swift in Sources */,
 				49D472F01EBF558700E1435E /* TableViewLayout.swift in Sources */,
 				49D472E91EBF558700E1435E /* DataSource.swift in Sources */,
