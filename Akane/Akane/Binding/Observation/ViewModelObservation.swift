@@ -13,10 +13,10 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
     public var next: [((ViewModelType) -> Void)] = []
 
-    unowned let lifecycle: ComponentContainer
+    unowned let container: ComponentContainer
 
-    public init(value: ViewModelType?, lifecycle: ComponentContainer) {
-        self.lifecycle = lifecycle
+    public init(value: ViewModelType?, container: ComponentContainer) {
+        self.container = container
         self.value = value
     }
 }
@@ -30,7 +30,7 @@ extension ViewModelObservation {
     }
 
     public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentView {
-        let controller: AnyComponentController? = self.lifecycle.component(for: view, createIfNeeded: true)
+        let controller: AnyComponentController? = self.container.component(for: view, createIfNeeded: true)
 
         guard (controller != nil) else {
             return

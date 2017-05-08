@@ -40,7 +40,7 @@ extension ViewObserver {
     }
 
     public func observe<ViewModelType: ComponentViewModel>(_ observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
-        let observer = ViewModelObservation<ViewModelType>(value: nil, lifecycle: self.componentLifecycle!)
+        let observer = ViewModelObservation<ViewModelType>(value: nil, container: self.container!)
 
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)

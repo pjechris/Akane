@@ -42,7 +42,7 @@ public protocol ViewObserver : class, HasAssociatedObjects {
 }
 
 extension ViewObserver {
-    public internal(set) weak var componentLifecycle: ComponentContainer? {
+    public internal(set) weak var container: ComponentContainer? {
         get {
             guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
                 return nil
@@ -62,7 +62,7 @@ extension ViewObserver {
     }
 
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        let observation = ViewModelObservation<ViewModelType>(value: value, lifecycle: self.componentLifecycle!)
+        let observation = ViewModelObservation<ViewModelType>(value: value, container: self.container!)
 
         self.observerCollection?.append(observation)
         

@@ -62,7 +62,7 @@ extension ComponentController {
         self.stopBindings()
         componentView.observerCollection = ObservationCollection()
 
-        componentView.componentLifecycle = self
+        componentView.container = self
         componentView.bindings(componentView, viewModel: viewModel)
     }
 

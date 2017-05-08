@@ -40,7 +40,7 @@ class ComponentViewControllerSpec : QuickSpec {
             }
 
             it("sets componentLifecycle") {
-                expect(viewController.componentView?.componentLifecycle) === viewController
+                expect(viewController.componentView?.container) === viewController
             }
         }
 
@@ -51,9 +51,9 @@ class ComponentViewControllerSpec : QuickSpec {
 
             it("calls didLoadComponent") {
                 // To make sure right method is called even if we don't have precie class type
-                let unkonwnController = viewController as ComponentController
+                let unkonwnController = viewController as AnyComponentController
 
-                unkonwnController.viewModel = ViewModelMock()
+                unkonwnController.setup(viewModel: ViewModelMock())
 
                 expect(viewController.receivedDidLoadComponent) == true
             }
@@ -82,29 +82,29 @@ class ComponentViewControllerSpec : QuickSpec {
 }
 
 extension ComponentViewControllerSpec {
-    class ComponentViewControllerMock : ComponentViewController {
+    class ComponentViewControllerMock : UIViewController, ComponentController {
+        typealias ViewType = ViewMock
+
         var receivedDidLoadComponent: Bool = false
         var countMakeBindings: UInt = 0
         var stubIsViewLoaded: Bool? = nil
 
-        override func didLoadComponent() {
+        // FIXME
+        // can't overload makeBindings
+        func didLoadComponent() {
             self.receivedDidLoadComponent = true
+            self.countMakeBindings += 1
         }
 
         override var isViewLoaded: Bool {
             return self.stubIsViewLoaded ?? super.isViewLoaded
         }
-
-        // FIXME
-        // can't overload makeBindings
-        override func didSetViewModel() {
-            self.countMakeBindings += 1
-            super.didSetViewModel()
-        }
     }
 
     class ViewMock : UIView, ComponentView {
-        func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
+        typealias ViewModelType = ViewModelMock
+
+        func bindings(_ observer: ViewObserver, viewModel: ViewModelMock) {
             
         }
     }
