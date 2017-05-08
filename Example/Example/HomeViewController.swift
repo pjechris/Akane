@@ -9,7 +9,8 @@
 import UIKit
 import Akane
 
-class HomeViewController: ComponentViewController {
+class HomeViewController: UIViewController, ComponentController {
+    typealias ViewType = SearchAuthorsView
 
    override func viewDidLoad() {
       super.viewDidLoad()

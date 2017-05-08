@@ -18,8 +18,7 @@ class AuthorsView : UITableView, ComponentView {
         self.estimatedRowHeight = 44;
     }
     
-    func bindings(_ observer: ViewObserver, viewModel: AnyObject) {
-        let viewModel = viewModel as! AuthorsViewModel
+    func bindings(_ observer: ViewObserver, viewModel: AuthorsViewModel) {
         observableAuthors = viewModel.dataSource.observe { _ in
             let delegate = TableViewDelegate(observer: observer, dataSource: viewModel.dataSource.value!)
             delegate.becomeDataSourceAndDelegate(self, reload: true)
