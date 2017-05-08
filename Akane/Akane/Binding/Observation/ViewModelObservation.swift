@@ -30,14 +30,14 @@ extension ViewModelObservation {
     }
 
     public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentView {
-        let controller: ComponentViewController? = self.lifecycle.presenterForSubview(view, createIfNeeded: true)
+        let controller: AnyComponentController? = self.lifecycle.component(for: view, createIfNeeded: true)
 
         guard (controller != nil) else {
             return
         }
 
         self.observe { value in
-            controller!.viewModel = value
+            controller!.setup(viewModel: value)
         }
     }
 

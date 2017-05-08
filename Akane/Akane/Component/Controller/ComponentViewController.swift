@@ -42,24 +42,8 @@ open class ComponentViewController : UIViewController, ComponentController {
     }
 }
 
-extension ComponentController where Self:UIViewController {
 
-    public func addController<C:UIViewController>(_ childController: C) where C:ComponentController {
-        if (!self.childViewControllers.contains(childController)) {
-            self.addChildViewController(childController)
-            childController.didMove(toParentViewController: self)
         }
     }
 
-    public func controllerForComponent<V:UIView>(_ component: V) -> ComponentViewController? where V:ComponentView {
-        for childViewController in self.childViewControllers {
-            if let controller = childViewController as? ComponentViewController {
-                if (controller.view == component) {
-                    return controller
-                }
-            }
-        }
 
-        return nil
-    }
-}

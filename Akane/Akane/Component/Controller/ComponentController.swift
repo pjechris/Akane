@@ -7,6 +7,11 @@
 //
 
 import Foundation
+import HasAssociatedObjects
+
+public protocol AnyComponentController {
+    func setup(viewModel: Any)
+}
 
 /**
 ComponentController is a Controller making the link between a `ComponentView`
@@ -17,7 +22,7 @@ Do not use this protocol directly. Refer to `ComponentViewController` instead.
 This protocol should benefit greatly by the use of generics, but this would
 break compatibility with Storyboards and Xibs.
 */
-public protocol ComponentController : class, ComponentContainer {
+public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
     // MARK: Associated component elements
     
     /// The Controller's ComponentView.
@@ -26,28 +31,6 @@ public protocol ComponentController : class, ComponentContainer {
     /// The Controller's CompnentViewModel.
     var viewModel: ComponentViewModel! { get set }
 
-    // MARK: Child `ComonentController`s
-    
-    /**
-    Adds a child controller.
-    
-    - parameter childController: The child `ComonentController` to add.
-    */
-    func addController<C:UIViewController>(_ childController: C) where C:ComponentController
-
-    /**
-    Searches through child controllers and returns the matching 
-    `ComponentController`.
-    
-    - parameter component: The `ComponentView` presented by the
-    `ComponentController` to be searched after.
-    
-    - returns: The `ComponentController` whose `ComponentView` equals
-    `component`, `nil` otherwise.
-    */
-    func controllerForComponent<V:UIView>(_ component: V) -> ComponentViewController? where V:ComponentView
-
-    // MARK: Lifecycle
     
     /**
     Should be called every time `viewModel` is setted on Controller.
@@ -56,6 +39,13 @@ public protocol ComponentController : class, ComponentContainer {
 }
 
 extension ComponentController {
+    public func setup(viewModel: Any) {
+        guard let viewModel = viewModel as? ViewType.ViewModelType else {
+            return
+        }
+
+        self.viewModel = viewModel
+    }
     public func makeBindings() {
         guard let viewModel = self.viewModel, let componentView = self.componentView else {
             return
