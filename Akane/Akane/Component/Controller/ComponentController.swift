@@ -23,14 +23,15 @@ This protocol should benefit greatly by the use of generics, but this would
 break compatibility with Storyboards and Xibs.
 */
 public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
+    associatedtype ViewType: ComponentView
+
     // MARK: Associated component elements
     
     /// The Controller's ComponentView.
-    var componentView: ComponentView? { get }
+    var componentView: ViewType? { get }
 
     /// The Controller's CompnentViewModel.
-    var viewModel: ComponentViewModel! { get set }
-
+    var viewModel: ViewType.ViewModelType! { get set }
     
     /**
     Should be called every time `viewModel` is setted on Controller.
@@ -46,6 +47,13 @@ extension ComponentController {
 
         self.viewModel = viewModel
     }
+
+    public func didLoadComponent() {
+
+    }
+}
+
+extension ComponentController {
     public func makeBindings() {
         guard let viewModel = self.viewModel, let componentView = self.componentView else {
             return
@@ -60,5 +68,30 @@ extension ComponentController {
 
     public func stopBindings() {
         self.componentView?.observerCollection?.removeAllObservers()
+    }
+}
+
+extension ComponentController where Self : UIViewController {
+    /// The Controller's ComponentView.
+    public var componentView: ViewType? {
+        get { return self.view as? ViewType }
+    }
+
+    /// The Controller's CompnentViewModel.
+    public var viewModel: ViewType.ViewModelType! {
+        get {
+            return self.associatedObjects["viewModel"] as? ViewType.ViewModelType
+        }
+        set {
+            self.associatedObjects["viewModel"] = newValue
+            self.didSetViewModel()
+        }
+    }
+
+    func didSetViewModel() {
+        self.viewModel.router = self as? ComponentRouter
+        self.didLoadComponent()
+        self.makeBindings()
+        self.viewModel.mountIfNeeded()
     }
 }

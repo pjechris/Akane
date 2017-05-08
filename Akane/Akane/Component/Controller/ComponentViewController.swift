@@ -14,36 +14,28 @@ Default implementation of `ComponentController`. You need to extend from this
 class rather than from `UIViewController` to make binding binding your component
 view and your view model work.
 */
-open class ComponentViewController : UIViewController, ComponentController {
-    open var viewModel: ComponentViewModel! {
-        didSet { self.didSetViewModel() }
+class ViewController<ComponentViewType: ComponentView> : UIViewController, ComponentController {
+    typealias ViewType = ComponentViewType
+
+    init(view: ViewType) {
+        super.init(nibName: nil, bundle: nil)
+        self.replace(view: view as! UIView)
     }
 
-    open var componentView: ComponentView? {
-        get { return self.isViewLoaded ? self.view as? ComponentView : nil }
-    }
-
-    open override func viewDidLoad() {
-        self.makeBindings()
-    }
-
-    open override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        self.viewModel?.mount()
-    }
-
-    func didSetViewModel() {
-        self.viewModel.router = self as? ComponentRouter
-        self.didLoadComponent()
-        self.makeBindings()
-    }
-
-    open func didLoadComponent() {
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
     }
 }
 
+extension UIViewController {
+    func replace(view: UIView) {
+        let needsDidLoad = !self.isViewLoaded
 
+        self.view = view
+        if needsDidLoad {
+            self.viewDidLoad()
         }
     }
+}
 
 

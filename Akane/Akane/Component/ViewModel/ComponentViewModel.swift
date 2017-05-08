@@ -54,7 +54,7 @@ extension ComponentViewModel {
 
 extension ComponentViewModel {
 
-    func mount() {
+    func mountIfNeeded() {
         guard !self.isMounted else {
             return
         }
