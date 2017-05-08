@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## WIP
+
+### Changes
+- [Component] Removed `ComponentViewController`. Replace it with `UIViewController, ComponentController`.
+- [View] `ComponentView.bindings(_:viewModel:)` is now generic.
+
 ## 0.16.0
 
 ### Changes
