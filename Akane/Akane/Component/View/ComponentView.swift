@@ -16,7 +16,9 @@ ComponentView is used on an `UIView` in order to associate it to a
 - *Future enhancements:* this protocol will be generic once we will be able to 
 use generics with Storyboard/Xib
 */
-public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
+public protocol ComponentView : class, Equatable, ViewObserver, HasAssociatedObjects {
+    associatedtype ViewModelType: ComponentViewModel
+
     /**
     Define the bindings between the fields (IBOutlet) and the ComponentViewModel
     
@@ -24,7 +26,7 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
     bindings
     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
     */
-    func bindings(_ observer: ViewObserver, viewModel: AnyObject)
+    func bindings(_ observer: ViewObserver, viewModel: ViewModelType)
 
     /**
      `ComponentViewController` class associated to the `ComponentView`
@@ -32,12 +34,12 @@ public protocol ComponentView : class, ViewObserver, HasAssociatedObjects {
      - returns: The `ComponentViewController` type.
      The Default implementation returns `ComponentViewController.self`
      */
-    static func componentControllerClass() -> ComponentViewController.Type
+    static func componentControllerClass() -> AnyComponentController.Type
 }
 
 extension ComponentView {
 
-    public static func componentControllerClass() -> ComponentViewController.Type {
-        return ComponentViewController.self
+    public static func componentControllerClass() -> AnyComponentController.Type {
+        return ViewController<Self>.self
     }
 }
