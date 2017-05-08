@@ -12,7 +12,6 @@
 		497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */; };
 		49D472761EBF537E00E1435E /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472691EBF537E00E1435E /* ComponentController.swift */; };
 		49D472771EBF537E00E1435E /* ComponentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726A1EBF537E00E1435E /* ComponentRouter.swift */; };
-		49D472781EBF537E00E1435E /* ComponentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726B1EBF537E00E1435E /* ComponentViewController.swift */; };
 		49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726E1EBF537E00E1435E /* ComponentView.swift */; };
 		49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472701EBF537E00E1435E /* ComponentViewModel.swift */; };
 		49D4727E1EBF537E00E1435E /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472731EBF537E00E1435E /* Updatable.swift */; };
@@ -63,6 +62,7 @@
 		49D473241EBF5EAE00E1435E /* BondSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473191EBF5D8100E1435E /* BondSpec.swift */; };
 		49D473251EBF5EB300E1435E /* AsyncCommandSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4731B1EBF5D8100E1435E /* AsyncCommandSpec.swift */; };
 		49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473261EBFCC1200E1435E /* BondCommand.swift */; };
+		49EEDACA1EC1264E00F1F432 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,7 +90,6 @@
 		497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainer.swift; sourceTree = "<group>"; };
 		49D472691EBF537E00E1435E /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
 		49D4726A1EBF537E00E1435E /* ComponentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRouter.swift; sourceTree = "<group>"; };
-		49D4726B1EBF537E00E1435E /* ComponentViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewController.swift; sourceTree = "<group>"; };
 		49D4726E1EBF537E00E1435E /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		49D472701EBF537E00E1435E /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		49D472731EBF537E00E1435E /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
@@ -142,6 +141,7 @@
 		49D4731B1EBF5D8100E1435E /* AsyncCommandSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AsyncCommandSpec.swift; sourceTree = "<group>"; };
 		49D4731C1EBF5D8100E1435E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D473261EBFCC1200E1435E /* BondCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondCommand.swift; sourceTree = "<group>"; };
+		49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -237,9 +237,9 @@
 		49D472681EBF537E00E1435E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */,
 				49D472691EBF537E00E1435E /* ComponentController.swift */,
 				49D4726A1EBF537E00E1435E /* ComponentRouter.swift */,
-				49D4726B1EBF537E00E1435E /* ComponentViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -699,12 +699,12 @@
 				49D4727E1EBF537E00E1435E /* Updatable.swift in Sources */,
 				49D472E61EBF558700E1435E /* CollectionElementCategory.swift in Sources */,
 				49D472941EBF542400E1435E /* ConverterOption.swift in Sources */,
-				49D472781EBF537E00E1435E /* ComponentViewController.swift in Sources */,
 				49D472E81EBF558700E1435E /* CollectionDataSource.swift in Sources */,
 				49D472F71EBF558700E1435E /* UITableView.swift in Sources */,
 				49D472931EBF542400E1435E /* Converter.swift in Sources */,
 				49D4729A1EBF542400E1435E /* ViewModelObservation.swift in Sources */,
 				49D472F51EBF558700E1435E /* UICollectionView.swift in Sources */,
+				49EEDACA1EC1264E00F1F432 /* DefaultViewController.swift in Sources */,
 				49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */,
 				49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */,
 				49D472981EBF542400E1435E /* Observation.swift in Sources */,

@@ -40,6 +40,6 @@ public protocol ComponentView : class, Equatable, ViewObserver, HasAssociatedObj
 extension ComponentView {
 
     public static func componentControllerClass() -> AnyComponentController.Type {
-        return ViewController<Self>.self
+        return DefaultViewController<Self>.self
     }
 }

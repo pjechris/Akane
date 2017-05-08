@@ -21,7 +21,7 @@ public protocol ComponentContainer : class {
 extension ComponentContainer where Self : UIViewController, Self : ComponentController {
     public func component<View: ComponentView>(for view: View, createIfNeeded: Bool) -> AnyComponentController {
         guard let controller = self.component(for: view) else {
-            let controller = ViewController(view: view)
+            let controller = DefaultViewController(view: view)
 
             self.add(childView: view, controlledBy: controller)
 
