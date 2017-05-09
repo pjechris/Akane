@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name                      = "Akane"
-  s.version                   = "0.15.1"
+  s.version                   = "0.16.0"
   s.source                    = { :git => "https://github.com/akane/Akane.git",
                                   :tag => s.version.to_s }
 
@@ -16,13 +16,13 @@ Pod::Spec.new do |s|
   s.default_subspecs          = "Core", "Bond"
 
   s.subspec 'Core' do |ss|
-    ss.source_files = "Akane/**/*.swift"
+    ss.source_files = "Akane/Akane/**/*.swift"
 
     ss.dependency 'HasAssociatedObjects'
   end
 
   s.subspec 'Bond' do |ss|
-    ss.source_files = "Bond/**/*.swift"
+    ss.source_files = "Akane/Bond/**/*.swift"
 
     ss.dependency 'Bond', '~> 6.x'
     ss.dependency 'Akane/Core'
