@@ -91,9 +91,7 @@ class UserView : UIView, ComponentView {
   @IBOutlet var labelUserHello: UILabel!
   @IBOutlet var buttonDisconnect: UIButton!
 
-  func bindings(observer: ViewObserver, viewModel: ViewModel) {
-    let viewModel = viewModel as! UserViewModel
-
+  func bindings(observer: ViewObserver, viewModel: UserViewModel) {
     // Bind 'user' with 'labelUserHello' 'text' using a converter
     observer.observe(viewModel.user)
             .convert(UserHelloConverter.self)
@@ -119,7 +117,7 @@ struct UserHelloConverter {
 
 ## ViewController
 
-The ViewController, through the `ComponentViewController` class, makes the link between `ComponentViewModel` and `ComponentView`.
+ViewController, through `ComponentController` protocol, makes the link between `ComponentViewModel` and `ComponentView`.
 
 Just pass your `ComponentViewModel` to your ViewController to bind it to its view.
 
@@ -142,12 +140,12 @@ You can even define your custom ViewControllers if you need to:
 ```swift
 
 extension UserView {
-  static func componentControllerClass() -> ComponentViewController.Type {
+  static func componentControllerClass() -> AnyComponentController.Type {
     return UserViewController.self
   }
 }
 
-class UserViewController : ComponentViewController {
+class UserViewController : UIViewController, ComponentController {
   func viewDidLoad() {
     super.viewDidLoad()
     print("User component view loaded")
