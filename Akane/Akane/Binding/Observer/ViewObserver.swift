@@ -9,28 +9,32 @@
 import Foundation
 import HasAssociatedObjects
 
-var ViewObserverObserversKey = "ViewObserverObserversKey"
-var ViewObserverLifecycleAttr = "ViewObserverLifecycleAttr"
-
 /**
-`ViewObserver` provides an entry point for observing:
-- `Command`s
-- `ComponentViewModel`s
-- any other value
-*/
-public protocol ViewObserver : class, HasAssociatedObjects {
+ `ViewObserver` provides an entry point for observing:
+ - `Command`s
+ - `ComponentViewModel`s
+ - any other value
+ */
+public class ViewObserver {
+    public private(set) weak var container: ComponentContainer?
+    fileprivate var disposes: [(Void) -> ()] = []
 
+    init(container: ComponentContainer) {
+        self.container = container
+    }
 
     /**
-    Takes the current value to create a `AnyObservation`.
-     
-    - parameter value: the value to be use.
-     
-    - returns: An `AnyObservation` that can be used from within a
-    `ComponentView`.
-    */
-    func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue>
-    
+     Takes the current value to create a `AnyObservation`.
+
+     - parameter value: the value to be use.
+
+     - returns: An `AnyObservation` that can be used from within a
+     `ComponentView`.
+     */
+    public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
+        return AnyObservation(value: value)
+    }
+
     /**
      Observes a `ComponentViewModel`.
 
@@ -38,46 +42,16 @@ public protocol ViewObserver : class, HasAssociatedObjects {
 
      - returns: A `ViewModelObservation`.
      */
-    func observe<ViewModelType: ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType>
-}
-
-extension ViewObserver {
-    public internal(set) weak var container: ComponentContainer? {
-        get {
-            guard let weakValue = self.associatedObjects[ViewObserverLifecycleAttr] as? AnyWeakValue else {
-                return nil
-            }
-
-            return weakValue.value as? ComponentContainer
-        }
-        set { self.associatedObjects[ViewObserverLifecycleAttr] = AnyWeakValue(newValue) }
-    }
-
-    public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
-        let observation = AnyObservation(value: value)
-
-        self.observerCollection?.append(observation)
-
-        return observation
-    }
-
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        let observation = ViewModelObservation<ViewModelType>(value: value, container: self.container!)
-
-        self.observerCollection?.append(observation)
-        
-        return observation
+        return ViewModelObservation<ViewModelType>(value: value, container: self.container!)
     }
-}
 
-extension ViewObserver {
-    fileprivate typealias ObserverType = (observer: _Observation, onRemove: ((Void) -> Void)?)
+    public func dispose() {
+        self.disposes.forEach { $0() }
+        self.disposes.removeAll()
+    }
 
-    public var observerCollection: ObservationCollection? {
-        get {
-            return self.associatedObjects[ViewObserverObserversKey] as? ObservationCollection
-        }
-
-        set { self.associatedObjects[ViewObserverObserversKey] = newValue }
+    public func add(disposable: @escaping (Void) -> ()) {
+        self.disposes.append(disposable)
     }
 }

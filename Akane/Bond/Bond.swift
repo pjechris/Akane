@@ -21,6 +21,10 @@ extension Bond : Akane.Bindable {
 }
 
 extension ViewObserver {
+    func add(disposable: Disposable) {
+        self.add(disposable: { disposable.dispose() })
+    }
+
     public func observe<AnyValue>(_ observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
         let observer = AnyObservation<AnyValue>(value: nil)
         
@@ -28,9 +32,7 @@ extension ViewObserver {
             observer.put(value)
         }
 
-        self.observerCollection?.append(observer) {
-            disposable.dispose()
-        }
+        self.add(disposable: disposable)
 
         return observer
     }
@@ -46,9 +48,7 @@ extension ViewObserver {
             observer.put(value)
         }
 
-        self.observerCollection?.append(observer) {
-           disposable.dispose()
-        }
+        self.add(disposable: disposable)
 
         return observer
     }
@@ -61,10 +61,6 @@ extension ViewObserver {
      - returns: A `CommandObservation`.
      */
     public func observe(_ command: BondCommand) -> CommandObservation {
-        let observation = CommandObservation(command: command, observer: self)
-
-        self.observerCollection?.append(observation)
-
-        return observation
+        return CommandObservation(command: command, observer: self)
     }
 }

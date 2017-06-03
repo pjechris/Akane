@@ -12,11 +12,8 @@ import HasAssociatedObjects
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
-
-- *Future enhancements:* this protocol will be generic once we will be able to 
-use generics with Storyboard/Xib
 */
-public protocol ComponentView : class, Equatable, ViewObserver, HasAssociatedObjects {
+public protocol ComponentView : class, Equatable, HasAssociatedObjects {
     associatedtype ViewModelType: ComponentViewModel
 
     /**
@@ -27,6 +24,7 @@ public protocol ComponentView : class, Equatable, ViewObserver, HasAssociatedObj
     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
     */
     func bindings(_ observer: ViewObserver, viewModel: ViewModelType)
+
 
     /**
      `ComponentViewController` class associated to the `ComponentView`
