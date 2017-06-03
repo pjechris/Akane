@@ -24,7 +24,6 @@
 		49D472951EBF542400E1435E /* ConverterReverse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472881EBF542400E1435E /* ConverterReverse.swift */; };
 		49D472961EBF542400E1435E /* AnyObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4728A1EBF542400E1435E /* AnyObservation.swift */; };
 		49D472981EBF542400E1435E /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4728C1EBF542400E1435E /* Observation.swift */; };
-		49D472991EBF542400E1435E /* ObservationCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4728D1EBF542400E1435E /* ObservationCollection.swift */; };
 		49D4729A1EBF542400E1435E /* ViewModelObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4728E1EBF542400E1435E /* ViewModelObservation.swift */; };
 		49D4729B1EBF542400E1435E /* ViewObserver.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472901EBF542400E1435E /* ViewObserver.swift */; };
 		49D472B61EBF547500E1435E /* AkaneBond.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49D472AD1EBF547500E1435E /* AkaneBond.framework */; };
@@ -57,7 +56,6 @@
 		49D4730A1EBF598B00E1435E /* AkaneBond.h in Headers */ = {isa = PBXBuildFile; fileRef = 49D473091EBF598B00E1435E /* AkaneBond.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		49D4730B1EBF5ADF00E1435E /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		49D4731D1EBF5D9400E1435E /* AnyObservationSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473111EBF5D8100E1435E /* AnyObservationSpec.swift */; };
-		49D4731E1EBF5D9400E1435E /* ObservationCollectionSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473121EBF5D8100E1435E /* ObservationCollectionSpec.swift */; };
 		49D473201EBF5D9700E1435E /* ComponentRouterSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473161EBF5D8100E1435E /* ComponentRouterSpec.swift */; };
 		49D473211EBF5D9700E1435E /* ComponentViewControllerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473171EBF5D8100E1435E /* ComponentViewControllerSpec.swift */; };
 		49D473241EBF5EAE00E1435E /* BondSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473191EBF5D8100E1435E /* BondSpec.swift */; };
@@ -103,7 +101,6 @@
 		49D472881EBF542400E1435E /* ConverterReverse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConverterReverse.swift; sourceTree = "<group>"; };
 		49D4728A1EBF542400E1435E /* AnyObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyObservation.swift; sourceTree = "<group>"; };
 		49D4728C1EBF542400E1435E /* Observation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
-		49D4728D1EBF542400E1435E /* ObservationCollection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ObservationCollection.swift; sourceTree = "<group>"; };
 		49D4728E1EBF542400E1435E /* ViewModelObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewModelObservation.swift; sourceTree = "<group>"; };
 		49D472901EBF542400E1435E /* ViewObserver.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewObserver.swift; sourceTree = "<group>"; };
 		49D4729D1EBF545700E1435E /* Bond.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bond.swift; sourceTree = "<group>"; };
@@ -136,7 +133,6 @@
 		49D473071EBF594B00E1435E /* Commandable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Commandable.swift; sourceTree = "<group>"; };
 		49D473091EBF598B00E1435E /* AkaneBond.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AkaneBond.h; sourceTree = "<group>"; };
 		49D473111EBF5D8100E1435E /* AnyObservationSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AnyObservationSpec.swift; sourceTree = "<group>"; };
-		49D473121EBF5D8100E1435E /* ObservationCollectionSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ObservationCollectionSpec.swift; sourceTree = "<group>"; };
 		49D473161EBF5D8100E1435E /* ComponentRouterSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentRouterSpec.swift; sourceTree = "<group>"; };
 		49D473171EBF5D8100E1435E /* ComponentViewControllerSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentViewControllerSpec.swift; sourceTree = "<group>"; };
 		49D473191EBF5D8100E1435E /* BondSpec.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BondSpec.swift; sourceTree = "<group>"; };
@@ -291,7 +287,6 @@
 			children = (
 				49D4728A1EBF542400E1435E /* AnyObservation.swift */,
 				49D4728C1EBF542400E1435E /* Observation.swift */,
-				49D4728D1EBF542400E1435E /* ObservationCollection.swift */,
 				49D4728E1EBF542400E1435E /* ViewModelObservation.swift */,
 			);
 			path = Observation;
@@ -455,7 +450,6 @@
 			isa = PBXGroup;
 			children = (
 				49D473111EBF5D8100E1435E /* AnyObservationSpec.swift */,
-				49D473121EBF5D8100E1435E /* ObservationCollectionSpec.swift */,
 			);
 			path = Observation;
 			sourceTree = "<group>";
@@ -712,7 +706,6 @@
 				49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */,
 				49D472981EBF542400E1435E /* Observation.swift in Sources */,
 				49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */,
-				49D472991EBF542400E1435E /* ObservationCollection.swift in Sources */,
 				49D472761EBF537E00E1435E /* ComponentController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -723,7 +716,6 @@
 			files = (
 				493287211EFAA0CD009D1326 /* ComponentContainerSpec.swift in Sources */,
 				49D4731D1EBF5D9400E1435E /* AnyObservationSpec.swift in Sources */,
-				49D4731E1EBF5D9400E1435E /* ObservationCollectionSpec.swift in Sources */,
 				49D473211EBF5D9700E1435E /* ComponentViewControllerSpec.swift in Sources */,
 				49D473201EBF5D9700E1435E /* ComponentRouterSpec.swift in Sources */,
 			);

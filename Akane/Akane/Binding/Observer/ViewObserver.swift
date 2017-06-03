@@ -23,6 +23,10 @@ public class ViewObserver {
         self.container = container
     }
 
+    deinit {
+        self.dispose()
+    }
+
     /**
      Takes the current value to create a `AnyObservation`.
 

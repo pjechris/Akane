@@ -29,21 +29,6 @@ class ComponentViewControllerSpec : QuickSpec {
             }
         }
 
-        describe("makeBindings") {
-            beforeEach {
-                viewController.view = ViewMock()
-                viewController.viewModel = ViewModelMock()
-            }
-
-            it("sets observerCollection") {
-                expect(viewController.componentView?.observerCollection).toNot(beNil())
-            }
-
-            it("sets componentLifecycle") {
-                expect(viewController.componentView?.container) === viewController
-            }
-        }
-
         describe("set viewModel") {
             beforeEach {
 

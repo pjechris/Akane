@@ -59,20 +59,20 @@ extension ComponentController {
 }
 
 extension ComponentController {
-    public func makeBindings() {
+    fileprivate var observer: ViewObserver? {
+        get { return self.associatedObjects["observer"] as? ViewObserver }
+        set { self.associatedObjects["observer"] = newValue }
+    }
+
+    public func renewBindings() {
         guard let viewModel = self.viewModel, let componentView = self.componentView else {
             return
         }
 
-        self.stopBindings()
-        componentView.observerCollection = ObservationCollection()
+        let observer = ViewObserver(container: self)
 
-        componentView.container = self
-        componentView.bindings(componentView, viewModel: viewModel)
-    }
-
-    public func stopBindings() {
-        self.componentView?.observerCollection?.removeAllObservers()
+        componentView.bindings(observer, viewModel: viewModel)
+        self.observer = observer
     }
 }
 
@@ -96,7 +96,7 @@ extension ComponentController where Self : UIViewController {
     func didSetViewModel() {
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
-        self.makeBindings()
+        self.renewBindings()
         self.viewModel.mountIfNeeded()
     }
 }
