@@ -49,22 +49,18 @@ open class TableViewSectionDelegate<DataSourceType : DataSourceTableViewSections
 
     func viewForSection(_ tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
         let data = self.dataSource.sectionItemAtIndex(section)
-        let sectionType = CollectionElementCategory.section(identifier: data.identifier.rawValue, kind: sectionKind)
-        let template = self.dataSource.tableViewSectionTemplate(data.identifier, kind: sectionKind)
-
-        tableView.registerIfNeeded(template, type: sectionType)
-
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: data.identifier.rawValue)!
 
-        if template.needsComponentViewModel {
-            if let viewModel = self.dataSource.createSectionViewModel(data.item) {
-                self.observer?.observe(viewModel).bindTo(view, template: template)
+        if let viewModel = self.dataSource.createSectionViewModel(data.item),
+            let observer = self.observer,
+            let componentView = view as? _AnyComponentView {
 
-                if let updatable = viewModel as? Updatable {
-                    updatable.onRender = { [weak tableView, weak view] in
-                        if let tableView = tableView, let view = view {
-                            tableView.update(view)
-                        }
+            componentView._tryBindings(observer, viewModel: viewModel)
+
+            if let updatable = viewModel as? Updatable {
+                updatable.onRender = { [weak tableView, weak view] in
+                    if let tableView = tableView, let view = view {
+                        tableView.update(view)
                     }
                 }
             }

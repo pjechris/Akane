@@ -9,11 +9,15 @@
 import Foundation
 import HasAssociatedObjects
 
+public protocol _AnyComponentView {
+    func _tryBindings(_ observer: ViewObserver, viewModel: Any)
+}
+
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
 */
-public protocol ComponentView : class, Equatable, HasAssociatedObjects {
+public protocol ComponentView : class, Equatable, HasAssociatedObjects, _AnyComponentView {
     associatedtype ViewModelType: ComponentViewModel
 
     /**
@@ -39,5 +43,15 @@ extension ComponentView {
 
     public static func componentControllerClass() -> AnyComponentController.Type {
         return DefaultViewController<Self>.self
+    }
+}
+
+extension ComponentView where Self : UIView {
+    public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
+        guard let viewModel = viewModel as? ViewModelType else {
+            return
+        }
+
+        observer.observe(viewModel).bind(to: self)
     }
 }

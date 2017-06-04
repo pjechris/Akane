@@ -20,11 +20,6 @@ public protocol DataSourceTableViewItems : DataSource {
     /// - returns an optional row item with an identifier for the current item and index path
     func itemAtIndexPath(_ indexPath: IndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
-    /// Ask a `Template` for the row identifier
-    /// - parameter identifier: use the identifier to compare and return the suited `Template`
-    /// - returns `Template` associated with the given identifier
-    func tableViewItemTemplate(_ identifier: ItemIdentifier) -> Template
-
     /**
      Creates a new `ItemViewModelType` for the given item
 
@@ -47,12 +42,6 @@ public protocol DataSourceTableViewSections : DataSourceTableViewItems {
     /// Ask to return the item associated with the section index
     /// - returns an optional section item with an identifier for the current section
     func sectionItemAtIndex(_ index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
-
-    /// Ask a `Template` for the section identifier
-    /// - parameter identifier: use the identifier to compare and return the suited `Template`
-    /// - returns optional `Template` associated with the given identifier. Return nil when you do not want to display
-    /// a section
-    func tableViewSectionTemplate(_ identifier: SectionIdentifier, kind: String) -> Template
 
     /**
      Creates a new `SectionViewModelType` for the given section item

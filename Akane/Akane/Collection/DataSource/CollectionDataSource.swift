@@ -15,8 +15,6 @@ public protocol DataSourceCollectionViewItems : DataSource {
 
     func itemAtIndexPath(_ indexPath: IndexPath) -> (item: ItemType?, identifier: ItemIdentifier)
 
-    func collectionViewItemTemplate(_ identifier: ItemIdentifier) -> Template
-
     /**
      Creates a new `ItemViewModelType` for the given item
 
@@ -33,8 +31,6 @@ public protocol DataSourceCollectionViewSections : DataSourceCollectionViewItems
     associatedtype SectionViewModelType : ComponentViewModel
 
     func sectionItemAtIndex(_ index: Int) -> (item: SectionType?, identifier: SectionIdentifier)
-
-    func collectionViewSectionTemplate(_ identifier: SectionIdentifier, kind: String) -> Template
 
     /**
      Creates a new `SectionViewModelType` for the given section item

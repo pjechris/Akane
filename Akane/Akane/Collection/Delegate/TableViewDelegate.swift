@@ -66,14 +66,14 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.dataSource.tableViewItemTemplate(data.identifier)
-
-        tableView.registerIfNeeded(template, type: .cell(identifier: data.identifier.rawValue))
 
         let cell = tableView.dequeueReusableCell(withIdentifier: data.identifier.rawValue, for: indexPath)
 
-        if let viewModel = self.dataSource.createItemViewModel(data.item) {
-            self.observer?.observe(viewModel).bindTo(cell, template: template)
+        if let viewModel = self.dataSource.createItemViewModel(data.item),
+            let observer = self.observer,
+            let componentCell = cell as? _AnyComponentView {
+            
+            componentCell._tryBindings(observer, viewModel: viewModel)
 
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak tableView, weak cell] in

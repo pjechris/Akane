@@ -54,15 +54,15 @@ open class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewItems
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let data = self.dataSource.itemAtIndexPath(indexPath)
-        let template = self.dataSource.collectionViewItemTemplate(data.identifier)
         let element = CollectionElementCategory.cell(identifier: data.identifier.rawValue)
-
-        collectionView.registerIfNeeded(template, type: element)
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: data.identifier.rawValue, for: indexPath)
 
-        if let viewModel = self.dataSource.createItemViewModel(data.item) {
-            self.observer?.observe(viewModel).bindTo(cell, template: template)
+        if let viewModel = self.dataSource.createItemViewModel(data.item),
+            let observer = self.observer,
+            let componentCell = cell as? _AnyComponentView {
+
+            componentCell._tryBindings(observer, viewModel: viewModel)
 
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak collectionView] in
