@@ -40,8 +40,4 @@ extension ViewModelObservation {
             controller!.setup(viewModel: value)
         }
     }
-
-    func bindTo(_ cell: UIView, template: Template) {
-        template.bind(cell, wrapper: self)
-    }
 }

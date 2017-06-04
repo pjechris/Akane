@@ -42,11 +42,6 @@
 		49D472EE1EBF558700E1435E /* TableViewSectionDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472D91EBF558700E1435E /* TableViewSectionDelegate.swift */; };
 		49D472EF1EBF558700E1435E /* TableViewFlowLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472DB1EBF558700E1435E /* TableViewFlowLayout.swift */; };
 		49D472F01EBF558700E1435E /* TableViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472DC1EBF558700E1435E /* TableViewLayout.swift */; };
-		49D472F11EBF558700E1435E /* Template.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472DE1EBF558700E1435E /* Template.swift */; };
-		49D472F21EBF558700E1435E /* TemplateComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472DF1EBF558700E1435E /* TemplateComponentView.swift */; };
-		49D472F31EBF558700E1435E /* TemplateView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472E01EBF558700E1435E /* TemplateView.swift */; };
-		49D472F41EBF558700E1435E /* CellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472E21EBF558700E1435E /* CellView.swift */; };
-		49D472F51EBF558700E1435E /* UICollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472E31EBF558700E1435E /* UICollectionView.swift */; };
 		49D472F61EBF558700E1435E /* UITableView+Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472E41EBF558700E1435E /* UITableView+Update.swift */; };
 		49D472F71EBF558700E1435E /* UITableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472E51EBF558700E1435E /* UITableView.swift */; };
 		49D473031EBF591800E1435E /* Selectable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473011EBF591800E1435E /* Selectable.swift */; };
@@ -120,11 +115,6 @@
 		49D472D91EBF558700E1435E /* TableViewSectionDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewSectionDelegate.swift; sourceTree = "<group>"; };
 		49D472DB1EBF558700E1435E /* TableViewFlowLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFlowLayout.swift; sourceTree = "<group>"; };
 		49D472DC1EBF558700E1435E /* TableViewLayout.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewLayout.swift; sourceTree = "<group>"; };
-		49D472DE1EBF558700E1435E /* Template.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Template.swift; sourceTree = "<group>"; };
-		49D472DF1EBF558700E1435E /* TemplateComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateComponentView.swift; sourceTree = "<group>"; };
-		49D472E01EBF558700E1435E /* TemplateView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TemplateView.swift; sourceTree = "<group>"; };
-		49D472E21EBF558700E1435E /* CellView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CellView.swift; sourceTree = "<group>"; };
-		49D472E31EBF558700E1435E /* UICollectionView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UICollectionView.swift; sourceTree = "<group>"; };
 		49D472E41EBF558700E1435E /* UITableView+Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UITableView+Update.swift"; sourceTree = "<group>"; };
 		49D472E51EBF558700E1435E /* UITableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableView.swift; sourceTree = "<group>"; };
 		49D473011EBF591800E1435E /* Selectable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Selectable.swift; sourceTree = "<group>"; };
@@ -346,7 +336,6 @@
 				49D472D11EBF558700E1435E /* DataSource */,
 				49D472D51EBF558700E1435E /* Delegate */,
 				49D472DA1EBF558700E1435E /* Layout */,
-				49D472DD1EBF558700E1435E /* Template */,
 				49D472E11EBF558700E1435E /* UIKit */,
 			);
 			path = Collection;
@@ -382,21 +371,9 @@
 			path = Layout;
 			sourceTree = "<group>";
 		};
-		49D472DD1EBF558700E1435E /* Template */ = {
-			isa = PBXGroup;
-			children = (
-				49D472DE1EBF558700E1435E /* Template.swift */,
-				49D472DF1EBF558700E1435E /* TemplateComponentView.swift */,
-				49D472E01EBF558700E1435E /* TemplateView.swift */,
-			);
-			path = Template;
-			sourceTree = "<group>";
-		};
 		49D472E11EBF558700E1435E /* UIKit */ = {
 			isa = PBXGroup;
 			children = (
-				49D472E21EBF558700E1435E /* CellView.swift */,
-				49D472E31EBF558700E1435E /* UICollectionView.swift */,
 				49D472E41EBF558700E1435E /* UITableView+Update.swift */,
 				49D472E51EBF558700E1435E /* UITableView.swift */,
 			);
@@ -673,8 +650,6 @@
 				49D472E71EBF558700E1435E /* CollectionReusableView.swift in Sources */,
 				49D472EA1EBF558700E1435E /* TableDataSource.swift in Sources */,
 				49D472921EBF542400E1435E /* Bindable.swift in Sources */,
-				49D472F11EBF558700E1435E /* Template.swift in Sources */,
-				49D472F41EBF558700E1435E /* CellView.swift in Sources */,
 				49D4727F1EBF537E00E1435E /* RawStringRepresentable.swift in Sources */,
 				49D472EB1EBF558700E1435E /* CollectionViewDelegate.swift in Sources */,
 				49D472F61EBF558700E1435E /* UITableView+Update.swift in Sources */,
@@ -683,9 +658,7 @@
 				49D472F01EBF558700E1435E /* TableViewLayout.swift in Sources */,
 				49D472E91EBF558700E1435E /* DataSource.swift in Sources */,
 				49D472801EBF537E00E1435E /* WeakValue.swift in Sources */,
-				49D472F31EBF558700E1435E /* TemplateView.swift in Sources */,
 				49D473061EBF591F00E1435E /* Command.swift in Sources */,
-				49D472F21EBF558700E1435E /* TemplateComponentView.swift in Sources */,
 				49D472EE1EBF558700E1435E /* TableViewSectionDelegate.swift in Sources */,
 				49D473031EBF591800E1435E /* Selectable.swift in Sources */,
 				49D472951EBF542400E1435E /* ConverterReverse.swift in Sources */,
@@ -700,7 +673,6 @@
 				49D472F71EBF558700E1435E /* UITableView.swift in Sources */,
 				49D472931EBF542400E1435E /* Converter.swift in Sources */,
 				49D4729A1EBF542400E1435E /* ViewModelObservation.swift in Sources */,
-				49D472F51EBF558700E1435E /* UICollectionView.swift in Sources */,
 				49EEDACA1EC1264E00F1F432 /* DefaultViewController.swift in Sources */,
 				49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */,
 				49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */,
