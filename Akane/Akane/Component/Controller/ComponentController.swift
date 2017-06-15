@@ -11,6 +11,7 @@ import HasAssociatedObjects
 
 public protocol AnyComponentController {
     func setup(viewModel: Any)
+    func anyViewModel() -> Any?
 }
 
 /**
@@ -46,6 +47,10 @@ extension ComponentController {
         }
 
         self.viewModel = viewModel
+    }
+
+    public func anyViewModel() -> Any? {
+        return self.viewModel
     }
 
     public func didLoadComponent() {

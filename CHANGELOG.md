@@ -1,6 +1,12 @@
 # CHANGELOG
 
-## WIP
+## 0.17.1
+
+### Changes
+- [Component] Added `anyViewModel()` getter on `ComponentController`.
+- [Command] Allowed `AsyncCommand.completed` closure to escape.
+
+## 0.17.0
 
 ### Changes
 - [Component] Removed `ComponentViewController`. Replace it with `UIViewController, ComponentController`.
