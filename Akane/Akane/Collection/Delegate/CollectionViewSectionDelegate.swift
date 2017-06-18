@@ -19,8 +19,6 @@ open class CollectionViewSectionDelegate<DataSourceType : DataSource> : Collecti
     open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         let section = self.dataSource.section(at: indexPath.section)
 
-        let element = CollectionElementCategory.section(identifier: section.reuseIdentifier, kind: kind)
-
         let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: section.reuseIdentifier, for: indexPath)
 
         if let viewModel = self.dataSource.viewModel(for: section),
@@ -32,7 +30,7 @@ open class CollectionViewSectionDelegate<DataSourceType : DataSource> : Collecti
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak collectionView, weak cell] in
                     if let collectionView = collectionView, let _ = cell {
-                        collectionView.update(element, atIndexPath: indexPath)
+                        collectionView.update(.supplementaryView(kind: kind), atIndexPath: indexPath)
                     }
                 }
             }

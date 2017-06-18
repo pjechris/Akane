@@ -21,9 +21,9 @@ extension UICollectionView {
         let invalidationContext = UICollectionViewLayoutInvalidationContext()
 
         switch (element) {
-        case .cell(_):
+        case .cell:
             invalidationContext.invalidateItems(at: [indexPath])
-        case .section(_, let kind):
+        case .supplementaryView(kind: let kind):
             invalidationContext.invalidateSupplementaryElements(ofKind: kind, at: [indexPath])
         }
 

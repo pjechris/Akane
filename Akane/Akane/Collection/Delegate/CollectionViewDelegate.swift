@@ -59,7 +59,6 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let item = self.dataSource.item(at: indexPath)
-        let element = CollectionElementCategory.cell(identifier: item.reuseIdentifier)
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.reuseIdentifier, for: indexPath)
 
@@ -72,7 +71,7 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak collectionView] in
                     if let collectionView = collectionView {
-                        collectionView.update(element, atIndexPath: indexPath)
+                        collectionView.update(.cell, atIndexPath: indexPath)
                     }
                 }
             }
