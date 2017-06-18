@@ -8,7 +8,12 @@
 
 import Foundation
 
-open class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewItems> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
+@available(*, unavailable, renamed: "CollectionViewAdapter")
+typealias CollectionViewDelegate<T: DataSource> = CollectionViewAdapter<T>
+
+/// Adapter class, making the link between `UICollectionView`, `UICollectionViewDataSource` and `DataSource`
+/// Unlike TableViewAdapter (due to some API limitations) it can handles cells only. Subclass it if you want to display any supplementary views.
+open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UICollectionViewDataSource, UICollectionViewDelegate
 {
     open fileprivate(set) weak var observer: ViewObserver?
     open fileprivate(set) var dataSource: DataSourceType
@@ -53,12 +58,12 @@ open class CollectionViewDelegate<DataSourceType : DataSourceCollectionViewItems
     }
 
     open func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let data = self.dataSource.itemAtIndexPath(indexPath)
-        let element = CollectionElementCategory.cell(identifier: data.identifier.rawValue)
+        let item = self.dataSource.item(at: indexPath)
+        let element = CollectionElementCategory.cell(identifier: item.reuseIdentifier)
 
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: data.identifier.rawValue, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.reuseIdentifier, for: indexPath)
 
-        if let viewModel = self.dataSource.createItemViewModel(data.item),
+        if let viewModel = self.dataSource.viewModel(for: item),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentView {
 

@@ -11,8 +11,12 @@ import UIKit
 
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
+@available(*, unavailable, renamed: "TableViewAdapter")
+typealias TableViewDelegate<T: DataSource> = TableViewAdapter<T>
+
 /// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and `DataSource`
-open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObject, UITableViewDataSource, UITableViewDelegate
+/// Can displays rows and sections.
+open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewDataSource, UITableViewDelegate
 {
     open fileprivate(set) weak var observer: ViewObserver?
     open fileprivate(set) var dataSource: DataSourceType
@@ -61,15 +65,25 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     }
 
     @objc
+    public func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return self.viewForSection(tableView, section: section, sectionKind: "footer")
+    }
+
+    @objc
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        return self.viewForSection(tableView, section: section, sectionKind: "header")
+    }
+
+    @objc
     /// - see: `DataSourceTableViewItems.itemAtIndexPath(_:)`
     /// - see: `DataSourceTableViewItems.tableViewItemTemplate(_:)`
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let data = self.dataSource.itemAtIndexPath(indexPath)
+        let row = self.dataSource.item(at: indexPath)
 
-        let cell = tableView.dequeueReusableCell(withIdentifier: data.identifier.rawValue, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
 
-        if let viewModel = self.dataSource.createItemViewModel(data.item),
+        if let viewModel = self.dataSource.viewModel(for: row),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentView {
             
@@ -110,8 +124,7 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willSelectRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, willSelectRowAt indexPath: IndexPath) -> IndexPath? {
-        if let _ = self.dataSource.itemAtIndexPath(indexPath).item,
-            let _ = self.viewModels[indexPath] as? Selectable {
+        if let _ = self.viewModels[indexPath] as? Selectable {
             return indexPath
         }
 
@@ -125,7 +138,6 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     /// - see: `ComponentItemViewModel.select()`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didSelectRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let viewModel = self.viewModels[indexPath] as! Selectable
 
         viewModel.commandSelect.execute(nil)
@@ -135,7 +147,6 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     /// - returns the row index path if its viewModel is of type `ComponentItemViewModel` and it defines `unselect`, nil otherwise
     /// - seeAlso: `UITableViewDelegate.tableView(_:, willDeselectRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, willDeselectRowAt indexPath: IndexPath) -> IndexPath? {
-        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let _ = self.viewModels[indexPath] as! Unselectable
 
         return indexPath
@@ -145,10 +156,56 @@ open class TableViewDelegate<DataSourceType : DataSourceTableViewItems> : NSObje
     /// Call the row view model `unselect` `Command`
     /// - seeAlso: `UITableViewDelegate.tableView(_:, didDeselectRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        _ = self.dataSource.itemAtIndexPath(indexPath).item
         let viewModel = self.viewModels[indexPath] as! Unselectable
 
         viewModel.commandUnselect.execute(nil)
+    }
+
+    @objc
+    public func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return tableView.layout.heightForSection(section, sectionKind: "footer") ?? tableView.sectionFooterHeight
+    }
+
+    @objc
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return tableView.layout.heightForSection(section, sectionKind: "header") ?? tableView.sectionHeaderHeight
+    }
+
+    @objc
+    public func tableView(_ tableView: UITableView, estimatedHeightForFooterInSection section: Int) -> CGFloat {
+        return tableView.layout.estimatedHeightForSection(section, sectionKind: "footer") ?? tableView.estimatedSectionFooterHeight
+    }
+
+    @objc
+    public func tableView(_ tableView: UITableView, estimatedHeightForHeaderInSection section: Int) -> CGFloat {
+        return tableView.layout.estimatedHeightForSection(section, sectionKind: "header") ?? tableView.estimatedSectionHeaderHeight
+    }
+
+    func viewForSection(_ tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
+        let section = self.dataSource.section(at: section)
+
+        if section is VoidSection {
+            return nil
+        }
+
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: section.reuseIdentifier)!
+
+        if let viewModel = self.dataSource.viewModel(for: section),
+            let observer = self.observer,
+            let componentView = view as? _AnyComponentView {
+
+            componentView._tryBindings(observer, viewModel: viewModel)
+
+            if let updatable = viewModel as? Updatable {
+                updatable.onRender = { [weak tableView, weak view] in
+                    if let tableView = tableView, let view = view {
+                        tableView.update(view)
+                    }
+                }
+            }
+        }
+        
+        return view
     }
 }
 

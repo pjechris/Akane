@@ -8,20 +8,22 @@
 
 import Foundation
 
-open class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionViewSections> : CollectionViewDelegate<DataSourceType>
+@available(*, unavailable, renamed: "CollectionViewAdapter")
+open class CollectionViewSectionDelegate<DataSourceType : DataSource> : CollectionViewAdapter<DataSourceType>
 {
     public override init(observer: ViewObserver, dataSource: DataSourceType) {
         super.init(observer: observer, dataSource: dataSource)
     }
 
     @objc
-    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, atIndexPath indexPath: IndexPath) -> UICollectionReusableView {
-        let data = self.dataSource.sectionItemAtIndex(indexPath.section)
-        let element = CollectionElementCategory.section(identifier: data.identifier.rawValue, kind: kind)
+    open func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        let section = self.dataSource.section(at: indexPath.section)
 
-        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: data.identifier.rawValue, for: indexPath)
+        let element = CollectionElementCategory.section(identifier: section.reuseIdentifier, kind: kind)
 
-        if let viewModel = self.dataSource.createSectionViewModel(data.item),
+        let cell = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: section.reuseIdentifier, for: indexPath)
+
+        if let viewModel = self.dataSource.viewModel(for: section),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentView {
 
@@ -35,7 +37,9 @@ open class CollectionViewSectionDelegate<DataSourceType : DataSourceCollectionVi
                 }
             }
         }
-
+        
         return cell
     }
+
+
 }

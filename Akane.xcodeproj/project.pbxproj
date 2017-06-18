@@ -16,7 +16,6 @@
 		49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726E1EBF537E00E1435E /* ComponentView.swift */; };
 		49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472701EBF537E00E1435E /* ComponentViewModel.swift */; };
 		49D4727E1EBF537E00E1435E /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472731EBF537E00E1435E /* Updatable.swift */; };
-		49D4727F1EBF537E00E1435E /* RawStringRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472741EBF537E00E1435E /* RawStringRepresentable.swift */; };
 		49D472801EBF537E00E1435E /* WeakValue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472751EBF537E00E1435E /* WeakValue.swift */; };
 		49D472921EBF542400E1435E /* Bindable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472841EBF542400E1435E /* Bindable.swift */; };
 		49D472931EBF542400E1435E /* Converter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472861EBF542400E1435E /* Converter.swift */; };
@@ -32,7 +31,6 @@
 		49D472C81EBF548600E1435E /* RelayCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472A21EBF545700E1435E /* RelayCommand.swift */; };
 		49D472CD1EBF551E00E1435E /* CommandObservation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472CB1EBF54F400E1435E /* CommandObservation.swift */; };
 		49D472E61EBF558700E1435E /* CollectionElementCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472CF1EBF558700E1435E /* CollectionElementCategory.swift */; };
-		49D472E71EBF558700E1435E /* CollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472D01EBF558700E1435E /* CollectionReusableView.swift */; };
 		49D472E81EBF558700E1435E /* CollectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472D21EBF558700E1435E /* CollectionDataSource.swift */; };
 		49D472E91EBF558700E1435E /* DataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472D31EBF558700E1435E /* DataSource.swift */; };
 		49D472EA1EBF558700E1435E /* TableDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472D41EBF558700E1435E /* TableDataSource.swift */; };
@@ -88,7 +86,6 @@
 		49D4726E1EBF537E00E1435E /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		49D472701EBF537E00E1435E /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		49D472731EBF537E00E1435E /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
-		49D472741EBF537E00E1435E /* RawStringRepresentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RawStringRepresentable.swift; sourceTree = "<group>"; };
 		49D472751EBF537E00E1435E /* WeakValue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WeakValue.swift; sourceTree = "<group>"; };
 		49D472841EBF542400E1435E /* Bindable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Bindable.swift; sourceTree = "<group>"; };
 		49D472861EBF542400E1435E /* Converter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Converter.swift; sourceTree = "<group>"; };
@@ -105,7 +102,6 @@
 		49D472B51EBF547500E1435E /* AkaneBondTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneBondTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		49D472CB1EBF54F400E1435E /* CommandObservation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CommandObservation.swift; sourceTree = "<group>"; };
 		49D472CF1EBF558700E1435E /* CollectionElementCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionElementCategory.swift; sourceTree = "<group>"; };
-		49D472D01EBF558700E1435E /* CollectionReusableView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionReusableView.swift; sourceTree = "<group>"; };
 		49D472D21EBF558700E1435E /* CollectionDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CollectionDataSource.swift; sourceTree = "<group>"; };
 		49D472D31EBF558700E1435E /* DataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataSource.swift; sourceTree = "<group>"; };
 		49D472D41EBF558700E1435E /* TableDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableDataSource.swift; sourceTree = "<group>"; };
@@ -202,7 +198,6 @@
 			isa = PBXGroup;
 			children = (
 				49D473001EBF58FB00E1435E /* Command */,
-				49D472741EBF537E00E1435E /* RawStringRepresentable.swift */,
 				49D472751EBF537E00E1435E /* WeakValue.swift */,
 				49D472811EBF542400E1435E /* Binding */,
 				49D472CE1EBF558700E1435E /* Collection */,
@@ -332,7 +327,6 @@
 			isa = PBXGroup;
 			children = (
 				49D472CF1EBF558700E1435E /* CollectionElementCategory.swift */,
-				49D472D01EBF558700E1435E /* CollectionReusableView.swift */,
 				49D472D11EBF558700E1435E /* DataSource */,
 				49D472D51EBF558700E1435E /* Delegate */,
 				49D472DA1EBF558700E1435E /* Layout */,
@@ -647,10 +641,8 @@
 				49D473041EBF591800E1435E /* Unselectable.swift in Sources */,
 				49D472ED1EBF558700E1435E /* TableViewDelegate.swift in Sources */,
 				49D4729B1EBF542400E1435E /* ViewObserver.swift in Sources */,
-				49D472E71EBF558700E1435E /* CollectionReusableView.swift in Sources */,
 				49D472EA1EBF558700E1435E /* TableDataSource.swift in Sources */,
 				49D472921EBF542400E1435E /* Bindable.swift in Sources */,
-				49D4727F1EBF537E00E1435E /* RawStringRepresentable.swift in Sources */,
 				49D472EB1EBF558700E1435E /* CollectionViewDelegate.swift in Sources */,
 				49D472F61EBF558700E1435E /* UITableView+Update.swift in Sources */,
 				497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */,
