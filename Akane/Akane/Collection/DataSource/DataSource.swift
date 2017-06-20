@@ -12,18 +12,12 @@ public protocol Identifiable {
     var reuseIdentifier: String { get }
 }
 
-public struct VoidSection : Identifiable {
-    public var reuseIdentifier: String { return "NoSection" }
-
-    fileprivate init() { }
-}
-
 /// Provides collection data for display
 public protocol DataSource {
     /// type of section. It is intended to be used as a associated value enum
-    associatedtype Section: Identifiable = VoidSection
+    associatedtype Section = Void
     /// section view model
-    associatedtype SectionViewModelType : ComponentViewModel = Void
+    associatedtype SectionViewModelType = Void
     /// type of 'row'. It is intended to be used as a associated value enum
     associatedtype Item: Identifiable
     /// row/item view model
@@ -36,23 +30,23 @@ public protocol DataSource {
     func numberOfItemsInSection(_ section: Int) -> Int
 
     func section(at index: Int) -> Section
-    func viewModel(for item: Section) -> SectionViewModelType?
+    func sectionViewModel(for section: Section) -> SectionViewModelType?
 
     func item(at indexPath: IndexPath) -> Item
-    func viewModel(for item: Item) -> ItemViewModelType?
+    func itemViewModel(for item: Item) -> ItemViewModelType?
 }
 
-public extension DataSource where Section == VoidSection {
+public extension DataSource where Section == Void {
     /// returns one section
     func numberOfSections() -> Int {
         return 1
     }
 
     func section(at index: Int) -> Section {
-        return VoidSection()
+        return ()
     }
 
-    func viewModel(for item: Section) -> SectionViewModelType? {
+    func sectionViewModel(for item: Section) -> SectionViewModelType? {
         return nil
     }
 }

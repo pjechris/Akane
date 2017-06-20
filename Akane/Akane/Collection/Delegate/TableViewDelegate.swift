@@ -12,7 +12,9 @@ import UIKit
 var TableViewDataSourceAttr = "TableViewDataSourceAttr"
 
 @available(*, unavailable, renamed: "TableViewAdapter")
-typealias TableViewDelegate<T: DataSource> = TableViewAdapter<T>
+open class TableViewDelegate <DataSourceType: DataSource> : NSObject {
+
+}
 
 /// Adapter class, making the link between `UITableViewDataSource`, `UITableViewDelegate` and `DataSource`
 /// Can displays rows and sections.
@@ -83,7 +85,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
 
         let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
 
-        if let viewModel = self.dataSource.viewModel(for: row),
+        if let viewModel = self.dataSource.itemViewModel(for: row),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentView {
             
@@ -184,13 +186,13 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
     func viewForSection(_ tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
         let section = self.dataSource.section(at: section)
 
-        if section is VoidSection {
+        guard let reuseIdentifier = (section as? Identifiable)?.reuseIdentifier else {
             return nil
         }
 
-        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: section.reuseIdentifier)!
+        let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier)!
 
-        if let viewModel = self.dataSource.viewModel(for: section),
+        if let viewModel = self.dataSource.sectionViewModel(for: section) as? ComponentViewModel,
             let observer = self.observer,
             let componentView = view as? _AnyComponentView {
 

@@ -62,7 +62,7 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
 
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: item.reuseIdentifier, for: indexPath)
 
-        if let viewModel = self.dataSource.viewModel(for: item),
+        if let viewModel = self.dataSource.itemViewModel(for: item),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentView {
 
