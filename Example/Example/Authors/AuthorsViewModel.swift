@@ -25,9 +25,15 @@ class AuthorsViewModel : ComponentViewModel {
     }
 }
 
-struct AuthorsListDataSource: DataSourceTableViewItems {
-    enum ItemIdentifier: String, RawStringRepresentable {
-        case Author
+struct AuthorsListDataSource: DataSource {
+    static let author = "author"
+
+    enum Item : Identifiable {
+        case author(Author)
+
+        var reuseIdentifier: String {
+            return AuthorsListDataSource.author
+        }
     }
     
     let authors: [Author]
@@ -35,20 +41,19 @@ struct AuthorsListDataSource: DataSourceTableViewItems {
     init(authors: [Author]) {
         self.authors = authors;
     }
-    
-    func itemAtIndexPath(_ indexPath: IndexPath) -> (item: Author?, identifier: ItemIdentifier) {
-        return (item: self.authors[indexPath.row], identifier: .Author)
-    }
-    
-    func tableViewItemTemplate(_ identifier: ItemIdentifier) -> Template {
-        return TemplateComponentView(AuthorViewCell.self, from: .nib(UINib(nibName: "AuthorViewCell", bundle: nil)))
-    }
-    
-    func createItemViewModel(_ item: Author?) -> AuthorViewModel? {
-        return AuthorViewModel(author: item!)
-    }
-    
+
     func numberOfItemsInSection(_ section: Int) -> Int {
         return self.authors.count
+    }
+
+    func item(at indexPath: IndexPath) -> Item {
+        return .author(self.authors[indexPath.row])
+    }
+    
+    func itemViewModel(for item: Item) -> AuthorViewModel? {
+        switch(item) {
+        case .author(let author):
+            return AuthorViewModel(author: author)
+        }
     }
 }

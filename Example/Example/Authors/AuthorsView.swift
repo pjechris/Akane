@@ -15,12 +15,14 @@ class AuthorsView : UITableView, ComponentView {
     var observableAuthors: Disposable?
     
     override func awakeFromNib() {
-        self.estimatedRowHeight = 44;
+        self.estimatedRowHeight = 44
+
+        self.register(UINib(nibName: "AuthorViewCell", bundle: nil), forCellReuseIdentifier: AuthorsListDataSource.author)
     }
     
     func bindings(_ observer: ViewObserver, viewModel: AuthorsViewModel) {
         observableAuthors = viewModel.dataSource.observe { _ in
-            let delegate = TableViewDelegate(observer: observer, dataSource: viewModel.dataSource.value!)
+            let delegate = TableViewAdapter(observer: observer, dataSource: viewModel.dataSource.value!)
             delegate.becomeDataSourceAndDelegate(self, reload: true)
         }
     }
