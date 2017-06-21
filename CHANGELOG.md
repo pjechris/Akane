@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## 0.17.2
+
+### Fixes
+
+- [Component] fixed `ComponentView.componentControllerClass` not called when creating component.
+
 ## 0.17.1
 
 ### Changes

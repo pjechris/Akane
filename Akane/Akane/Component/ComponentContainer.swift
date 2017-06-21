@@ -13,20 +13,25 @@ var BinderAttribute = "ViewStyleNameAttribute"
 public protocol ComponentContainer : class {
     func component<View: ComponentView>(for: View) -> AnyComponentController?
 
-    func component<View: ComponentView>(for: View, createIfNeeded: Bool) -> AnyComponentController
+    func component<View: ComponentView>(for: View, createIfNeeded: Bool) -> AnyComponentController?
 
-    func add<ControllerType: ComponentController>(childView: ControllerType.ViewType, controlledBy childController: ControllerType)
+    func add<View: ComponentView>(childView view: View, controlledBy childComponent: AnyComponentController)
 }
 
 extension ComponentContainer where Self : UIViewController, Self : ComponentController {
-    public func component<View: ComponentView>(for view: View, createIfNeeded: Bool) -> AnyComponentController {
-        guard let controller = self.component(for: view) else {
-            let controller = DefaultViewController(view: view)
-
-            self.add(childView: view, controlledBy: controller)
-
+    public func component<View: ComponentView>(for view: View, createIfNeeded: Bool) -> AnyComponentController? {
+        if let controller = self.component(for: view) {
             return controller
         }
+
+        guard createIfNeeded else {
+            return nil
+        }
+
+        let type = type(of: view).componentControllerClass() as! UIViewController.Type
+        let controller = type.init(coder: NSCoder.empty()) as! AnyComponentController
+
+        self.add(childView: view, controlledBy: controller)
 
         return controller
     }
@@ -41,7 +46,7 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
         return nil
     }
 
-    public func add<ControllerType: ComponentController>(childView view: ControllerType.ViewType, controlledBy childComponent: ControllerType) {
+    public func add<View: ComponentView>(childView view: View, controlledBy childComponent: AnyComponentController) {
         guard let view = view as? UIView, let childController = childComponent as? UIViewController else {
             return
         }
