@@ -1,5 +1,13 @@
 # CHANGELOG
 
+### 0.18.0
+
+### Changes
+
+- [Observer] `ViewObserver` is a dedicated class.
+- [Collection] Replaced data sources with one unique `DataSource` protocol.
+- [Collection] Removed template system. Just use regular register(cell) method from tableview/collectionview.
+
 ## 0.17.2
 
 ### Fixes
