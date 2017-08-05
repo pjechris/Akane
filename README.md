@@ -7,26 +7,24 @@ Akane is a iOS framework that helps you building better native apps by adopting 
 |---------------|--------------|
 | :sweat_smile: | Safety: **minimize bad coding practices** as much as possible
 | :wrench:       | **Feature-Oriented**: adding and maintaining features is easy and, yes, safe
-| :capital_abcd: | **Component-Oriented**: each visual feature you want to add to your app is a *Component*
+| :capital_abcd: | **Component-Oriented**: each visual feature you want to add to your app is a *Component* (smart or dumb)
 | :scissors:     | fine-grained **Separation of Concerns**, which means:
 | :dancers:      | Much less merge conflicts
 | :sunglasses:   | A better understanding of your code
 
-Each component, with Akane, is composed of:
+Smart components are composed of:
 - `ComponentViewController`
 - `ComponentViewModel`
 - `ComponentView`
+
+**(New in 0.19!)** Dumb components are composed of:
+- `View`
 
 # Why Akane, Or MVVM versus iOS MVC
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today's app codebases grow bigger and bigger. Maintaining a single, huge, ViewController file is a dangerous operation which often results in unpredictable side effects.
 
-Akane makes you split your code into small components which are composed of multiple classes, some of which should sound familiar:
-
-- **M**odel
-- **V**iew
-- **V**iew **M**odel
-- ViewController
+Akane makes you split your code into small components which are composed of multiple classes.
 
 ## Model
 
@@ -46,7 +44,30 @@ struct User {
 }
 ```
 
-## ViewModel
+## Dumb component
+
+Dumb component is a component whose not having any state, just data passed through.
+
+It is represented by a `View` (not a UIView, but a View protocol).
+
+```swift
+class UserView: UIView, View {
+   @IBOutlet var title: UILabel!
+
+   func bindings(_ observer: ViewObserver, props user: User) {
+     self.title = UserFullNameConverter().convert(user)
+   }
+}
+```
+
+### Smart component
+
+Smart component represents a component whose having persistent state throughout renderings:
+
+- State is represented using `ComponentViewModel`.
+- UI is represented using `ComponentView`.
+
+### ViewModel
 
 The *ViewModel* is where all your business logic should be implemented.
 
@@ -73,13 +94,9 @@ class UserViewModel : ComponentViewModel {
 
 ```
 
-## View
+### ComponentView
 
-Each View **must** correspond to one (and only one) `ComponentViewModel`. It should be a dedicated (business named) class, just like your ViewModel.
-
-Please name the view meaningfully, by reflecting its business value: for instance BasketView, UserInfoView, etc. Also, a *View is only about UI logic*. Data **must** come from the ViewModel, by using binding to always be up-to-date.
-
-The data flow between a ViewModel and its View is **always unidirectional**:
+Data flow between a ViewModel and its ComponentView is bidirectional:
 
 - View <- ViewModel for data, through *bindings*
 - View -> ViewModel for actions, through *commands*: for instance, send a message or order a product.
@@ -87,15 +104,13 @@ The data flow between a ViewModel and its View is **always unidirectional**:
 ```swift
 import Akane
 
-class UserView : UIView, ComponentView {
-  @IBOutlet var labelUserHello: UILabel!
+class LoggedUserView : UIView, ComponentView {
+  @IBOutlet var userView: UserView!
   @IBOutlet var buttonDisconnect: UIButton!
 
   func bindings(observer: ViewObserver, viewModel: UserViewModel) {
-    // Bind 'user' with 'labelUserHello' 'text' using a converter
-    observer.observe(viewModel.user)
-            .convert(UserHelloConverter.self)
-            .bind(to: self.labelUserHello.reactive.text)
+    // New in 0.19! Bind a author with a dumb view
+    observer.observe(viewModel.author).bind(to: self.authorView)
 
     // bind 'disconnect' command with 'buttonDisconnect'
     observer.observe(viewModel.disconnect)
@@ -103,19 +118,9 @@ class UserView : UIView, ComponentView {
   }
 }
 
-struct UserHelloConverter {
-  typealias ValueType = User
-  typealias ConvertValueType = String
-
-  func convert(user: ValueType) -> ConvertValueType {
-    let title = user.title.rawValue.uppercased()
-    return "Good morning, \(title) \(user.username)"
-  }
-}
-
 ```
 
-## ViewController
+### ViewController
 
 ViewController, through `ComponentController` protocol, makes the link between `ComponentViewModel` and `ComponentView`.
 
@@ -139,13 +144,13 @@ You can even define your custom ViewControllers if you need to:
 
 ```swift
 
-extension UserView {
+extension LoggedUserView {
   static func componentControllerClass() -> AnyComponentController.Type {
-    return UserViewController.self
+    return LoggedUserViewController.self
   }
 }
 
-class UserViewController : UIViewController, ComponentController {
+class LoggedUserViewController : UIViewController, ComponentController {
   func viewDidLoad() {
     super.viewDidLoad()
     print("User component view loaded")
