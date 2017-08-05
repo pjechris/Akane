@@ -18,8 +18,9 @@ import HasAssociatedObjects
 public class ViewObserver {
     public private(set) weak var container: ComponentContainer?
     fileprivate var disposes: [(Void) -> ()] = []
+    fileprivate var subObservers: [ViewObserver] = []
 
-    init(container: ComponentContainer) {
+    public init(container: ComponentContainer) {
         self.container = container
     }
 
@@ -36,7 +37,7 @@ public class ViewObserver {
      `ComponentView`.
      */
     public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
-        return AnyObservation(value: value)
+        return AnyObservation(value: value, observer: self.createObserver())
     }
 
     /**
@@ -50,7 +51,15 @@ public class ViewObserver {
         return ViewModelObservation<ViewModelType>(value: value, container: self.container!)
     }
 
+    public func createObserver() -> ViewObserver {
+        let observer = ViewObserver(container: self.container!)
+
+        self.subObservers.append(observer)
+        return observer
+    }
+
     public func dispose() {
+        self.subObservers.forEach { $0.dispose() }
         self.disposes.forEach { $0() }
         self.disposes.removeAll()
     }
