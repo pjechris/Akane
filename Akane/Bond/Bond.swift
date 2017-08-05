@@ -26,7 +26,7 @@ extension ViewObserver {
     }
 
     public func observe<AnyValue>(_ observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
-        let observer = AnyObservation<AnyValue>(value: nil)
+        let observer = AnyObservation<AnyValue>(value: nil, observer: self.createObserver())
         
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)

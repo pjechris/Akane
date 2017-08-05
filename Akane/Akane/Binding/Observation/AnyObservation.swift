@@ -21,8 +21,11 @@ public class AnyObservation<Element> : Observation {
 
     public var next: [((Element) -> Void)] = []
 
-    public init(value: Element?) {
+    weak var observer: ViewObserver?
+
+    public init(value: Element?, observer: ViewObserver? = nil) {
         self.value = value
+        self.observer = observer
     }
 
     deinit {
@@ -113,6 +116,17 @@ extension AnyObservation {
     public func bind<T: Bindable>(to bindable: T) where T.Element == Optional<Element> {
         self.observe { value in
             bindable.advance(element: value)
+        }
+    }
+
+    public func bind<V: View>(to view: V) where Element == V.Props {
+        guard let observer = self.observer else {
+            return
+        }
+
+        self.observe { value in
+            observer.dispose()
+            view.bindings(observer, props: value)
         }
     }
 }

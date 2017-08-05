@@ -9,6 +9,12 @@
 import Foundation
 import HasAssociatedObjects
 
+public protocol View {
+    associatedtype Props
+
+    func bindings(_ observer: ViewObserver, props: Props)
+}
+
 public protocol _AnyComponentView {
     func _tryBindings(_ observer: ViewObserver, viewModel: Any)
 }
@@ -53,5 +59,15 @@ extension ComponentView where Self : UIView {
         }
 
         observer.observe(viewModel).bind(to: self)
+    }
+}
+
+extension View where Self : UIView {
+    public func _tryBindings(_ observer: ViewObserver, props: Any) {
+        guard let props = props as? Props else {
+            return
+        }
+
+        observer.observe(props).bind(to: self)
     }
 }
