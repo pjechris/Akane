@@ -8,11 +8,12 @@
 
 import Foundation
 import Akane
+import Bond
 
 class SearchAuthorsViewModel : ComponentViewModel {
    fileprivate var authors: [Author]
-   
-    let authorsViewModel: AuthorsViewModel
+    var filteredAuthors: Observable<[Author]>
+
     lazy var searchFor: RelayCommand<String> = RelayCommand<String>() { [unowned self] in
         self.filterAuthors($0)
     }
@@ -23,13 +24,16 @@ class SearchAuthorsViewModel : ComponentViewModel {
          Author("Maupassant"),
          Author("Victor Hugo")
       ]
-      self.authorsViewModel = AuthorsViewModel(authors: self.authors)
+    self.filteredAuthors = Observable(self.authors)
    }
    
-   fileprivate func filterAuthors(_ str: String?) -> () {
-      guard let searchString = str?.lowercased(), searchString.characters.count > 0 else { self.authorsViewModel.authors.next(self.authors); return }
-      self.authorsViewModel.authors.next(self.authors.filter() { e in
-        return e.name.lowercased().range(of: searchString) != nil
-      })
-   }
+    fileprivate func filterAuthors(_ str: String?) -> () {
+        guard let searchString = str?.lowercased(), searchString.characters.count > 0 else {
+            self.filteredAuthors.next(self.authors)
+            return
+        }
+        self.filteredAuthors.next(self.authors.filter() { e in
+            return e.name.lowercased().range(of: searchString) != nil
+        })
+    }
 }

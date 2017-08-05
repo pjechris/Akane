@@ -10,20 +10,41 @@ import Foundation
 import ReactiveKit
 import Akane
 
-class AuthorsView : UITableView, ComponentView {
-    
-    var observableAuthors: Disposable?
+class AuthorsView : UITableView, View {
+
+    var authors: [Author]!
+    var observer: ViewObserver!
     
     override func awakeFromNib() {
         self.estimatedRowHeight = 44
 
-        self.register(UINib(nibName: "AuthorViewCell", bundle: nil), forCellReuseIdentifier: AuthorsListDataSource.author)
+        self.register(UINib(nibName: "AuthorViewCell", bundle: nil), forCellReuseIdentifier: "author")
+
+        self.delegate = self
+        self.dataSource = self
     }
     
-    func bindings(_ observer: ViewObserver, viewModel: AuthorsViewModel) {
-        observableAuthors = viewModel.dataSource.observe { _ in
-            let delegate = TableViewAdapter(observer: observer, dataSource: viewModel.dataSource.value!)
-            delegate.becomeDataSourceAndDelegate(self, reload: true)
-        }
+    func bindings(_ observer: ViewObserver, props: [Author]) {
+        self.authors = props
+        self.observer = observer
+
+        self.reloadData()
+    }
+}
+
+extension AuthorsView : UITableViewDelegate, UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return self.authors?.count ?? 0
+    }
+
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = self.dequeueReusableCell(withIdentifier: "author", for: indexPath) as! AuthorViewCell
+        let author = self.authors[indexPath.row]
+
+        self.observer
+            .observe(author)
+            .bind(to: cell)
+
+        return cell
     }
 }
