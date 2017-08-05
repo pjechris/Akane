@@ -30,10 +30,10 @@ open class CommandObservation : Observation {
     }
 
     deinit {
-        self.unobserve()
+        self.unbind()
     }
 
-    public func unobserve() {
+    public func unbind() {
         for control in self.controls {
             control.removeTarget(self, action: nil, for: .allEvents)
         }

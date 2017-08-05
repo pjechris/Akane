@@ -61,6 +61,10 @@ extension ViewObserver {
      - returns: A `CommandObservation`.
      */
     public func observe(_ command: BondCommand) -> CommandObservation {
-        return CommandObservation(command: command, observer: self)
+        let observation = CommandObservation(command: command, observer: self)
+
+        self.add(disposable: { observation.unbind() })
+
+        return observation
     }
 }
