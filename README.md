@@ -17,8 +17,7 @@ Smart components are composed of:
 - `ComponentViewModel`
 - `ComponentView`
 
-**(New in 0.19!)** Dumb components are composed of:
-- `View`
+**(New in 0.19!)** _Dumb_ components, which are components which are simply composed of a `View` and do not have an associated `ViewModel`.
 
 # Why Akane, Or MVVM versus iOS MVC
 
@@ -46,7 +45,7 @@ struct User {
 
 ## Dumb component
 
-Dumb component is a component whose not having any state, just data passed through.
+Dumb component is a component which is not bound to a specific state but can still be updated with raw data.
 
 It is represented by a `View` (not a UIView, but a View protocol).
 
@@ -62,7 +61,7 @@ class UserView: UIView, View {
 
 ### Smart component
 
-Smart component represents a component whose having persistent state throughout renderings:
+Smart component represents a component who has a state defining their rendering:
 
 - State is represented using `ComponentViewModel`.
 - UI is represented using `ComponentView`.
