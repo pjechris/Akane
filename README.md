@@ -15,9 +15,9 @@ Akane is a iOS framework that helps you building better native apps by adopting 
 Smart components are composed of:
 - `ComponentViewController`
 - `ComponentViewModel`
-- `ComponentView`
+- `ComponentDisplayable`
 
-**(New in 0.19!)** _Dumb_ components, which are components which are simply composed of a `View` and do not have an associated `ViewModel`.
+**(New in 0.19!)** _Dumb_ components are simply composed of a `Displayable` and do not have an associated `ViewModel`.
 
 # Why Akane, Or MVVM versus iOS MVC
 
@@ -29,7 +29,7 @@ Akane makes you split your code into small components which are composed of mult
 
 The *Model* is the layer containing the classes that model your application business.
 
-Songs, Movies, Books: all those `class`es or `struct`s belong to this layer. They should contain no reference to any `UIKit` or `Akane` component.
+Songs, Movies, Books: all those `classes` or `struct`s belong to this layer. They should contain no reference to any `UIKit` or `Akane` component.
 
 ```swift
 struct User {
@@ -45,12 +45,12 @@ struct User {
 
 ## Dumb component
 
-Dumb component is a component which is not bound to a specific state but can still be updated with raw data.
+Dumb component is not bound to a specific state but can still be updated with raw data.
 
-It is represented by a `View` (not a UIView, but a View protocol).
+It is represented by `Displayable` protocol.
 
 ```swift
-class UserView: UIView, View {
+class UserView: UIView, Displayable {
    @IBOutlet var title: UILabel!
 
    func bindings(_ observer: ViewObserver, props user: User) {
@@ -61,10 +61,10 @@ class UserView: UIView, View {
 
 ### Smart component
 
-Smart component represents a component who has a state defining their rendering:
+Smart component represents a component who has a state defining its rendering:
 
 - State is represented using `ComponentViewModel`.
-- UI is represented using `ComponentView`.
+- UI is represented using `ComponentDisplayable`.
 
 ### ViewModel
 
@@ -93,9 +93,9 @@ class UserViewModel : ComponentViewModel {
 
 ```
 
-### ComponentView
+### ComponentDisplayable
 
-Data flow between a ViewModel and its ComponentView is bidirectional:
+Data flow between a ViewModel and its ComponentDisplayable is bidirectional:
 
 - View <- ViewModel for data, through *bindings*
 - View -> ViewModel for actions, through *commands*: for instance, send a message or order a product.
@@ -103,7 +103,7 @@ Data flow between a ViewModel and its ComponentView is bidirectional:
 ```swift
 import Akane
 
-class LoggedUserView : UIView, ComponentView {
+class LoggedUserView : UIView, ComponentDisplayable {
   @IBOutlet var userView: UserView!
   @IBOutlet var buttonDisconnect: UIButton!
 
@@ -121,7 +121,7 @@ class LoggedUserView : UIView, ComponentView {
 
 ### ViewController
 
-ViewController, through `ComponentController` protocol, makes the link between `ComponentViewModel` and `ComponentView`.
+ViewController, through `ComponentController` protocol, makes the link between `ComponentViewModel` and `ComponentDisplayable`.
 
 Just pass your `ComponentViewModel` to your ViewController to bind it to its view.
 

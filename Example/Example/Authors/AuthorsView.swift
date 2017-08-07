@@ -10,7 +10,7 @@ import Foundation
 import ReactiveKit
 import Akane
 
-class AuthorsView : UITableView, View {
+class AuthorsView : UITableView, Displayable {
 
     var authors: [Author]!
     var observer: ViewObserver!

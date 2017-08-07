@@ -87,7 +87,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
 
         if let viewModel = self.dataSource.itemViewModel(for: row),
             let observer = self.observer,
-            let componentCell = cell as? _AnyComponentView {
+            let componentCell = cell as? _AnyComponentDisplayable {
             
             componentCell._tryBindings(observer, viewModel: viewModel)
 
@@ -194,7 +194,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
 
         if let viewModel = self.dataSource.sectionViewModel(for: section) as? ComponentViewModel,
             let observer = self.observer,
-            let componentView = view as? _AnyComponentView {
+            let componentView = view as? _AnyComponentDisplayable {
 
             componentView._tryBindings(observer, viewModel: viewModel)
 

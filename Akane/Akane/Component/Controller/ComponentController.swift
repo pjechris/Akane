@@ -24,7 +24,7 @@ This protocol should benefit greatly by the use of generics, but this would
 break compatibility with Storyboards and Xibs.
 */
 public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
-    associatedtype ViewType: ComponentView
+    associatedtype ViewType: ComponentDisplayable
 
     // MARK: Associated component elements
     

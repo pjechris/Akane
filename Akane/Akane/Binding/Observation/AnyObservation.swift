@@ -119,7 +119,7 @@ extension AnyObservation {
         }
     }
 
-    public func bind<V: View>(to view: V) where Element == V.Props {
+    public func bind<V: Displayable>(to view: V) where Element == V.Props {
         guard let observer = self.observer else {
             return
         }

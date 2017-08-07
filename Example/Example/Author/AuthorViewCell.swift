@@ -9,7 +9,7 @@
 import UIKit
 import Akane
 
-class AuthorViewCell: UITableViewCell, View {
+class AuthorViewCell: UITableViewCell, Displayable {
    @IBOutlet var title: UILabel!
    
    func bindings(_ observer: ViewObserver, props: Author) {

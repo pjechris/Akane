@@ -9,21 +9,24 @@
 import Foundation
 import HasAssociatedObjects
 
-public protocol View {
+public protocol Displayable {
     associatedtype Props
 
     func bindings(_ observer: ViewObserver, props: Props)
 }
 
-public protocol _AnyComponentView {
+public protocol _AnyComponentDisplayable {
     func _tryBindings(_ observer: ViewObserver, viewModel: Any)
 }
+
+@available(*, unavailable, renamed: "ComponentDisplayable")
+public typealias ComponentView = ComponentDisplayable
 
 /**
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
 */
-public protocol ComponentView : class, Equatable, HasAssociatedObjects, _AnyComponentView {
+public protocol ComponentDisplayable : class, Equatable, HasAssociatedObjects, _AnyComponentDisplayable {
     associatedtype ViewModelType: ComponentViewModel
 
     /**
@@ -45,29 +48,19 @@ public protocol ComponentView : class, Equatable, HasAssociatedObjects, _AnyComp
     static func componentControllerClass() -> AnyComponentController.Type
 }
 
-extension ComponentView {
+extension ComponentDisplayable {
 
     public static func componentControllerClass() -> AnyComponentController.Type {
         return DefaultViewController<Self>.self
     }
 }
 
-extension ComponentView where Self : UIView {
+extension ComponentDisplayable where Self : UIView {
     public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
         guard let viewModel = viewModel as? ViewModelType else {
             return
         }
 
         observer.observe(viewModel).bind(to: self)
-    }
-}
-
-extension View where Self : UIView {
-    public func _tryBindings(_ observer: ViewObserver, props: Any) {
-        guard let props = props as? Props else {
-            return
-        }
-
-        observer.observe(props).bind(to: self)
     }
 }
