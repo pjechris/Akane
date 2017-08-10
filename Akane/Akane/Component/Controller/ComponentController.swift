@@ -14,6 +14,10 @@ public protocol AnyComponentController {
     func anyViewModel() -> Any?
 }
 
+public protocol ControllerDisplayable {
+    func display()
+}
+
 /**
 ComponentController is a Controller making the link between a `ComponentView`
 and its `ComponentViewModel`.
@@ -23,7 +27,7 @@ Do not use this protocol directly. Refer to `ComponentViewController` instead.
 This protocol should benefit greatly by the use of generics, but this would
 break compatibility with Storyboards and Xibs.
 */
-public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
+public protocol ComponentController : class, ComponentContainer, ControllerDisplayable, AnyComponentController, HasAssociatedObjects {
     associatedtype ViewType: ComponentDisplayable
 
     // MARK: Associated component elements
@@ -64,7 +68,7 @@ extension ComponentController {
         set { self.associatedObjects["observer"] = newValue }
     }
 
-    public func renewBindings() {
+    public func display() {
         guard let viewModel = self.viewModel, let componentView = self.componentView else {
             return
         }
@@ -96,7 +100,7 @@ extension ComponentController where Self : UIViewController {
     func didSetViewModel() {
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
-        self.renewBindings()
+        self.display()
         self.viewModel.mountIfNeeded()
     }
 }
