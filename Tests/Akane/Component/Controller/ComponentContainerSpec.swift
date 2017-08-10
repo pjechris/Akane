@@ -41,7 +41,7 @@ class ComponentControllerStub : UIViewController, ComponentController {
     typealias ViewType = ComponentViewMock
 }
 
-class ComponentViewMock : UIView, ComponentView {
+class ComponentViewMock : UIView, ComponentDisplayable {
     typealias ViewModelType = ComponentViewModelMock
 
     func bindings(_ observer: ViewObserver, viewModel: ComponentViewModelMock) {

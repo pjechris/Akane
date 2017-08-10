@@ -9,7 +9,7 @@
 import Foundation
 import Akane
 
-class SearchAuthorsView : UIView, ComponentDisplaylable {
+class SearchAuthorsView : UIView, ComponentDisplayable {
    @IBOutlet var searchField: UITextField!
    @IBOutlet var authorsView: AuthorsView!
    
