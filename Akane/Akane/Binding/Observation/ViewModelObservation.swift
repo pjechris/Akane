@@ -40,4 +40,18 @@ extension ViewModelObservation {
             controller!.setup(viewModel: value)
         }
     }
+
+    public func display<V: ContentComponentDisplayable>(in view: V.ContentType, using type: V.Type)
+        where V.ContentType: UIView, V.ViewModelType == ViewModelType {
+        guard let observer = self.container.observer?.createObserver() else {
+            return
+        }
+
+        let displayer = type.init(content: view)
+
+        self.observe { value in
+            observer.dispose()
+            displayer.bindings(observer, viewModel: value)
+        }
+    }
 }
