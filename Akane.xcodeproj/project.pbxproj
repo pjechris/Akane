@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		493287211EFAA0CD009D1326 /* ComponentContainerSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4932871F1EFA9F40009D1326 /* ComponentContainerSpec.swift */; };
+		4948ED391F3C8DB4002E554E /* ContentDisplayable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4948ED381F3C8DB4002E554E /* ContentDisplayable.swift */; };
 		496854821BD6741D00589F4C /* Akane.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 496854781BD6741C00589F4C /* Akane.framework */; };
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */; };
@@ -78,6 +79,7 @@
 		490ABDAD1A5EBF08007EA312 /* Akane.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Akane.h; sourceTree = "<group>"; };
 		4926EAFB1A5EBD4A005A3D71 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4932871F1EFA9F40009D1326 /* ComponentContainerSpec.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainerSpec.swift; sourceTree = "<group>"; };
+		4948ED381F3C8DB4002E554E /* ContentDisplayable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentDisplayable.swift; sourceTree = "<group>"; };
 		496854781BD6741C00589F4C /* Akane.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Akane.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainer.swift; sourceTree = "<group>"; };
@@ -231,6 +233,7 @@
 			isa = PBXGroup;
 			children = (
 				49D4726E1EBF537E00E1435E /* ComponentView.swift */,
+				4948ED381F3C8DB4002E554E /* ContentDisplayable.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -648,6 +651,7 @@
 				497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */,
 				49D472EF1EBF558700E1435E /* TableViewFlowLayout.swift in Sources */,
 				49D472F01EBF558700E1435E /* TableViewLayout.swift in Sources */,
+				4948ED391F3C8DB4002E554E /* ContentDisplayable.swift in Sources */,
 				49D472E91EBF558700E1435E /* DataSource.swift in Sources */,
 				49D472801EBF537E00E1435E /* WeakValue.swift in Sources */,
 				49D473061EBF591F00E1435E /* Command.swift in Sources */,

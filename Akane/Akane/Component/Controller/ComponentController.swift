@@ -59,7 +59,7 @@ extension ComponentController {
 }
 
 extension ComponentController {
-    fileprivate var observer: ViewObserver? {
+    public var observer: ViewObserver? {
         get { return self.associatedObjects["observer"] as? ViewObserver }
         set { self.associatedObjects["observer"] = newValue }
     }
