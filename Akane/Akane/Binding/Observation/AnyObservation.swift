@@ -23,7 +23,7 @@ public class AnyObservation<Element> : Observation {
 
     weak var observer: ViewObserver?
 
-    public init(value: Element?, observer: ViewObserver? = nil) {
+    public init(value: Element?, parent observer: ViewObserver? = nil) {
         self.value = value
         self.observer = observer
     }
@@ -57,7 +57,7 @@ extension AnyObservation {
     }
 
     public func convert<T: Converter & ConverterOption>(_ transformer: T.Type, options:@escaping () -> T.ConvertOptionType) -> AnyObservation<T.ConvertValueType> where T.ValueType == Element {
-        
+
         return self.observe{ nextObserver, value in
             let newValue = transformer.init(options: options()).convert(value)
 
@@ -119,8 +119,14 @@ extension AnyObservation {
         }
     }
 
+    @available(*, unavailable, renamed: "display(in:)")
     public func bind<V: Displayable>(to view: V) where Element == V.Props {
-        guard let observer = self.observer else {
+    }
+
+    /// displays `view` with observed value
+    /// - parameter view: displayer (usually a `UIView` instance) to pass observed value to
+    public func display<V: Displayable & Hashable>(in view: V) where Element == V.Props {
+        guard let observer = self.observer?.observer(identifier: view.hashValue) else {
             return
         }
 
@@ -130,17 +136,24 @@ extension AnyObservation {
         }
     }
 
-    public func display<V: Displayable & Content>(in view: V.ContentType, using type: V.Type)
-        where V.ContentType: UIView, V.Props == Element {
-            guard let observer = self.observer?.createObserver() else {
-                return
-            }
+    /// Uses a display of type `type` to render observed value into `content`.
+    /// Calling display multiple times will use the same displayer instance for a given `content`.
+    /// - parameter type: Displayer type.
+    /// - parameter content: content passed to displayer for rendering
+    public func display<V: Displayable & Content>(_ type: V.Type, in content: V.ContentType)
+        where V.ContentType: Hashable, V.Props == Element
+    {
+        guard let observer = self.observer?.observer(identifier: content.hashValue) else {
+            return
+        }
 
-            let displayer = type.init(content: view)
+        let displayer = observer.cachedDisplayer as? V ?? type.init(content: content)
 
-            self.observe { value in
-                observer.dispose()
-                displayer.bindings(observer, props: value)
-            }
+        observer.cachedDisplayer = displayer
+
+        self.observe { value in
+            observer.dispose()
+            displayer.bindings(observer, props: value)
+        }
     }
 }
