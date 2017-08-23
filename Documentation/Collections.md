@@ -25,6 +25,8 @@ class AuthorTableViewDataSource : UITableViewDataSource {
 
 ### Using Adapters
 
+*NOTE: Adapters are not compatible with Displayable*
+
 `TableViewAdapter` and `CollectionViewAdapter` allow you to make the link between Akane and `UIKit` DataSources.
 To use them you'll have to provide a `DataSource`.
 
@@ -84,7 +86,7 @@ class AuthorsViewModel : ComponentViewModel {
     }
 }
 
-class AuthorListTableView: UITableView, ComponentView {
+class AuthorListTableView: UITableView, ComponentDisplayable {
 
   func bindings(observer: ViewObserver, viewModel: ComponentViewModel) {
     viewModel.dataSource.observe { _ in

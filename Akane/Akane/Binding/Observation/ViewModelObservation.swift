@@ -23,13 +23,13 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
 extension ViewModelObservation {
 
-    public func bind<ViewType: UIView>(to view: ViewType?) where ViewType: ComponentView {
+    public func bind<ViewType: UIView>(to view: ViewType?) where ViewType: ComponentDisplayable {
         if let view = view {
             self.bind(to: view)
         }
     }
 
-    public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentView {
+    public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentDisplayable {
         let controller: AnyComponentController? = self.container.component(for: view, createIfNeeded: true)
 
         guard (controller != nil) else {

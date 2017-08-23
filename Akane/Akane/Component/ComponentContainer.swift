@@ -11,15 +11,15 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public protocol ComponentContainer : class {
-    func component<View: ComponentView>(for: View) -> AnyComponentController?
+    func component<View: ComponentDisplayable>(for: View) -> AnyComponentController?
 
-    func component<View: ComponentView>(for: View, createIfNeeded: Bool) -> AnyComponentController?
+    func component<View: ComponentDisplayable>(for: View, createIfNeeded: Bool) -> AnyComponentController?
 
-    func add<View: ComponentView>(childView view: View, controlledBy childComponent: AnyComponentController)
+    func add<View: ComponentDisplayable>(childView view: View, controlledBy childComponent: AnyComponentController)
 }
 
 extension ComponentContainer where Self : UIViewController, Self : ComponentController {
-    public func component<View: ComponentView>(for view: View, createIfNeeded: Bool) -> AnyComponentController? {
+    public func component<View: ComponentDisplayable>(for view: View, createIfNeeded: Bool) -> AnyComponentController? {
         if let controller = self.component(for: view) {
             return controller
         }
@@ -36,7 +36,7 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
         return controller
     }
 
-    public func component<View: ComponentView>(for view: View) -> AnyComponentController? {
+    public func component<View: ComponentDisplayable>(for view: View) -> AnyComponentController? {
         for controller in self.childViewControllers {
             if let controllerView = controller.view as? View, controllerView == view {
                 return controller as? AnyComponentController
@@ -46,7 +46,7 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
         return nil
     }
 
-    public func add<View: ComponentView>(childView view: View, controlledBy childComponent: AnyComponentController) {
+    public func add<View: ComponentDisplayable>(childView view: View, controlledBy childComponent: AnyComponentController) {
         guard let view = view as? UIView, let childController = childComponent as? UIViewController else {
             return
         }

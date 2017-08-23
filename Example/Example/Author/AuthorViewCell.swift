@@ -9,21 +9,10 @@
 import UIKit
 import Akane
 
-class AuthorViewCell: UITableViewCell, ComponentView {
+class AuthorViewCell: UITableViewCell, Displayable {
    @IBOutlet var title: UILabel!
    
-   func bindings(_ observer: ViewObserver, viewModel: AuthorViewModel) {
-      observer.observe(viewModel.author)
-        .convert { AuthorConverter().convert($0) }
-        .bind(to: self.title.reactive.text)
-   }
-}
-
-struct AuthorConverter {
-   typealias ValueType = Author
-   typealias ConvertValueType = String
-   
-   func convert(_ author: ValueType) -> ConvertValueType {
-      return author.name
+   func bindings(_ observer: ViewObserver, props: Author) {
+        self.title.text = props.name
    }
 }

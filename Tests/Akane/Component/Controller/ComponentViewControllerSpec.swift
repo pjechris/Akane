@@ -86,7 +86,7 @@ extension ComponentViewControllerSpec {
         }
     }
 
-    class ViewMock : UIView, ComponentView {
+    class ViewMock : UIView, ComponentDisplayable {
         typealias ViewModelType = ViewModelMock
 
         func bindings(_ observer: ViewObserver, viewModel: ViewModelMock) {

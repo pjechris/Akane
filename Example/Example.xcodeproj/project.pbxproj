@@ -17,8 +17,6 @@
 		860163111D8A946D00037600 /* SearchAuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860163101D8A946D00037600 /* SearchAuthorsView.swift */; };
 		860163141D8A960200037600 /* Author.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860163131D8A960200037600 /* Author.swift */; };
 		860163181D8A96CC00037600 /* AuthorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860163171D8A96CC00037600 /* AuthorsView.swift */; };
-		8601631A1D8A96DA00037600 /* AuthorsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860163191D8A96DA00037600 /* AuthorsViewModel.swift */; };
-		8601631D1D8A975900037600 /* AuthorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601631C1D8A975900037600 /* AuthorViewModel.swift */; };
 		860163201D8A977800037600 /* AuthorViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8601631E1D8A977800037600 /* AuthorViewCell.swift */; };
 		860163211D8A977800037600 /* AuthorViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8601631F1D8A977800037600 /* AuthorViewCell.xib */; };
 /* End PBXBuildFile section */
@@ -36,8 +34,6 @@
 		860163101D8A946D00037600 /* SearchAuthorsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchAuthorsView.swift; sourceTree = "<group>"; };
 		860163131D8A960200037600 /* Author.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Author.swift; sourceTree = "<group>"; };
 		860163171D8A96CC00037600 /* AuthorsView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsView.swift; sourceTree = "<group>"; };
-		860163191D8A96DA00037600 /* AuthorsViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorsViewModel.swift; sourceTree = "<group>"; };
-		8601631C1D8A975900037600 /* AuthorViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorViewModel.swift; sourceTree = "<group>"; };
 		8601631E1D8A977800037600 /* AuthorViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AuthorViewCell.swift; sourceTree = "<group>"; };
 		8601631F1D8A977800037600 /* AuthorViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AuthorViewCell.xib; sourceTree = "<group>"; };
 		D80271399631CC1F418A76C0 /* Pods-Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-Example/Pods-Example.release.xcconfig"; sourceTree = "<group>"; };
@@ -120,7 +116,6 @@
 		860163161D8A96BC00037600 /* Authors */ = {
 			isa = PBXGroup;
 			children = (
-				860163191D8A96DA00037600 /* AuthorsViewModel.swift */,
 				860163171D8A96CC00037600 /* AuthorsView.swift */,
 			);
 			path = Authors;
@@ -129,7 +124,6 @@
 		8601631B1D8A974800037600 /* Author */ = {
 			isa = PBXGroup;
 			children = (
-				8601631C1D8A975900037600 /* AuthorViewModel.swift */,
 				8601631E1D8A977800037600 /* AuthorViewCell.swift */,
 				8601631F1D8A977800037600 /* AuthorViewCell.xib */,
 			);
@@ -272,11 +266,9 @@
 				860163111D8A946D00037600 /* SearchAuthorsView.swift in Sources */,
 				8601630F1D8A945D00037600 /* SearchAutorsViewModel.swift in Sources */,
 				860163201D8A977800037600 /* AuthorViewCell.swift in Sources */,
-				8601631A1D8A96DA00037600 /* AuthorsViewModel.swift in Sources */,
 				860163181D8A96CC00037600 /* AuthorsView.swift in Sources */,
 				8601630C1D8A942400037600 /* HomeViewController.swift in Sources */,
 				860163141D8A960200037600 /* Author.swift in Sources */,
-				8601631D1D8A975900037600 /* AuthorViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

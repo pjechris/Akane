@@ -64,7 +64,7 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
 
         if let viewModel = self.dataSource.itemViewModel(for: item),
             let observer = self.observer,
-            let componentCell = cell as? _AnyComponentView {
+            let componentCell = cell as? _AnyComponentDisplayable {
 
             componentCell._tryBindings(observer, viewModel: viewModel)
 
