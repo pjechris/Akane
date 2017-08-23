@@ -18,7 +18,9 @@ import HasAssociatedObjects
 public class ViewObserver {
     public private(set) weak var container: ComponentContainer?
     fileprivate var disposes: [(Void) -> ()] = []
-    fileprivate var subObservers: [ViewObserver] = []
+    fileprivate var subObservers: [Int:ViewObserver] = [:]
+    /// associated displayer
+    var cachedDisplayer: Any? = nil
 
     public init(container: ComponentContainer) {
         self.container = container
@@ -37,7 +39,7 @@ public class ViewObserver {
      `ComponentView`.
      */
     public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
-        return AnyObservation(value: value, observer: self.createObserver())
+        return AnyObservation(value: value, parent: self)
     }
 
     /**
@@ -51,15 +53,23 @@ public class ViewObserver {
         return ViewModelObservation<ViewModelType>(value: value, container: self.container!)
     }
 
-    public func createObserver() -> ViewObserver {
+    /// uses `identifier` to reuse a `ViewObserver` created with this id, or create a new one otherwise.
+    /// - parameter identifier: identify ViewObserver instance
+    /// - returns: a `ViewObserver` referenced by `identifier`
+    public func observer(identifier: Int) -> ViewObserver {
+        if let observer = self.subObservers[identifier] {
+            return observer
+        }
+
         let observer = ViewObserver(container: self.container!)
 
-        self.subObservers.append(observer)
+        self.subObservers[identifier] = observer
+
         return observer
     }
 
     public func dispose() {
-        self.subObservers.forEach { $0.dispose() }
+        self.subObservers.forEach { $1.dispose() }
         self.disposes.forEach { $0() }
         self.disposes.removeAll()
     }
