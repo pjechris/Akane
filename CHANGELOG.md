@@ -1,5 +1,14 @@
 # CHANGELOG
 
+### 0.19.0
+
+### Added
+- [Component] Added `Displayable` protocol.
+
+### Changes
+- [Component] Protocol `ComponentView` has been renamed `ComponentDisplayable`.
+- [Table] All DataSource/Delegate methods from UITableView/UICollectionView are marked open inside `CollectionViewAdapter` and `TableViewAdapter`.
+
 ### 0.18.0
 
 ### Changes
