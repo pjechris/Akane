@@ -140,8 +140,8 @@ extension AnyObservation {
     /// Calling display multiple times will use the same displayer instance for a given `content`.
     /// - parameter type: Displayer type.
     /// - parameter content: content passed to displayer for rendering
-    public func display<V: Displayable & Content>(_ type: V.Type, in content: V.ContentType)
-        where V.ContentType: Hashable, V.Props == Element
+    public func display<V: Displayable & ContentAccessible>(_ type: V.Type, in content: V.Content)
+        where V.Content: Hashable, V.Props == Element
     {
         guard let observer = self.observer?.observer(identifier: content.hashValue) else {
             return

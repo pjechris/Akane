@@ -41,8 +41,8 @@ extension ViewModelObservation {
         }
     }
 
-    public func display<V: ContentComponentDisplayable>(_ type: V.Type, in view: V.ContentType)
-        where V.ContentType: UIView, V.ViewModelType == ViewModelType
+    public func display<V: ComponentDisplayable & ContentAccessible>(_ type: V.Type, in view: V.Content)
+        where V.Content: UIView, V.ViewModelType == ViewModelType
     {
         guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
             return

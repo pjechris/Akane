@@ -9,12 +9,6 @@
 import Foundation
 import HasAssociatedObjects
 
-public protocol Displayable {
-    associatedtype Props
-
-    func bindings(_ observer: ViewObserver, props: Props)
-}
-
 public protocol _AnyComponentDisplayable {
     func _tryBindings(_ observer: ViewObserver, viewModel: Any)
 }
@@ -56,6 +50,10 @@ extension ComponentDisplayable {
 }
 
 extension ComponentDisplayable where Self : UIView {
+    public var content: Self {
+        return self
+    }
+
     public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
         guard let viewModel = viewModel as? ViewModelType else {
             return
@@ -64,3 +62,14 @@ extension ComponentDisplayable where Self : UIView {
         observer.observe(viewModel).bind(to: self)
     }
 }
+
+extension ComponentDisplayable where Self : ContentAccessible {
+    public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
+        guard let viewModel = viewModel as? ViewModelType else {
+            return
+        }
+
+        self.bindings(observer, viewModel: viewModel)
+    }
+}
+
