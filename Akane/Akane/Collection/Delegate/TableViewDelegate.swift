@@ -77,15 +77,14 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
     }
 
     @objc
-    /// - see: `DataSourceTableViewItems.itemAtIndexPath(_:)`
-    /// - see: `DataSourceTableViewItems.tableViewItemTemplate(_:)`
+    /// - see: `DataSource.itemAtIndexPath(_:)`
     /// - seeAlso: `UITableViewDataSource.tableView(_:, cellForRowAtIndexPath:)`
     open func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let row = self.dataSource.item(at: indexPath)
 
         let cell = tableView.dequeueReusableCell(withIdentifier: row.reuseIdentifier, for: indexPath)
 
-        if let viewModel = self.dataSource.itemViewModel(for: row),
+        if let viewModel = self.dataSource.itemViewModel(for: row, at: indexPath),
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentDisplayable {
             
@@ -183,8 +182,8 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
         return tableView.layout.estimatedHeightForSection(section, sectionKind: "header") ?? tableView.estimatedSectionHeaderHeight
     }
 
-    func viewForSection(_ tableView: UITableView, section: Int, sectionKind: String) -> UIView? {
-        let section = self.dataSource.section(at: section)
+    func viewForSection(_ tableView: UITableView, section index: Int, sectionKind: String) -> UIView? {
+        let section = self.dataSource.section(at: index)
 
         guard let reuseIdentifier = (section as? Identifiable)?.reuseIdentifier else {
             return nil
@@ -192,7 +191,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
 
         let view = tableView.dequeueReusableHeaderFooterView(withIdentifier: reuseIdentifier)!
 
-        if let viewModel = self.dataSource.sectionViewModel(for: section) as? ComponentViewModel,
+        if let viewModel = self.dataSource.sectionViewModel(for: section, at: index) as? ComponentViewModel,
             let observer = self.observer,
             let componentView = view as? _AnyComponentDisplayable {
 

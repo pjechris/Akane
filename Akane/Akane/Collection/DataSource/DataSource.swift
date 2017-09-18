@@ -30,10 +30,10 @@ public protocol DataSource {
     func numberOfItemsInSection(_ section: Int) -> Int
 
     func section(at index: Int) -> Section
-    func sectionViewModel(for section: Section) -> SectionViewModelType?
+    func sectionViewModel(for section: Section, at index: Int) -> SectionViewModelType?
 
     func item(at indexPath: IndexPath) -> Item
-    func itemViewModel(for item: Item) -> ItemViewModelType?
+    func itemViewModel(for item: Item, at indexPath: IndexPath) -> ItemViewModelType?
 }
 
 public extension DataSource where Section == Void {
@@ -46,7 +46,7 @@ public extension DataSource where Section == Void {
         return ()
     }
 
-    func sectionViewModel(for item: Section) -> SectionViewModelType? {
+    func sectionViewModel(for item: Section, at index: Int) -> SectionViewModelType? {
         return nil
     }
 }
