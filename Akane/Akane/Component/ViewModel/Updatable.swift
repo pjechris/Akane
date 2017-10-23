@@ -16,8 +16,8 @@ public protocol Updatable : class, HasAssociatedObjects {
 }
 
 extension Updatable {
-    var onRender: ((Void) -> Void)? {
-        get { return self.associatedObjects[UpdatableOnRenderAttr] as? ((Void) -> Void) }
+    var onRender: (() -> Void)? {
+        get { return self.associatedObjects[UpdatableOnRenderAttr] as? (() -> Void) }
         set { self.associatedObjects[UpdatableOnRenderAttr] = onRender }
     }
 
