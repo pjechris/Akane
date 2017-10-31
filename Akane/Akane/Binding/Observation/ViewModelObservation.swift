@@ -41,16 +41,13 @@ extension ViewModelObservation {
         }
     }
 
-    public func display<V: ContentComponentDisplayable>(_ type: V.Type, in view: V.ContentType)
-        where V.ContentType: UIView, V.ViewModelType == ViewModelType
-    {
-        guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
+    public func display<V: ContentComponentDisplayable>(in view: V.ContentType, using type: V.Type)
+        where V.ContentType: UIView, V.ViewModelType == ViewModelType {
+        guard let observer = self.container.observer?.createObserver() else {
             return
         }
 
-        let displayer = observer.cachedDisplayer as? V ?? type.init(content: view)
-
-        observer.cachedDisplayer = displayer
+        let displayer = type.init(content: view)
 
         self.observe { value in
             observer.dispose()
