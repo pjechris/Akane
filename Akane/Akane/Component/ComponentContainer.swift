@@ -11,8 +11,6 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public protocol ComponentContainer : class {
-    var observer: ViewObserver? { get }
-
     func component<View: ComponentDisplayable>(for: View) -> AnyComponentController?
 
     func component<View: ComponentDisplayable>(for: View, createIfNeeded: Bool) -> AnyComponentController?
@@ -40,7 +38,7 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
 
     public func component<View: ComponentDisplayable>(for view: View) -> AnyComponentController? {
         for controller in self.childViewControllers {
-            if let controllerView = controller.view as? View, controllerView === view {
+            if let controllerView = controller.view as? View, controllerView == view {
                 return controller as? AnyComponentController
             }
         }

@@ -26,7 +26,7 @@ public typealias ComponentView = ComponentDisplayable
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
 */
-public protocol ComponentDisplayable : class, HasAssociatedObjects, _AnyComponentDisplayable {
+public protocol ComponentDisplayable : class, Equatable, HasAssociatedObjects, _AnyComponentDisplayable {
     associatedtype ViewModelType: ComponentViewModel
 
     /**

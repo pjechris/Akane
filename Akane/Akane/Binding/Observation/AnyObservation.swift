@@ -129,18 +129,4 @@ extension AnyObservation {
             view.bindings(observer, props: value)
         }
     }
-
-    public func display<V: Displayable & Content>(in view: V.ContentType, using type: V.Type)
-        where V.ContentType: UIView, V.Props == Element {
-            guard let observer = self.observer?.createObserver() else {
-                return
-            }
-
-            let displayer = type.init(content: view)
-
-            self.observe { value in
-                observer.dispose()
-                displayer.bindings(observer, props: value)
-            }
-    }
 }
