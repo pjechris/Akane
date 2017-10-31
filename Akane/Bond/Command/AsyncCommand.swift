@@ -21,7 +21,7 @@ open class AsyncCommand<Parameter> : RelayCommand<Parameter> {
      `action` closure receives an extra parameter compared to `RelayCommand`: `completed`. Use it to inform `AsyncCommand`
      that your action is terminated and thus `isExecuting` should be passed to `false`.
     */
-    public init(canExecute canExecuteUpdater: @escaping () -> Bool, action: @escaping (Parameter?, _ completed: @escaping ((Void) -> Void)) -> Void) {
+    public init(canExecute canExecuteUpdater: @escaping () -> Bool, action: @escaping (Parameter?, _ completed: @escaping (() -> Void)) -> Void) {
         super.init(canExecute: canExecuteUpdater, action: { _ in })
 
         self.action = { [weak self] control in
@@ -34,7 +34,7 @@ open class AsyncCommand<Parameter> : RelayCommand<Parameter> {
         }
     }
 
-    public convenience init(action: @escaping (Parameter?, _ completed: ((Void) -> Void)) -> Void) {
+    public convenience init(action: @escaping (Parameter?, _ completed: (() -> Void)) -> Void) {
         self.init(canExecute: { return true }, action: action)
     }
 }

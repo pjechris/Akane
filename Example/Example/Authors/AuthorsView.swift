@@ -43,7 +43,7 @@ extension AuthorsView : UITableViewDelegate, UITableViewDataSource {
 
         self.observer
             .observe(author)
-            .bind(to: cell)
+            .display(in: cell)
 
         return cell
     }

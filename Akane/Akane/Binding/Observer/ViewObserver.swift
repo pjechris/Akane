@@ -17,7 +17,7 @@ import HasAssociatedObjects
  */
 public class ViewObserver {
     public private(set) weak var container: ComponentContainer?
-    fileprivate var disposes: [(Void) -> ()] = []
+    fileprivate var disposes: [() -> ()] = []
     fileprivate var subObservers: [Int:ViewObserver] = [:]
     /// associated displayer
     var cachedDisplayer: Any? = nil
@@ -74,7 +74,7 @@ public class ViewObserver {
         self.disposes.removeAll()
     }
 
-    public func add(disposable: @escaping (Void) -> ()) {
+    public func add(disposable: @escaping () -> ()) {
         self.disposes.append(disposable)
     }
 }

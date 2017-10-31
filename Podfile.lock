@@ -1,27 +1,27 @@
 PODS:
-  - Bond (6.2.6):
-    - Diff (~> 0.4)
-    - ReactiveKit (~> 3.5.3)
-  - Diff (0.5.3)
+  - Bond (6.5.0):
+    - Differ (~> 1.0.0)
+    - ReactiveKit (~> 3.7.4)
+  - Differ (1.0.2)
   - HasAssociatedObjects (0.1.1)
-  - Nimble (5.1.1)
-  - Quick (0.10.0)
-  - ReactiveKit (3.5.3)
+  - Nimble (7.0.2)
+  - Quick (1.2.0)
+  - ReactiveKit (3.7.4)
 
 DEPENDENCIES:
   - Bond (~> 6.x)
   - HasAssociatedObjects
-  - Nimble (~> 5.x)
+  - Nimble
   - Quick
 
 SPEC CHECKSUMS:
-  Bond: 0d7a52e9aec644c3b4985ceeb224a402b1efd691
-  Diff: befa1d19c32726b2b36ce915d98793e2fbde8dcc
+  Bond: 03e45b192c605a87937299b0e0f3164f3de00f95
+  Differ: a571b66c49d0fc83fe5af9a4a41f09bb09e91c85
   HasAssociatedObjects: 5fe944d22f26ea708d0b9e188fdec3236ef3b95b
-  Nimble: 415e3aa3267e7bc2c96b05fa814ddea7bb686a29
-  Quick: 5d290df1c69d5ee2f0729956dcf0fd9a30447eaa
-  ReactiveKit: 39a0723167d04107140cf540f04526deecd18891
+  Nimble: bfe1f814edabba69ff145cb1283e04ed636a67f2
+  Quick: 58d203b1c5e27fff7229c4c1ae445ad7069a7a08
+  ReactiveKit: 0af7e43958a532342e0e247d2aeb318653628e68
 
-PODFILE CHECKSUM: e1478affeae5f6c9a93572e7499ffeb85702db74
+PODFILE CHECKSUM: d1c7fd76590d1e139bc92a14bbef5433d690a694
 
 COCOAPODS: 1.2.1

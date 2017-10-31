@@ -30,8 +30,8 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
             return nil
         }
 
-        let type = type(of: view).componentControllerClass() as! UIViewController.Type
-        let controller = type.init(coder: NSCoder.empty()) as! AnyComponentController
+        let classType = type(of: view).componentControllerClass() as! UIViewController.Type
+        let controller = classType.init(coder: NSCoder.empty()) as! AnyComponentController
 
         self.add(childView: view, controlledBy: controller)
 
