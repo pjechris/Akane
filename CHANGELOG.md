@@ -1,5 +1,10 @@
 # CHANGELOG
 
+### 0.20.0
+
+### Added
+- Support for Swift4
+
 ### 0.19.0
 
 ### Added
