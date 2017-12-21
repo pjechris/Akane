@@ -29,15 +29,17 @@ extension ViewModelObservation {
         }
     }
 
-    public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentDisplayable {
-        let controller: AnyComponentController? = self.container.component(for: view, createIfNeeded: true)
-
-        guard (controller != nil) else {
-            return
-        }
+    public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType) {
+        let controller = self.container.component(for: view)
 
         self.observe { value in
-            controller!.setup(viewModel: value)
+            controller.setup(viewModel: value)
+        }
+    }
+
+    public func bind<ViewType: UIView>(to view: ViewType) where ViewType: ComponentDisplayable {
+        self.observe { value in
+            // FIXME
         }
     }
 }

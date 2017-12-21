@@ -95,3 +95,9 @@ extension ComponentController where Self : UIViewController {
         self.viewModel.mountIfNeeded()
     }
 }
+
+extension ComponentController where Self : ComponentDisplayable {
+    func bindings(_ observer: ViewObserver, viewModel: ViewType.ViewModelType) {
+        self.viewModel = viewModel
+    }
+}

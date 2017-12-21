@@ -37,15 +37,13 @@ public protocol ComponentDisplayable : class, HasAssociatedObjects, _AnyComponen
     - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
     */
     func bindings(_ observer: ViewObserver, viewModel: ViewModelType)
+}
 
-
-    /**
-     `ComponentViewController` class associated to the `ComponentView`
-
-     - returns: The `ComponentViewController` type.
-     The Default implementation returns `ComponentViewController.self`
-     */
-    static func componentControllerClass() -> AnyComponentController.Type
+/**
+ `ComponentController` class wrapper association
+ */
+public protocol Wrapped {
+    associatedtype Wrapper: UIViewController, ComponentController, ComponentDisplayable
 }
 
 extension ComponentDisplayable {
