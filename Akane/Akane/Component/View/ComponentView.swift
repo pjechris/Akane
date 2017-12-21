@@ -46,13 +46,6 @@ public protocol Wrapped {
     associatedtype Wrapper: UIViewController, ComponentController, ComponentDisplayable
 }
 
-extension ComponentDisplayable {
-
-    public static func componentControllerClass() -> AnyComponentController.Type {
-        return DefaultViewController<Self>.self
-    }
-}
-
 extension ComponentDisplayable where Self : UIView {
     public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
         guard let viewModel = viewModel as? ViewModelType else {
