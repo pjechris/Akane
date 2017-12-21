@@ -17,11 +17,6 @@ public protocol AnyComponentController {
 /**
 ComponentController is a Controller making the link between a `ComponentView`
 and its `ComponentViewModel`.
-
-Do not use this protocol directly. Refer to `ComponentViewController` instead.
- 
-This protocol should benefit greatly by the use of generics, but this would
-break compatibility with Storyboards and Xibs.
 */
 public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
     associatedtype ViewType: ComponentDisplayable
