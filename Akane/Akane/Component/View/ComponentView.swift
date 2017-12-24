@@ -43,7 +43,7 @@ public protocol ComponentDisplayable : class, HasAssociatedObjects, _AnyComponen
  `ComponentController` class wrapper association
  */
 public protocol Wrapped {
-    associatedtype Wrapper: UIViewController, ComponentController, ComponentDisplayable
+    associatedtype Wrapper: UIViewController, ComponentController
 }
 
 extension ComponentDisplayable where Self : UIView {
