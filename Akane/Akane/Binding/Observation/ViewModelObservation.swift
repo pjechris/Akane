@@ -42,11 +42,18 @@ extension ViewModelObservation {
             return
         }
 
+        let controller = self.container.controller(for: view)
+
         self.observe { value in
-            // FIXME: Duplicated content with ControllerComponent
-            observer.dispose()
-            view.bindings(observer, viewModel: value)
-            value.mountIfNeeded()
+            // FIXME: Duplicated code
+            if let controller = controller {
+                controller.setup(viewModel: value)
+            }
+            else {
+                observer.dispose()
+                view.bindings(observer, viewModel: value)
+                value.mountIfNeeded()
+            }
         }
     }
 }

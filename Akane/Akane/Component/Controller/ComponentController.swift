@@ -9,11 +9,15 @@
 import Foundation
 import HasAssociatedObjects
 
+public protocol AnyComponentController {
+    func setup(viewModel: Any)
+}
+
 /**
 ComponentController is a Controller making the link between a `ComponentView`
 and its `ComponentViewModel`.
 */
-public protocol ComponentController : class, ComponentContainer, HasAssociatedObjects {
+public protocol ComponentController : class, ComponentContainer, HasAssociatedObjects, AnyComponentController {
     associatedtype ViewType: ComponentDisplayable
 
     // MARK: Associated component elements
@@ -31,7 +35,7 @@ public protocol ComponentController : class, ComponentContainer, HasAssociatedOb
 }
 
 extension ComponentController {
-    func setup(viewModel: Any) {
+    public func setup(viewModel: Any) {
         guard let viewModel = viewModel as? ViewType.ViewModelType else {
             return
         }
