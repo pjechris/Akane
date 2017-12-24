@@ -38,7 +38,7 @@ extension ViewModelObservation {
     }
 
     public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType) where ViewType.ViewModelType == ViewModelType  {
-        guard let observer = self.container.observer?.createObserver() else {
+        guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
             return
         }
 
