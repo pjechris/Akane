@@ -163,6 +163,11 @@ class LoggedUserViewController : UIViewController, ComponentController {
 Akane supports displaying collections of objects in `UITableViews` and `UICollectionViews`.
 Please [read the Collections.md documentation](Documentation/Collections.md) to know more.
 
+## Navbar
+
+Navbars like views can be customized in Akane. All you have to do is to create a `(Component)Displayable` class and bind it
+to your navbar. Sounds complicated? [Head over the example](Example/Example/HomeViewController.swift) to see how you can do it easily!
+
 
 # Installation
 

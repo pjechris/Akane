@@ -1,5 +1,15 @@
 # CHANGELOG
 
+### 0.30.0 alpha 01
+
+### Added
+- [View] Added `Wrapped` protocol.
+
+### Changes
+- [Controller] `observer` is instantiated **before** calling `didLoadComponent`
+- [View] Deprecated `componentControllerClass`. Replaced by `Wrapped` protocol.
+- [Container] when binding viewmodels, adjacent controller is created **only** if implementing `Wrapped` protocol.
+
 ### 0.20.0
 
 ### Added
