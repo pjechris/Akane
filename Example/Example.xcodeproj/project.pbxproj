@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		49AB0C421FF01F7F00F5D103 /* NavbarItemDisplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49AB0C411FF01F7F00F5D103 /* NavbarItemDisplayer.swift */; };
 		67A9D1F447714804935A6475 /* Pods_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 19C23AB09EB85867DD446EE3 /* Pods_Example.framework */; };
 		860162FA1D8A92B100037600 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 860162F91D8A92B100037600 /* AppDelegate.swift */; };
 		860162FF1D8A92B100037600 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 860162FD1D8A92B100037600 /* Main.storyboard */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		19C23AB09EB85867DD446EE3 /* Pods_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		49AB0C411FF01F7F00F5D103 /* NavbarItemDisplayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavbarItemDisplayer.swift; sourceTree = "<group>"; };
 		860162F61D8A92B100037600 /* Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		860162F91D8A92B100037600 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		860162FE1D8A92B100037600 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -61,6 +63,14 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		49AB0C3E1FF01DE700F5D103 /* Navbar */ = {
+			isa = PBXGroup;
+			children = (
+				49AB0C411FF01F7F00F5D103 /* NavbarItemDisplayer.swift */,
+			);
+			path = Navbar;
+			sourceTree = "<group>";
+		};
 		860162ED1D8A92B100037600 = {
 			isa = PBXGroup;
 			children = (
@@ -82,6 +92,7 @@
 		860162F81D8A92B100037600 /* Example */ = {
 			isa = PBXGroup;
 			children = (
+				49AB0C3E1FF01DE700F5D103 /* Navbar */,
 				860162F91D8A92B100037600 /* AppDelegate.swift */,
 				8601630B1D8A942400037600 /* HomeViewController.swift */,
 				860163121D8A95ED00037600 /* Models */,
@@ -216,9 +227,20 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Example/Pods-Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Akane/Akane.framework",
+				"${BUILT_PRODUCTS_DIR}/Bond/Bond.framework",
+				"${BUILT_PRODUCTS_DIR}/Differ/Differ.framework",
+				"${BUILT_PRODUCTS_DIR}/HasAssociatedObjects/HasAssociatedObjects.framework",
+				"${BUILT_PRODUCTS_DIR}/ReactiveKit/ReactiveKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Akane.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bond.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Differ.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/HasAssociatedObjects.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ReactiveKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -231,13 +253,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Example-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F0DD07CC92B7FCF0ABD77AB1 /* [CP] Copy Pods Resources */ = {
@@ -262,6 +287,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				49AB0C421FF01F7F00F5D103 /* NavbarItemDisplayer.swift in Sources */,
 				860162FA1D8A92B100037600 /* AppDelegate.swift in Sources */,
 				860163111D8A946D00037600 /* SearchAuthorsView.swift in Sources */,
 				8601630F1D8A945D00037600 /* SearchAutorsViewModel.swift in Sources */,

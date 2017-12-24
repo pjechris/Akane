@@ -1,11 +1,11 @@
 PODS:
-  - Akane (0.19.0):
-    - Akane/Bond (= 0.19.0)
-    - Akane/Core (= 0.19.0)
-  - Akane/Bond (0.19.0):
+  - Akane (0.20.0):
+    - Akane/Bond (= 0.20.0)
+    - Akane/Core (= 0.20.0)
+  - Akane/Bond (0.20.0):
     - Akane/Core
     - Bond (~> 6.x)
-  - Akane/Core (0.19.0):
+  - Akane/Core (0.20.0):
     - HasAssociatedObjects
   - Bond (6.5.0):
     - Differ (~> 1.0.0)
@@ -19,10 +19,10 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   Akane:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
-  Akane: 01575ab59e86fcbed7fdc9ce8e60b0c843ec6f8b
+  Akane: d6674ab2f88655de38c0d97a55b4f0da4de957e7
   Bond: 03e45b192c605a87937299b0e0f3164f3de00f95
   Differ: a571b66c49d0fc83fe5af9a4a41f09bb09e91c85
   HasAssociatedObjects: 5c24e7a5886b5cd98f17aeb7ef5da36a0a96567d
@@ -30,4 +30,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: 2152c5adc7fbf2e91bf6757ec4c868154b0685bc
 
-COCOAPODS: 1.2.1
+COCOAPODS: 1.3.1
