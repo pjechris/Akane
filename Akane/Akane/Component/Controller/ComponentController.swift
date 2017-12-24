@@ -29,7 +29,9 @@ public protocol ComponentController : class, ComponentContainer, HasAssociatedOb
     var viewModel: ViewType.ViewModelType! { get set }
     
     /**
-    Should be called every time `viewModel` is setted on Controller.
+     Called every time `viewModel` is setted on Controller.
+     You can use it to (re)initialize anything related to ViewModel.
+     You can also use it to bind components which are "outside" workflow/hierarchy, like navigation bar.
     */
     func didLoadComponent()
 }
@@ -44,12 +46,11 @@ extension ComponentController {
     }
 
     public func didLoadComponent() {
-
     }
 }
 
 extension ComponentController {
-    public var observer: ViewObserver? {
+    public var observer: ViewObserver! {
         get { return self.associatedObjects["observer"] as? ViewObserver }
         set { self.associatedObjects["observer"] = newValue }
     }
@@ -59,10 +60,7 @@ extension ComponentController {
             return
         }
 
-        let observer = ViewObserver(container: self)
-
-        componentView.bindings(observer, viewModel: viewModel)
-        self.observer = observer
+        componentView.bindings(self.observer, viewModel: viewModel)
     }
 }
 
@@ -84,6 +82,7 @@ extension ComponentController where Self : UIViewController {
     }
 
     func didSetViewModel() {
+        self.observer = ViewObserver(container: self)
         self.viewModel.router = self as? ComponentRouter
         self.didLoadComponent()
         self.renewBindings()

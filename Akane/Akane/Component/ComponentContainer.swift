@@ -11,7 +11,7 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public protocol ComponentContainer : class {
-    var observer: ViewObserver? { get }
+    var observer: ViewObserver! { get }
 
     func controller<View: ComponentDisplayable>(for view: View) -> (UIViewController & AnyComponentController)?
 
