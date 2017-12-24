@@ -15,6 +15,6 @@ class SearchAuthorsView : UIView, ComponentDisplayable {
    
     func bindings(_ observer: ViewObserver, viewModel: SearchAuthorsViewModel) {
         observer.observe(viewModel.searchFor).bind(to: self.searchField, events: [.valueChanged, .editingChanged])
-        observer.observe(viewModel.filteredAuthors).display(in: authorsView)
+        observer.observe(viewModel.filteredAuthors).bind(to: authorsView)
     }
 }
