@@ -24,8 +24,8 @@ class AuthorsView : UITableView, Displayable {
         self.dataSource = self
     }
     
-    func bindings(_ observer: ViewObserver, props: [Author]) {
-        self.authors = props
+    func bindings(_ observer: ViewObserver, params: [Author]) {
+        self.authors = params
         self.observer = observer
 
         self.reloadData()
