@@ -23,13 +23,13 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
 
 extension ViewModelObservation {
 
-    public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType?) where ViewType.ViewModelType == ViewModelType {
+    public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType?) where ViewType.Parameters == ViewModelType {
         if let view = view {
             self.bind(to: view)
         }
     }
 
-    public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType) where ViewType.ViewModelType == ViewModelType {
+    public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType) where ViewType.Parameters == ViewModelType {
         let controller = self.container.component(for: view)
 
         self.observe { value in
@@ -37,7 +37,7 @@ extension ViewModelObservation {
         }
     }
 
-    public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType) where ViewType.ViewModelType == ViewModelType  {
+    public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType) where ViewType.Parameters == ViewModelType  {
         guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
             return
         }
@@ -51,7 +51,7 @@ extension ViewModelObservation {
             }
             else {
                 observer.dispose()
-                view.bindings(observer, viewModel: value)
+                view.bindings(observer, params: value)
                 value.mountIfNeeded()
             }
         }

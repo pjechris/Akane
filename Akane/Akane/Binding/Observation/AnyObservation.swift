@@ -119,14 +119,14 @@ extension AnyObservation {
         }
     }
 
-    public func bind<V: Displayable & Hashable>(to view: V) where Element == V.Props {
+    public func bind<V: Displayable & Hashable>(to view: V) where Element == V.Parameters {
         guard let observer = self.parent?.observer(identifier: view.hashValue) else {
             return
         }
 
         self.observe { value in
             observer.dispose()
-            view.bindings(observer, props: value)
+            view.bindings(observer, params: value)
         }
     }
 }

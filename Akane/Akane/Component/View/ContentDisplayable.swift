@@ -12,11 +12,11 @@ public typealias DisplayableContent = ContentReferencer
 
 extension ComponentDisplayable where Self : ContentReferencer {
     public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
-        guard let viewModel = viewModel as? ViewModelType else {
+        guard let viewModel = viewModel as? Parameters else {
             return
         }
 
-        self.bindings(observer, viewModel: viewModel)
+        self.bindings(observer, params: viewModel)
     }
 }
 

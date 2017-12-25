@@ -26,7 +26,7 @@ public protocol ComponentController : class, ComponentContainer, HasAssociatedOb
     var componentView: ViewType? { get }
 
     /// The Controller's CompnentViewModel.
-    var viewModel: ViewType.ViewModelType! { get set }
+    var viewModel: ViewType.Parameters! { get set }
     
     /**
      Called every time `viewModel` is setted on Controller.
@@ -38,7 +38,7 @@ public protocol ComponentController : class, ComponentContainer, HasAssociatedOb
 
 extension ComponentController {
     public func setup(viewModel: Any) {
-        guard let viewModel = viewModel as? ViewType.ViewModelType else {
+        guard let viewModel = viewModel as? ViewType.Parameters else {
             return
         }
 
@@ -60,7 +60,7 @@ extension ComponentController {
             return
         }
 
-        componentView.bindings(self.observer, viewModel: viewModel)
+        componentView.bindings(self.observer, params: viewModel)
     }
 }
 
@@ -71,9 +71,9 @@ extension ComponentController where Self : UIViewController {
     }
 
     /// The Controller's CompnentViewModel.
-    public var viewModel: ViewType.ViewModelType! {
+    public var viewModel: ViewType.Parameters! {
         get {
-            return self.associatedObjects["viewModel"] as? ViewType.ViewModelType
+            return self.associatedObjects["viewModel"] as? ViewType.Parameters
         }
         set {
             self.associatedObjects["viewModel"] = newValue
@@ -91,7 +91,7 @@ extension ComponentController where Self : UIViewController {
 }
 
 extension ComponentController where Self : ComponentDisplayable {
-    func bindings(_ observer: ViewObserver, viewModel: ViewType.ViewModelType) {
+    func bindings(_ observer: ViewObserver, viewModel: ViewType.Parameters) {
         self.viewModel = viewModel
     }
 }

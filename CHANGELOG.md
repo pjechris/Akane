@@ -1,6 +1,12 @@
 # CHANGELOG
 
-### 0.30.0 alpha 01
+### 0.30.0 alpha 2
+
+### Changes
+- [View] `ComponentDisplayable` is a specialization of `Displayable`.
+- [View] Renamed `Displayable.Props` as `Displayable.Parameters`. 
+
+### 0.30.0 alpha 1
 
 ### Added
 - [View] Added `Wrapped` protocol.

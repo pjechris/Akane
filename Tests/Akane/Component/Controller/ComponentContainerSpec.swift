@@ -45,7 +45,7 @@ class ComponentViewMock : UIView, ComponentDisplayable, Wrapped {
     typealias ViewModelType = ComponentViewModelMock
     typealias Wrapper = ComponentControllerStub
 
-    func bindings(_ observer: ViewObserver, viewModel: ComponentViewModelMock) {
+    func bindings(_ observer: ViewObserver, params viewModel: ComponentViewModelMock) {
 
     }
 }
