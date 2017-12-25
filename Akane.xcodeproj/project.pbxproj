@@ -13,7 +13,6 @@
 		496854941BD6760100589F4C /* Akane.h in Headers */ = {isa = PBXBuildFile; fileRef = 490ABDAD1A5EBF08007EA312 /* Akane.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		497A011F1EC0FCF400FA9347 /* ComponentContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */; };
 		49D472761EBF537E00E1435E /* ComponentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472691EBF537E00E1435E /* ComponentController.swift */; };
-		49D472771EBF537E00E1435E /* ComponentRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726A1EBF537E00E1435E /* ComponentRouter.swift */; };
 		49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4726E1EBF537E00E1435E /* ComponentView.swift */; };
 		49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472701EBF537E00E1435E /* ComponentViewModel.swift */; };
 		49D4727E1EBF537E00E1435E /* Updatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D472731EBF537E00E1435E /* Updatable.swift */; };
@@ -55,6 +54,7 @@
 		49D473251EBF5EB300E1435E /* AsyncCommandSpec.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D4731B1EBF5D8100E1435E /* AsyncCommandSpec.swift */; };
 		49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49D473261EBFCC1200E1435E /* BondCommand.swift */; };
 		49EEDACA1EC1264E00F1F432 /* DefaultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */; };
+		49EFFC1C1FF13E8B00150380 /* SceneController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49EFFC1B1FF13E8B00150380 /* SceneController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -83,7 +83,6 @@
 		496854811BD6741C00589F4C /* AkaneTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = AkaneTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		497A011E1EC0FCF400FA9347 /* ComponentContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentContainer.swift; sourceTree = "<group>"; };
 		49D472691EBF537E00E1435E /* ComponentController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentController.swift; sourceTree = "<group>"; };
-		49D4726A1EBF537E00E1435E /* ComponentRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentRouter.swift; sourceTree = "<group>"; };
 		49D4726E1EBF537E00E1435E /* ComponentView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentView.swift; sourceTree = "<group>"; };
 		49D472701EBF537E00E1435E /* ComponentViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComponentViewModel.swift; sourceTree = "<group>"; };
 		49D472731EBF537E00E1435E /* Updatable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Updatable.swift; sourceTree = "<group>"; };
@@ -126,6 +125,7 @@
 		49D4731C1EBF5D8100E1435E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		49D473261EBFCC1200E1435E /* BondCommand.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BondCommand.swift; sourceTree = "<group>"; };
 		49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DefaultViewController.swift; sourceTree = "<group>"; };
+		49EFFC1B1FF13E8B00150380 /* SceneController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,9 +220,9 @@
 		49D472681EBF537E00E1435E /* Controller */ = {
 			isa = PBXGroup;
 			children = (
+				49EFFC1B1FF13E8B00150380 /* SceneController.swift */,
 				49EEDAC91EC1264E00F1F432 /* DefaultViewController.swift */,
 				49D472691EBF537E00E1435E /* ComponentController.swift */,
-				49D4726A1EBF537E00E1435E /* ComponentRouter.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -655,7 +655,6 @@
 				49D472EE1EBF558700E1435E /* TableViewSectionDelegate.swift in Sources */,
 				49D473031EBF591800E1435E /* Selectable.swift in Sources */,
 				49D472951EBF542400E1435E /* ConverterReverse.swift in Sources */,
-				49D472771EBF537E00E1435E /* ComponentRouter.swift in Sources */,
 				49D473081EBF594B00E1435E /* Commandable.swift in Sources */,
 				49D472EC1EBF558700E1435E /* CollectionViewSectionDelegate.swift in Sources */,
 				49D472961EBF542400E1435E /* AnyObservation.swift in Sources */,
@@ -670,6 +669,7 @@
 				49D473271EBFCC1200E1435E /* BondCommand.swift in Sources */,
 				49D4727A1EBF537E00E1435E /* ComponentView.swift in Sources */,
 				49D472981EBF542400E1435E /* Observation.swift in Sources */,
+				49EFFC1C1FF13E8B00150380 /* SceneController.swift in Sources */,
 				49D4727B1EBF537E00E1435E /* ComponentViewModel.swift in Sources */,
 				49D472761EBF537E00E1435E /* ComponentController.swift in Sources */,
 			);
