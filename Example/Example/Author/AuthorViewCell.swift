@@ -12,7 +12,7 @@ import Akane
 class AuthorViewCell: UITableViewCell, Displayable {
    @IBOutlet var title: UILabel!
    
-   func bindings(_ observer: ViewObserver, props: Author) {
-        self.title.text = props.name
+   func bindings(_ observer: ViewObserver, params: Author) {
+        self.title.text = params.name
    }
 }
