@@ -29,11 +29,18 @@ extension ViewModelObservation {
         }
     }
 
-    public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType) where ViewType.Parameters == ViewModelType {
+    public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType)
+        where ViewType.Parameters == ViewModelType, ViewType.Wrapper.Parameters == ViewModelType {
+        guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
+            return
+        }
+
         let controller = self.container.component(for: view)
 
         self.observe { value in
-            controller.setup(viewModel: value)
+            observer.dispose()
+            value.mountIfNeeded()
+            controller.bindings(observer, params: value)
         }
     }
 
@@ -42,18 +49,10 @@ extension ViewModelObservation {
             return
         }
 
-        let controller = self.container.controller(for: view)
-
         self.observe { value in
-            // FIXME: Duplicated code
-            if let controller = controller {
-                controller.setup(viewModel: value)
-            }
-            else {
-                observer.dispose()
-                view.bindings(observer, params: value)
-                value.mountIfNeeded()
-            }
+            observer.dispose()
+            value.mountIfNeeded()
+            view.bindings(observer, params: value)
         }
     }
 }

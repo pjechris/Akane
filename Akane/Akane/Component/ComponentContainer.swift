@@ -13,8 +13,6 @@ var BinderAttribute = "ViewStyleNameAttribute"
 public protocol ComponentContainer : class {
     var observer: ViewObserver! { get }
 
-    func controller<View: ComponentDisplayable>(for view: View) -> (UIViewController & AnyComponentController)?
-
     func component<View: ComponentDisplayable & Wrapped>(for view: View) -> View.Wrapper
 }
 
@@ -31,9 +29,9 @@ extension ComponentContainer where Self : UIViewController, Self : ComponentCont
         return controller
     }
 
-    public func controller<View: ComponentDisplayable>(for view: View) -> (UIViewController & AnyComponentController)? {
+    public func controller<View: ComponentDisplayable>(for view: View) -> UIViewController? {
         for controller in self.childViewControllers {
-            if let controller = controller as? (UIViewController & AnyComponentController), controller.view === view {
+            if controller.view === view {
                 return controller
             }
         }

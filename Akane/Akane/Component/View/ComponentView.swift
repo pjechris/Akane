@@ -23,7 +23,7 @@ public protocol Displayable : class {
 }
 
 public protocol _AnyComponentDisplayable {
-    func _tryBindings(_ observer: ViewObserver, viewModel: Any)
+    func _tryBindings(_ observer: ViewObserver, params: Any)
 }
 
 @available(*, unavailable, renamed: "ComponentDisplayable")
@@ -44,8 +44,8 @@ public protocol Wrapped {
 }
 
 extension ComponentDisplayable where Self : UIView {
-    public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
-        guard let viewModel = viewModel as? Parameters else {
+    public func _tryBindings(_ observer: ViewObserver, params: Any) {
+        guard let viewModel = params as? Parameters else {
             return
         }
 
