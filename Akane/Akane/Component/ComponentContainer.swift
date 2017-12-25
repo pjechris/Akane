@@ -11,8 +11,6 @@ import Foundation
 var BinderAttribute = "ViewStyleNameAttribute"
 
 public protocol ComponentContainer : class {
-    var observer: ViewObserver! { get }
-
     func component<View: ComponentDisplayable & Wrapped>(for view: View) -> View.Wrapper
 }
 

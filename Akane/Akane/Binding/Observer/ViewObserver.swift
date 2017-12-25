@@ -37,7 +37,7 @@ public class ViewObserver {
      `ComponentView`.
      */
     public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
-        return AnyObservation(value: value, parent: self)
+        return AnyObservation(value: value, observer: self)
     }
 
     /**
@@ -48,7 +48,7 @@ public class ViewObserver {
      - returns: A `ViewModelObservation`.
      */
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        return ViewModelObservation<ViewModelType>(value: value, container: self.container!)
+        return ViewModelObservation<ViewModelType>(value: value, container: self.container!, observer: self)
     }
 
     /// uses `identifier` to reuse a `ViewObserver` created with this id, or create a new one otherwise.

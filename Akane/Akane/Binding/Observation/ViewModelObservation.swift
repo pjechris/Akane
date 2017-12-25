@@ -14,10 +14,12 @@ public class ViewModelObservation<ViewModelType: ComponentViewModel> : Observati
     public var next: [((ViewModelType) -> Void)] = []
 
     unowned let container: ComponentContainer
+    let observer: ViewObserver
 
-    public init(value: ViewModelType?, container: ComponentContainer) {
+    public init(value: ViewModelType?, container: ComponentContainer, observer: ViewObserver) {
         self.container = container
         self.value = value
+        self.observer = observer
     }
 }
 
@@ -31,10 +33,7 @@ extension ViewModelObservation {
 
     public func bind<ViewType: UIView & ComponentDisplayable & Wrapped>(to view: ViewType)
         where ViewType.Parameters == ViewModelType, ViewType.Wrapper.Parameters == ViewModelType {
-        guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
-            return
-        }
-
+        let observer = self.observer.observer(identifier: view.hashValue)
         let controller = self.container.component(for: view)
 
         self.observe { value in
@@ -45,9 +44,7 @@ extension ViewModelObservation {
     }
 
     public func bind<ViewType: UIView & ComponentDisplayable>(to view: ViewType) where ViewType.Parameters == ViewModelType  {
-        guard let observer = self.container.observer?.observer(identifier: view.hashValue) else {
-            return
-        }
+        let observer = self.observer.observer(identifier: view.hashValue)
 
         self.observe { value in
             observer.dispose()

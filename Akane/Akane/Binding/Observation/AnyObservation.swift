@@ -21,11 +21,11 @@ public class AnyObservation<Element> : Observation {
 
     public var next: [((Element) -> Void)] = []
 
-    weak var parent: ViewObserver?
+    weak var observer: ViewObserver?
 
-    public init(value: Element?, parent observer: ViewObserver? = nil) {
+    public init(value: Element?, observer: ViewObserver? = nil) {
         self.value = value
-        self.parent = observer
+        self.observer = observer
     }
 
     deinit {
@@ -120,7 +120,7 @@ extension AnyObservation {
     }
 
     public func bind<V: Displayable & Hashable>(to view: V) where Element == V.Parameters {
-        guard let observer = self.parent?.observer(identifier: view.hashValue) else {
+        guard let observer = self.observer?.observer(identifier: view.hashValue) else {
             return
         }
 
