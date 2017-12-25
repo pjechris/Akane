@@ -36,17 +36,6 @@ extension ComponentViewModel {
         set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(value: newValue as Bool), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
-    weak public var router: ComponentRouter? {
-        get {
-            guard let router = objc_getAssociatedObject(self, &ViewModelRouterAttr) as? AnyWeakValue else {
-                return nil
-            }
-
-            return router.value as? ComponentRouter
-        }
-        set { objc_setAssociatedObject(self, &ViewModelRouterAttr, AnyWeakValue(newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-    }
-
     /// The base implementation is a no-op.
     public func willMount() {
     }
