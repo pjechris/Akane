@@ -43,7 +43,7 @@ public protocol Wrapped {
     associatedtype Wrapper: UIViewController, ComponentController
 }
 
-extension ComponentDisplayable where Self : UIView {
+extension ComponentDisplayable where Self : Hashable {
     public func _tryBindings(_ observer: ViewObserver, params: Any) {
         guard let viewModel = params as? Parameters else {
             return

@@ -18,7 +18,7 @@ public protocol SceneController : ComponentController {
 }
 
 extension SceneController {
-    fileprivate var observer: ViewObserver! {
+    public fileprivate(set) var observer: ViewObserver! {
         get { return self.associatedObjects["observer"] as? ViewObserver }
         set { self.associatedObjects["observer"] = newValue }
     }
