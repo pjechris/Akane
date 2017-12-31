@@ -29,38 +29,17 @@ class ComponentViewControllerSpec : QuickSpec {
             }
         }
 
-        describe("set viewModel") {
+        describe("bindings(params:)") {
             beforeEach {
 
             }
 
             it("calls didLoadComponent") {
-                // To make sure right method is called even if we don't have precie class type
-                let unkonwnController = viewController as AnyComponentController
+                let observer = ViewObserver(container: viewController)
 
-                unkonwnController.setup(viewModel: ViewModelMock())
+                viewController.bindings(observer, params: ViewModelMock())
 
                 expect(viewController.receivedDidLoadComponent) == true
-            }
-
-            it("calls makeBindings") {
-                viewController.viewModel = ViewModelMock()
-
-                expect(viewController.countMakeBindings) == 1
-            }
-        }
-
-        describe("set viewModel multiple times") {
-            let setNb: UInt = 3
-
-            beforeEach {
-                for _ in 1...setNb {
-                    viewController.viewModel = ViewModelMock()
-                }
-            }
-
-            it("calls makeBindings multiple times") {
-                expect(viewController.countMakeBindings) == setNb
             }
         }
     }
@@ -71,14 +50,10 @@ extension ComponentViewControllerSpec {
         typealias ViewType = ViewMock
 
         var receivedDidLoadComponent: Bool = false
-        var countMakeBindings: UInt = 0
         var stubIsViewLoaded: Bool? = nil
 
-        // FIXME
-        // can't overload makeBindings
         func didLoadComponent() {
             self.receivedDidLoadComponent = true
-            self.countMakeBindings += 1
         }
 
         override var isViewLoaded: Bool {

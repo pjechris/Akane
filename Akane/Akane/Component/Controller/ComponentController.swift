@@ -50,15 +50,13 @@ extension ComponentController {
 
     public func bindings(_ observer: ViewObserver, params viewModel: ViewType.Parameters) {
         self.viewModel = viewModel
-
-        guard let componentView = componentView else {
-            return
-        }
-
         self.didLoadComponent()
+
         viewModel.mountIfNeeded()
 
-        componentView.bindings(observer, params: viewModel)
+        if let componentView = componentView {
+            componentView.bindings(observer, params: viewModel)
+        }
     }
 }
 
