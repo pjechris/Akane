@@ -17,11 +17,13 @@ import HasAssociatedObjects
  */
 public class ViewObserver {
     public private(set) weak var container: ComponentContainer?
+    public let context: Context
     fileprivate var disposes: [() -> ()] = []
     fileprivate var subObservers: [Int:ViewObserver] = [:]
 
-    public init(container: ComponentContainer) {
+    public init(container: ComponentContainer, context: Context) {
         self.container = container
+        self.context = context
     }
 
     deinit {
@@ -59,7 +61,7 @@ public class ViewObserver {
             return observer
         }
 
-        let observer = ViewObserver(container: self.container!)
+        let observer = ViewObserver(container: self.container!, context: context)
 
         self.subObservers[identifier] = observer
 

@@ -23,8 +23,8 @@ extension SceneController {
         set { self.associatedObjects["observer"] = newValue }
     }
 
-    public func renderScene(_ params: Parameters) {
-        self.observer = ViewObserver(container: self)
+    public func renderScene(_ params: Parameters, context: Context) {
+        self.observer = ViewObserver(container: self, context: context)
         self.bindings(self.observer, params: params)
     }
 }
