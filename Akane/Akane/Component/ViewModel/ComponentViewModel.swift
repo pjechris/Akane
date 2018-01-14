@@ -9,7 +9,12 @@
 import Foundation
 
 var ViewModelIsMountedAttr = "ViewModelIsMountedAttr"
-var ViewModelRouterAttr = "ViewModelRouterAttr"
+
+public protocol Paramaterized {
+    associatedtype Parameters
+
+    var params: Parameters { get set }
+}
 
 /**
 A ComponentViewModel stores a Component-related business logic. 

@@ -9,7 +9,11 @@
 import Foundation
 
 public protocol Injectable {
-    associatedtype RuntimeDependencies = Void
+    associatedtype InjectionParameters = Void
 
-    init(resolver: DependencyResolver, arguments: RuntimeDependencies)
+    init(resolver: DependencyResolver, parameters: InjectionParameters)
+}
+
+extension Injectable where Self : Paramaterized {
+    public typealias InjectionParameters = Parameters
 }

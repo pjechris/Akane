@@ -9,7 +9,9 @@
 import Foundation
 import HasAssociatedObjects
 
-public protocol Displayable : class {
+let ParamsKey = "displayable.params"
+
+public protocol Displayable : class, HasAssociatedObjects {
     associatedtype Parameters
 
     /**
@@ -20,6 +22,13 @@ public protocol Displayable : class {
      - parameter viewModel: `Parameters` associated to Displayable
      */
     func bindings(_ observer: ViewObserver, params: Parameters)
+}
+
+extension Displayable {
+    public internal(set) var params: Parameters! {
+        get { return self.associatedObjects[ParamsKey] as? Parameters }
+        set { self.associatedObjects[ParamsKey] = newValue }
+    }
 }
 
 public protocol _AnyComponentDisplayable {

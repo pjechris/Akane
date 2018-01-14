@@ -37,6 +37,22 @@ extension DisplayObservation where View : ComponentDisplayable {
         viewModel.mountIfNeeded()
         view.bindings(observer, params: viewModel)
     }
+
+    public func to<T: Injectable & Paramaterized>(_ type: T.Type,
+                                                  _ params: T.InjectionParameters) where T == View.Parameters, T.InjectionParameters == T.Parameters {
+        // FIXME context is "leaked"
+        var viewModel: T
+
+        if self.view.params != nil {
+            viewModel = self.view.params
+            viewModel.params = params
+        }
+        else {
+            viewModel = self.observer.context.resolve(type, parameters: params)
+        }
+        
+        self.to(viewModel)
+    }
 }
 
 extension DisplayObservation where View : ComponentDisplayable & Wrapped {
