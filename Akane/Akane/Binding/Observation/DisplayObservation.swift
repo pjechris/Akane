@@ -55,8 +55,8 @@ extension DisplayObservation where View : ComponentDisplayable {
     }
 }
 
-extension DisplayObservation where View : ComponentDisplayable & Wrapped {
-    public func to<ViewModel>(_ viewModel: ViewModel) where ViewModel == View.Parameters, ViewModel == View.Wrapper.Parameters {
+extension DisplayObservation where View : Wrapped {
+    public func to(_ viewModel: View.Parameters) {
         let observer = self.observer.observer(identifier: self.view.hashValue)
         let controller = self.container.component(for: self.view)
 
