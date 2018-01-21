@@ -24,13 +24,13 @@ public class DisplayObservation<View: Displayable & Hashable> {
 }
 
 extension DisplayObservation {
-    public func to(_ params: View.Parameters) {
+    public func to(params: View.Parameters) {
         view.bindings(observer, params: params)
     }
 }
 
 extension DisplayObservation where View : ComponentDisplayable {
-    public func to(_ viewModel: View.Parameters) {
+    public func to(params viewModel: View.Parameters) {
         let observer = self.observer.observer(identifier: view.hashValue)
 
         observer.dispose()
@@ -38,8 +38,7 @@ extension DisplayObservation where View : ComponentDisplayable {
         view.bindings(observer, params: viewModel)
     }
 
-    public func to<T: Injectable & Paramaterized>(_ type: T.Type,
-                                                  _ params: T.InjectionParameters) where T == View.Parameters, T.InjectionParameters == T.Parameters {
+    public func to<T: Injectable & Paramaterized>(params: T.InjectionParameters) where T == View.Parameters, T.InjectionParameters == T.Parameters {
         // FIXME context is "leaked"
         var viewModel: T
 
@@ -48,15 +47,15 @@ extension DisplayObservation where View : ComponentDisplayable {
             viewModel.params = params
         }
         else {
-            viewModel = self.observer.context.resolve(type, parameters: params)
+            viewModel = self.observer.context.resolve(T.self, parameters: params)
         }
         
-        self.to(viewModel)
+        self.to(params: viewModel)
     }
 }
 
 extension DisplayObservation where View : Wrapped {
-    public func to(_ viewModel: View.Parameters) {
+    public func to(params viewModel: View.Parameters) {
         let observer = self.observer.observer(identifier: self.view.hashValue)
         let controller = self.container.component(for: self.view)
 

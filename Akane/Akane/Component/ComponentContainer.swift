@@ -14,7 +14,7 @@ public protocol ComponentContainer : class {
     func component<View: ComponentDisplayable & Wrapped>(for view: View) -> View.Wrapper
 }
 
-extension ComponentContainer where Self : UIViewController, Self : ComponentController {
+extension ComponentContainer where Self : UIViewController {
     public func component<View: ComponentDisplayable & Wrapped>(for view: View) -> View.Wrapper {
         if let controller = self.controller(for: view) as? View.Wrapper {
             return controller
