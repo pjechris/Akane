@@ -55,7 +55,7 @@ extension ComponentController {
         viewModel.mountIfNeeded()
 
         if let componentView = componentView {
-            componentView.bindings(observer, params: viewModel)
+            componentView.bind(observer, params: viewModel)
         }
     }
 }

@@ -35,7 +35,7 @@ class ComponentViewControllerSpec : QuickSpec {
             }
 
             it("calls didLoadComponent") {
-                let observer = ViewObserver(container: viewController)
+                let observer = ViewObserver(container: viewController, context: ContextMock())
 
                 viewController.bindings(observer, params: ViewModelMock())
 
@@ -70,6 +70,10 @@ extension ComponentViewControllerSpec {
     }
 
     class ViewModelMock : ComponentViewModel {
+
+    }
+
+    class ContextMock : Context {
 
     }
 }

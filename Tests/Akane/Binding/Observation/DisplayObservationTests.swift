@@ -29,18 +29,20 @@ class DisplayObservationTests : QuickSpec {
         }
 
         describe("to(params:)") {
-            context("view is of type Wrapped") {
-                beforeEach {
-                    observation.to(params: ViewModelMock())
-                }
+            it("binds on view") {
+                observation.to(params: ())
+                expect(observation.view.bindCalled) == 1
+            }
 
+            context("view is of type Wrapped") {
                 it("asks container for component") {
+                    observation.to(params: ViewModelMock())
                     expect(container.componentForViewCalled) == 1
                 }
             }
 
             context("view model is injectable") {
-                it("injects view model") {
+                it("injects/resolves view model") {
                     observation.to(params: ())
                     expect(ctx.resolvedCalledCount) == 1
                 }
@@ -53,9 +55,12 @@ class DisplayObservationTests : QuickSpec {
                         observation.view.params = viewModel
                     }
 
-                    it("re-uses view model") {
+                    it("binds with existing view model") {
+                        observation.view.bindChecker = { _, params in
+                            expect(params) === viewModel
+                        }
+
                         observation.to(params: ())
-                        expect(observation.view.params) === viewModel
                     }
                 }
             }
@@ -103,8 +108,16 @@ extension DisplayObservationTests {
     class ViewMock : UIView, ComponentDisplayable, Wrapped {
         typealias Wrapper = ComponentMock
 
+        var bindCalled = 0
+        var bindChecker: ((ViewObserver, DisplayObservationTests.ViewModelMock) -> ())? = nil
+
         func bindings(_ observer: ViewObserver, params: ViewModelMock) {
             
+        }
+
+        func bind(_ observer: ViewObserver, params: DisplayObservationTests.ViewModelMock) {
+            self.bindChecker?(observer, params)
+            self.bindCalled += 1
         }
     }
 

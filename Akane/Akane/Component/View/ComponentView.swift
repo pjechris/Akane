@@ -22,12 +22,19 @@ public protocol Displayable : class, HasAssociatedObjects {
      - parameter viewModel: `Parameters` associated to Displayable
      */
     func bindings(_ observer: ViewObserver, params: Parameters)
+
+    func bind(_ observer: ViewObserver, params: Parameters)
 }
 
 extension Displayable {
     public internal(set) var params: Parameters! {
         get { return self.associatedObjects[ParamsKey] as? Parameters }
         set { self.associatedObjects[ParamsKey] = newValue }
+    }
+
+    public func bind(_ observer: ViewObserver, params: Parameters) {
+        self.params = params
+        self.bindings(observer, params: params)
     }
 }
 
@@ -43,6 +50,7 @@ ComponentView is used on an `UIView` in order to associate it to a
 `ComponentViewModel` implementing its business logic.
 */
 public protocol ComponentDisplayable : Displayable, _AnyComponentDisplayable where Parameters : ComponentViewModel {
+    typealias ViewModel = Parameters
 }
 
 /**

@@ -25,17 +25,17 @@ public class DisplayObservation<View: Displayable & Hashable> {
 
 extension DisplayObservation {
     public func to(params: View.Parameters) {
-        view.bindings(observer, params: params)
+        view.bind(observer, params: params)
     }
 }
 
 extension DisplayObservation where View : ComponentDisplayable {
-    public func to(params viewModel: View.Parameters) {
+    public func to(params viewModel: View.ViewModel) {
         let observer = self.observer.observer(identifier: view.hashValue)
 
         observer.dispose()
         viewModel.mountIfNeeded()
-        view.bindings(observer, params: viewModel)
+        view.bind(observer, params: viewModel)
     }
 
     public func to<T: Injectable & Paramaterized>(params: T.InjectionParameters) where T == View.Parameters, T.InjectionParameters == T.Parameters {
@@ -55,7 +55,7 @@ extension DisplayObservation where View : ComponentDisplayable {
 }
 
 extension DisplayObservation where View : Wrapped {
-    public func to(params viewModel: View.Parameters) {
+    public func to(params viewModel: View.ViewModel) {
         let observer = self.observer.observer(identifier: self.view.hashValue)
         let controller = self.container.component(for: self.view)
 
