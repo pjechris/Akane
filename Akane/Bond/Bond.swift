@@ -13,16 +13,6 @@ import Bond
 import Akane
 #endif
 
-extension DisplayObservation {
-    public func to(_ params: Observable<View.Parameters>) {
-        let disposable = params.observeNext { [weak self] in
-            self?.to($0)
-        }
-
-        self.observer.add(disposable: disposable)
-    }
-}
-
 extension Bond : Akane.Bindable {
     public func advance(element: Element) -> Void {
         let tmp = Observable(element)
