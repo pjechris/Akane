@@ -53,6 +53,10 @@ public class ViewObserver {
         return ViewModelObservation<ViewModelType>(value: value, container: self.container!, observer: self)
     }
 
+    public func bind<View: Displayable & Hashable>(_ view: View) -> DisplayObservation<View> {
+        return DisplayObservation(view: view, container: self.container!, observer: self)
+    }
+
     /// uses `identifier` to reuse a `ViewObserver` created with this id, or create a new one otherwise.
     /// - parameter identifier: identify ViewObserver instance
     /// - returns: a `ViewObserver` referenced by `identifier`

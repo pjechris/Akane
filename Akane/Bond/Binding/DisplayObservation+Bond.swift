@@ -15,9 +15,7 @@ import Bond
 
 extension DisplayObservation {
     public func to(params: Observable<View.Parameters>) {
-        let disposable = params.observeNext { [weak self] in
-            self?.to(params: $0)
-        }
+        let disposable = params.observeNext(with: self.to(params:))
 
         self.observer.add(disposable: disposable)
     }
@@ -25,9 +23,7 @@ extension DisplayObservation {
 
 extension DisplayObservation where View : ComponentDisplayable {
     public func to(params viewModel: Observable<View.Parameters>) {
-        let disposable = viewModel.observeNext { [weak self] in
-            self?.to(params: $0)
-        }
+        let disposable = viewModel.observeNext(with: self.to(params:))
 
         self.observer.add(disposable: disposable)
     }
@@ -35,9 +31,7 @@ extension DisplayObservation where View : ComponentDisplayable {
 
 extension DisplayObservation where View : Wrapped {
     public func to(params viewModel: Observable<View.Parameters>) {
-        let disposable = viewModel.observeNext { [weak self] in
-            self?.to(params: $0)
-        }
+        let disposable = viewModel.observeNext(with: self.to(params:))
 
         self.observer.add(disposable: disposable)
     }
