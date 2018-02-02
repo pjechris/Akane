@@ -14,7 +14,7 @@ import HasAssociatedObjects
  Use it on your top controllers to render the whole hierarchy.
  **/
 public protocol SceneController : ComponentController {
-    func renderScene(_ params: Parameters)
+    func renderScene(_ params: Parameters, context: Context)
 }
 
 extension SceneController {
