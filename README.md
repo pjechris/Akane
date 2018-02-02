@@ -3,6 +3,11 @@
 
 Akane is a iOS framework that helps you building better native apps by adopting an **MVVM** design pattern.
 
+Head up to our [example](Example) if you want to see a framework real use-case.
+
+*NOTE: Current version (0.30) is in beta. [Click here](https://github.com/akane/Akane/tree/0.20.0) if you want documentation for latest stable release (0.20.0).*
+
+
 |               |  Main Goals  |
 |---------------|--------------|
 | :sweat_smile: | Safety: **minimize bad coding practices** as much as possible
@@ -143,7 +148,7 @@ extension LoggedUserView : Wrapped {
 
 ### SceneController
 
-Starting with 0.30, `ComponentController` is no longer able to receive a `ComponentViewModel` from the "outside".
+`ComponentController` is unable to receive a `ComponentViewModel` from the "outside".
 So how to initialize a view hierarchy when, say, you push a view controller? That's the role of `SceneController`.
 
 ```swift
@@ -152,11 +157,18 @@ class HomeViewController : UIViewController, SceneController {
   typealias ViewType = HomeView
 }
 
-application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
-  let homeViewController = self.window.rootViewController as! HomeViewController
-  homeViewController.renderScene(HomeViewModel())
+class AppDelegate {
+  let context = MyContext() // In 0.30 beta, you have to create your own custom Context class
 
-  return true
+  application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
+    let homeViewController = self.window.rootViewController as! HomeViewController
+    homeViewController.renderScene(HomeViewModel(), context: self.context)
+
+    return true
+  }
+
+  class MyContext : Context {
+  }
 }
 
 ```
