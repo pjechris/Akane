@@ -9,12 +9,13 @@
 import UIKit
 import Akane
 
-class HomeViewController: UIViewController, ComponentController {
+class HomeViewController: UIViewController, SceneController {
     typealias ViewType = SearchAuthorsView
 
-   override func viewDidLoad() {
-      super.viewDidLoad()
-      self.viewModel = SearchAuthorsViewModel()
-   }
+    lazy private(set) var navbarItemDisplayer: NavbarItemDisplayer = NavbarItemDisplayer(content: self.navigationItem)
+
+    func didLoadComponent() {
+        self.navbarItemDisplayer.bind(self.observer, params: "Search")
+    }
 }
 

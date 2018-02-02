@@ -9,24 +9,6 @@
 import Foundation
 import UIKit
 
-/**
-Default implementation of `ComponentController`. You need to extend from this 
-class rather than from `UIViewController` to make the bindings between your component
-view and your view model work.
-*/
-class DefaultViewController<ComponentViewType: ComponentDisplayable> : UIViewController, ComponentController {
-    typealias ViewType = ComponentViewType
-
-    init(view: ViewType) {
-        super.init(nibName: nil, bundle: nil)
-        self.replace(view: view as! UIView)
-    }
-
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-    }
-}
-
 extension UIViewController {
     func replace(view: UIView) {
         let needsDidLoad = !self.isViewLoaded

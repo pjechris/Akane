@@ -19,7 +19,7 @@ class ComponentContainerSpec : QuickSpec {
             container = ComponentControllerStub(nibName: nil, bundle: nil)
         }
 
-        describe("component(for:createIfNeeded:)") {
+        describe("component(for:)") {
             var view: ComponentViewMock!
 
             beforeEach {
@@ -27,10 +27,10 @@ class ComponentContainerSpec : QuickSpec {
             }
 
             context("when controller does not exist") {
-                it("asks view for custom controller") {
-                    let component = container.component(for: view, createIfNeeded: true)!
+                it("creates it") {
+                    let component = container.component(for: view)
 
-                    expect(type(of: component) == ComponentViewMock.componentControllerClass()).to(beTrue())
+                    expect(type(of: component)) === ComponentViewMock.Wrapper.self
                 }
             }
         }
@@ -41,15 +41,12 @@ class ComponentControllerStub : UIViewController, ComponentController {
     typealias ViewType = ComponentViewMock
 }
 
-class ComponentViewMock : UIView, ComponentDisplayable {
+class ComponentViewMock : UIView, ComponentDisplayable, Wrapped {
     typealias ViewModelType = ComponentViewModelMock
+    typealias Wrapper = ComponentControllerStub
 
-    func bindings(_ observer: ViewObserver, viewModel: ComponentViewModelMock) {
+    func bindings(_ observer: ViewObserver, params viewModel: ComponentViewModelMock) {
 
-    }
-
-    static func componentControllerClass() -> AnyComponentController.Type {
-        return ComponentControllerStub.self
     }
 }
 

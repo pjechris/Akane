@@ -66,7 +66,7 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentDisplayable {
 
-            componentCell._tryBindings(observer, viewModel: viewModel)
+            componentCell._tryBindings(observer, params: viewModel)
 
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak collectionView] in

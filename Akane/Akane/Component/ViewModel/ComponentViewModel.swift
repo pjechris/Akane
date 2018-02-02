@@ -9,7 +9,12 @@
 import Foundation
 
 var ViewModelIsMountedAttr = "ViewModelIsMountedAttr"
-var ViewModelRouterAttr = "ViewModelRouterAttr"
+
+public protocol Paramaterized {
+    associatedtype Parameters
+
+    var params: Parameters { get set }
+}
 
 /**
 A ComponentViewModel stores a Component-related business logic. 
@@ -34,17 +39,6 @@ extension ComponentViewModel {
     public internal(set) var isMounted: Bool {
         get { return (objc_getAssociatedObject(self, &ViewModelIsMountedAttr) as? NSNumber).map { return $0.boolValue } ?? false }
         set { objc_setAssociatedObject(self, &ViewModelIsMountedAttr, NSNumber(value: newValue as Bool), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
-    }
-
-    weak public var router: ComponentRouter? {
-        get {
-            guard let router = objc_getAssociatedObject(self, &ViewModelRouterAttr) as? AnyWeakValue else {
-                return nil
-            }
-
-            return router.value as? ComponentRouter
-        }
-        set { objc_setAssociatedObject(self, &ViewModelRouterAttr, AnyWeakValue(newValue), .OBJC_ASSOCIATION_RETAIN_NONATOMIC) }
     }
 
     /// The base implementation is a no-op.

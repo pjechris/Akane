@@ -3,6 +3,11 @@
 
 Akane is a iOS framework that helps you building better native apps by adopting an **MVVM** design pattern.
 
+Head up to our [example](Example) if you want to see a framework real use-case.
+
+*NOTE: Current version (0.30) is in beta. [Click here](https://github.com/akane/Akane/tree/0.20.0) if you want documentation for latest stable release (0.20.0).*
+
+
 |               |  Main Goals  |
 |---------------|--------------|
 | :sweat_smile: | Safety: **minimize bad coding practices** as much as possible
@@ -19,7 +24,7 @@ Smart components are composed of:
 
 **(New in 0.19!)** _Dumb_ components are simply composed of a `Displayable` and do not have an associated `ViewModel`.
 
-# Why Akane, Or MVVM versus iOS MVC
+## Why Akane, Or MVVM versus iOS MVC
 
 iOS developers tend to write all their code into a unique and dedicated ViewController class. While this may have been OK some years ago, today's app codebases grow bigger and bigger. Maintaining a single, huge, ViewController file is a dangerous operation which often results in unpredictable side effects.
 
@@ -53,13 +58,13 @@ It is represented by `Displayable` protocol.
 class UserView: UIView, Displayable {
    @IBOutlet var title: UILabel!
 
-   func bindings(_ observer: ViewObserver, props user: User) {
+   func bindings(_ observer: ViewObserver, params user: User) {
      self.title = UserFullNameConverter().convert(user)
    }
 }
 ```
 
-### Smart component
+## Smart component
 
 Smart component represents a component who has a state defining its rendering:
 
@@ -107,9 +112,8 @@ class LoggedUserView : UIView, ComponentDisplayable {
   @IBOutlet var userView: UserView!
   @IBOutlet var buttonDisconnect: UIButton!
 
-  func bindings(observer: ViewObserver, viewModel: UserViewModel) {
-    // New in 0.19! Bind a author with a dumb view
-    observer.observe(viewModel.author).bind(to: self.authorView)
+  func bindings(observer: ViewObserver, params viewModel: UserViewModel) {
+    observer.observe(viewModel.user).bind(to: self.userView)
 
     // bind 'disconnect' command with 'buttonDisconnect'
     observer.observe(viewModel.disconnect)
@@ -119,56 +123,74 @@ class LoggedUserView : UIView, ComponentDisplayable {
 
 ```
 
-### ViewController
+### ComponentController
 
-ViewController, through `ComponentController` protocol, makes the link between `ComponentViewModel` and `ComponentDisplayable`.
+`ComponentController` protocol, makes the link between `ComponentViewModel` and its `ComponentDisplayable`.
 
-Just pass your `ComponentViewModel` to your ViewController to bind it to its view.
-
-```swift
-
-application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
-
-  let rootViewController = self.window.rootViewController as! ComponentViewController
-  let user = User(username: "Bruce", title: .master)
-
-  rootViewController.viewModel = UserViewModel(user: user)
-
-  return true
-}
-
-```
-
-You can even define your custom ViewControllers if you need to:
+Pass your `ComponentViewModel` to your ViewController to bind it to its view.
+You'll also need to declare your `ComponentDisplayable` as being `Wrapped`.
 
 ```swift
-
-extension LoggedUserView {
-  static func componentControllerClass() -> AnyComponentController.Type {
-    return LoggedUserViewController.self
-  }
-}
 
 class LoggedUserViewController : UIViewController, ComponentController {
-  func viewDidLoad() {
-    super.viewDidLoad()
-    print("User component view loaded")
+  typealias ViewType = LoggedUserView
+
+  func didLoadComponent() {
+    print("User component loaded")
+    // here you can access self.viewModel
+  }
+}
+
+extension LoggedUserView : Wrapped {
+  typealias Wrapper = LoggedUserViewController
+}
+```
+
+### SceneController
+
+`ComponentController` is unable to receive a `ComponentViewModel` from the "outside".
+So how to initialize a view hierarchy when, say, you push a view controller? That's the role of `SceneController`.
+
+```swift
+
+class HomeViewController : UIViewController, SceneController {
+  typealias ViewType = HomeView
+}
+
+class AppDelegate {
+  let context = MyContext() // In 0.30 beta, you have to create your own custom Context class
+
+  application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject : AnyObject]?) -> Bool {  
+    let homeViewController = self.window.rootViewController as! HomeViewController
+    homeViewController.renderScene(HomeViewModel(), context: self.context)
+
+    return true
+  }
+
+  class MyContext : Context {
   }
 }
 
 ```
 
-## Collections
+
+## Advanced usage
+### Collections
 
 Akane supports displaying collections of objects in `UITableViews` and `UICollectionViews`.
 Please [read the Collections.md documentation](Documentation/Collections.md) to know more.
 
+### Navbar
 
-# Installation
+Navbars like views can be customized in Akane. All you have to do is to create a `(Component)Displayable` class and bind it
+to your navbar. Sounds complicated? [Head over the example](Example/Example/HomeViewController.swift) to see how you can do it easily!
+
+
+## Installation
 
 Akane supports installation via CocoaPods and Carthage.
 
-## CocoaPods
+### CocoaPods
 
 ```ruby
 pod 'Akane'
@@ -180,24 +202,24 @@ Akane builds on top of Bond for managing bindings. If you do want to use your ow
 pod 'Akane/Core'
 ```
 
-## Carthage
+### Carthage
 
 Add `github "akane/Akane"` to your `Cartfile`.
 In order to use Akane Bindings and Akane Collections, you should also append `github "ReactiveKit/Bond"`.
 
-# United We Stand
+## United We Stand
 
 Akane works great by itself but is even better when combined with our other tools:
 
 - [Gaikan](https://github.com/akane/Gaikan), declarative view styling in Swift. Inspired by CSS modules.
 - [Magellan](https://github.com/akane/Magellan), routing solution to decouple UI from navigation logic.
 
-# Contributing
+## Contributing
 
 This project was first developed by [Xebia IT Architects](http://xebia.fr) and has been open-sourced since. We are committed to keeping on working and investing our time in Akane.
 
 We encourage the community to contribute to the project by opening tickets and/or pull requests.
 
-# License
+## License
 
 Akane is released under the MIT License. Please see the LICENSE file for details.

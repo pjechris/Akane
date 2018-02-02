@@ -1,5 +1,32 @@
 # CHANGELOG
 
+### 0.30.0 alpha 2
+
+This version contains important **breaking changes**. Especially, `ComponentDisplayable` needing
+a `ComponentController` **must** implement `Wrapped`. If you don't and ViewController is created from Storyboard/Xib,
+then it won't get a reference to ViewModel.
+
+### Added
+- [Controller] Added `SceneController` protocol.
+
+### Changes
+- [View] `ComponentDisplayable` is a specialization of `Displayable`. Replace `bindings(_:viewModel:)` with `bindings(_:params viewModel:)` in your code.
+- [View] Renamed `Displayable.Props` as `Displayable.Parameters`. Replace `bindings(_:props:)` with `bindings(_:params:)` in your code.
+- [Controller] To use `ComponentController`, your view needs to conform to `Wrapper`!
+
+### Removed
+- [Controller] Removed `ComponentRouter`.
+
+### 0.30.0 alpha 1
+
+### Added
+- [View] Added `Wrapped` protocol.
+
+### Changes
+- [Controller] `observer` is instantiated **before** calling `didLoadComponent`
+- [View] Deprecated `componentControllerClass`. Replaced by `Wrapped` protocol.
+- [Container] when binding viewmodels, adjacent controller is created **only** if implementing `Wrapped` protocol.
+
 ### 0.20.0
 
 ### Added

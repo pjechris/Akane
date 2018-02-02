@@ -26,7 +26,7 @@ extension ViewObserver {
     }
 
     public func observe<AnyValue>(_ observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
-        let observer = AnyObservation<AnyValue>(value: nil, observer: self.createObserver())
+        let observer = AnyObservation<AnyValue>(value: nil, observer: self)
         
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)
@@ -42,7 +42,7 @@ extension ViewObserver {
     }
 
     public func observe<ViewModelType: ComponentViewModel>(_ observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
-        let observer = ViewModelObservation<ViewModelType>(value: nil, container: self.container!)
+        let observer = ViewModelObservation<ViewModelType>(value: nil, container: self.container!, observer: self)
 
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)

@@ -17,11 +17,13 @@ import HasAssociatedObjects
  */
 public class ViewObserver {
     public private(set) weak var container: ComponentContainer?
+    public let context: Context
     fileprivate var disposes: [() -> ()] = []
-    fileprivate var subObservers: [ViewObserver] = []
+    fileprivate var subObservers: [Int:ViewObserver] = [:]
 
-    public init(container: ComponentContainer) {
+    public init(container: ComponentContainer, context: Context) {
         self.container = container
+        self.context = context
     }
 
     deinit {
@@ -37,7 +39,7 @@ public class ViewObserver {
      `ComponentView`.
      */
     public func observe<AnyValue>(_ value: AnyValue) -> AnyObservation<AnyValue> {
-        return AnyObservation(value: value, observer: self.createObserver())
+        return AnyObservation(value: value, observer: self)
     }
 
     /**
@@ -48,18 +50,30 @@ public class ViewObserver {
      - returns: A `ViewModelObservation`.
      */
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
-        return ViewModelObservation<ViewModelType>(value: value, container: self.container!)
+        return ViewModelObservation<ViewModelType>(value: value, container: self.container!, observer: self)
     }
 
-    public func createObserver() -> ViewObserver {
-        let observer = ViewObserver(container: self.container!)
+    public func bind<View: Displayable & Hashable>(_ view: View) -> DisplayObservation<View> {
+        return DisplayObservation(view: view, container: self.container!, observer: self)
+    }
 
-        self.subObservers.append(observer)
+    /// uses `identifier` to reuse a `ViewObserver` created with this id, or create a new one otherwise.
+    /// - parameter identifier: identify ViewObserver instance
+    /// - returns: a `ViewObserver` referenced by `identifier`
+    public func observer(identifier: Int) -> ViewObserver {
+        if let observer = self.subObservers[identifier] {
+            return observer
+        }
+
+        let observer = ViewObserver(container: self.container!, context: context)
+
+        self.subObservers[identifier] = observer
+
         return observer
     }
 
     public func dispose() {
-        self.subObservers.forEach { $0.dispose() }
+        self.subObservers.forEach { $1.dispose() }
         self.disposes.forEach { $0() }
         self.disposes.removeAll()
     }

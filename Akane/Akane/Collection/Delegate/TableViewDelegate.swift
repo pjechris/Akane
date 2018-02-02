@@ -88,7 +88,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
             let observer = self.observer,
             let componentCell = cell as? _AnyComponentDisplayable {
             
-            componentCell._tryBindings(observer, viewModel: viewModel)
+            componentCell._tryBindings(observer, params: viewModel)
 
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak tableView, weak cell] in
@@ -195,7 +195,7 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
             let observer = self.observer,
             let componentView = view as? _AnyComponentDisplayable {
 
-            componentView._tryBindings(observer, viewModel: viewModel)
+            componentView._tryBindings(observer, params: viewModel)
 
             if let updatable = viewModel as? Updatable {
                 updatable.onRender = { [weak tableView, weak view] in

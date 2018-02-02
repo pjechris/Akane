@@ -9,14 +9,37 @@
 import Foundation
 import HasAssociatedObjects
 
-public protocol Displayable {
-    associatedtype Props
+let ParamsKey = "displayable.params"
 
-    func bindings(_ observer: ViewObserver, props: Props)
+public protocol Displayable : class, HasAssociatedObjects {
+    associatedtype Parameters
+
+    /**
+     Define the bindings between displayable and its params
+
+     - parameter observer:  The observer to use for defining  and registering
+     bindings
+     - parameter viewModel: `Parameters` associated to Displayable
+     */
+    func bindings(_ observer: ViewObserver, params: Parameters)
+
+    func bind(_ observer: ViewObserver, params: Parameters)
+}
+
+extension Displayable {
+    public internal(set) var params: Parameters! {
+        get { return self.associatedObjects[ParamsKey] as? Parameters }
+        set { self.associatedObjects[ParamsKey] = newValue }
+    }
+
+    public func bind(_ observer: ViewObserver, params: Parameters) {
+        self.params = params
+        self.bindings(observer, params: params)
+    }
 }
 
 public protocol _AnyComponentDisplayable {
-    func _tryBindings(_ observer: ViewObserver, viewModel: Any)
+    func _tryBindings(_ observer: ViewObserver, params: Any)
 }
 
 @available(*, unavailable, renamed: "ComponentDisplayable")
@@ -26,38 +49,20 @@ public typealias ComponentView = ComponentDisplayable
 ComponentView is used on an `UIView` in order to associate it to a 
 `ComponentViewModel` implementing its business logic.
 */
-public protocol ComponentDisplayable : class, Equatable, HasAssociatedObjects, _AnyComponentDisplayable {
-    associatedtype ViewModelType: ComponentViewModel
-
-    /**
-    Define the bindings between the fields (IBOutlet) and the ComponentViewModel
-    
-    - parameter observer:  The observer to use for defining  and registering 
-    bindings
-    - parameter viewModel: The `ComponentViewModel` associated to the `UIView`
-    */
-    func bindings(_ observer: ViewObserver, viewModel: ViewModelType)
-
-
-    /**
-     `ComponentViewController` class associated to the `ComponentView`
-
-     - returns: The `ComponentViewController` type.
-     The Default implementation returns `ComponentViewController.self`
-     */
-    static func componentControllerClass() -> AnyComponentController.Type
+public protocol ComponentDisplayable : Displayable, _AnyComponentDisplayable where Parameters : ComponentViewModel {
+    typealias ViewModel = Parameters
 }
 
-extension ComponentDisplayable {
-
-    public static func componentControllerClass() -> AnyComponentController.Type {
-        return DefaultViewController<Self>.self
-    }
+/**
+ `ComponentController` class wrapper association
+ */
+public protocol Wrapped {
+    associatedtype Wrapper: UIViewController, ComponentController where Wrapper.ViewType == Self
 }
 
-extension ComponentDisplayable where Self : UIView {
-    public func _tryBindings(_ observer: ViewObserver, viewModel: Any) {
-        guard let viewModel = viewModel as? ViewModelType else {
+extension ComponentDisplayable where Self : Hashable {
+    public func _tryBindings(_ observer: ViewObserver, params: Any) {
+        guard let viewModel = params as? Parameters else {
             return
         }
 

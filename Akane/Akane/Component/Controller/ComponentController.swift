@@ -9,22 +9,12 @@
 import Foundation
 import HasAssociatedObjects
 
-public protocol AnyComponentController {
-    func setup(viewModel: Any)
-    func anyViewModel() -> Any?
-}
-
 /**
 ComponentController is a Controller making the link between a `ComponentView`
 and its `ComponentViewModel`.
-
-Do not use this protocol directly. Refer to `ComponentViewController` instead.
- 
-This protocol should benefit greatly by the use of generics, but this would
-break compatibility with Storyboards and Xibs.
 */
-public protocol ComponentController : class, ComponentContainer, AnyComponentController, HasAssociatedObjects {
-    associatedtype ViewType: ComponentDisplayable
+public protocol ComponentController : ComponentDisplayable, ComponentContainer {
+    associatedtype ViewType: ComponentDisplayable where ViewType.Parameters == Parameters
 
     // MARK: Associated component elements
     
@@ -32,47 +22,41 @@ public protocol ComponentController : class, ComponentContainer, AnyComponentCon
     var componentView: ViewType? { get }
 
     /// The Controller's CompnentViewModel.
-    var viewModel: ViewType.ViewModelType! { get set }
+    var viewModel: ViewType.Parameters! { get }
     
     /**
-    Should be called every time `viewModel` is setted on Controller.
+     Called every time `viewModel` is setted on Controller.
+     You can use it to (re)initialize anything related to ViewModel.
+     You can also use it to bind components which are "outside" workflow/hierarchy, like navigation bar.
     */
     func didLoadComponent()
 }
 
 extension ComponentController {
-    public func setup(viewModel: Any) {
-        guard let viewModel = viewModel as? ViewType.ViewModelType else {
-            return
-        }
-
-        self.viewModel = viewModel
-    }
-
-    public func anyViewModel() -> Any? {
-        return self.viewModel
-    }
-
     public func didLoadComponent() {
-
     }
 }
 
 extension ComponentController {
-    fileprivate var observer: ViewObserver? {
-        get { return self.associatedObjects["observer"] as? ViewObserver }
-        set { self.associatedObjects["observer"] = newValue }
+    /// The Controller's CompnentViewModel.
+    public fileprivate(set) var viewModel: ViewType.Parameters! {
+        get {
+            return self.associatedObjects["viewModel"] as? ViewType.Parameters
+        }
+        set {
+            self.associatedObjects["viewModel"] = newValue
+        }
     }
 
-    public func renewBindings() {
-        guard let viewModel = self.viewModel, let componentView = self.componentView else {
-            return
+    public func bindings(_ observer: ViewObserver, params viewModel: ViewType.Parameters) {
+        self.viewModel = viewModel
+        self.didLoadComponent()
+
+        viewModel.mountIfNeeded()
+
+        if let componentView = componentView {
+            componentView.bind(observer, params: viewModel)
         }
-
-        let observer = ViewObserver(container: self)
-
-        componentView.bindings(observer, viewModel: viewModel)
-        self.observer = observer
     }
 }
 
@@ -80,23 +64,5 @@ extension ComponentController where Self : UIViewController {
     /// The Controller's ComponentView.
     public var componentView: ViewType? {
         get { return self.view as? ViewType }
-    }
-
-    /// The Controller's CompnentViewModel.
-    public var viewModel: ViewType.ViewModelType! {
-        get {
-            return self.associatedObjects["viewModel"] as? ViewType.ViewModelType
-        }
-        set {
-            self.associatedObjects["viewModel"] = newValue
-            self.didSetViewModel()
-        }
-    }
-
-    func didSetViewModel() {
-        self.viewModel.router = self as? ComponentRouter
-        self.didLoadComponent()
-        self.renewBindings()
-        self.viewModel.mountIfNeeded()
     }
 }
