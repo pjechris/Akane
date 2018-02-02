@@ -14,13 +14,8 @@ class HomeViewController: UIViewController, SceneController {
 
     lazy private(set) var navbarItemDisplayer: NavbarItemDisplayer = NavbarItemDisplayer(content: self.navigationItem)
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.renderScene(SearchAuthorsViewModel())
-    }
-
     func didLoadComponent() {
-        self.navbarItemDisplayer.bindings(self.observer, params: "Search")
+        self.navbarItemDisplayer.bind(self.observer, params: "Search")
     }
 }
 
