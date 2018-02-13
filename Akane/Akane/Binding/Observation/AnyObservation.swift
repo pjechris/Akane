@@ -33,66 +33,6 @@ public class AnyObservation<Element> : Observation {
     }
 }
 
-// MARK : Convert
-extension AnyObservation {
-    public func convert<NewElement>(_ transformer: @escaping ((Element) -> NewElement)) -> AnyObservation<NewElement> {
-
-        return self.observe { nextObserver, value in
-            nextObserver.put(transformer(value))
-        }
-    }
-
-    /**
-     Converts the observed event value to a new value by applying the `transformer` argument.
-
-     - parameter transformer: `Converter` class used to transform the observation value.
-
-     - returns: A new `AnyObservation` whose observation is the current converted observation value.
-     */
-    public func convert<T: Converter>(_ transformer: T.Type) -> AnyObservation<T.ConvertValueType> where T.ValueType == Element {
-
-        return self.observe { nextObserver, value in
-            nextObserver.put(transformer.init().convert(value))
-        }
-    }
-
-    public func convert<T: Converter & ConverterOption>(_ transformer: T.Type, options:@escaping () -> T.ConvertOptionType) -> AnyObservation<T.ConvertValueType> where T.ValueType == Element {
-        
-        return self.observe{ nextObserver, value in
-            let newValue = transformer.init(options: options()).convert(value)
-
-            nextObserver.put(newValue)
-        }
-    }
-}
-
-// MARK : ConvertBack
-extension AnyObservation {
-    /**
-     Provides a reverse conversion of the event value from `ConvertValueType` to
-     `ValueType`.
-
-     - parameter converter: The converter type to use to transform the
-     observation value.
-
-     - returns: A new AnyObservation whose value is the converted current `Element`.
-     */
-    public func convertBack<T: ConverterReverse>(_ transformer: T.Type) -> AnyObservation<T.ValueType> where T.ConvertValueType == Element {
-        return self.observe { nextObserver, value in
-            nextObserver.put(transformer.init().convertBack(value))
-        }
-    }
-
-    public func convertBack<T: ConverterReverse & ConverterOption>(_ transformer: T.Type, options:@escaping () -> T.ConvertOptionType) -> AnyObservation<T.ValueType> where T.ConvertValueType == Element {
-
-        return self.observe { nextObserver, value in
-            let newValue = transformer.init(options: options()).convertBack(value)
-
-            nextObserver.put(newValue)
-        }
-    }
-}
-
 // MARK : BindTo
 extension AnyObservation {
     /**

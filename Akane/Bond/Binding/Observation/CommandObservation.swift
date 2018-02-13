@@ -8,25 +8,20 @@
 
 import Foundation
 import Bond
+import ReactiveKit
 #if AKANE_AS_FRAMEWORK
     import Akane
 #endif
 
 open class CommandObservation : Observation {
     public var value: BondCommand? = nil
-
     public var next: [((BondCommand) -> Void)] = []
 
     fileprivate var controls: [UIControl] = []
-
-    var canExecuteObservation: AnyObservation<Bool>? = nil
-    var isExecutingObservation: AnyObservation<Bool>? = nil
+    fileprivate var disposeBag = DisposeBag()
 
     init(command: BondCommand, observer: ViewObserver?) {
         self.value = command
-
-        self.canExecuteObservation = observer?.observe(command.canExecute)
-        self.isExecutingObservation = observer?.observe(command.isExecuting)
     }
 
     deinit {
@@ -38,8 +33,7 @@ open class CommandObservation : Observation {
             control.removeTarget(self, action: nil, for: .allEvents)
         }
 
-        self.canExecuteObservation?.unobserve()
-        self.isExecutingObservation?.unobserve()
+        disposeBag.dispose()
 
         self.controls = []
         self.next = []
@@ -63,12 +57,18 @@ extension CommandObservation {
         control.addTarget(self, action: #selector(self.onTouch(_:)), for: events)
 
         self.controls.append(control)
-        
-        // FIXME remove dep on Bond
-        self.canExecuteObservation?.bind(to: control.reactive.isEnabled)
-        self.isExecutingObservation?
-            .convert { !$0 }
+
+        guard let command = self.value else {
+            return
+        }
+
+        command.canExecute
+            .bind(to: control.reactive.isEnabled)
+            .dispose(in: self.disposeBag)
+        command.isExecuting
+            .map { !$0 }
             .bind(to: control.reactive.isUserInteractionEnabled)
+            .dispose(in: self.disposeBag)
     }
 
     @objc

@@ -17,21 +17,27 @@ class AsyncCommandSpec : QuickSpec {
         var command: AsyncCommand<Void>!
 
         describe("execute") {
-
-            it("changes isExecuting to true") {
-                command = AsyncCommand() { _, _ in }
-
-                command.execute(nil)
-                expect(command.isExecuting.value) == true
-            }
-
-            it("changes back isExecuting to false") {
-                command = AsyncCommand() { _, completed in
-                    completed()
+            context("command is running") {
+                beforeEach {
+                    command = AsyncCommand() { _, _ in }
                 }
 
-                command.execute(nil)
-                expect(command.isExecuting.value) == false
+                it("sets isExecuting to true") {
+                    command.execute(nil)
+                    expect(command.isExecuting.value) == true
+                }
+            }
+            context("command is completed") {
+                beforeEach {
+                    command = AsyncCommand() { _, completed in
+                        completed()
+                    }
+                }
+
+                it("sets isExecuting to false") {
+                    command.execute(nil)
+                    expect(command.isExecuting.value) == false
+                }
             }
         }
     }
