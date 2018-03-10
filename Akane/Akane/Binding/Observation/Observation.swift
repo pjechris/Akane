@@ -8,6 +8,7 @@
 
 import Foundation
 
+/// Internal class. Do not use.
 public protocol Observation : class {
     associatedtype Element
 

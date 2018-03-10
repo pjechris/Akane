@@ -49,6 +49,7 @@ public class ViewObserver {
 
      - returns: A `ViewModelObservation`.
      */
+    @available(*, deprecated, renamed: "bind(_:)")
     public func observe<ViewModelType : ComponentViewModel>(_ value: ViewModelType) -> ViewModelObservation<ViewModelType> {
         return ViewModelObservation<ViewModelType>(value: value, container: self.container!, observer: self)
     }
