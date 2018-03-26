@@ -90,14 +90,6 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
             
             componentCell._tryBindings(observer, params: viewModel)
 
-            if let updatable = viewModel as? Updatable {
-                updatable.onRender = { [weak tableView, weak cell] in
-                    if let tableView = tableView, let cell = cell {
-                        tableView.update(cell)
-                    }
-                }
-            }
-
             self.viewModels[indexPath] = viewModel
         }
 
@@ -196,14 +188,6 @@ open class TableViewAdapter<DataSourceType: DataSource> : NSObject, UITableViewD
             let componentView = view as? _AnyComponentDisplayable {
 
             componentView._tryBindings(observer, params: viewModel)
-
-            if let updatable = viewModel as? Updatable {
-                updatable.onRender = { [weak tableView, weak view] in
-                    if let tableView = tableView, let view = view {
-                        tableView.update(view)
-                    }
-                }
-            }
         }
         
         return view

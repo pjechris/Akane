@@ -33,23 +33,18 @@ extension ViewModelObservation {
 
     public func bind<ViewType: Hashable & ComponentDisplayable & Wrapped>(to view: ViewType)
         where ViewType.Parameters == ViewModelType, ViewType.Wrapper.Parameters == ViewModelType {
-        let observer = self.observer.observer(identifier: view.hashValue)
-        let controller = self.container.component(for: view)
+            let binding = DisplayObservation(view: view, container: self.container, observer: self.observer)
 
-        self.observe { value in
-            observer.dispose()
-            value.mountIfNeeded()
-            controller.bindings(observer, params: value)
-        }
+            if let value = self.value {
+                binding.to(params: value)
+            }
     }
 
     public func bind<ViewType: Hashable & ComponentDisplayable>(to view: ViewType) where ViewType.Parameters == ViewModelType  {
-        let observer = self.observer.observer(identifier: view.hashValue)
+        let binding = DisplayObservation(view: view, container: self.container, observer: self.observer)
 
-        self.observe { value in
-            observer.dispose()
-            value.mountIfNeeded()
-            view.bindings(observer, params: value)
+        if let value = self.value {
+            binding.to(params: value)
         }
     }
 }

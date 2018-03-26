@@ -25,24 +25,11 @@ class BondSpec : QuickSpec {
         }
 
         describe("bind") {
-            context("on bnd attribute") {
-                it("updates binding") {
+            context("when biding to a signal") {
+                it("updates signal value") {
                     observation.bind(to: binding.reactive.text)
 
                     expect(binding.text) == "Hello Bond"
-                }
-
-                context("when converted") {
-                    beforeEach {
-                        observation
-                            .convert { return $0?.uppercased() }
-                            .bind(to: binding.reactive.text)
-                    }
-
-                    it("updates binding") {
-                        observation.put("Hello World")
-                        expect(binding.text) == "HELLO WORLD"
-                    }
                 }
             }
         }

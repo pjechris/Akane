@@ -25,8 +25,9 @@ extension ViewObserver {
         self.add(disposable: { disposable.dispose() })
     }
 
-    public func observe<AnyValue>(_ observable: Observable<AnyValue>) -> AnyObservation<AnyValue> {
-        let observer = AnyObservation<AnyValue>(value: nil, observer: self)
+    @available(*, deprecated, renamed: "bind(_:)")
+    public func observe<Signal: SignalProtocol>(_ observable: Signal) -> AnyObservation<Signal.Element> {
+        let observer = AnyObservation<Signal.Element>(value: nil, observer: self)
         
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)
@@ -37,12 +38,14 @@ extension ViewObserver {
         return observer
     }
 
-    public func observe<AnyValue, AnyAttribute>(_ observable: Observable<AnyValue>, attribute: @escaping (AnyValue) -> AnyAttribute) -> AnyObservation<AnyAttribute> {
-        return self.observe(observable).convert(attribute)
+    @available(*, deprecated, renamed: "bind(_:)")
+    public func observe<Signal: SignalProtocol, AnyAttribute>(_ observable: Signal, attribute: @escaping (Signal.Element) -> AnyAttribute) -> AnyObservation<AnyAttribute> {
+        return self.observe(observable.map(attribute))
     }
 
-    public func observe<ViewModelType: ComponentViewModel>(_ observable: Observable<ViewModelType>) -> ViewModelObservation<ViewModelType> {
-        let observer = ViewModelObservation<ViewModelType>(value: nil, container: self.container!, observer: self)
+    @available(*, deprecated, renamed: "bind(_:)")
+    public func observe<Signal: SignalProtocol>(_ observable: Signal) -> ViewModelObservation<Signal.Element> where Signal.Element : ComponentViewModel {
+        let observer = ViewModelObservation<Signal.Element>(value: nil, container: self.container!, observer: self)
 
         let disposable : Disposable = observable.observeNext { value in
             observer.put(value)

@@ -66,6 +66,6 @@ extension ComponentDisplayable where Self : Hashable {
             return
         }
 
-        observer.observe(viewModel).bind(to: self)
+        observer.bind(self).to(params: viewModel)
     }
 }

@@ -68,14 +68,6 @@ open class CollectionViewAdapter<DataSourceType : DataSource> : NSObject, UIColl
 
             componentCell._tryBindings(observer, params: viewModel)
 
-            if let updatable = viewModel as? Updatable {
-                updatable.onRender = { [weak collectionView] in
-                    if let collectionView = collectionView {
-                        collectionView.update(.cell, atIndexPath: indexPath)
-                    }
-                }
-            }
-
             self.viewModels[indexPath] = viewModel
         }
         
