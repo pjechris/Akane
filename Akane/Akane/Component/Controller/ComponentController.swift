@@ -14,7 +14,7 @@ ComponentController is a Controller making the link between a `ComponentView`
 and its `ComponentViewModel`.
 */
 public protocol ComponentController : ComponentDisplayable, ComponentContainer {
-    associatedtype ViewType: ComponentDisplayable where ViewType.Parameters == Parameters
+    associatedtype ViewType: ComponentDisplayable, Hashable where ViewType.Parameters == Parameters
 
     // MARK: Associated component elements
     
@@ -48,15 +48,17 @@ extension ComponentController {
         }
     }
 
-    public func bindings(_ observer: ViewObserver, params viewModel: ViewType.Parameters) {
+    public func bind(_ observer: ViewObserver, params viewModel: ViewType.Parameters) {
         self.viewModel = viewModel
         self.didLoadComponent()
 
-        viewModel.mountIfNeeded()
+        self.componentView?.bind(observer, params: viewModel)
+        self.bindings(observer, params: viewModel)
+    }
 
-        if let componentView = componentView {
-            componentView.bind(observer, params: viewModel)
-        }
+    /// Does nothing
+    public func bindings(_ observer: ViewObserver, params viewModel: ViewType.Parameters) {
+
     }
 }
 

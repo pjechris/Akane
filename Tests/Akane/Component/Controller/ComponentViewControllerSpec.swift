@@ -29,7 +29,7 @@ class ComponentViewControllerSpec : QuickSpec {
             }
         }
 
-        describe("bindings(params:)") {
+        describe("bind(params:)") {
             beforeEach {
 
             }
@@ -37,7 +37,7 @@ class ComponentViewControllerSpec : QuickSpec {
             it("calls didLoadComponent") {
                 let observer = ViewObserver(container: viewController, context: ContextMock())
 
-                viewController.bindings(observer, params: ViewModelMock())
+                viewController.bind(observer, params: ViewModelMock())
 
                 expect(viewController.receivedDidLoadComponent) == true
             }

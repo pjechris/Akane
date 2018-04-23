@@ -61,12 +61,13 @@ public class ViewObserver {
     /// uses `identifier` to reuse a `ViewObserver` created with this id, or create a new one otherwise.
     /// - parameter identifier: identify ViewObserver instance
     /// - returns: a `ViewObserver` referenced by `identifier`
-    public func observer(identifier: Int) -> ViewObserver {
+    public func observer(identifier: Int, container: ComponentContainer? = nil) -> ViewObserver {
         if let observer = self.subObservers[identifier] {
             return observer
         }
 
-        let observer = ViewObserver(container: self.container!, context: context)
+        let container = container ?? self.container!
+        let observer = ViewObserver(container: container, context: context)
 
         self.subObservers[identifier] = observer
 

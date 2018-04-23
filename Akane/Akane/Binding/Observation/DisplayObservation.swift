@@ -25,6 +25,9 @@ public class DisplayObservation<View: Displayable & Hashable> {
 
 extension DisplayObservation {
     public func to(params: View.Parameters) {
+        let observer = self.observer.observer(identifier: view.hashValue)
+
+        observer.dispose()
         view.bind(observer, params: params)
     }
 }
@@ -56,12 +59,12 @@ extension DisplayObservation where View : ComponentDisplayable {
 
 extension DisplayObservation where View : Wrapped {
     public func to(params viewModel: View.ViewModel) {
-        let observer = self.observer.observer(identifier: self.view.hashValue)
         let controller = self.container.component(for: self.view)
+        let observer = self.observer.observer(identifier: self.view.hashValue, container: controller)
 
         observer.dispose()
         viewModel.mountIfNeeded()
-        controller.bindings(observer, params: viewModel)
+        controller.bind(observer, params: viewModel)
     }
 }
 
