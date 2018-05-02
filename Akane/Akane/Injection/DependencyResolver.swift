@@ -8,13 +8,13 @@
 
 import Foundation
 
-// ComponentResolver
 public protocol DependencyResolver {
-    func resolve<T: ComponentViewModel & Paramaterized & Injectable>(_ type: T.Type, parameters: T.InjectionParameters) -> T
+    func resolve<T>() -> T?
+    func resolve<T, Arg1>(arguments: Arg1) -> T?
+    func resolve<T, Arg1, Arg2>(arguments: Arg1, _ arg2: Arg2) -> T?
 }
 
-extension DependencyResolver {
-    public func resolve<T: ComponentViewModel & Paramaterized & Injectable>(_ type: T.Type, parameters: T.InjectionParameters) -> T {
-        return T.init(resolver: self, parameters: parameters)
-    }
+/// NOTE: This is alpha API, it might not work properly. Use it with caution.
+public protocol ComponentProvider {
+    func provide<T: ComponentViewModel & Injectable>(_ type: T.Type, parameters: T.Parameters) -> T?
 }

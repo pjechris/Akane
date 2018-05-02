@@ -8,12 +8,9 @@
 
 import Foundation
 
+/// NOTE: This is alpha API, it might not work properly. Use it with caution.
 public protocol Injectable {
-    associatedtype InjectionParameters = Void
+    associatedtype Parameters
 
-    init(resolver: DependencyResolver, parameters: InjectionParameters)
-}
-
-extension Injectable where Self : Paramaterized {
-    public typealias InjectionParameters = Parameters
+    init(resolver: DependencyResolver, parameters: Parameters)
 }

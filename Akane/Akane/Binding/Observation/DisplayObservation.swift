@@ -41,7 +41,8 @@ extension DisplayObservation where View : ComponentDisplayable {
         view.bind(observer, params: viewModel)
     }
 
-    public func to<T: Injectable & Paramaterized>(params: T.InjectionParameters) where T == View.Parameters, T.InjectionParameters == T.Parameters {
+    /// NOTE: This is alpha API, it might not work properly. Use it with caution.
+    public func to<T: Injectable & Paramaterized>(params: T.Parameters) where T == View.Parameters {
         // FIXME context is "leaked"
         var viewModel: T
 
@@ -50,7 +51,11 @@ extension DisplayObservation where View : ComponentDisplayable {
             viewModel.params = params
         }
         else {
-            viewModel = self.observer.context.resolve(T.self, parameters: params)
+            guard let providedViewModel = self.observer.context.provide(T.self, parameters: params) else {
+                return
+            }
+
+            viewModel = providedViewModel
         }
         
         self.to(params: viewModel)

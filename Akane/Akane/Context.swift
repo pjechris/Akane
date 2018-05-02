@@ -8,4 +8,16 @@
 
 import Foundation
 
-public typealias Context = DependencyResolver
+public protocol Context: ComponentProvider {
+    var resolver: DependencyResolver? { get }
+}
+
+extension ComponentProvider where Self: Context {
+    public func provide<T: ComponentViewModel & Injectable>(_ type: T.Type, parameters: T.Parameters) -> T? {
+        guard let resolver = self.resolver else {
+            return nil
+        }
+
+        return T.init(resolver: resolver, parameters: parameters)
+    }
+}
