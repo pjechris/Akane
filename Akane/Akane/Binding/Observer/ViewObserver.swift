@@ -21,7 +21,7 @@ public class ViewObserver {
     fileprivate var disposes: [() -> ()] = []
     fileprivate var subObservers: [Int:ViewObserver] = [:]
 
-    public init(container: ComponentContainer, context: Context) {
+    init(container: ComponentContainer, context: Context) {
         self.container = container
         self.context = context
     }

@@ -18,10 +18,12 @@ public protocol SceneController : ComponentController {
 }
 
 extension SceneController {
-    public fileprivate(set) var observer: ViewObserver! {
+    fileprivate(set) var observer: ViewObserver! {
         get { return self.associatedObjects["observer"] as? ViewObserver }
         set { self.associatedObjects["observer"] = newValue }
     }
+
+    public var context: Context! { return self.observer.context }
 
     public func renderScene(_ viewModel: Parameters, context: Context) {
         self.observer = ViewObserver(container: self, context: context)
